@@ -27,4 +27,5 @@ psjvpn ()
   sudo openvpn --rmtun --dev tun0
 }
 
-PS1='\[\e[0;36m\][ \w ]\[\e[0m\]: '
+PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
+cat /etc/issue

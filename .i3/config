@@ -32,8 +32,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -nb '#000000' -nf '#75DAA9' -b
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -146,6 +144,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+# My changes #
+##############
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -165,23 +167,37 @@ bar {
         }
       
 }
+
+client.focused			#000000 #000000 #75DAA9
+client.unfocused		#000000 #000000 #333333
+client.focused_inactive		#000000 #000000 #888888
+client.urgent			#000000 #000000 #ffffff
+
 bindsym grave scratchpad show
-for_window [class="chrome_app_list"] floating enable
-for_window [class="URxvt" instance="drop"] floating enable;
+for_window [instance="chrome_app_list"] floating enable
+for_window [class="URxvt" instance="drop"] floating enable
 for_window [class="URxvt" instance="drop"] move scratchpad, scratchpad show, border none, move position 0px 19px, scratchpad show
+for_window [class="URxvt" instance="vim"] border none
 for_window [class="Google-chrome-stable"] border none
+
 
 exec compton
 exec urxvt -geometry 184x30 -name drop
 exec google-chrome-stable
 exec sh ~/.fehbg
+exec urxvt -name vim -e vim
 #temp, find a way to keep URXVT open
 bindsym $mod+grave exec urxvt -geometry 184x30 -name drop
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute
+#bindsym $mod+g exec google-chrome-stable --show-app-list
+
+# start dmenu
+bindsym $mod+d exec dmenu_run -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b
+# start demnu connman
+bindsym $mod+n exec sudo connman_dmenu -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b
 
 #chrome
 assign [class="Google-chrome-stable"] 2:www
-#caret
-assign [window_role="app" instance="crx_fljalecfjciodhpcledpamjachpmelml"] 3:edit
+assign [class="URxvt" instance="vim"] 3:edit
