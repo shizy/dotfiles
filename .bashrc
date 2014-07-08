@@ -18,13 +18,30 @@ alias vftcssh='ssh ubuntu@23.21.73.194'
 alias unmount='sudo umount ~/Mount'
 alias vftcfs='sshfs ubuntu@23.21.73.194:/home/ubuntu ~/Mount -C -p 22 -o IdentityFile=~/.ssh/id_rsa,allow_other'
 
+#wallpaper stuff | add timestamp to prevent over-write
+wallpaper ()
+{
+	if [ -z "$1" ]; then
+		x="$HOME/Downloads"/$(ls -rt *.{jpg,bmp,png} ~/Downloads 2>/dev/null | tail -n 1)
+	else
+		x=$1
+	fi
+	
+	if [ ! -d "$HOME/.wallpaper" ]; then
+		mkdir $HOME/.wallpaper 2>/dev/null	
+	fi
+
+	mv -f $x "$HOME/.wallpaper"/$(basename $x)
+	feh --bg-scale "$HOME/.wallpaper"/$(basename $x)
+}
+
 #vpn
 psjvpn ()
 {
-  sudo openvpn --mktun --dev tun0
-  sleep 5
-  sudo openconnect --interface tun0 --no-cert-check anyconnect.uhsinc.com
-  sudo openvpn --rmtun --dev tun0
+	sudo openvpn --mktun --dev tun0
+	sleep 5
+	sudo openconnect --interface tun0 --no-cert-check anyconnect.uhsinc.com
+	sudo openvpn --rmtun --dev tun0
 }
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '

@@ -174,20 +174,19 @@ client.focused_inactive		#000000 #000000 #888888
 client.urgent			#000000 #000000 #ffffff
 
 bindsym grave scratchpad show
-for_window [instance="chrome_app_list"] floating enable
-for_window [class="URxvt" instance="drop"] floating enable
-for_window [class="URxvt" instance="drop"] move scratchpad, scratchpad show, border none, move position 0px 19px, scratchpad show
+for_window [class="URxvt" instance="top"] floating enable
+for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 19px, scratchpad show
 for_window [class="URxvt" instance="vim"] border none
 for_window [class="Google-chrome-stable"] border none
 
 
 exec compton
-exec urxvt -geometry 184x30 -name drop
+exec urxvt -geometry 184x30 -name top
 exec google-chrome-stable
 exec sh ~/.fehbg
 exec urxvt -name vim -e vim
 #temp, find a way to keep URXVT open
-bindsym $mod+grave exec urxvt -geometry 184x30 -name drop
+bindsym $mod+grave exec urxvt -geometry 184x30 -name top
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute

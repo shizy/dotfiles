@@ -17,8 +17,11 @@ Plugin 'xolox/vim-session'
 call vundle#end()
 filetype plugin indent on
 
-
-:set number
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set number
+set noswapfile
 :colors molokai
 :syntax on
 let g:molokai_original = 1
@@ -30,6 +33,7 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_save_periodic = 5
 let g:session_default_to_last = 1
-:nmap <S-j> :bp<CR>
-:nmap <S-k> :bn<CR>
+:nmap <S-j> :bp!<CR>
+:nmap <S-k> :bn!<CR>
 :nmap <S-d> :CtrlP<CR>
+:nmap <S-w> :bd<CR>
