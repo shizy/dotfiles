@@ -36,4 +36,4 @@ let g:session_default_to_last = 1
 :nmap <S-j> :bp!<CR>
 :nmap <S-k> :bn!<CR>
 :nmap <S-d> :CtrlP<CR>
-:nmap <S-w> :bd<CR>
+:nmap <S-w> :bd!<CR>
