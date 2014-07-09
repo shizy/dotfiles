@@ -173,27 +173,30 @@ client.unfocused			#000000 #000000 #333333
 client.focused_inactive		#000000 #000000 #888888
 client.urgent				#000000 #000000 #ffffff
 
-bindsym grave scratchpad show
 for_window [class="URxvt" instance="top"] floating enable
+for_window [class="URxvt" instance="bottom"] floating enable
 for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 19px, scratchpad show
+for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 400px, scratchpad show
 for_window [class="URxvt" instance="vim"] border none
 for_window [class="Google-chrome-stable"] border none
 
 exec compton
-exec urxvt -geometry 184x30 -name top
+exec urxvt -geometry 184x27 -name top
+exec urxvt -geometry 184x29 -name bottom
 exec google-chrome-stable
 exec sh ~/.fehbg
-exec urxvt -name vim -e vim
+exec urxvt -name vim -e vim -c ":OpenSession! default"
+
+bindsym grave [instance="top"] scratchpad show
+bindsym Ctrl+grave [instance="bottom"] scratchpad show
 #temp, find a way to keep URXVT open
-bindsym $mod+grave exec urxvt -geometry 184x30 -name top
+bindsym $mod+grave exec urxvt -geometry 184x27 -name top
+bindsym $mod+Ctrl+grave exec urxvt -geometry 184x29 -name bottom
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute
 #bindsym $mod+g exec google-chrome-stable --show-app-list
-
-# start dmenu
 bindsym $mod+d exec dmenu_run -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b
-# start demnu connman
 bindsym $mod+n exec sudo connman_dmenu -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b
 
 #chrome
