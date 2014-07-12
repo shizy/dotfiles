@@ -182,16 +182,17 @@ for_window [class="Google-chrome-stable"] border none
 
 exec compton
 exec urxvt -geometry 184x27 -name top
-exec urxvt -geometry 184x29 -name bottom
+exec urxvt -geometry 184x28 -name bottom
 exec google-chrome-stable
 exec sh ~/.fehbg
+exec unclutter
 exec urxvt -name vim -e vim -c ":OpenSession! default"
 
 bindsym grave [instance="top"] scratchpad show
 bindsym Ctrl+grave [instance="bottom"] scratchpad show
 #temp, find a way to keep URXVT open
 bindsym $mod+grave exec urxvt -geometry 184x27 -name top
-bindsym $mod+Ctrl+grave exec urxvt -geometry 184x29 -name bottom
+bindsym $mod+Ctrl+grave exec urxvt -geometry 184x28 -name bottom
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute

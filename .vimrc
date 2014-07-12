@@ -13,6 +13,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'bling/vim-airline'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'wavded/vim-stylus'
+Plugin 'digitaltoad/vim-jade'
 
 call vundle#end()
 filetype plugin indent on
@@ -36,4 +38,7 @@ let g:session_default_to_last = 1
 :nmap <S-j> :bp!<CR>
 :nmap <S-k> :bn!<CR>
 :nmap <S-d> :CtrlP<CR>
-:nmap <S-w> :bd!<CR>
+:nmap <S-x> :bd!<CR>
+autocmd BufNewFile,BufRead *.styl set filetype=stylus
+autocmd BufNewFile,BufRead *.ejs set filetype=js
+autocmd BufNewFile,BufRead *.ejs set filetype=html
