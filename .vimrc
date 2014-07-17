@@ -46,4 +46,4 @@ autocmd BufNewFile,BufRead *.styl set filetype=stylus
 autocmd BufNewFile,BufRead *.ejs set filetype=js
 autocmd BufNewFile,BufRead *.ejs set filetype=html
 autocmd vimenter * NERDTree
-autocmd vimleave * NERDTreeClose 
+autocmd vimleave * :SaveSession
