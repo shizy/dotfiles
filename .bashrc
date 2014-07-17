@@ -4,21 +4,17 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# default start dir
 if [ "$(whoami)" != 'root' ]; then
   cd ~
 fi
 
+# aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-#ssh
-alias vftcssh='ssh ubuntu@23.21.73.194'
-
-#sshfs
-alias unmount='sudo umount ~/Mount'
-alias vftcfs='sshfs ubuntu@23.21.73.194:/home/ubuntu ~/Mount -C -p 22 -o IdentityFile=~/.ssh/id_rsa,allow_other'
-
-#wallpaper stuff | add timestamp to prevent over-write
+# wallpaper stuff | add timestamp to prevent over-write
 wallpaper ()
 {
 	if [ -z "$1" ]; then
@@ -35,13 +31,17 @@ wallpaper ()
 	feh --bg-scale "$HOME/.wallpaper"/$(basename $x)
 }
 
-#vpn
-psjvpn ()
+# backup config and installed packages
+backup ()
 {
-	sudo openvpn --mktun --dev tun0
-	sleep 5
-	sudo openconnect --interface tun0 --no-cert-check anyconnect.uhsinc.com
-	sudo openvpn --rmtun --dev tun0
+	if [ ! -d "$HOME/.takealongs" ]; then
+		mkdir $HOME/.takealongs 2>/dev/null
+	fi
+	
+	pacman -Qqe > $HOME/.takealongs/pacman-backup
+	pacman -Qqm > $HOME/.takealongs/yaourt-backup
+
+	# add git script
 }
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '

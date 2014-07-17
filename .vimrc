@@ -15,6 +15,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'wavded/vim-stylus'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'scrooloose/nerdtree'
+Plugin 'moll/vim-bbye'
 
 call vundle#end()
 filetype plugin indent on
@@ -35,10 +37,13 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_save_periodic = 5
 let g:session_default_to_last = 1
+let g:NERDTreeShowHidden = 1
 :nmap <S-j> :bp!<CR>
 :nmap <S-k> :bn!<CR>
 :nmap <S-d> :CtrlP<CR>
-:nmap <S-x> :bd!<CR>
+:nmap <S-x> :Bdelete!<CR>
 autocmd BufNewFile,BufRead *.styl set filetype=stylus
 autocmd BufNewFile,BufRead *.ejs set filetype=js
 autocmd BufNewFile,BufRead *.ejs set filetype=html
+autocmd vimenter * NERDTree
+autocmd vimleave * NERDTreeClose 
