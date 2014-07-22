@@ -33,7 +33,7 @@ ethernet enp0s25 {
 battery 0 {
         format = "  %percentage "
         path = "/sys/class/power_supply/BAT%d/uevent"
-        low_threshold = 10
+        low_threshold = 15
         threshold_type = percentage
 }
 

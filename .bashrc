@@ -13,6 +13,8 @@ fi
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias musana='ssh -i ~/.ssh/newhopeuganda.pem ubuntu@54.77.34.161'
+alias musanafs='sshfs ubuntu@54.77.34.161:/home/ubuntu ~/Mount -C -p 22 -o IdentityFile=~/.ssh/newhopeuganda.pem,allow_other'
 
 # wallpaper stuff | add timestamp to prevent over-write
 wallpaper ()
@@ -46,3 +48,4 @@ backup ()
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
 #cat /etc/issue
+PATH=/home/shizukesa/.npm/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
