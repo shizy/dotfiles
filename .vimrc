@@ -25,6 +25,7 @@ set shiftwidth=4
 set softtabstop=4
 set number
 set noswapfile
+set expandtab
 :colors molokai
 :syntax on
 let g:molokai_original = 1
@@ -32,6 +33,7 @@ let g:rehash256 = 1
 let g:ctrlp_show_hidden = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_save_periodic = 5
@@ -40,6 +42,8 @@ let g:session_default_to_last = 1
 :nmap <S-k> :bn!<CR>
 :nmap <S-d> :CtrlP<CR>
 :nmap <S-x> :bdelete!<CR>
+:map ;; <Esc>
+:map! ;; <Esc>
 autocmd BufNewFile,BufRead *.styl set filetype=stylus
 autocmd BufNewFile,BufRead *.ejs set filetype=js
 autocmd BufNewFile,BufRead *.ejs set filetype=html
