@@ -14,8 +14,6 @@ fi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias yaourt='yaourt --noconfirm'
-alias musana='ssh -i ~/.ssh/newhopeuganda.pem ubuntu@54.77.34.161'
-alias musanafs='sshfs ubuntu@54.77.34.161:/home/ubuntu ~/Mount -C -p 22 -o IdentityFile=~/.ssh/newhopeuganda.pem,allow_other'
 
 # wallpaper stuff | add timestamp to prevent over-write
 wallpaper ()
