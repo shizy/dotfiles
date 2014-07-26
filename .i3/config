@@ -152,20 +152,20 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         position top
-        font pango:DejaVu Sans Mono, Icons 8
+        font pango:Inconsolata for Powerline Sans Mono, Icons 10
         status_command i3status --config ~/.i3/status
         strip_workspace_numbers yes
 
         colors {
-        
+
               separator #000000
-      
+
               focused_workspace  #000000 #000000 #75DAA9
               active_workspace   #000000 #000000 #ffffff
               inactive_workspace #000000 #000000 #888888
               urgent_workspace   #000000 #000000 #ffffff
         }
-      
+
 }
 
 client.focused				#000000 #000000 #75DAA9
@@ -175,7 +175,7 @@ client.urgent				#000000 #000000 #ffffff
 
 for_window [class="URxvt" instance="top"] floating enable
 for_window [class="URxvt" instance="bottom"] floating enable
-for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 19px, scratchpad show
+for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
 for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 412px, scratchpad show
 for_window [class="URxvt" instance="vim"] border none
 for_window [class="Google-chrome-stable"] border none

@@ -13,6 +13,7 @@ fi
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias yaourt='yaourt --noconfirm'
 alias musana='ssh -i ~/.ssh/newhopeuganda.pem ubuntu@54.77.34.161'
 alias musanafs='sshfs ubuntu@54.77.34.161:/home/ubuntu ~/Mount -C -p 22 -o IdentityFile=~/.ssh/newhopeuganda.pem,allow_other'
 
@@ -24,9 +25,9 @@ wallpaper ()
 	else
 		x=$1
 	fi
-	
+
 	if [ ! -d "$HOME/.wallpaper" ]; then
-		mkdir $HOME/.wallpaper 2>/dev/null	
+		mkdir $HOME/.wallpaper 2>/dev/null
 	fi
 
 	mv -f $x "$HOME/.wallpaper"/$(basename $x)
@@ -39,10 +40,12 @@ backup ()
 	if [ ! -d "$HOME/.takealongs" ]; then
 		mkdir $HOME/.takealongs 2>/dev/null
 	fi
-	
+
 	pacman -Qqe > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/yaourt-backup
+    npm list -g --depth=0 --json=true > $HOME/.takealongs/npm-backup
 
+    git add $HOME/.takealongs
 	# add git script
 }
 
