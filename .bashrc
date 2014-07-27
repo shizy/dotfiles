@@ -39,7 +39,7 @@ backup ()
 	fi
 
 	pacman -Qqe > $HOME/.takealongs/pacman-backup
-	pacman -Qqm > $HOME/.takealongs/yaourt-backup
+	pacman -Qqm > $HOME/.takealongs/aur-backup
     npm list -g --depth=0 --json=true > $HOME/.takealongs/npm-backup
 
     git add $HOME/.takealongs
