@@ -1,4 +1,5 @@
 alsa-utils
+aura-bin
 autoconf
 automake
 bash
@@ -81,7 +82,6 @@ systemd-sysvcompat
 tar
 texinfo
 traceroute
-ttf-anonymous-pro
 ttf-font-awesome
 ttf-liberation
 unclutter
@@ -90,6 +90,7 @@ usbutils
 util-linux
 vi
 vim
+vlc
 wget
 which
 whois
@@ -138,4 +139,3 @@ xorg-xvinfo
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
-yaourt

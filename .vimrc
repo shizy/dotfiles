@@ -17,6 +17,7 @@ Plugin 'xolox/vim-session'
 Plugin 'wavded/vim-stylus'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
 
 call vundle#end()
 filetype plugin indent on
@@ -31,7 +32,6 @@ set expandtab
 :syntax on
 let g:molokai_original = 1
 let g:rehash256 = 1
-let g:ctrlp_show_hidden = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
 let g:airline_powerline_fonts = 1
@@ -39,7 +39,11 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_save_periodic = 5
 let g:session_default_to_last = 1
-let g:EasyMotion_smartcase = 1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
+  \ 'file': '\.exe$\|\.so$\|\.dat$'
+  \ }
 :nmap <S-j> :bp!<CR>
 :nmap <S-k> :bn!<CR>
 :nmap <S-d> :CtrlP<CR>

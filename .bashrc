@@ -13,7 +13,6 @@ fi
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias yaourt='yaourt --noconfirm'
 
 # wallpaper stuff | add timestamp to prevent over-write
 wallpaper ()
