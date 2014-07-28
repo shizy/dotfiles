@@ -39,14 +39,17 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_save_periodic = 5
 let g:session_default_to_last = 1
+let g:ctrlp_map = '<S-d>'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
   \ 'file': '\.exe$\|\.so$\|\.dat$'
   \ }
+let g:multi_cursor_next_key = '<S-s>'
+let g:multi_cursor_skip_key = 's'
+let g:multi_cursor_quit_key = ';'
 :nmap <S-j> :bp!<CR>
 :nmap <S-k> :bn!<CR>
-:nmap <S-d> :CtrlP<CR>
 :nmap <S-x> :bdelete!<CR>
 :map ;; <Esc>
 :map! ;; <Esc>
