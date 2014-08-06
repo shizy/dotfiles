@@ -54,15 +54,23 @@ let g:multi_cursor_quit_key = ';'
 :nmap <S-j> :bp!<CR>
 :nmap <S-k> :bn!<CR>
 :nmap <S-x> :bdelete!<CR>
-:map ;; <Esc>
-:map! ;; <Esc>
+:nmap <S-u> 15k
+:nmap <S-n> 15j
 :nmap t :Tabularize /
 :vmap t :Tabularize /
+:map ;; <Esc>
+:map! ;; <Esc>
 :inoremap ;<Return> ;
-:inoremap {     {}<Left>
-:inoremap {<CR> {<CR>}<Esc>O
-:inoremap {{    {
-:inoremap {}    {}
+:inoremap {;    {};<Left><Left>
+:inoremap {}    {<CR>}<Esc>O
+:inoremap (;    ();<Left><Left>
+:inoremap ()    ()<Left>
+:inoremap ";    "";<Left><Left>
+:inoremap ""    ""<Left>
+:inoremap ';    '';<Left><Left>
+:inoremap ''    ''<Left><Left>
+:inoremap <S-Return>    <Esc>$a;<Esc>
+:nnoremap <S-Return>    <Esc>$a;<Esc>
 autocmd BufNewFile,BufRead *.styl set filetype=stylus
-autocmd BufNewFile,BufRead *.ejs set filetype=js
-autocmd BufNewFile,BufRead *.ejs set filetype=html
+autocmd BufNewFile,BufRead *.ejs  set filetype=js
+autocmd BufNewFile,BufRead *.ejs  set filetype=html
