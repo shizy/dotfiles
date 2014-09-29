@@ -1,8 +1,16 @@
 aura-bin
 compton
 connman_dmenu-git
+freerdp-git
 google-chrome
 google-talkplugin
 libgcrypt15
+lua-cmsgpack
+lua-messagepack
+msgpack-git-neovim
+neovim-git
+openswan
+powerdown-git
 rxvt-unicode-patched
+silver-searcher-git
 ttf-font-awesome

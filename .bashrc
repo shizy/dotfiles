@@ -40,9 +40,15 @@ backup ()
 
 	pacman -Qqe > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/aur-backup
-    npm list -g --depth=0 --json=true > $HOME/.takealongs/npm-backup
 
     git add $HOME/.takealongs
+    git add $HOME/.vimrc
+    git add $HOME/.i3
+    git add $HOME/.Xresources
+    git add $HOME/.xinitrc
+    git add $HOME/.bashrc
+    git add $HOME/.fonts
+    git add $HOME/.bash_profile
 	# add git script
 }
 
