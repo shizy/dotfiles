@@ -23,10 +23,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'moll/vim-bbye'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'bling/vim-airline'
 
 " Looks
 Plugin 'tomasr/molokai'
-Plugin 'bling/vim-airline'
 
 " Interaction
 Plugin 'tpope/vim-sensible'
@@ -56,16 +56,21 @@ set softtabstop=4
 set expandtab
 set number
 set noswapfile
-set ttyscroll=0
+set ttyfast
+set ttyscroll=3
+set lazyredraw
 set encoding=utf-8
+set t_Co=256
 
-filetype plugin indent on
-colors molokai
-" colors fix!!
 syntax on
+filetype plugin indent on
 let mapleader = "\<Space>"
 
 " Molokai
+color molokai
+hi Normal ctermbg=none
+hi LineNr ctermfg=59 ctermbg=none
+hi CursorLineNr ctermfg=208 ctermbg=none
 let g:molokai_original = 1
 let g:rehash256 = 1
 
@@ -99,20 +104,25 @@ let g:multi_cursor_skip_key = 's'
 
 " ========== MAPPINGS ==========
 
-:nnoremap <S-j> 10j
-:nnoremap <S-k> 10k
-:nnoremap <S-h> :bp!<CR>
-:nnoremap <S-l> :bn!<CR>
-:nmap <Leader>x :Bdelete!<CR>
-:nmap <Leader>w :w<CR>
-:nmap <Leader>- :CtrlP<CR>
-:nmap <Leader>/ <Esc>:%s/
-:vmap <Leader>/ <Esc>:'<,'>s/
-:nmap <Leader>t :Tabularize /
-:vmap <Leader>t :Tabularize /
-:vmap v 	    <Plug>(expand_region_expand)
-:imap jj 	    <Esc><CR>
-:imap jk 	    <Esc>:w<CR>
+:nnoremap  <S-j>      10j
+:nnoremap  <S-k>      10k
+:nnoremap  <S-h>      :bp!<CR>
+:nnoremap  <S-l>      :bn!<CR>
+:nnoremap  <S-x>      :Bdelete!<CR>
+:nnoremap  <S-u>      <C-r>
+:nnoremap  <tab>      <C-W>w
+:nnoremap  <Leader>x  ZZ
+:nmap      <Leader>h  <C-w>s
+:nmap      <Leader>v  <C-w>v
+:nmap      <Leader>w  :w<CR>
+:nmap      <Leader>-  :CtrlP<CR>
+:nmap      <Leader>/  <Esc>:%s/
+:vmap      <Leader>/  <Esc>:'<,'>s/
+:nmap      <Leader>t  :Tabularize /
+:vmap      <Leader>t  :Tabularize /
+:vmap      v          <Plug>(expand_region_expand)
+:imap      jj         <Esc><CR>
+:imap      jk         <Esc>:w<CR>
 
 " ========== FILETYPES ==========
 
