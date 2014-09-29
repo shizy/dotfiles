@@ -38,6 +38,7 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
 
 " Syntax & Highlighting
 Plugin 'scrooloose/syntastic'
