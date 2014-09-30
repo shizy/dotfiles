@@ -125,6 +125,20 @@ let g:multi_cursor_skip_key = 's'
 :imap      jj         <Esc><CR>
 :imap      jk         <Esc>:w<CR>
 
+:inoremap  {;         {};<Left><Left>
+:inoremap  {<CR>      {<CR>}<Esc>O
+:inoremap  (;         ();<Left><Left>
+:inoremap  (          ()<Left>
+:inoremap  <expr> )   strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+:inoremap  {          {}<Left>
+:inoremap  <expr> }   strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+:inoremap  [          []<Left>
+:inoremap  <expr> ]   strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+
 " ========== FILETYPES ==========
 
 au BufNewFile,BufRead *.styl set filetype=stylus
+au BufNewFile,BufRead *.jade set filetype=js
+au BufNewFile,BufRead *.jade set filetype=html
+au BufNewFile,BufRead *.ejs  set filetype=js
+au BufNewFile,BufRead *.ejs  set filetype=html
