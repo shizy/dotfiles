@@ -33,11 +33,11 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-expand-region'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Utility
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
 
 " Syntax & Highlighting
@@ -62,6 +62,7 @@ set ttyscroll=3
 set lazyredraw
 set encoding=utf-8
 set t_Co=256
+set clipboard=unnamed
 
 syntax on
 filetype plugin indent on
@@ -88,7 +89,7 @@ let g:session_default_to_last = 1
 
 " CtrlP
 if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+    let g:ctrlp_user_command = 'ag %s -l -g "" --ignore "\.git$\|\.hg$\|\.svn$\|\.node_modules$"'
     let g:ctrlp_use_caching = 0
 else
     let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -123,7 +124,7 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>t  :Tabularize /
 :vmap      <Leader>t  :Tabularize /
 :vmap      v          <Plug>(expand_region_expand)
-:imap      jj         <Esc><CR>
+:imap      jj         <Esc>
 :imap      jk         <Esc>:w<CR>
 
 :inoremap  {;         {};<Left><Left>

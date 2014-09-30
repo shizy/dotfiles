@@ -49,7 +49,8 @@ backup ()
     git add $HOME/.bashrc
     git add $HOME/.fonts
     git add $HOME/.bash_profile
-	# add git script
+    # commit with date as desc
+	# push
 }
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
