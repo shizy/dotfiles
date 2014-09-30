@@ -111,7 +111,8 @@ let g:multi_cursor_skip_key = 's'
 :nnoremap  <S-l>      :bn!<CR>
 :nnoremap  <S-x>      :Bdelete!<CR>
 :nnoremap  <S-u>      <C-r>
-:nnoremap  <tab>      <C-W>w
+:nnoremap  <tab>      <C-w>w
+:nnoremap  <S-tab>    <C-w>W
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
