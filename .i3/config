@@ -27,7 +27,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -65,7 +65,7 @@ bindsym $mod+Shift+Right move right
 #bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+# bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -149,12 +149,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+####################################
+# ========== My changes ========== #
+####################################
 
-# My changes #
-##############
+# ========== IBAR ===========
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
         position top
         font pango:Inconsolata for Powerline Sans Mono, Icons 10
@@ -173,11 +173,16 @@ bar {
 
 }
 
+# ========== COLORS ==========
+
 client.focused				#000000 #000000 #75DAA9
 client.unfocused			#000000 #000000 #333333
 client.focused_inactive		#000000 #000000 #888888
 client.urgent				#000000 #000000 #ffffff
 
+# ========== RULES ==========
+
+# Scratchpads
 for_window [class="URxvt" instance="top"] floating enable
 for_window [class="URxvt" instance="bottom"] floating enable
 for_window [class="URxvt" instance="left"] floating enable
@@ -185,8 +190,17 @@ for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, bord
 for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 412px, scratchpad show
 for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
 for_window [class="URxvt" instance="vim"] border none
+
 for_window [class="Google-chrome-stable"] border none
 for_window [class="st-256color"] border none
+
+# ========== ASSIGNMENT ==========
+
+assign [class="Google-chrome-stable"] 2:
+assign [class="URxvt" instance="vim"] 3:
+assign [class="Gimp"] 4:
+
+# ========== AUTOSTART ==========
 
 exec compton
 exec urxvt -geometry 184x24 -name top
@@ -197,18 +211,23 @@ exec sh ~/.fehbg
 exec unclutter
 exec urxvt -name vim -e vim -c ":OpenSession! default"
 
+# ========== MAPPINGS ==========
+
+# Scratchpads
 bindsym grave [instance="top"] scratchpad show
 bindsym Ctrl+grave [instance="bottom"] scratchpad show
 bindsym $mod+grave [instance="left"] scratchpad show
-#temp, find a way to keep URXVT open
+
+# Volume
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute
-#bindsym $mod+g exec google-chrome-stable --show-app-list
+
+# dmenu's
 bindsym $mod+d exec dmenu_run -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b
 bindsym $mod+n exec sudo connman_dmenu -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b
 
-#chrome
-assign [class="Google-chrome-stable"] 2:
-assign [class="URxvt" instance="vim"] 3:
-assign [class="Gimp"] 4:
+# Shortcuts
+bindsym $mod+v exec urxvt -name vim -e vim
+bindsym $mod+g exec google-chrome-stable
+bindsym $mod+Return exec urxvt
