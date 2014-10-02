@@ -1,7 +1,9 @@
 aura-bin
 compton
 connman_dmenu-git
+evernote-sdk-python-git
 freerdp-git
+geeknote-git
 google-chrome
 google-talkplugin
 libgcrypt15
@@ -11,6 +13,10 @@ msgpack-git-neovim
 neovim-git
 openswan
 powerdown-git
+python-markdown2
+python2-html2text
+python2-oauth2
 rxvt-unicode-patched
 silver-searcher-git
+thrift-python2
 ttf-font-awesome

@@ -27,6 +27,7 @@ freerdp-git
 gawk
 gcc
 gcc-libs
+geeknote-git
 gettext
 gimp
 git
@@ -47,7 +48,7 @@ irssi
 iw
 jfsutils
 less
-lib32-intel-dri
+lib32-mesa-dri
 libtool
 libutil-linux
 licenses

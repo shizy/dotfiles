@@ -39,6 +39,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'neilagabriel/vim-geeknote'
 
 " Syntax & Highlighting
 Plugin 'scrooloose/syntastic'
@@ -123,6 +124,7 @@ let g:multi_cursor_skip_key = 's'
 :vmap      <Leader>/  <Esc>:'<,'>s/
 :nmap      <Leader>t  :Tabularize /
 :vmap      <Leader>t  :Tabularize /
+:nmap      <Leader>e  :Geeknote<CR>
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
 :imap      jk         <Esc>:w<CR>
