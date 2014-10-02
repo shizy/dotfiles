@@ -47,6 +47,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'wavded/vim-stylus'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 
@@ -146,3 +147,4 @@ au BufNewFile,BufRead *.jade set filetype=js
 au BufNewFile,BufRead *.jade set filetype=html
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
+au BufWinEnter /tmp/*        set syntax=markdown
