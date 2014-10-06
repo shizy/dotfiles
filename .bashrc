@@ -10,6 +10,9 @@ if [ "$(whoami)" != 'root' ]; then
   cd ~
 fi
 
+# vi mode
+set -o vi
+
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -38,7 +41,7 @@ backup ()
 		mkdir $HOME/.takealongs 2>/dev/null
 	fi
 
-	pacman -Qqe > $HOME/.takealongs/pacman-backup
+	pacman -Qqne > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/aur-backup
 
     git add $HOME/.takealongs
@@ -54,5 +57,4 @@ backup ()
 }
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
-#cat /etc/issue
 PATH=/home/shizukesa/.npm/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl

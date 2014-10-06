@@ -126,6 +126,11 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>t  :Tabularize /
 :vmap      <Leader>t  :Tabularize /
 :nmap      <Leader>e  :Geeknote<CR>
+:nmap      <Leader>b  :GeeknoteCreateNotebook
+:nmap      <Leader>n  :GeeknoteCreateNote
+:nmap      <Leader>s  :Gstatus<CR>
+:nmap      <Leader>c  :Gcommit -m
+:nmap      <Leader>p  :Gpush
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
 :imap      jk         <Esc>:w<CR>
@@ -147,4 +152,5 @@ au BufNewFile,BufRead *.jade set filetype=js
 au BufNewFile,BufRead *.jade set filetype=html
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
+au BufWinEnter *.md          set syntax=markdown
 au BufWinEnter /tmp/*        set syntax=markdown

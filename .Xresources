@@ -4,8 +4,6 @@ URxvt.background: [90]#000000
 URxvt.scrollBar:  false
 URxvt.font:       xft:Inconsolata for Powerline:size=11:antialias=true
 URxvt.boldFont:   xft:Inconsolata for Powerline:bold:size=11:antialias=true
-vim.font:         xft:Inconsolata for Powerline:size=11:antialias=true
-vim.boldFont:     xft:Inconsolata for Powerline:bold:size=11:antialias=true
 
 *.background: #232323
 *.foreground: #A0A0A0
@@ -45,4 +43,5 @@ vim.boldFont:     xft:Inconsolata for Powerline:bold:size=11:antialias=true
 !WHT
 *.color7:     #CFCFCF
 *.color15:    #FFFFFF
+
 
