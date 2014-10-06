@@ -17,7 +17,7 @@ set -o vi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-# wallpaper stuff | add timestamp to prevent over-write
+# wallpaper stuff
 wallpaper ()
 {
 	if [ -z "$1" ]; then
@@ -30,11 +30,12 @@ wallpaper ()
 		mkdir $HOME/.wallpaper 2>/dev/null
 	fi
 
-	mv -f $x "$HOME/.wallpaper"/$(basename $x)
-	feh --bg-scale "$HOME/.wallpaper"/$(basename $x)
+    now=$(date +%s)
+	mv -f $x "$HOME/.wallpaper"/$now"-"$(basename $x)
+	feh --bg-scale "$HOME/.wallpaper"/$now"-"$(basename $x)
 }
 
-# backup config and installed packages
+# backup dots / eratta to git
 backup ()
 {
 	if [ ! -d "$HOME/.takealongs" ]; then
@@ -52,8 +53,9 @@ backup ()
     git add $HOME/.bashrc
     git add $HOME/.fonts
     git add $HOME/.bash_profile
-    # commit with date as desc
-	# push
+
+    git commit -m "$(date)"
+    git push dot master
 }
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
