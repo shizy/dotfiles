@@ -21,6 +21,7 @@ alias grep='grep --color=auto'
 wallpaper ()
 {
 	if [ -z "$1" ]; then
+        # browse and choose?
 		x="$HOME/Downloads"/$(ls -rt *.{jpg,bmp,png} ~/Downloads 2>/dev/null | tail -n 1)
 	else
 		x=$1
