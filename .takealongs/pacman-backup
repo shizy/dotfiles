@@ -53,6 +53,7 @@ make
 man-db
 man-pages
 mdadm
+mtr
 nano
 netctl
 nmap

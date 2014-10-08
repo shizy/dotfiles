@@ -17,25 +17,6 @@ set -o vi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-# wallpaper stuff
-wallpaper ()
-{
-	if [ -z "$1" ]; then
-        # browse and choose?
-		x="$HOME/Downloads"/$(ls -rt *.{jpg,bmp,png} ~/Downloads 2>/dev/null | tail -n 1)
-	else
-		x=$1
-	fi
-
-	if [ ! -d "$HOME/.wallpaper" ]; then
-		mkdir $HOME/.wallpaper 2>/dev/null
-	fi
-
-    now=$(date +%s)
-	mv -f $x "$HOME/.wallpaper"/$now"-"$(basename $x)
-	feh --bg-scale "$HOME/.wallpaper"/$now"-"$(basename $x)
-}
-
 # backup dots / eratta to git
 backup ()
 {
@@ -60,4 +41,5 @@ backup ()
 }
 
 PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
-PATH=/home/shizukesa/.npm/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
+#PATH=/home/shizukesa/.npm/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
+PATH=$PATH:~/.npm/bin

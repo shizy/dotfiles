@@ -72,7 +72,7 @@ bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -102,7 +102,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace 10:
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:
@@ -114,7 +114,7 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+0 move container to workspace 10:
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -153,6 +153,8 @@ bindsym $mod+r mode "resize"
 # ========== My changes ========== #
 ####################################
 
+workspace_auto_back_and_forth yes
+
 # ========== IBAR ===========
 
 bar {
@@ -190,15 +192,18 @@ for_window [class="URxvt" instance="left"] floating enable
 for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
 for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 412px, scratchpad show
 for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
-for_window [class="URxvt" instance="vim"] border none
 
 for_window [class="Google-chrome-stable"] border none
 for_window [class="st-256color"] border none
+for_window [class="URxvt" instance="vim"] border none
+for_window [class="URxvt" instance="irc"] border none
+for_window [class="Nitrogen"] floating enable
 
 # ========== ASSIGNMENT ==========
 
 assign [class="Google-chrome-stable"] 2:
 assign [class="URxvt" instance="vim"] 3:
+assign [class="URxvt" instance="irc"] 10:
 assign [class="Gimp"] 4:
 
 # ========== AUTOSTART ==========
@@ -211,6 +216,7 @@ exec google-chrome-stable
 exec sh ~/.fehbg
 exec unclutter
 exec urxvt -name vim -e vim -c ":OpenSession! default"
+exec urxvt -name irc -e irssi
 
 # ========== MAPPINGS ==========
 
@@ -232,3 +238,5 @@ bindsym $mod+n exec sudo connman_dmenu -nb '#000000' -nf '#666666' -sf '#000000'
 bindsym $mod+v exec urxvt -name vim -e vim
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+Return exec urxvt
+bindsym $mod+i exec urxvt -name irc -e irssi
+bindsym $mod+w exec ~/.takealongs/wallpaper.sh
