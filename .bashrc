@@ -27,14 +27,17 @@ backup ()
 	pacman -Qqne > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/aur-backup
 
+    # folders
     git add $HOME/.takealongs
-    git add $HOME/.vimrc
     git add $HOME/.i3
+    git add $HOME/.fonts
+
+    # files
     git add $HOME/.Xresources
     git add $HOME/.xinitrc
     git add $HOME/.bashrc
-    git add $HOME/.fonts
     git add $HOME/.bash_profile
+    git add $HOME/.vimrc
 
     git commit -m "$(date)"
     git push dot master

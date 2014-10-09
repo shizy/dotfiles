@@ -119,7 +119,7 @@ let g:multi_cursor_skip_key = 's'
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
-:nmap      <Leader>w  :w<CR>
+:nmap      <Leader>w  :SaveSession<CR>:w<CR>
 :nmap      <Leader>-  :CtrlP<CR>
 :nmap      <Leader>/  <Esc>:%s/
 :vmap      <Leader>/  <Esc>:'<,'>s/
@@ -148,8 +148,6 @@ let g:multi_cursor_skip_key = 's'
 " ========== FILETYPES ==========
 
 au BufNewFile,BufRead *.styl set filetype=stylus
-au BufNewFile,BufRead *.jade set filetype=js
-au BufNewFile,BufRead *.jade set filetype=html
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
 au BufWinEnter *.md          set syntax=markdown
