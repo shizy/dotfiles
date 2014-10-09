@@ -133,7 +133,7 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>p  :Gpush 
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
-:imap      jk         <Esc>:w<CR>
+:imap      jk         <Esc>:SaveSession<CR>:w<CR>
 
 :inoremap  {;         {};<Left><Left>
 :inoremap  {<CR>      {<CR>}<Esc>O
