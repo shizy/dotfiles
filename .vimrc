@@ -108,8 +108,8 @@ let g:multi_cursor_skip_key = 's'
 
 " ========== MAPPINGS ==========
 
-:nnoremap  <S-j>      10j
-:nnoremap  <S-k>      10k
+:noremap   <S-j>      10j
+:noremap   <S-k>      10k
 :nnoremap  <S-h>      :bp!<CR>
 :nnoremap  <S-l>      :bn!<CR>
 :nnoremap  <S-x>      :Bdelete!<CR>
@@ -135,7 +135,7 @@ let g:multi_cursor_skip_key = 's'
 :imap      jj         <Esc>
 :imap      jk         <Esc>:SaveSession<CR>:w<CR>
 
-:inoremap  {;         {};<Left><Left>
+:inoremap  {;         {<CR>};<Esc>O
 :inoremap  {<CR>      {<CR>}<Esc>O
 :inoremap  (;         ();<Left><Left>
 :inoremap  (          ()<Left>

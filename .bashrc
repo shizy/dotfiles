@@ -16,6 +16,7 @@ set -o vi
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias wallpaper='~/.takealongs/wallpaper.sh'
 
 # backup dots / eratta to git
 backup ()
