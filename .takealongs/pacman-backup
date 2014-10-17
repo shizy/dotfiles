@@ -13,7 +13,6 @@ device-mapper
 dhcpcd
 dialog
 diffutils
-dmenu
 e2fsprogs
 fakeroot
 feh
