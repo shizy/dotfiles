@@ -113,10 +113,12 @@ let g:multi_cursor_skip_key = 's'
 :nnoremap  <S-h>      :bp!<CR>
 :nnoremap  <S-l>      :bn!<CR>
 :nnoremap  <S-x>      :Bdelete!<CR>
+:nnoremap  <S-z>      :Bdelete!<CR>ZZ
 :nnoremap  <S-u>      <C-r>
 :nnoremap  <tab>      <C-w>w
 :nnoremap  <S-tab>    <C-w>W
 :nnoremap  <Leader>x  ZZ
+:nnoremap  <Leader>z  :Bdelete!<CR>ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
 :nmap      <Leader>w  :SaveSession<CR>:w<CR>
@@ -152,3 +154,4 @@ au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
 au BufWinEnter *.md          set syntax=markdown
 au BufWinEnter /tmp/*        set syntax=markdown
+au Filetype geeknote         setlocal nonumber
