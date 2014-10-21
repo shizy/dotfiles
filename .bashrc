@@ -12,6 +12,7 @@ fi
 
 # vi mode
 set -o vi
+export editor=vim
 
 # aliases
 alias ls='ls --color=auto'
