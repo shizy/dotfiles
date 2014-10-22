@@ -1,4 +1,5 @@
 aura-bin
+automake-1.11
 compton
 connman-ncurses-git
 dmenu-xft
@@ -20,3 +21,4 @@ rxvt-unicode-patched
 silver-searcher-git
 thrift-python2
 ttf-font-awesome
+urlview
