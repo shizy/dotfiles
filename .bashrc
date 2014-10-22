@@ -35,6 +35,7 @@ backup ()
     git add $HOME/.fonts
 
     # files
+    git add $HOME/.muttrc
     git add $HOME/.Xresources
     git add $HOME/.xinitrc
     git add $HOME/.bashrc
