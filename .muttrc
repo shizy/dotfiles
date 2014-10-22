@@ -1,7 +1,7 @@
 # MAILBOX(ES)
 set folder           = imaps://imap.gmail.com/
 set imap_user        = shizukesa4@gmail.com
-set imap_pass        = 
+set imap_pass        =
 set spoolfile        = +INBOX
 mailboxes            = +INBOX
 set header_cache     = '~/.cache/mutt'
@@ -9,13 +9,15 @@ set message_cachedir = '~/.cache/mutt'
 set mail_check       = 120
 set sort             = 'threads'
 set send_charset     = 'utf-8'
-set index_format     = '%Z  %{%b %d}  %-25.25L  -  %s'
+set index_format     = '%Z  %{%b %d}  %-30.30L  -  %s'
+set status_format    = '  New: %n  Flagged: %F'
 set pager_stop
 
 # BINDINGS
 bind generic    Z   exit
 
 bind index      q   noop
+bind index      H   noop
 bind index      J   next-page
 bind index      K   previous-page
 bind index      X   delete-message
@@ -43,12 +45,12 @@ bind attach     u   exit
 
 # COLORS
 #color normal     color252 default
-color error      color222 color234
-color markers    color197 color234
+color error      color222 color232
+color markers    color197 color232
 color tilde      color108 default
-color status     color45 color234
+color status     color45 color232
 
-color indicator  color252 color234
+color indicator  color252 color232
 color tree       color45 default
 color index      color252 default ~N #new
 color index      color244 default ~O #old
