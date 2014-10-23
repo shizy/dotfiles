@@ -190,7 +190,7 @@ for_window [class="URxvt" instance="top"] floating enable
 for_window [class="URxvt" instance="bottom"] floating enable
 for_window [class="URxvt" instance="left"] floating enable
 for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
-for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 414px, scratchpad show
+for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 416px, scratchpad show
 for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
 
 for_window [class="Google-chrome-stable"] border none
