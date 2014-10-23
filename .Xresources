@@ -2,19 +2,20 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/google-chrome-stable
 URxvt.matcher.button: 1
 URxvt.keysym.Mod4-f: perl:matcher:list
-URxvt.colorUL: #E6DB74
 
 URxvt.depth:      32
 URxvt.background: [90]#000000
 URxvt.scrollBar:  false
 URxvt.font:       xft:Inconsolata for Powerline:size=11:antialias=true
 URxvt.boldFont:   xft:Inconsolata for Powerline:bold:size=11:antialias=true
+URxvt.internalBorder: 0
+URxvt.externalBorder: 0
 
 *.background: #232323
 *.foreground: #A0A0A0
 
 *.colorBD:    #CFCFCF
-*.colorUL:    #A0A0A0
+*.colorUL:    #E6DB74
 *.colorIT:    #686868
 
 !BLK

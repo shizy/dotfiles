@@ -10,7 +10,7 @@ set mail_check       = 120
 set sort             = 'threads'
 set send_charset     = 'utf-8'
 set index_format     = '%Z  %{%b %d}  %-30.30L  -  %s'
-set status_format    = '  New: %n  Flagged: %F'
+set status_format    = '  %f  New: %n  Flagged: %F'
 set pager_stop
 
 # BINDINGS

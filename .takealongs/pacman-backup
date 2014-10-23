@@ -59,6 +59,8 @@ nano
 netctl
 nmap
 nodejs
+ocaml
+ocaml-findlib
 openssh
 pacman
 patch

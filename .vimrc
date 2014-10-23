@@ -122,6 +122,7 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
 :nmap      <Leader>w  :SaveSession<CR>:w<CR>
+:nmap      <Leader>1  :w !sudo tee % > /dev/null
 :nmap      <Leader>-  :CtrlP<CR>
 :nmap      <Leader>/  <Esc>:%s/
 :vmap      <Leader>/  <Esc>:'<,'>s/
