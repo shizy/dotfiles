@@ -13,6 +13,12 @@ set index_format     = '%Z  %{%b %d}  %-30.30L  -  %s'
 set status_format    = '  %f  New: %n  Flagged: %F'
 set pager_stop
 
+# SMTP
+set smtp_url = "smtp://shizukesa4@smtp.gmail.com:587/"
+# set smtp_pass = "yourpassword" # use the same passowrd as for IMAP
+set move = no
+set imap_keepalive = 900
+
 # BINDINGS
 bind generic    Z   exit
 

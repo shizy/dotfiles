@@ -38,6 +38,7 @@ inetutils
 iproute2
 iputils
 iw
+ix
 jfsutils
 less
 lib32-mesa-dri

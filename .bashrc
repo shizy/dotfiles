@@ -21,6 +21,7 @@ alias grep='grep --color=auto'
 alias wallpaper='~/.takealongs/wallpaper.sh'
 alias unpackaged="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u) <(pacman -Qlq | sort -u)"
 alias vpn='~/.staybehinds/vpn-pls.sh'
+alias help="curl -F 'f:1=<-' ix.io"
 
 # backup dots / eratta to git
 backup ()
