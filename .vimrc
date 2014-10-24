@@ -73,7 +73,7 @@ let mapleader = "\<Space>"
 " Molokai
 color molokai
 hi Normal ctermbg=none
-hi LineNr ctermfg=59 ctermbg=none
+hi LineNr ctermfg=236 ctermbg=none
 hi CursorLineNr ctermfg=208 ctermbg=none
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -129,11 +129,11 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>t  :Tabularize /
 :vmap      <Leader>t  :Tabularize /
 :nmap      <Leader>e  :Geeknote<CR>
-:nmap      <Leader>b  :GeeknoteCreateNotebook "
-:nmap      <Leader>n  :GeeknoteCreateNote "
+:nmap      <Leader>b  :GeeknoteCreateNotebook 
+:nmap      <Leader>n  :GeeknoteCreateNote 
 :nmap      <Leader>s  :Gstatus<CR>
-:nmap      <Leader>c  :Gcommit -m "
-:nmap      <Leader>p  :Gpush
+:nmap      <Leader>c  :Gcommit -m 
+:nmap      <Leader>p  :Gpush 
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
 :imap      jk         <Esc>:SaveSession<CR>:w<CR>

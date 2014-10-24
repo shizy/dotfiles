@@ -15,7 +15,7 @@ URxvt.externalBorder: 0
 *.foreground: #A0A0A0
 
 *.colorBD:    #CFCFCF
-*.colorUL:    #E6DB74
+*.colorUL:    #FD971F
 *.colorIT:    #686868
 
 !BLK

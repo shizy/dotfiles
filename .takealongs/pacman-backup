@@ -37,7 +37,6 @@ i3status
 inetutils
 iproute2
 iputils
-irssi
 iw
 jfsutils
 less
@@ -91,6 +90,7 @@ util-linux
 vi
 vim
 vlc
+weechat
 wget
 which
 whois

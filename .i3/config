@@ -217,8 +217,8 @@ exec google-chrome-stable
 exec sh ~/.fehbg
 exec unclutter
 exec urxvt -name vim -e vim -c ":OpenSession! default"
-# exec urxvt -name irc -e irssi
-exec urxvt -name mutt -e mutt
+# exec urxvt -name irc -e weechat-curses
+# exec urxvt -name mutt -e mutt
 
 # ========== MAPPINGS ==========
 
@@ -239,7 +239,7 @@ bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#666666' -sf '#000000' 
 bindsym $mod+v exec urxvt -name vim -e vim
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+Return exec urxvt
-bindsym $mod+i exec urxvt -name irc -e irssi
+bindsym $mod+i exec urxvt -name irc -e weechat-curses 
 bindsym $mod+w exec ~/.takealongs/wallpaper.sh
 bindsym $mod+n exec urxvt -name connman -e connman-ncurses
 bindsym $mod+m exec urxvt -name mutt -e mutt
