@@ -30,6 +30,7 @@ backup ()
 		mkdir $HOME/.takealongs 2>/dev/null
 	fi
 
+    # packages
 	pacman -Qqne > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/aur-backup
 

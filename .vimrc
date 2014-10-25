@@ -121,7 +121,7 @@ let g:multi_cursor_skip_key = 's'
 :nnoremap  <Leader>z  :Bdelete!<CR>ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
-:nmap      <Leader>w  :SaveSession<CR>:w<CR>
+:nmap      <Leader>w  :SaveSession!<CR>:w<CR>
 :nmap      <Leader>1  :w !sudo tee % > /dev/null
 :nmap      <Leader>-  :CtrlP<CR>
 :nmap      <Leader>/  <Esc>:%s/
@@ -136,7 +136,7 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>p  :Gpush 
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
-:imap      jk         <Esc>:SaveSession<CR>:w<CR>
+:imap      jk         <Esc>:SaveSession!<CR>:w<CR>
 
 :inoremap  {;         {<CR>};<Esc>O
 :inoremap  {<CR>      {<CR>}<Esc>O

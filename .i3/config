@@ -194,6 +194,7 @@ for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, b
 for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
 
 for_window [class="Google-chrome-stable"] border none
+for_window [class="Firefox"] border none
 for_window [class="URxvt" instance="vim"] border none
 for_window [class="URxvt" instance="irc"] border none
 for_window [class="URxvt" instance="connman"] border none, floating enable
