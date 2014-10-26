@@ -70,7 +70,7 @@ bindsym $mod+Shift+Right move right
 # bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 #bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -244,3 +244,4 @@ bindsym $mod+i exec urxvt -name irc -e weechat-curses
 bindsym $mod+w exec ~/.takealongs/wallpaper.sh
 bindsym $mod+n exec urxvt -name connman -e connman-ncurses
 bindsym $mod+m exec urxvt -name mutt -e mutt
+bindsym $mod+s exec scrot ~/Downloads/%Y-%m-%d-%T-screenshot.png

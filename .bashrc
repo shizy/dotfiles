@@ -40,6 +40,7 @@ backup ()
     git add $HOME/.fonts
 
     # files
+    git add $HOME/.weechat/weechat.conf
     git add $HOME/.gitignore
     git add $HOME/.muttrc
     git add $HOME/.Xresources

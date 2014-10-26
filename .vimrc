@@ -153,6 +153,7 @@ let g:multi_cursor_skip_key = 's'
 au BufNewFile,BufRead *.styl set filetype=stylus
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
+au BufNewFile,BufRead /tmp/* setlocal spell
 au BufWinEnter *.md          set syntax=markdown
 au BufWinEnter /tmp/*        set syntax=markdown
 au Filetype geeknote         setlocal nonumber
