@@ -7,10 +7,14 @@ mailboxes            = +INBOX
 set header_cache     = '~/.cache/mutt'
 set message_cachedir = '~/.cache/mutt'
 set mail_check       = 120
+set timeout          = 300
+set imap_keepalive   = 300
 set sort             = 'threads'
+set sort_aux         = 'last-date-received'
 set send_charset     = 'utf-8'
 set index_format     = '%Z  %{%b %d}  %-30.30L  -  %s'
 set status_format    = '  %f  New: %n  Flagged: %F'
+set copy             = no
 set pager_stop
 
 # SMTP

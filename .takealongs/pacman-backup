@@ -60,6 +60,7 @@ nano
 netctl
 nmap
 nodejs
+ntp
 ocaml
 ocaml-findlib
 openssh
