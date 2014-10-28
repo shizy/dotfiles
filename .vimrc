@@ -141,22 +141,22 @@ let g:multi_cursor_skip_key = 's'
 :inoremap  {;         {<CR>};<Esc>O
 :inoremap  {<CR>      {<CR>}<Esc>O
 :inoremap  (;         ();<Left><Left>
-:inoremap  (          ()<Left>
+" :inoremap  (          ()<Left>
 :inoremap  <expr> )   strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-:inoremap  {          {}<Left>
+" :inoremap  {          {}<Left>
 :inoremap  <expr> }   strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-:inoremap  [          []<Left>
+" :inoremap  [          []<Left>
 :inoremap  <expr> ]   strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
-" ========== FILETYPES ==========
+" ========== AUTOCOMMANDS ==========
 
 au BufNewFile,BufRead *.styl set filetype=stylus
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
-au BufNewFile,BufRead,BufWinEnter /tmp/* 
+au BufNewFile,BufRead,BufWinEnter /tmp/*
     \ setlocal spell |
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ nnoremap <Leader>w   :w<CR> |
-    \ imap     jk          :w<CR>
+    \ imap     jk          <Esc>:w<CR>
 au BufWinEnter *.md          set syntax=markdown

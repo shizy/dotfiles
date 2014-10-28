@@ -28,8 +28,8 @@ bind generic    Z   exit
 
 bind index      q   noop
 bind index      H   noop
-bind index      J   next-page
-bind index      K   previous-page
+bind index      J   half-down
+bind index      K   half-up
 bind index      X   delete-message
 bind index      I   reply
 bind index      A   group-reply
