@@ -54,5 +54,5 @@ backup ()
     git push dot master
 }
 
-PS1='[\[\e[0;36m\] \w \[\e[0m\]]: '
+PS1='[\[\e[0;36m\] \w \[\e[0m\]]: \a'
 PATH=$PATH:~/.npm/bin
