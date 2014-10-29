@@ -61,15 +61,15 @@ bind attach     u   exit
 # COLORS
 #color normal     color252 default
 color error      color222 color232
-color markers    color197 color232
+color markers    color161 color232
 color tilde      color108 default
-color status     color45 color232
+color status     color81 color232
 
 color indicator  color252 color232
-color tree       color45 default
+color tree       color81 default
 color index      color252 default ~N #new
 color index      color244 default ~O #old
-color index      color197 default ~F #flagged
+color index      color161 default ~F #flagged
 color index      color222 default ~D #deleted
 color index      color154 default ~Q #replied
 
@@ -105,7 +105,7 @@ color body       color208 default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-
 color body       color208 default "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
 color body       color208 default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
 
-color attachment color197 default
+color attachment color161 default
 color signature  color252 default
 
 color quoted     color238 default

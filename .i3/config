@@ -166,22 +166,31 @@ bar {
 
         colors {
 
-              separator #000000
+              statusline        #888888
+              separator         #000000
 
-              focused_workspace  #000000 #000000 #75DAA9
-              active_workspace   #000000 #000000 #ffffff
+              #focused_workspace  #000000 #000000 #75DAA9
+              #active_workspace   #000000 #000000 #ffffff
+              #inactive_workspace #000000 #000000 #888888
+              #urgent_workspace   #000000 #000000 #EFBD8B
+              focused_workspace  #000000 #000000 #66D9EF
+              active_workspace   #000000 #000000 #FFFFFF
               inactive_workspace #000000 #000000 #888888
-              urgent_workspace   #000000 #000000 #EFBD8B
+              urgent_workspace   #000000 #000000 #FD971F
         }
 
 }
 
 # ========== COLORS ==========
 
-client.focused				#000000 #000000 #75DAA9
+#client.focused				#000000 #000000 #75DAA9
+#client.unfocused			#000000 #000000 #333333
+#client.focused_inactive		#000000 #000000 #888888
+#client.urgent				#000000 #000000 #EFBD8B
+client.focused				#000000 #000000 #66D9EF
 client.unfocused			#000000 #000000 #333333
 client.focused_inactive		#000000 #000000 #888888
-client.urgent				#000000 #000000 #EFBD8B
+client.urgent				#000000 #000000 #FD971F
 
 # ========== RULES ==========
 
