@@ -1,9 +1,11 @@
 # MAILBOX(ES)
 set folder           = imaps://imap.gmail.com/
 set imap_user        = shizukesa4@gmail.com
+set from             = shizukesa4@gmail.com
+set use_from         = yes
 set imap_pass        =
 set spoolfile        = +INBOX
-mailboxes            = +INBOX
+mailboxes            = +INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/Trash
 set header_cache     = '~/.cache/mutt'
 set message_cachedir = '~/.cache/mutt'
 set mail_check       = 120
@@ -18,10 +20,13 @@ set copy             = no
 set pager_stop
 
 # SMTP
-set smtp_url = "smtp://shizukesa4@smtp.gmail.com:587/"
-# set smtp_pass = "yourpassword" # use the same passowrd as for IMAP
-set move = no
+set smtp_url       = "smtp://shizukesa4@smtp.gmail.com:587/"
+# set smtp_pass    = "yourpassword" # use the same passowrd as for IMAP
+set move           = no
 set imap_keepalive = 900
+
+# MACROS
+macro index     -   <change-folder>?<enter>
 
 # BINDINGS
 bind generic    Z   exit

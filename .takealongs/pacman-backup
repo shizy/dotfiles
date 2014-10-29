@@ -109,10 +109,10 @@ xorg-luit
 xorg-mkfontdir
 xorg-mkfontscale
 xorg-server
-xorg-server-utils
 xorg-sessreg
 xorg-setxkbmap
 xorg-smproxy
+xorg-utils
 xorg-x11perf
 xorg-xauth
 xorg-xbacklight
