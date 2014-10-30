@@ -6,9 +6,7 @@
 [[ $- != *i* ]] && return
 
 # default start dir
-if [ "$(whoami)" != 'root' ]; then
-  cd ~
-fi
+cd ~
 
 # vi mode
 set -o vi
