@@ -62,8 +62,8 @@ set noswapfile
 set ttyfast
 set ttyscroll=3
 set lazyredraw
-set encoding=utf-8
 set t_Co=256
+set encoding=utf-8
 set clipboard=unnamed
 
 syntax on

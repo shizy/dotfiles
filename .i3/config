@@ -169,10 +169,6 @@ bar {
               statusline        #888888
               separator         #000000
 
-              #focused_workspace  #000000 #000000 #75DAA9
-              #active_workspace   #000000 #000000 #ffffff
-              #inactive_workspace #000000 #000000 #888888
-              #urgent_workspace   #000000 #000000 #EFBD8B
               focused_workspace  #000000 #000000 #66D9EF
               active_workspace   #000000 #000000 #FFFFFF
               inactive_workspace #000000 #000000 #888888
@@ -183,10 +179,6 @@ bar {
 
 # ========== COLORS ==========
 
-#client.focused				#000000 #000000 #75DAA9
-#client.unfocused			#000000 #000000 #333333
-#client.focused_inactive		#000000 #000000 #888888
-#client.urgent				#000000 #000000 #EFBD8B
 client.focused				#000000 #000000 #66D9EF
 client.unfocused			#000000 #000000 #333333
 client.focused_inactive		#000000 #000000 #888888
@@ -252,6 +244,7 @@ bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#666666' -sf '#000000' 
 # Shortcuts
 bindsym $mod+v exec urxvt -name vim -e vim
 bindsym $mod+g exec google-chrome-stable
+bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvt
 bindsym $mod+i exec urxvt -name irc -e weechat-curses 
 bindsym $mod+w exec ~/.takealongs/wallpaper.sh
