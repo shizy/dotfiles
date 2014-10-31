@@ -38,7 +38,9 @@ backup ()
     # tar and encrypt .staybehinds
     tar -cvf $HOME/staybehinds.tar $HOME/.staybehinds/
     gpg -r shizukesa --trust-model always --encrypt -o $HOME/staybehinds.tar.gpg $HOME/staybehinds.tar
+    gdrive upload -f staybehinds.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
     rm $HOME/staybehinds.tar
+    rm $HOME/staybehinds.tar.gpg
 
     # packages
 	pacman -Qqne > $HOME/.takealongs/pacman-backup
