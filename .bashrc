@@ -25,6 +25,7 @@ alias help="curl -F 'f:1=<-' ix.io"
 # backup dots / eratta to git
 backup ()
 {
+    cd ~
     # public
 	if [ ! -d "$HOME/.takealongs" ]; then
 		mkdir $HOME/.takealongs 2>/dev/null
