@@ -134,6 +134,7 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>s  :Gstatus<CR>
 :nmap      <Leader>c  :Gcommit -m 
 :nmap      <Leader>p  :Gpush 
+:nmap      <Leader>u  :PluginUpdate<CR>
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
 :imap      jk         <Esc>:SaveSession!<CR>:w<CR>

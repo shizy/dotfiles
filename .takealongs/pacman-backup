@@ -73,6 +73,7 @@ pkg-config
 procps-ng
 psmisc
 reiserfsprogs
+rng-tools
 s-nail
 scrot
 sed

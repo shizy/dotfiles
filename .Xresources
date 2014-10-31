@@ -15,37 +15,37 @@ URxvt.externalBorder: 0
 *.background: #232323
 *.foreground: #A0A0A0
 
-*.colorBD:    #CFCFCF
 *.colorUL:    #FD971F
-*.colorIT:    #686868
+*.colorBD:    #66D9EF
+*.colorIT:    #A6E22E
 
 !BLK
 *.color0:     #303030
 *.color8:     #686868
 
 !RED
-*.color9:     #FFA7DA
-*.color1:     #D370A3
+*.color9:     #EF5939
+*.color1:     #EF5939
 
 !GRN
-*.color10:    #A3D572
-*.color2:     #6D9E3F
+*.color10:    #A6E22E
+*.color2:     #A6E22E
 
 !BLU
-*.color12:    #98CBFE
-*.color4:     #6095C5
+*.color12:    #AE81FF
+*.color4:     #AE81FF
 
 !YEL
-*.color11:    #EFBD8B
-*.color3:     #B58858
+*.color11:    #FD971F
+*.color3:     #FD971F
 
 !CYN
-*.color14:    #75DAA9
-*.color6:     #3BA275
+*.color14:    #66D9EF
+*.color6:     #66D9EF
 
 !MAG
-*.color13:    #E5B0FF
-*.color5:     #AC7BDE
+*.color13:    #F92672
+*.color5:     #F92672
 
 !WHT
 *.color7:     #CFCFCF

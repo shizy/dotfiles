@@ -25,9 +25,20 @@ alias help="curl -F 'f:1=<-' ix.io"
 # backup dots / eratta to git
 backup ()
 {
+    # public
 	if [ ! -d "$HOME/.takealongs" ]; then
 		mkdir $HOME/.takealongs 2>/dev/null
 	fi
+
+    # private
+	if [ ! -d "$HOME/.staybehinds" ]; then
+		mkdir $HOME/.staybehinds 2>/dev/null
+	fi
+
+    # tar and encrypt .staybehinds
+    tar -cvf $HOME/staybehinds.tar $HOME/.staybehinds/
+    gpg -r shizukesa --encrypt -o $HOME/staybehinds.tar.gpg $HOME/staybehinds.tar
+    rm $HOME/staybehinds.tar
 
     # packages
 	pacman -Qqne > $HOME/.takealongs/pacman-backup
@@ -39,6 +50,7 @@ backup ()
     git add $HOME/.fonts
 
     # files
+    git add $HOME/.ssh/config
     git add $HOME/.weechat/weechat.conf
     git add $HOME/.gitignore
     git add $HOME/.muttrc

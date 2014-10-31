@@ -146,7 +146,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+# bindsym $mod+r mode "resize"
 
 ####################################
 # ========== My changes ========== #
@@ -192,16 +192,14 @@ for_window [class="URxvt" instance="bottom"] floating enable
 for_window [class="URxvt" instance="left"] floating enable
 for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
 for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 416px, scratchpad show
-for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
+for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 0px, scratchpad show
 
 for_window [class="Google-chrome-stable"] border none
 for_window [class="Google-chrome"] border none
 for_window [class="Firefox"] border none
 for_window [class="Vlc"] border none
-for_window [class="URxvt" instance="vim"] border none
-for_window [class="URxvt" instance="irc"] border none
-for_window [class="URxvt" instance="connman"] border none, floating enable
-for_window [class="URxvt" instance="mutt"] border none
+for_window [class="URxvt"] border none
+for_window [instance="connman"] border none, floating enable
 
 # ========== ASSIGNMENT ==========
 
@@ -218,13 +216,11 @@ assign [class="URxvt" instance="irc"] 10:
 exec compton
 exec urxvt -geometry 184x24 -name top
 exec urxvt -geometry 184x24 -name bottom
-exec urxvt -geometry 84x48 -name left
+exec urxvt -geometry 92x50 -name left
 exec google-chrome-stable
 exec sh ~/.fehbg
 exec unclutter
 exec urxvt -name vim -e vim -c ":OpenSession! default"
-# exec urxvt -name irc -e weechat-curses
-# exec urxvt -name mutt -e mutt
 
 # ========== MAPPINGS ==========
 
@@ -246,7 +242,7 @@ bindsym $mod+v exec urxvt -name vim -e vim
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvt
-bindsym $mod+i exec urxvt -name irc -e weechat-curses 
+bindsym $mod+i exec urxvt -name irc -e weechat-curses
 bindsym $mod+w exec ~/.takealongs/wallpaper.sh
 bindsym $mod+p exec ~/.takealongs/extend_display.sh
 bindsym $mod+n exec urxvt -name connman -e connman-ncurses
