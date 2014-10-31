@@ -39,6 +39,7 @@ backup ()
     # tar and encrypt .staybehinds
     tar -cvf $HOME/staybehinds.tar .staybehinds/
     gpg -r shizukesa --trust-model always --encrypt -o $HOME/staybehinds.tar.gpg $HOME/staybehinds.tar
+    # requires gdrive from: https://github.com/prasmussen/gdrive
     gdrive upload -f $HOME/staybehinds.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
     rm $HOME/staybehinds.tar
     rm $HOME/staybehinds.tar.gpg
