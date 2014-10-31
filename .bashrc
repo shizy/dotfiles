@@ -37,7 +37,7 @@ backup ()
 
     # tar and encrypt .staybehinds
     tar -cvf $HOME/staybehinds.tar $HOME/.staybehinds/
-    gpg -r shizukesa --encrypt -o $HOME/staybehinds.tar.gpg $HOME/staybehinds.tar
+    gpg -r shizukesa --trust-model always --encrypt -o $HOME/staybehinds.tar.gpg $HOME/staybehinds.tar
     rm $HOME/staybehinds.tar
 
     # packages
