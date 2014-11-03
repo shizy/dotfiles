@@ -53,6 +53,7 @@ backup ()
     git add $HOME/.fonts
 
     # files
+    git add $HOME/.config/user-dirs.dirs
     git add $HOME/.ssh/config
     git add $HOME/.weechat/weechat.conf
     git add $HOME/.gitignore

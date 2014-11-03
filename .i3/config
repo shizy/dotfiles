@@ -220,7 +220,7 @@ exec urxvt -geometry 184x24 -name bottom
 exec urxvt -geometry 92x50 -name left
 exec google-chrome-stable
 exec sh ~/.fehbg
-exec unclutter
+exec unclutter -grab
 exec urxvt -name vim -e vim -c ":OpenSession! default"
 
 # ========== MAPPINGS ==========
