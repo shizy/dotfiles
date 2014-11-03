@@ -129,11 +129,11 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>t  :Tabularize /
 :vmap      <Leader>t  :Tabularize /
 :nmap      <Leader>e  :Geeknote<CR>
-:nmap      <Leader>b  :GeeknoteCreateNotebook 
-:nmap      <Leader>n  :GeeknoteCreateNote 
+:nmap      <Leader>b  :GeeknoteCreateNotebook<space>
+:nmap      <Leader>n  :GeeknoteCreateNote<space>
 :nmap      <Leader>s  :Gstatus<CR>
-:nmap      <Leader>c  :Gcommit -m 
-:nmap      <Leader>p  :Gpush 
+:nmap      <Leader>c  :Gcommit -m<space>
+:nmap      <Leader>p  :Gpush<space>
 :nmap      <Leader>u  :PluginUpdate<CR>
 :vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>

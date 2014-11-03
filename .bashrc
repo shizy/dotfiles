@@ -25,7 +25,6 @@ alias help="curl -F 'f:1=<-' ix.io"
 # backup dots / eratta to git
 backup ()
 {
-    cd $HOME
     # public
 	if [ ! -d "$HOME/.takealongs" ]; then
 		mkdir $HOME/.takealongs 2>/dev/null
@@ -37,7 +36,7 @@ backup ()
 	fi
 
     # tar and encrypt .staybehinds
-    tar -cvf $HOME/staybehinds.tar .staybehinds/
+    tar -cvf $HOME/staybehinds.tar -C $HOME/.staybehinds/ .
     gpg -r shizukesa --trust-model always --encrypt -o $HOME/staybehinds.tar.gpg $HOME/staybehinds.tar
     # requires gdrive from: https://github.com/prasmussen/gdrive
     gdrive upload -f $HOME/staybehinds.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
