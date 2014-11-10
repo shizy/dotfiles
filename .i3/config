@@ -236,7 +236,7 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute
 
 # dmenu
-bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#666666' -sf '#000000' -sb '#75DAA9' -b -fn 'Inconsolata for Powerline Sans Mono-10'
+bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'Inconsolata for Powerline Sans Mono-10'
 
 # Shortcuts
 bindsym $mod+v exec urxvt -name vim -e vim
