@@ -1,15 +1,18 @@
-#
-# ~/.bashrc
-#
+# autoload
+autoload -U compinit promptinit colors
+compinit
+promptinit
+colors
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# prompt
+PROMPT="[ %F{cyan}%~ %{$reset_color%}]: "
+
+# path
+typeset -U path
+path=(~/bin ~/.npm/bin $path)
 
 # default start dir
 cd ~
-
-# vi mode
-set -o vi
 
 # exports
 export EDITOR=vim
@@ -60,13 +63,10 @@ backup ()
     git add $HOME/.muttrc
     git add $HOME/.Xresources
     git add $HOME/.xinitrc
-    git add $HOME/.bashrc
-    git add $HOME/.bash_profile
+    git add $HOME/.zshrc
+    git add $HOME/.zprofile
     git add $HOME/.vimrc
 
     git commit -m "$(date)"
     git push dot master
 }
-
-PS1='[\[\e[0;36m\] \w \[\e[0m\]]: \a'
-PATH=$PATH:~/.npm/bin
