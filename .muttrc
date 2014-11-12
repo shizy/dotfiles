@@ -20,6 +20,8 @@ set index_format     = '%Z  %{%b %d}  %-30.30L  -  %s'
 set status_format    = '  %f  New: %n  Flagged: %F'
 set copy             = no
 set pager_stop
+set beep             = yes
+set beep_new         = yes
 
 # SMTP
 set smtp_url       = "smtp://shizukesa4@smtp.gmail.com:587/"

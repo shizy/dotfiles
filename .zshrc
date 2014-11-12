@@ -5,7 +5,7 @@ promptinit
 colors
 
 # prompt
-PROMPT="[ %F{cyan}%~ %{$reset_color%}]: "
+PROMPT="[ %F{cyan}%~ %{$reset_color%}]: %{$(echo "\a")%}"
 
 # path
 typeset -U path
