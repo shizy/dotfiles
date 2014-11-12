@@ -17,8 +17,8 @@ cd ~
 # vim-mode
 bindkey -v
 function zle-line-init zle-keymap-select {
-    NORMAL=" %F{cyan}!$CMD_PROMPT"
-    INSERT=" %F{green} $CMD_PROMPT"
+    NORMAL="%F{cyan}! $CMD_PROMPT"
+    INSERT="%F{green}  $CMD_PROMPT"
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
     RPROMPT=""
     zle reset-prompt
