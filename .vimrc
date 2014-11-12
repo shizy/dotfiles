@@ -32,7 +32,6 @@ Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-expand-region'
 Plugin 'terryma/vim-multiple-cursors'
 
 " Utility
@@ -135,7 +134,6 @@ let g:multi_cursor_skip_key = 's'
 :nmap      <Leader>c  :Gcommit -m<space>
 :nmap      <Leader>p  :Gpush<space>
 :nmap      <Leader>u  :PluginUpdate<CR>
-:vmap      v          <Plug>(expand_region_expand)
 :imap      jj         <Esc>
 :imap      jk         <Esc>:SaveSession!<CR>:w<CR>
 

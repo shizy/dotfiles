@@ -5,7 +5,7 @@ promptinit
 colors
 
 # prompt
-PROMPT="[ %F{cyan}%~ %{$reset_color%}]: %{$(echo "\a")%}"
+CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}: "
 
 # path
 typeset -U path
@@ -13,6 +13,18 @@ path=(~/bin ~/.npm/bin $path)
 
 # default start dir
 cd ~
+
+# vim-mode
+bindkey -v
+function zle-line-init zle-keymap-select {
+    NORMAL=" %F{cyan}!$CMD_PROMPT"
+    INSERT=" %F{green} $CMD_PROMPT"
+    PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
+    RPROMPT=""
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # exports
 export EDITOR=vim
