@@ -63,9 +63,9 @@ backup ()
 	pacman -Qqm > $HOME/.takealongs/aur-backup
 
     # folders
-    git add $HOME/.takealongs
-    git add $HOME/.i3
-    git add $HOME/.fonts
+    git add -f $HOME/.takealongs
+    git add -f $HOME/.i3
+    git add -f $HOME/.fonts
 
     # files
     git add $HOME/.config/user-dirs.dirs
