@@ -72,6 +72,7 @@ backup ()
     git add $HOME/.ssh/config
     git add $HOME/.weechat/weechat.conf
     git add $HOME/.gitignore
+    git add $HOME/.gitconfig
     git add $HOME/.muttrc
     git add $HOME/.Xresources
     git add $HOME/.xinitrc

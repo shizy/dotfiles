@@ -38,6 +38,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'neilagabriel/vim-geeknote'
 
 " Syntax & Highlighting
@@ -105,6 +106,11 @@ endif
 let g:multi_cursor_next_key = '<S-s>'
 let g:multi_cursor_skip_key = 's'
 
+" Git-Gutter
+hi SignColumn ctermbg=none
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
 " ========== MAPPINGS ==========
 
 :noremap   <S-j>      10j
@@ -140,11 +146,7 @@ let g:multi_cursor_skip_key = 's'
 :inoremap  {;         {<CR>};<Esc>O
 :inoremap  {<CR>      {<CR>}<Esc>O
 :inoremap  (;         ();<Left><Left>
-" :inoremap  (          ()<Left>
-" :inoremap  <expr> )   strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-" :inoremap  {          {}<Left>
 :inoremap  <expr> }   strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-" :inoremap  [          []<Left>
 :inoremap  <expr> ]   strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
 " ========== AUTOCOMMANDS ==========
