@@ -82,6 +82,17 @@ let g:rehash256 = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
 let g:airline_powerline_fonts = 1
+call airline#parts#define_function('repo', 'GetRepo')
+function! GetRepo()
+    let repo = system('cd '.expand('%:p:h').' && dirname $(git branch -r) 2> /dev/null')
+    if repo[0:4] == "fatal"
+        return ""
+    else
+        return substitute(repo, "\n", "", "")
+endfunction
+function! AirlineInit()
+    let g:airline_section_b = airline#section#create(['hunks', ' ', 'repo', ' ', 'branch'])
+endfunction
 
 " Session
 let g:session_autoload = 'yes'
@@ -161,3 +172,4 @@ au BufNewFile,BufRead,BufWinEnter /tmp/*
     \ nnoremap <Leader>w   :w<CR> |
     \ imap     jk          <Esc>:w<CR>
 au BufWinEnter *.md          set syntax=markdown
+au VimEnter *                call AirlineInit()
