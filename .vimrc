@@ -96,6 +96,10 @@ endfunction
 function! AirlineInit()
     let g:airline_section_b = airline#section#create(['hunks', ' ', 'repo', ' ', 'branch'])
 endfunction
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.whitespace = ''
 
 " Session
 let g:session_autoload = 'yes'
