@@ -62,24 +62,6 @@ backup ()
 	pacman -Qqne > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/aur-backup
 
-    # folders
-    #git add -f $HOME/.takealongs
-    #git add -f $HOME/.i3
-    #git add -f $HOME/.fonts
-
-    # files
-    #git add $HOME/.config/user-dirs.dirs
-    #git add $HOME/.ssh/config
-    #git add $HOME/.weechat/weechat.conf
-    #git add $HOME/.gitignore
-    #git add $HOME/.gitconfig
-    #git add $HOME/.muttrc
-    #git add $HOME/.Xresources
-    #git add $HOME/.xinitrc
-    #git add $HOME/.zshrc
-    #git add $HOME/.zprofile
-    #git add $HOME/.vimrc
-
     git add -A
     git commit -m "$(date)"
     git push dot master
