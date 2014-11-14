@@ -59,8 +59,8 @@ backup ()
     rm $HOME/staybehinds.tar.gpg
 
     # packages
-	pacman -Qqne > $HOME/.takealongs/pacman-backup
-	pacman -Qqm > $HOME/.takealongs/aur-backup
+    pacman -Qqne > $HOME/.takealongs/pacman-backup
+    pacman -Qqm > $HOME/.takealongs/aur-backup
 
     mv $HOME/.git.off $HOME/.git
     git add -A

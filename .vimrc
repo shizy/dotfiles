@@ -59,6 +59,7 @@ set softtabstop=4
 set expandtab
 set number
 set noswapfile
+set cursorline
 set ttyfast
 set ttyscroll=3
 set lazyredraw
@@ -74,7 +75,9 @@ let mapleader = "\<Space>"
 color molokai
 hi Normal ctermbg=none
 hi LineNr ctermfg=236 ctermbg=none
+hi CursorLine ctermbg=none
 hi CursorLineNr ctermfg=208 ctermbg=none
+hi Comment cterm=italic
 let g:molokai_original = 1
 let g:rehash256 = 1
 
