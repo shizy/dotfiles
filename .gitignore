@@ -1,2 +1,20 @@
-*
-.staybehinds/
+# EXCLUDE
+/*
+
+# INCLUDE folders
+!/.takealongs
+!/.i3
+!/.fonts
+
+# INCLUDE files
+!/.gitignore
+!/.gitconfig
+!/.config/user-dirs.dir
+!/.ssh/config
+!/.weechat/weechat.conf
+!/.muttrc
+!/.Xresources
+!/.xinitrc
+!/.zprofile
+!/.zshrc
+!/.vimrc
