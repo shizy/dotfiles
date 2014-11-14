@@ -62,7 +62,9 @@ backup ()
 	pacman -Qqne > $HOME/.takealongs/pacman-backup
 	pacman -Qqm > $HOME/.takealongs/aur-backup
 
+    mv $HOME/.git.off $HOME/.git
     git add -A
     git commit -m "$(date)"
     git push dot master
+    mv $HOME/.git $HOME/.git.off
 }
