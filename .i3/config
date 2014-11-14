@@ -152,7 +152,7 @@ mode "resize" {
 # ========== My changes ========== #
 ####################################
 
-font pango:Inconsolata for Powerline, Icons 10
+font pango:Inconsolata for Powerline, Icons 8
 workspace_auto_back_and_forth yes
 focus_follows_mouse no
 
@@ -160,7 +160,6 @@ focus_follows_mouse no
 
 bar {
         position top
-        font pango:Inconsolata for Powerline, Icons 10
         status_command i3status --config ~/.i3/status
         strip_workspace_numbers yes
         tray_output none
@@ -191,8 +190,8 @@ client.urgent				#000000 #000000 #FD971F
 for_window [class="URxvt" instance="top"] floating enable
 for_window [class="URxvt" instance="bottom"] floating enable
 for_window [class="URxvt" instance="left"] floating enable
-for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 21px, scratchpad show
-for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 416px, scratchpad show
+for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 22px, scratchpad show
+for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 410px, scratchpad show
 for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 0px, scratchpad show
 
 for_window [class="Google-chrome-stable"] border none
@@ -215,9 +214,9 @@ assign [class="URxvt" instance="irc"] 10:
 # ========== AUTOSTART ==========
 
 exec compton
-exec urxvt -geometry 184x24 -name top
-exec urxvt -geometry 184x24 -name bottom
-exec urxvt -geometry 92x50 -name left
+exec urxvt -geometry 184x26 -name top
+exec urxvt -geometry 184x26 -name bottom
+exec urxvt -geometry 92x54 -name left
 exec google-chrome-stable
 exec sh ~/.fehbg
 exec unclutter -grab
