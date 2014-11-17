@@ -6,7 +6,7 @@ evernote-sdk-python-git
 geeknote-git
 google-chrome
 lastpass-cli
-libudev0
+libudev.so.0
 msgpack-git-neovim
 neovim-git
 netextender

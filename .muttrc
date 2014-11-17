@@ -22,6 +22,7 @@ set copy             = no
 set pager_stop
 set beep             = yes
 set beep_new         = yes
+set editor           = 'vim'
 
 # SMTP
 set smtp_url       = "smtp://shizukesa4@smtp.gmail.com:587/"
