@@ -199,6 +199,7 @@ for_window [class="Google-chrome"] border none
 for_window [class="Firefox"] border none
 for_window [class="Vlc"] border none
 for_window [class="URxvt"] border none
+for_window [class="Xpdf"] border none
 for_window [instance="connman"] border none, floating enable
 
 # ========== ASSIGNMENT ==========
@@ -243,8 +244,8 @@ bindsym $mod+g exec google-chrome-stable
 bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvt
 bindsym $mod+i exec urxvt -name irc -e weechat-curses
-bindsym $mod+w exec ~/.takealongs/wallpaper.sh
-bindsym $mod+p exec ~/.takealongs/extend_display.sh
+bindsym $mod+w exec ~/.public/wallpaper.sh
+bindsym $mod+p exec ~/.public/extend_display.sh
 bindsym $mod+n exec urxvt -name connman -e connman-ncurses
 bindsym $mod+m exec urxvt -name mutt -e mutt
 bindsym $mod+s exec scrot ~/Downloads/%Y-%m-%d-%T-screenshot.png

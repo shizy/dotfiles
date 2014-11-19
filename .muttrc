@@ -1,4 +1,4 @@
-source "gpg2 -dq $HOME/.staybehinds/gmailpwd.gpg |"
+source "gpg2 -dq $HOME/.private/gmailpwd.gpg |"
 
 # MAILBOX(ES)
 set folder           = imaps://imap.gmail.com/
