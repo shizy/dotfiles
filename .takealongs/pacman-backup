@@ -48,6 +48,7 @@ libutil-linux
 licenses
 linux
 logrotate
+lsof
 lvm2
 m4
 make
@@ -70,6 +71,7 @@ pciutils
 pcmciautils
 perl
 pkg-config
+pkgstats
 procps-ng
 psmisc
 reiserfsprogs
@@ -85,6 +87,7 @@ syslinux
 systemd-sysvcompat
 tar
 texinfo
+texlive-core
 traceroute
 ttf-liberation
 unclutter

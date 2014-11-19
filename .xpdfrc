@@ -1,0 +1,6 @@
+# bindings
+bind j any scrollDown(100)
+bind k any scrollUp(100)
+
+# settings
+initialZoom 100 

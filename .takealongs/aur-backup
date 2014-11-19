@@ -2,8 +2,6 @@ aura-bin
 compton
 connman-ncurses-git
 dmenu-xft
-evernote-sdk-python-git
-geeknote-git
 google-chrome
 lastpass-cli
 libudev.so.0
@@ -11,10 +9,7 @@ msgpack-git-neovim
 neovim-git
 netextender
 powerdown-git
-python-markdown2
-python2-html2text
-python2-oauth2
 rxvt-unicode-patched
 silver-searcher-git
-thrift-python2
 ttf-font-awesome
+xpdf

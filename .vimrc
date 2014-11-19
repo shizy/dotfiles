@@ -39,7 +39,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'neilagabriel/vim-geeknote'
 
 " Syntax & Highlighting
 Plugin 'scrooloose/syntastic'
@@ -129,6 +128,12 @@ hi SignColumn ctermbg=none
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
+" LaTeX
+function! LatexMake()
+    let x = system('latexmk -pdf -outdir=/tmp '.expand('%:p').' && mv -f /tmp/'.expand('%:t')[0:-5].'.pdf ~/Docs')
+    let y = system('xpdf -remote '.expand('%:t')[0:-5].' ~/Docs/'.expand('%:t')[0:-5].'.pdf')
+endfunction
+
 " ========== MAPPINGS ==========
 
 :noremap   <S-j>      10j
@@ -141,7 +146,6 @@ let g:gitgutter_eager = 0
 :nnoremap  <tab>      <C-w>w
 :nnoremap  <S-tab>    <C-w>W
 :nnoremap  <Leader>x  ZZ
-:nnoremap  <Leader>z  :Bdelete!<CR>ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
 :nmap      <Leader>w  :SaveSession!<CR>:w<CR>
@@ -151,9 +155,6 @@ let g:gitgutter_eager = 0
 :vmap      <Leader>/  <Esc>:'<,'>s/
 :nmap      <Leader>t  :Tabularize /
 :vmap      <Leader>t  :Tabularize /
-:nmap      <Leader>e  :Geeknote<CR>
-:nmap      <Leader>b  :GeeknoteCreateNotebook<space>
-:nmap      <Leader>n  :GeeknoteCreateNote<space>
 :nmap      <Leader>s  :Gstatus<CR>
 :nmap      <Leader>c  :Gcommit -m<space>
 :nmap      <Leader>p  :Gpush<space>
@@ -172,11 +173,10 @@ let g:gitgutter_eager = 0
 au BufNewFile,BufRead *.styl set filetype=stylus
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
-au BufNewFile,BufRead,BufWinEnter /tmp/*
+au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
-    \ setlocal nonumber |
-    \ set syntax=markdown |
-    \ nnoremap <Leader>w   :w<CR> |
-    \ imap     jk          <Esc>:w<CR>
+    \ set syntax=tex |
+    \ nnoremap <buffer> <Leader>w    :w<CR>:call LatexMake()<CR> |
+    \ imap     <buffer> jk           <Esc>:w<CR>:call LatexMake()<CR> |
 au BufWinEnter *.md          set syntax=markdown
 au VimEnter *                call AirlineInit()
