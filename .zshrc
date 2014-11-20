@@ -49,13 +49,18 @@ backup ()
 		mkdir $HOME/.private 2>/dev/null
 	fi
 
-    # tar and encrypt .private
+    # tar and encrypt .private / Docs
     tar -cvf $HOME/private.tar -C $HOME/.private/ .
+    tar -cvf $HOME/docs.tar -C $HOME/Docs/ .
     gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
+    gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
     # requires gdrive from: https://github.com/prasmussen/gdrive
     gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+    gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
     rm $HOME/private.tar
     rm $HOME/private.tar.gpg
+    rm $HOME/docs.tar
+    rm $HOME/docs.tar.gpg
 
     # packages
     pacman -Qqne > $HOME/.public/pacman-backup

@@ -55,6 +55,7 @@ make
 man-db
 man-pages
 mdadm
+mplayer
 mtr
 mutt
 nano
@@ -97,7 +98,6 @@ usbutils
 util-linux
 vi
 vim
-vlc
 weechat
 wget
 which

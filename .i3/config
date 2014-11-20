@@ -197,8 +197,8 @@ for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, bor
 for_window [class="Google-chrome-stable"] border none
 for_window [class="Google-chrome"] border none
 for_window [class="Firefox"] border none
-for_window [class="Vlc"] border none
 for_window [class="URxvt"] border none
+for_window [class="MPlayer"] border none
 for_window [class="Xpdf"] border none
 for_window [instance="connman"] border none, floating enable
 
@@ -208,7 +208,7 @@ assign [class="Google-chrome-stable"] 2:
 assign [class="Google-chrome"] 2:
 assign [class="URxvt" instance="vim"] 3:
 assign [class="Gimp"] 4:
-assign [class="Vlc"] 8:
+assign [class="MPlayer"] 8:
 assign [class="URxvt" instance="mutt"] 9:
 assign [class="URxvt" instance="irc"] 10:
 
