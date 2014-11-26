@@ -3,13 +3,15 @@ compton
 connman-ncurses-git
 dmenu-xft
 google-chrome
-lastpass-cli
 libudev.so.0
 msgpack-git-neovim
 neovim-git
 netextender
+perl-term-shellui
 powerdown-git
 rxvt-unicode-patched
 silver-searcher-git
+texlive-local-dirtree
+texlive-localmanager-git
 ttf-font-awesome
 xpdf

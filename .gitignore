@@ -12,6 +12,7 @@
 !/.config/user-dirs.dir
 !/.ssh/config
 !/.weechat/weechat.conf
+!/.gnupg/gpg-agent.conf
 !/.muttrc
 !/.Xresources
 !/.xinitrc

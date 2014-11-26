@@ -201,6 +201,7 @@ for_window [class="URxvt"] border none
 for_window [class="MPlayer"] border none
 for_window [class="Xpdf"] border none
 for_window [instance="connman"] border none, floating enable
+for_window [class="URxvt" instance="mutt"] focus
 
 # ========== ASSIGNMENT ==========
 
@@ -226,9 +227,9 @@ exec urxvt -name vim -e vim -c ":OpenSession! default"
 # ========== MAPPINGS ==========
 
 # Scratchpads
-bindsym grave [instance="top"] scratchpad show
-bindsym Ctrl+grave [instance="bottom"] scratchpad show
-bindsym $mod+grave [instance="left"] scratchpad show
+bindsym Ctrl+grave [instance="top"] scratchpad show
+bindsym $mod+grave [instance="bottom"] scratchpad show
+bindsym Ctrl+$mod+grave [instance="left"] scratchpad show
 
 # Volume
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-

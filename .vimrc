@@ -176,7 +176,6 @@ au BufNewFile,BufRead *.ejs  set filetype=html
 au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ set syntax=tex |
-    \ nnoremap <buffer> <Leader>w    :w<CR>:call LatexMake()<CR> |
-    \ imap     <buffer> jk           <Esc>:w<CR>:call LatexMake()<CR> |
+    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR>
 au BufWinEnter *.md          set syntax=markdown
 au VimEnter *                call AirlineInit()
