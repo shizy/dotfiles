@@ -175,6 +175,7 @@ au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
 au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
+    \ setlocal spelllang=en_us |
     \ set syntax=tex |
     \ nnoremap <buffer> <Leader>l :call LatexMake()<CR>
 au BufWinEnter *.md          set syntax=markdown

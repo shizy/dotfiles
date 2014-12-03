@@ -5,6 +5,7 @@ automake
 bash
 binutils
 bison
+blender
 bzip2
 connman
 coreutils
