@@ -1,11 +1,12 @@
 acpi
 alsa-utils
+android-tools
+android-udev
 autoconf
 automake
 bash
 binutils
 bison
-blender
 bzip2
 connman
 coreutils
@@ -14,6 +15,7 @@ device-mapper
 dhcpcd
 dialog
 diffutils
+dwarffortress
 e2fsprogs
 fakeroot
 feh
@@ -24,7 +26,6 @@ firefox
 flex
 gawk
 gcc
-gcc-libs
 gettext
 gimp
 git
@@ -43,7 +44,6 @@ iw
 ix
 jfsutils
 less
-lib32-mesa-dri
 libtool
 libutil-linux
 licenses
@@ -61,6 +61,7 @@ mtr
 mutt
 nano
 netctl
+nethack
 nmap
 nodejs
 ntp

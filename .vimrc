@@ -178,5 +178,12 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spelllang=en_us |
     \ set syntax=tex |
     \ nnoremap <buffer> <Leader>l :call LatexMake()<CR>
+au BufNewFile,BufRead,BufWinEnter /tmp/*
+    \ setlocal spell |
+    \ setlocal spelllang=en_us |
+    \ setlocal nonumber |
+    \ set syntax=markdown |
+    \ nnoremap <Leader>w   :w<CR> |
+    \ imap jk              :w<CR>
 au BufWinEnter *.md          set syntax=markdown
 au VimEnter *                call AirlineInit()
