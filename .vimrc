@@ -35,7 +35,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 
 " Utility
-Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -61,7 +60,6 @@ set noswapfile
 set cursorline
 set ttyfast
 set ttyscroll=3
-set lazyredraw
 set t_Co=256
 set encoding=utf-8
 set clipboard=unnamed
@@ -105,19 +103,6 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_save_periodic = 5
 let g:session_default_to_last = 1
-
-" CtrlP
-if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l -g "" --ignore "\.git$\|\.hg$\|\.svn$\|\.node_modules$"'
-    let g:ctrlp_use_caching = 0
-else
-    let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-    let g:ctrlp_show_hidden = 1
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
-        \ 'file': '\.exe$\|\.so$\|\.dat$'
-        \ }
-endif
 
 " Multi Cursor
 let g:multi_cursor_next_key = '<S-s>'
@@ -184,6 +169,6 @@ au BufNewFile,BufRead,BufWinEnter /tmp/*
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ nnoremap <Leader>w   :w<CR> |
-    \ imap jk              :w<CR>
+    \ imap jk              <Esc>:w<CR>
 au BufWinEnter *.md          set syntax=markdown
 au VimEnter *                call AirlineInit()
