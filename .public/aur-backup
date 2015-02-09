@@ -2,9 +2,13 @@ aura-bin
 compton
 connman-ncurses-git
 dmenu-xft
+gcc-gcj
+gcc-gcj-ecj
 google-chrome
 libudev.so.0
+mutt-sidebar
 netextender
+pdftk
 perl-term-shellui
 powerdown-git
 rxvt-unicode-patched

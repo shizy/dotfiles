@@ -59,10 +59,13 @@ set number
 set noswapfile
 set cursorline
 set ttyfast
+set lazyredraw
 set ttyscroll=3
 set t_Co=256
 set encoding=utf-8
 set clipboard=unnamed
+set backupdir=~/.vim,.
+set directory=~/.vim,.
 
 syntax on
 filetype plugin indent on
@@ -72,7 +75,7 @@ let mapleader = "\<Space>"
 color molokai
 hi Normal ctermbg=none
 hi LineNr ctermfg=236 ctermbg=none
-hi CursorLine ctermbg=none
+hi CursorLine ctermbg=236
 hi CursorLineNr ctermfg=208 ctermbg=none
 hi Comment cterm=italic
 let g:molokai_original = 1
@@ -169,6 +172,7 @@ au BufNewFile,BufRead,BufWinEnter /tmp/*
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ nnoremap <Leader>w   :w<CR> |
-    \ imap jk              <Esc>:w<CR>
+    \ imap jk              <Esc>:w<CR> |
+    \ setlocal fo+=aw
 au BufWinEnter *.md          set syntax=markdown
 au VimEnter *                call AirlineInit()

@@ -27,6 +27,7 @@ flex
 gawk
 gcc
 gettext
+ghostscript
 gimp
 git
 glibc
@@ -58,7 +59,6 @@ man-pages
 mdadm
 mplayer
 mtr
-mutt
 nano
 netctl
 nethack
@@ -67,8 +67,10 @@ nodejs
 ntp
 ocaml
 ocaml-findlib
+offlineimap
 openssh
 pacman
+pass
 patch
 pciutils
 pcmciautils
@@ -100,6 +102,7 @@ usbutils
 util-linux
 vi
 vim
+w3m
 weechat
 wget
 which

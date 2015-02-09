@@ -20,3 +20,6 @@
 !/.zshrc
 !/.vimrc
 !/.xpdfrc
+!/.mutt/.mailcap
+!/.mutt/.muttrc
+!/.offlineimaprc

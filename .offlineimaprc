@@ -1,0 +1,26 @@
+[general]
+accounts = gmail
+fsync = False
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+status_backend = sqlite
+maxage = 90
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/.mail/gmail
+
+[Repository gmail-remote]
+maxconnections = 1
+type = Gmail
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = shizukesa4@gmail.com
+remotepasseval = getpassword("web/google")
+realdelete = no
+folderfilter = lambda folder: folder in [ 'INBOX',
+                                          '[Gmail]/Drafts',
+                                          '[Gmail]/Sent Mail',
+                                          '[Gmail]/Trash',
+                                          '[Gmail]/Starred' ]
