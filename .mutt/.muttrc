@@ -1,0 +1,143 @@
+# Paths
+set folder           = ~/.mail
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set mailcap_path     = ~/.mutt/.mailcap
+set tmpdir           = ~/.mutt/temp
+
+# Account
+set spoolfile  = "+gmail/INBOX"
+set postponed  = "=gmail/[Gmail].Drafts"
+set timeout    = 10
+set mail_check = 0
+mailboxes +gmail/INBOX +gmail/[Gmail].Drafts +gmail/[Gmail].Trash +gmail/[Gmail].Sent\ Mail +gmail/[Gmail].Starred
+
+# SMTP
+set realname       = "Robert & Carly Winterstein"
+set from           = shizukesa4@gmail.com
+set use_from       = yes
+set envelope_from  = yes
+set smtp_url       = "smtp://shizukesa4@smtp.gmail.com:587/"
+set move           = no
+
+# Pager
+set pager_format      = ''
+set pager_context     = 10
+set pager_index_lines = 20
+set pager_stop
+
+# Index
+unset mark_old
+unset markers
+unset to_chars
+set sort         = 'threads'
+set sort_aux     = 'last-date-received'
+set index_format = '%Z  %{%b %d}  %-30.30L  -  %s'
+set menu_scroll
+
+# Side-bar
+set sidebar_format    = '  %B %> %N  '
+set sidebar_visible   = yes
+set sidebar_width     = 32
+set sidebar_sort      = yes
+set sidebar_delim     = ' │'
+set sidebar_shortpath = yes
+
+# General
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+set status_format = '  %P %> New: %n  Flagged: %F  Total: %m  '
+set beep          = yes
+set beep_new      = yes
+set sleep_time    = 0
+set confirmappend = no
+set delete        = yes
+set tilde
+set text_flowed
+set editor        = 'vim'
+
+# Headers
+ignore *
+unignore from: to: cc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: date: subject:
+
+# Macros
+macro index,pager       <space>u        '<sync-mailbox><shell-escape>offlineimap -o<enter>'
+macro index,pager       <tab>           <sidebar-next><sidebar-open>
+macro index,pager       <backtab>       <sidebar-prev><sidebar-open>
+macro index,pager       M               <save-message>?<toggle-mailboxes>
+macro index,pager       X               '<save-message><kill-line>=gmail/trash<enter><sync-mailbox>'
+macro index,pager       k               <previous-entry><display-message>
+macro index,pager       j               <next-entry><display-message>
+macro index,pager       Z               <quit>
+macro index,pager       C               ":set smtp_pass=`pass web/google`;<enter><mail>"
+
+# Bindings
+bind generic            x               noop
+bind generic            q               noop
+bind generic            j               next-entry
+bind generic            k               previous-entry
+bind generic            u               exit
+
+bind index              u               noop
+
+bind index,pager        s               noop
+bind index,pager        d               noop
+bind index,pager        q               noop
+bind index,pager        H               noop
+bind index,pager        !               flag-message
+bind index,pager        A               group-reply
+bind index,pager        F               forward-message
+bind index,pager        R               reply
+bind index,pager        r               sync-mailbox
+bind index,pager        J               half-down
+bind index,pager        K               half-up
+
+bind pager              i               noop
+bind pager              gg              top
+bind pager              G               bottom
+bind pager              u               exit
+
+bind attach             u               exit
+bind browser            u               exit
+bind compose            u               exit
+
+# COLORS
+color sidebar_new       color208        default
+
+color error             color222        color232
+color markers           color161        color232
+color tilde             color108        default
+color status            color81         color232
+
+color indicator         color252        color236
+color tree              color81         default
+color index             color252        default ~N #new
+color index             color244        default ~O #old
+color index             color154        default ~Q #replied
+color index             color161        default ~F #flagged
+color index             color222        default ~D #deleted
+
+color hdrdefault        color141        default
+color header            color154        default "^Subject"
+
+color body              color208        default "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body              color208        default "<URL:[^ ]*>"
+color body              color208        default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body              color208        default "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
+color body              color208        default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+color attachment        color161        default
+color signature         color252        default
+
+color quoted            color238        default
+color quoted1           color237        default
+color quoted2           color236        default
+color quoted3           color235        default
+color quoted4           color234        default
+color quoted5           color233        default
+color quoted6           color232        default
+color quoted7           color231        default
+color quoted8           color230        default
+color quoted9           color229        default
