@@ -222,7 +222,7 @@ exec urxvtc -geometry 92x54 -name left
 exec google-chrome-stable
 exec sh ~/.fehbg
 exec unclutter -grab
-exec urxvtc -name vim -e vim -c ":OpenSession! default"
+exec urxvtc -name vim -e nvim -c ":OpenSession! default"
 
 # ========== MAPPINGS ==========
 
@@ -240,7 +240,7 @@ bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer 
 bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'Inconsolata for Powerline Sans Mono-10'
 
 # Shortcuts
-bindsym $mod+v exec urxvtc -name vim -e vim
+bindsym $mod+v exec urxvtc -name vim -e nvim
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvtc

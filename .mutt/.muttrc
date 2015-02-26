@@ -6,11 +6,15 @@ set mailcap_path     = ~/.mutt/.mailcap
 set tmpdir           = ~/.mutt/temp
 
 # Account
-set spoolfile  = "+gmail/INBOX"
+set spoolfile  = "=gmail/INBOX"
 set postponed  = "=gmail/[Gmail].Drafts"
 set timeout    = 10
-set mail_check = 0
-mailboxes +gmail/INBOX +gmail/[Gmail].Drafts +gmail/[Gmail].Trash +gmail/[Gmail].Sent\ Mail +gmail/[Gmail].Starred
+set mail_check = 5
+mailboxes =gmail/INBOX
+mailboxes =gmail/[Gmail].Drafts
+mailboxes =gmail/[Gmail].Trash
+mailboxes =gmail/[Gmail].Sent\ Mail
+mailboxes =gmail/[Gmail].Starred
 
 # SMTP
 set realname       = "Robert & Carly Winterstein"
@@ -52,7 +56,7 @@ set beep_new      = yes
 set sleep_time    = 0
 set confirmappend = no
 set delete        = yes
-set tilde
+unset tilde
 set text_flowed
 set editor        = 'vim'
 
@@ -73,6 +77,8 @@ macro index,pager       j               <next-entry><display-message>
 macro index,pager       Z               <quit>
 macro index,pager       C               ":set smtp_pass=`pass web/google`;<enter><mail>"
 
+macro pager             !               <flag-message><display-message>
+
 # Bindings
 bind generic            x               noop
 bind generic            q               noop
@@ -81,12 +87,12 @@ bind generic            k               previous-entry
 bind generic            u               exit
 
 bind index              u               noop
+bind index              !               flag-message
 
 bind index,pager        s               noop
 bind index,pager        d               noop
 bind index,pager        q               noop
 bind index,pager        H               noop
-bind index,pager        !               flag-message
 bind index,pager        A               group-reply
 bind index,pager        F               forward-message
 bind index,pager        R               reply
