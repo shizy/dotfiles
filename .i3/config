@@ -224,6 +224,27 @@ exec sh ~/.fehbg
 exec unclutter -grab
 exec urxvtc -name vim -e nvim -c ":OpenSession! default"
 
+# ========== MODES ===========
+
+mode "CAPS / MOUSE" {
+    
+    bindsym Caps_Lock mode "default"
+
+    bindsym $mod+Right exec xdotool mousemove_relative -- 100 0
+    bindsym $mod+Left exec xdotool mousemove_relative -- -100 0
+    bindsym $mod+Up exec xdotool mousemove_relative -- 0 -100
+    bindsym $mod+Down exec xdotool mousemove_relative -- 0 100
+
+    bindsym Right exec xdotool mousemove_relative -- 15 0
+    bindsym Left exec xdotool mousemove_relative -- -15 0
+    bindsym Up exec xdotool mousemove_relative -- 0 -15
+    bindsym Down exec xdotool mousemove_relative -- 0 15
+
+    bindsym Return exec xdotool click 1
+    bindsymc $mod+Return exec xdotool click 3
+}
+bindsym Caps_Lock mode "CAPS / MOUSE"
+
 # ========== MAPPINGS ==========
 
 # Scratchpads
