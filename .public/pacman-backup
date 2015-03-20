@@ -79,6 +79,7 @@ pkg-config
 pkgstats
 procps-ng
 psmisc
+putty
 reiserfsprogs
 rng-tools
 s-nail
@@ -95,7 +96,6 @@ texinfo
 texlive-core
 traceroute
 ttf-liberation
-unclutter
 unrar
 unzip
 usbutils
@@ -108,6 +108,7 @@ wget
 which
 whois
 wpa_supplicant
+xautolock
 xclip
 xdotool
 xf86-input-synaptics

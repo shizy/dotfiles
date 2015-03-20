@@ -190,7 +190,7 @@ client.urgent				#000000 #000000 #FD971F
 for_window [class="URxvt" instance="top"] floating enable
 for_window [class="URxvt" instance="bottom"] floating enable
 for_window [class="URxvt" instance="left"] floating enable
-for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 22px, scratchpad show
+for_window [class="URxvt" instance="top"] move scratchpad, scratchpad show, border none, move position 0px 20px, scratchpad show
 for_window [class="URxvt" instance="bottom"] move scratchpad, scratchpad show, border none, move position 0px 410px, scratchpad show
 for_window [class="URxvt" instance="left"] move scratchpad, scratchpad show, border none, move position 0px 0px, scratchpad show
 
@@ -221,7 +221,7 @@ exec urxvtc -geometry 184x26 -name bottom
 exec urxvtc -geometry 92x54 -name left
 exec google-chrome-stable
 exec sh ~/.fehbg
-exec unclutter -grab
+exec xautolock -time 10 -locker i3lock-wrapper
 exec urxvtc -name vim -e nvim -c ":OpenSession! default"
 
 # ========== MODES ===========

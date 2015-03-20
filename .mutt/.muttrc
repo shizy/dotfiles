@@ -68,8 +68,8 @@ hdr_order from: to: cc: date: subject:
 
 # Macros
 macro index,pager       <space>u        '<sync-mailbox><shell-escape>offlineimap -o<enter>'
-macro index,pager       <tab>           <sidebar-next><sidebar-open>
-macro index,pager       <backtab>       <sidebar-prev><sidebar-open>
+macro index,pager       L               <sidebar-next><sidebar-open><display-message>
+macro index,pager       H               <sidebar-prev><sidebar-open><display-message>
 macro index,pager       M               <save-message>?<toggle-mailboxes>
 macro index,pager       X               '<save-message><kill-line>=gmail/trash<enter><sync-mailbox>'
 macro index,pager       k               <previous-entry><display-message>
@@ -92,8 +92,8 @@ bind index              !               flag-message
 bind index,pager        s               noop
 bind index,pager        d               noop
 bind index,pager        q               noop
-bind index,pager        H               noop
 bind index,pager        A               group-reply
+bind index,pager        C               mail
 bind index,pager        F               forward-message
 bind index,pager        R               reply
 bind index,pager        r               sync-mailbox
