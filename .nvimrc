@@ -38,6 +38,9 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 " Syntax & Highlighting
 Plugin 'scrooloose/syntastic'
@@ -54,6 +57,7 @@ call vundle#end()
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set foldcolumn=4
 set expandtab
 set number
 set noswapfile
@@ -65,6 +69,8 @@ set encoding=utf-8
 set clipboard=unnamed
 set backupdir=~/.vim,.
 set directory=~/.vim,.
+set breakindent
+set linebreak
 
 syntax on
 filetype plugin indent on
@@ -116,9 +122,49 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 " LaTeX
+let g:tex_flavor = 'latex'
+let g:latexopenpreviews = []
 function! LatexMake()
-    let x = system('latexmk -pdf -outdir=/tmp '.expand('%:p').' && mv -f /tmp/'.expand('%:t')[0:-5].'.pdf ~/Docs')
-    let y = system('xpdf -remote '.expand('%:t')[0:-5].' ~/Docs/'.expand('%:t')[0:-5].'.pdf')
+    :silent ! latexmk -pdflatex='pdflatex -synctex=1' -pdf -outdir=/home/shizukesa/Docs '%:p'
+    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') == -1
+        :silent ! zathura '%:r.pdf' &
+        :call add(g:latexopenpreviews, expand('%:p:r') . '.pdf')
+        :silent ! sleep 1
+    endif
+    :call LatexUpdate()
+    :call LatexFocus()
+endfunction
+function! LatexFocus()
+    :silent ! i3-msg '[class="URxvt" instance="vim"] focus'
+    :redraw!
+endfunction
+function! LatexUpdate()
+    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
+        execute "silent ! zathura --synctex-forward " . line('.') . ":" . col('.') . ":%:p %:p:r.pdf"
+    endif
+endfunction
+function! LatexPreviewShow()
+    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
+        :silent ! i3-msg '[class="Zathura"] scratchpad show, floating disable'
+        :call LatexFocus()
+    endif
+endfunction
+function! LatexPreviewHide()
+    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
+        :silent ! i3-msg '[class="Zathura"] move scratchpad'
+        :call LatexFocus()
+    endif
+endfunction
+function! LatexPreviewClose()
+    let z = index(g:latexopenpreviews, expand('%:p:r') . '.pdf')
+    if z == 1
+        :close
+    elseif z > -1
+        :call remove(g:latexopenpreviews, z)
+    endif
+    "kill not working
+    let x = system("ps -C zathura -o pid=,args | grep " . expand('%:p:r') . ".pdf | awk '{print $1}'")
+    execute "! kill " . x
 endfunction
 
 " ========== MAPPINGS ==========
@@ -128,7 +174,7 @@ endfunction
 :nnoremap  <S-h>      :bp!<CR>
 :nnoremap  <S-l>      :bn!<CR>
 :nnoremap  <S-x>      :Bdelete!<CR>
-:nnoremap  <S-z>      :Bdelete!<CR>ZZ
+:nnoremap  <S-z>      ZZ
 :nnoremap  <S-u>      <C-r>
 :nnoremap  <tab>      <C-w>w
 :nnoremap  <S-tab>    <C-w>W
@@ -155,6 +201,9 @@ endfunction
 :inoremap  <expr> }   strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 :inoremap  <expr> ]   strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
+:nnoremap <silent> <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+:vnoremap          <Leader><Space> zf
+
 " ========== AUTOCOMMANDS ==========
 
 au BufNewFile,BufRead *.styl set filetype=stylus
@@ -163,8 +212,14 @@ au BufNewFile,BufRead *.ejs  set filetype=html
 au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ setlocal spelllang=en_us |
+    \ setlocal nocin inde= |
     \ set syntax=tex |
-    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR>
+    \ nnoremap <buffer> <Leader>w :w<CR>:call LatexMake()<CR> |
+    \ nnoremap <buffer> <Leader>x :call LatexPreviewClose()<CR> |
+    \ imap     <buffer> jk        <Esc>:w<CR><CR>:call LatexMake()<CR> |
+au CursorMoved *.tex :call LatexUpdate()
+au BufWinEnter *.tex :call LatexPreviewShow()
+au BufWinLeave *.tex :call LatexPreviewHide()
 au BufNewFile,BufRead,BufWinEnter /tmp/*
     \ setlocal spell |
     \ setlocal spelllang=en_us |

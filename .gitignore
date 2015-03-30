@@ -8,6 +8,7 @@
 !/.i3
 !/.fonts
 !/.mutt
+!/.nvim/snippets
 
 # INCLUDE files
 !/.gitignore

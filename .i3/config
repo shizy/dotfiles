@@ -200,6 +200,7 @@ for_window [class="Firefox"] border none
 for_window [class="URxvt"] border none
 for_window [class="MPlayer"] border none
 for_window [class="Xpdf"] border none
+for_window [class="Zathura"] border none
 for_window [instance="connman"] border none, floating enable
 for_window [class="URxvt" instance="mutt"] focus
 
