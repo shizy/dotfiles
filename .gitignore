@@ -2,14 +2,14 @@
 /*
 /.mutt/cache
 /.mutt/temp
-/.nvim/*
+/.nvim/spell
 
 # INCLUDE folders
 !/.public
 !/.i3
 !/.fonts
 !/.mutt
-!/.nvim/snippets/*
+!/.nvim
 
 # INCLUDE files
 !/.gitignore
