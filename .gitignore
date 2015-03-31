@@ -2,6 +2,8 @@
 /*
 /.mutt/cache
 /.mutt/temp
+
+!/.nvim
 /.nvim/*
 
 # INCLUDE folders
@@ -25,4 +27,4 @@
 !/.vimrc
 !/.offlineimaprc
 !/.nvimrc
-!/.nvim/snippets/*
+!/.nvim/snippets
