@@ -57,7 +57,6 @@ call vundle#end()
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set foldcolumn=4
 set expandtab
 set number
 set noswapfile
@@ -67,8 +66,8 @@ set lazyredraw
 set t_Co=256
 set encoding=utf-8
 set clipboard=unnamed
-set backupdir=~/.vim,.
-set directory=~/.vim,.
+set backupdir=~/.nvim,.
+set directory=~/.nvim,.
 set breakindent
 set linebreak
 
@@ -124,6 +123,7 @@ let g:gitgutter_eager = 0
 " LaTeX
 let g:tex_flavor = 'latex'
 let g:latexopenpreviews = []
+let s:latexpreviewline = 0
 function! LatexMake()
     :silent ! latexmk -pdflatex='pdflatex -synctex=1' -pdf -outdir=/home/shizukesa/Docs '%:p'
     if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') == -1
@@ -139,8 +139,10 @@ function! LatexFocus()
     :redraw!
 endfunction
 function! LatexUpdate()
-    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
-        execute "silent ! zathura --synctex-forward " . line('.') . ":" . col('.') . ":%:p %:p:r.pdf"
+    if line(".") != s:latexpreviewline
+        if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
+            execute "silent ! zathura --synctex-forward " . line('.') . ":" . col('.') . ":%:p %:p:r.pdf"
+        endif
     endif
 endfunction
 function! LatexPreviewShow()
@@ -174,7 +176,7 @@ endfunction
 :nnoremap  <S-h>      :bp!<CR>
 :nnoremap  <S-l>      :bn!<CR>
 :nnoremap  <S-x>      :Bdelete!<CR>
-:nnoremap  <S-z>      ZZ
+:nnoremap  <S-z>      :qa<CR>
 :nnoremap  <S-u>      <C-r>
 :nnoremap  <tab>      <C-w>w
 :nnoremap  <S-tab>    <C-w>W
@@ -194,12 +196,6 @@ endfunction
 :nmap      <Leader>u  :PluginUpdate<CR>
 :imap      jj         <Esc>
 :imap      jk         <Esc>:SaveSession!<CR>:w<CR>
-
-:inoremap  {;         {<CR>};<Esc>O
-:inoremap  {<CR>      {<CR>}<Esc>O
-:inoremap  (;         ();<Left><Left>
-:inoremap  <expr> }   strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-:inoremap  <expr> ]   strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
 :nnoremap <silent> <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 :vnoremap          <Leader><Space> zf

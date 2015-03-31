@@ -219,10 +219,11 @@ exec compton
 exec urxvtc -geometry 184x26 -name top
 exec urxvtc -geometry 184x26 -name bottom
 exec urxvtc -geometry 92x54 -name left
-exec google-chrome-stable
+exec google-chrome-stable --restore-last-session
 exec sh ~/.fehbg
 exec xautolock -time 10 -locker i3lock-wrapper
 exec urxvtc -name vim -e nvim -c ":OpenSession! default"
+exec xdotool mousemove $(xrandr | grep -oP '(?<=current\ ).*?(?=,)' | awk '{print $1 " " $3}')
 
 # ========== MODES ===========
 
@@ -262,7 +263,7 @@ bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' 
 
 # Shortcuts
 bindsym $mod+v exec urxvtc -name vim -e nvim
-bindsym $mod+g exec google-chrome-stable
+bindsym $mod+g exec google-chrome-stable --restore-last-session
 bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvtc
 bindsym $mod+i exec urxvtc -name irc -e weechat-curses
@@ -271,3 +272,4 @@ bindsym $mod+p exec ~/.public/extend_display.sh
 bindsym $mod+n exec urxvtc -name connman -e connman-ncurses
 bindsym $mod+m exec urxvtc -name mutt -e mutt -F ~/.mutt/.muttrc
 bindsym $mod+s exec scrot ~/Downloads/%Y-%m-%d-%T-screenshot.png
+bindsym $mod+Escape exec i3lock-wrapper

@@ -3,7 +3,6 @@ URxvt.url-launcher: /usr/bin/google-chrome-stable
 URxvt.matcher.button: 1
 URxvt.keysym.Mod4-f: perl:matcher:list
 URxvt.urgentOnBell: true
-URxvt.cursorUnderline: 1
 
 URxvt.depth:      32
 URxvt.background: [85]#000000
