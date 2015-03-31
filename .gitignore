@@ -5,6 +5,9 @@
 
 !/.nvim
 /.nvim/*
+!/.config
+/.config/*
+!/.config/zathura
 
 # INCLUDE folders
 !/.public

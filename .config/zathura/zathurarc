@@ -1,0 +1,4 @@
+set recolor true
+set recolor_darkcolor #FFFFFF
+set recolor_lightcolor #000000
+set adjust_open width

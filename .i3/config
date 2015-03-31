@@ -215,7 +215,7 @@ assign [class="URxvt" instance="mutt"] 10:
 
 # ========== AUTOSTART ==========
 
-exec compton
+exec compton --opacity-rule '80:class_g = "Zathura"'
 exec urxvtc -geometry 184x26 -name top
 exec urxvtc -geometry 184x26 -name bottom
 exec urxvtc -geometry 92x54 -name left
