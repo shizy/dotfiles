@@ -9,7 +9,6 @@
 !/.i3
 !/.fonts
 !/.mutt
-!/.nvim/snippets/*
 
 # INCLUDE files
 !/.gitignore
@@ -24,6 +23,6 @@
 !/.zprofile
 !/.zshrc
 !/.vimrc
-!/.xpdfrc
 !/.offlineimaprc
 !/.nvimrc
+!/.nvim/snippets/*
