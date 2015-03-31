@@ -63,6 +63,7 @@ backup ()
     rm $HOME/docs.tar
     rm $HOME/docs.tar.gpg
 
+
     # packages
     pacman -Qqne > $HOME/.public/pacman-backup
     pacman -Qqm > $HOME/.public/aur-backup
