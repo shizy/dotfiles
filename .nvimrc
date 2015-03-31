@@ -164,8 +164,7 @@ function! LatexPreviewClose()
     elseif z > -1
         :call remove(g:latexopenpreviews, z)
     endif
-    "kill not working
-    let x = system("ps -C zathura -o pid=,args | grep " . expand('%:p:r') . ".pdf | awk '{print $1}'")
+    let x = system("ps -C zathura -o pid=,args | grep " . expand('%:t:r') . ".pdf | awk '{print $1}'")
     execute "! kill " . x
 endfunction
 
@@ -212,7 +211,7 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ set syntax=tex |
     \ nnoremap <buffer> <Leader>w :w<CR>:call LatexMake()<CR> |
     \ nnoremap <buffer> <Leader>x :call LatexPreviewClose()<CR> |
-    \ imap     <buffer> jk        <Esc>:w<CR><CR>:call LatexMake()<CR> |
+    \ imap     <buffer> jk        <Esc>:w<CR>:call LatexMake()<CR> |
 au CursorMoved *.tex :call LatexUpdate()
 au BufWinEnter *.tex :call LatexPreviewShow()
 au BufWinLeave *.tex :call LatexPreviewHide()
