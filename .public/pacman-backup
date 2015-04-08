@@ -31,6 +31,7 @@ ghostscript
 gimp
 git
 glibc
+gnu-netcat
 gptfdisk
 grep
 groff
@@ -43,6 +44,7 @@ iproute2
 iputils
 iw
 ix
+jad
 jfsutils
 less
 libtool

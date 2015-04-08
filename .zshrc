@@ -35,7 +35,7 @@ alias grep='grep --color=auto'
 alias wallpaper='~/.public/wallpaper.sh'
 alias vpn='~/.private/vpn-pls.sh'
 alias help="curl -F 'f:1=<-' ix.io"
-alias bored="ssh joshua@crawl.akrasiac.org"
+alias xclip="xclip -selection clipboard"
 
 # backup dots / eratta to git
 backup ()

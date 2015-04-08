@@ -2,6 +2,7 @@ aura-bin
 compton
 connman-ncurses-git
 dmenu-xft
+foremost
 gcc-gcj
 gcc-gcj-ecj
 google-chrome
@@ -24,3 +25,4 @@ texlive-local-dirtree
 texlive-localmanager-git
 ttf-font-awesome
 unibilium
+xor

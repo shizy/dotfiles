@@ -21,12 +21,11 @@ Plugin 'gmarik/Vundle.vim'
 
 " Buffer Management
 Plugin 'moll/vim-bbye'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'bling/vim-airline'
 
 " Looks
 Plugin 'tomasr/molokai'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
 
 " Interaction
 Plugin 'tpope/vim-sensible'
@@ -37,7 +36,6 @@ Plugin 'terryma/vim-multiple-cursors'
 " Utility
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -105,11 +103,11 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.whitespace = ''
 
-" Session
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_save_periodic = 5
-let g:session_default_to_last = 1
+" Sessions
+function! Save()
+    :mks! ~/.nvim/sessions/session.vim
+    :w
+endfunction
 
 " Multi Cursor
 let g:multi_cursor_next_key = '<S-s>'
@@ -182,7 +180,7 @@ endfunction
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
-:nmap      <Leader>w  :SaveSession!<CR>:w<CR>
+:nmap      <Leader>w  :call Save()<CR>
 :nmap      <Leader>1  :w !sudo tee % > /dev/null
 :nmap      <Leader>-  :CtrlP<CR>
 :nmap      <Leader>/  <Esc>:%s/
@@ -194,7 +192,7 @@ endfunction
 :nmap      <Leader>p  :Gpush<space>
 :nmap      <Leader>u  :PluginUpdate<CR>
 :imap      jj         <Esc>
-:imap      jk         <Esc>:SaveSession!<CR>:w<CR>
+:imap      jk         <Esc>:call Save()<CR>
 
 :nnoremap <silent> <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 :vnoremap          <Leader><Space> zf
@@ -209,9 +207,9 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ set syntax=tex |
-    \ nnoremap <buffer> <Leader>w :w<CR>:call LatexMake()<CR> |
+    \ nnoremap <buffer> <Leader>w :call Save()<CR>:call LatexMake()<CR> |
     \ nnoremap <buffer> <Leader>x :call LatexPreviewClose()<CR> |
-    \ imap     <buffer> jk        <Esc>:w<CR>:call LatexMake()<CR> |
+    \ imap     <buffer> jk   <Esc>:call Save()<CR>:call LatexMake()<CR> |
 au CursorMoved *.tex :call LatexUpdate()
 au BufWinEnter *.tex :call LatexPreviewShow()
 au BufWinLeave *.tex :call LatexPreviewHide()
