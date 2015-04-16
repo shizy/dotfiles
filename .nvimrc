@@ -1,54 +1,54 @@
-" ========== PACKAGES ==========
+" Auto install Plug
+if empty(glob('~/.nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
 
-set nocompatible
-filetype off
+" If GUI Version
 if has('gui_running')
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
     set guioptions-=L
     au GUIEnter * simalt ~x
-    set rtp+=~/vimfiles/bundle/Vundle.vim/
-    let path='~/vimfiles/bundle'
-    call vundle#begin(path)
-else
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
 endif
 
-" Package Management
-Plugin 'gmarik/Vundle.vim'
+
+" ========== PACKAGES ==========
+
+call plug#begin('~/.nvim/plugged')
 
 " Buffer Management
-Plugin 'moll/vim-bbye'
+Plug 'moll/vim-bbye'
 
 " Looks
-Plugin 'tomasr/molokai'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tomasr/molokai'
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
 
 " Interaction
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
 
 " Utility
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-fugitive'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-fugitive'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
 " Syntax & Highlighting
-Plugin 'scrooloose/syntastic'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'wavded/vim-stylus'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'plasticboy/vim-markdown'
+Plug 'scrooloose/syntastic'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'wavded/vim-stylus'
+Plug 'digitaltoad/vim-jade'
+Plug 'plasticboy/vim-markdown'
 
-call vundle#end()
+call plug#end()
 
 " ========== SETTINGS ==========
 
@@ -190,7 +190,7 @@ endfunction
 :nmap      <Leader>s  :Gstatus<CR>
 :nmap      <Leader>c  :Gcommit -m<space>
 :nmap      <Leader>p  :Gpush<space>
-:nmap      <Leader>u  :PluginUpdate<CR>
+:nmap      <Leader>u  :PlugUpdate<CR>
 :imap      jj         <Esc>
 :imap      jk         <Esc>:call Save()<CR>
 

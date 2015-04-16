@@ -58,7 +58,7 @@ set confirmappend = no
 set delete        = yes
 unset tilde
 set text_flowed
-set editor        = 'vim'
+set editor        = 'nvim'
 
 # Headers
 ignore *

@@ -1,4 +1,8 @@
 set recolor true
-set recolor_darkcolor #FFFFFF
-set recolor_lightcolor #000000
+set recolor-darkcolor #FFFFFF
+set recolor-lightcolor #000000
 set adjust-open width
+
+map <S-j> navigate next
+map <S-k> navigate previous
+map <S-z> quit
