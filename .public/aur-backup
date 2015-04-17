@@ -3,6 +3,7 @@ compton
 connman-ncurses-git
 dmenu-xft
 foremost
+fzf
 gcc-gcj
 gcc-gcj-ecj
 google-chrome

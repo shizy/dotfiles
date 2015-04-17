@@ -1,0 +1,13 @@
+*node_modules*
+*google_chrome*
+
+.mail/
+.npm/
+.nvim/
+.cache/
+.local/
+.gnome/
+.git/
+.pm2/
+.gimp*/
+.cmake/
