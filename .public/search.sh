@@ -18,7 +18,7 @@ case $ftype in
             i3-msg 'exec urxvtc -name vim -e zsh -c "NVIM_LISTEN_ADDRESS=/tmp/nvim nvim -S ~/.nvim/sessions/session.vim"'
         fi
 
-        python -c "from neovim import attach; nvim=attach('socket', path='/tmp/nvim'); nvim.command('e $file');"
+        python2 -c "from neovim import attach; nvim=attach('socket', path='/tmp/nvim'); nvim.command('e $file');"
         ;;
     *"pdf"*)
         zathura --fork $file

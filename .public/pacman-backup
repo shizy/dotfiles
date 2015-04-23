@@ -44,7 +44,6 @@ iproute2
 iputils
 iw
 ix
-jad
 jfsutils
 less
 libtool
@@ -82,7 +81,7 @@ pkgstats
 procps-ng
 psmisc
 putty
-python-pip
+python2-pip
 reiserfsprogs
 rng-tools
 s-nail
@@ -90,6 +89,7 @@ scrot
 sed
 shadow
 sshfs
+strace
 sudo
 sysfsutils
 syslinux
@@ -97,6 +97,7 @@ systemd-sysvcompat
 tar
 texinfo
 texlive-core
+tigervnc
 traceroute
 ttf-liberation
 unrar

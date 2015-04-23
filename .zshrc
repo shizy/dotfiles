@@ -27,7 +27,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # exports
-export EDITOR=vim
+export EDITOR=nvim
 
 # aliases
 alias ls='ls --color=auto'
@@ -36,6 +36,7 @@ alias wallpaper='~/.public/wallpaper.sh'
 alias vpn='~/.private/vpn-pls.sh'
 alias help="curl -F 'f:1=<-' ix.io"
 alias xclip="xclip -selection clipboard"
+alias vnc="vncviewer"
 
 # backup dots / eratta to git
 backup ()

@@ -66,6 +66,7 @@ set encoding=utf-8
 set clipboard=unnamed
 set backupdir=~/.nvim,.
 set directory=~/.nvim,.
+set viminfo+=n~/.nvim/nviminfo
 set breakindent
 set linebreak
 
@@ -87,17 +88,6 @@ let g:rehash256 = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
 let g:airline_powerline_fonts = 1
-call airline#parts#define_function('repo', 'GetRepo')
-function! GetRepo()
-    let repo = system('cd '.expand('%:p:h').' && dirname $(git branch -r) 2> /dev/null')
-    if repo[0:4] == "fatal"
-        return ""
-    else
-        return substitute(repo, "\n", "", "")
-endfunction
-function! AirlineInit()
-    let g:airline_section_b = airline#section#create(['hunks', ' ', 'repo', ' ', 'branch'])
-endfunction
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -222,4 +212,3 @@ au BufNewFile,BufRead,BufWinEnter /tmp/*
     \ imap jk              <Esc>:w<CR> |
     \ setlocal fo+=aw
 au BufWinEnter *.md          set syntax=markdown
-au VimEnter *                call AirlineInit()

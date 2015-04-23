@@ -214,6 +214,8 @@ assign [class="Gimp"] 4:
 assign [class="MPlayer"] 8:
 assign [class="URxvt" instance="irc"] 9:
 assign [class="URxvt" instance="mutt"] 10:
+assign [class="xfreerdp"] 1:
+assign [class="Vncviewer"] 1:
 
 # ========== AUTOSTART ==========
 

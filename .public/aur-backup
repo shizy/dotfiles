@@ -3,9 +3,8 @@ compton
 connman-ncurses-git
 dmenu-xft
 foremost
+freerdp-git
 fzf
-gcc-gcj
-gcc-gcj-ecj
 google-chrome
 i3lock-wrapper
 libtermkey-bzr
@@ -14,7 +13,6 @@ libvterm-git-neovim
 mutt-sidebar
 neovim-git
 netextender
-pdftk
 perl-term-shellui
 powerdown-git
 python2-neovim
@@ -26,3 +24,4 @@ texlive-localmanager-git
 ttf-font-awesome
 unibilium
 xor
+xxd
