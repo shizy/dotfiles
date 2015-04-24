@@ -59,6 +59,7 @@ set delete        = yes
 unset tilde
 set text_flowed
 set editor        = 'nvim'
+set meta_key      = yes
 
 # Headers
 ignore *
@@ -68,14 +69,14 @@ hdr_order from: to: cc: date: subject:
 
 # Macros
 macro index,pager       <space>u        '<sync-mailbox><shell-escape>offlineimap -o<enter>'
-macro index,pager       L               <sidebar-next><sidebar-open><display-message>
-macro index,pager       H               <sidebar-prev><sidebar-open><display-message>
-macro index,pager       M               <save-message>?<toggle-mailboxes>
-macro index,pager       X               '<save-message><kill-line>=gmail/trash<enter><sync-mailbox>'
+macro index,pager       \el             <sidebar-next><sidebar-open><display-message>
+macro index,pager       \eh             <sidebar-prev><sidebar-open><display-message>
+macro index,pager       \em             <save-message>?<toggle-mailboxes>
+macro index,pager       \ex             '<save-message><kill-line>=gmail/trash<enter><sync-mailbox>'
 macro index,pager       k               <previous-entry><display-message>
 macro index,pager       j               <next-entry><display-message>
-macro index,pager       Z               <quit>
-macro index,pager       C               ":set smtp_pass=`pass web/google`;<enter><mail>"
+macro index,pager       \ez             <quit>
+macro index,pager       \ec             ":set smtp_pass=`pass web/google`;<enter><mail>"
 
 macro pager             !               <flag-message><display-message>
 
@@ -92,13 +93,13 @@ bind index              !               flag-message
 bind index,pager        s               noop
 bind index,pager        d               noop
 bind index,pager        q               noop
-bind index,pager        A               group-reply
-bind index,pager        C               mail
-bind index,pager        F               forward-message
-bind index,pager        R               reply
+bind index,pager        \ea             group-reply
+bind index,pager        \ec             mail
+bind index,pager        \ef             forward-message
+bind index,pager        \er             reply
 bind index,pager        r               sync-mailbox
-bind index,pager        J               half-down
-bind index,pager        K               half-up
+bind index,pager        \ej             half-down
+bind index,pager        \ek             half-up
 
 bind pager              i               noop
 bind pager              gg              top

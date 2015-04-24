@@ -269,7 +269,7 @@ bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' 
 bindsym $mod+v exec urxvtc -name vim -e zsh -c "NVIM_LISTEN_ADDRESS=/tmp/nvim nvim -S ~/.nvim/sessions/session.vim"
 bindsym $mod+g exec google-chrome-stable --restore-last-session
 bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec urxvtc -name term
 bindsym $mod+i exec urxvtc -name irc -e weechat-curses
 bindsym $mod+w exec ~/.public/wallpaper.sh
 bindsym $mod+p exec ~/.public/extend_display.sh

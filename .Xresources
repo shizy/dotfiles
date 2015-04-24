@@ -13,6 +13,17 @@ URxvt.boldFont:   xft:Inconsolata for Powerline:bold:size=9:antialias=true
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
 
+mutt.metaSendsEscape: true
+
+term.keysym.M-k: command:\033]720;10\007
+term.keysym.M-j: command:\033]721;10\007
+top.keysym.M-k: command:\033]720;10\007
+top.keysym.M-j: command:\033]721;10\007
+bottom.keysym.M-k: command:\033]720;10\007
+bottom.keysym.M-j: command:\033]721;10\007
+left.keysym.M-k: command:\033]720;10\007
+left.keysym.M-j: command:\033]721;10\007
+
 *.background: #232323
 *.foreground: #A0A0A0
 

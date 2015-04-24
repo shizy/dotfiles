@@ -35,8 +35,17 @@ alias grep='grep --color=auto'
 alias wallpaper='~/.public/wallpaper.sh'
 alias vpn='~/.private/vpn-pls.sh'
 alias help="curl -F 'f:1=<-' ix.io"
-alias xclip="xclip -selection clipboard"
+alias xclip="xclip -selection primary"
 alias vnc="vncviewer"
+
+rdp ()
+{
+    echo -n "Address: "
+    read add
+    echo -n "User@Domain: "
+    read user
+    xfreerdp /u:$user /cert-ignore -grab-keyboard /v:$add
+}
 
 # backup dots / eratta to git
 backup ()

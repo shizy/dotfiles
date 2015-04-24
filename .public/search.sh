@@ -1,12 +1,11 @@
 #!/bin/bash
 
-if [ $(pidof | pgrep fzf) -gt 0 ]; then
+if [ $(pidof | pgrep fzf) ]; then
     i3-msg '[class="URxvt" instance="search"] kill'
     exit
 fi
 
-local file
-file=$(ag -fli --hidden -g "" /etc /tmp /var ~ 2>/dev/null | fzf --query="$1" --select-1 --exit-0)
+file=$(ag -fli --hidden -g "" /etc /tmp ~ 2>/dev/null | fzf --query="$1" --select-1 --exit-0)
 ftype=$(file $file --mime-type | awk '{print $2}')
 
 case $ftype in

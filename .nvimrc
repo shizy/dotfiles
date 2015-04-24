@@ -158,15 +158,15 @@ endfunction
 
 " ========== MAPPINGS ==========
 
-:noremap   <S-j>      10j
-:noremap   <S-k>      10k
-:nnoremap  <S-h>      :bp!<CR>
-:nnoremap  <S-l>      :bn!<CR>
-:nnoremap  <S-x>      :Bdelete!<CR>
-:nnoremap  <S-z>      :qa<CR>
-:nnoremap  <S-u>      <C-r>
+:noremap   <A-j>      10j
+:noremap   <A-k>      10k
+:nnoremap  <A-h>      :bp!<CR>
+:nnoremap  <A-l>      :bn!<CR>
+:nnoremap  <A-x>      :Bdelete!<CR>
+:nnoremap  <A-z>      :qa<CR>
+:nnoremap  <A-u>      <C-r>
 :nnoremap  <tab>      <C-w>w
-:nnoremap  <S-tab>    <C-w>W
+:nnoremap  <A-tab>    <C-w>W
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
