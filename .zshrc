@@ -35,7 +35,6 @@ alias grep='grep --color=auto'
 alias wallpaper='~/.public/wallpaper.sh'
 alias vpn='~/.private/vpn-pls.sh'
 alias help="curl -F 'f:1=<-' ix.io"
-alias xclip="xclip -selection primary"
 alias vnc="vncviewer"
 
 rdp ()

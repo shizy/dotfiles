@@ -23,5 +23,6 @@ texlive-local-dirtree
 texlive-localmanager-git
 ttf-font-awesome
 unibilium
+urxvt-perls-git
 xor
 xxd

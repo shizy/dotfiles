@@ -1,4 +1,4 @@
-URxvt.perl-ext-common: default,matcher
+URxvt.perl-ext-common: default,matcher,keyboard-select,clipboard
 URxvt.url-launcher: /usr/bin/google-chrome-stable
 URxvt.matcher.button: 1
 URxvt.keysym.Mod4-f: perl:matcher:list
@@ -12,6 +12,7 @@ URxvt.font:       xft:Inconsolata for Powerline:size=9:antialias=true
 URxvt.boldFont:   xft:Inconsolata for Powerline:bold:size=9:antialias=true
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
+URxvt.clipboard.autocopy: true
 
 mutt.metaSendsEscape: true
 
@@ -23,6 +24,8 @@ bottom.keysym.M-k: command:\033]720;10\007
 bottom.keysym.M-j: command:\033]721;10\007
 left.keysym.M-k: command:\033]720;10\007
 left.keysym.M-j: command:\033]721;10\007
+URxvt.keysym.M-v: perl:keyboard-select:activate
+URxvt.keysym.C-v: perl:clipboard:paste
 
 *.background: #232323
 *.foreground: #A0A0A0
