@@ -78,7 +78,14 @@ macro index,pager       j               <next-entry><display-message>
 macro index,pager       \ez             <quit>
 macro index,pager       \ec             ":set smtp_pass=`pass web/google`;<enter><mail>"
 
+macro index             /               '<limit><kill-line>~B '
+macro index             \e/             '<limit><kill-line>all<enter><last-entry>'
+
 macro pager             !               <flag-message><display-message>
+macro pager             gg              <exit><first-entry>
+macro pager             G               <exit><last-entry>
+macro pager             /               '<exit><limit><kill-line>~B '
+macro pager             \e/             '<exit><limit><kill-line>all<enter><last-entry>'
 
 # Bindings
 bind generic            x               noop
@@ -89,6 +96,8 @@ bind generic            u               exit
 
 bind index              u               noop
 bind index              !               flag-message
+bind index              gg              first-entry
+bind index              G               last-entry
 
 bind index,pager        s               noop
 bind index,pager        d               noop
@@ -102,8 +111,6 @@ bind index,pager        \ej             half-down
 bind index,pager        \ek             half-up
 
 bind pager              i               noop
-bind pager              gg              top
-bind pager              G               bottom
 bind pager              u               exit
 
 bind attach             u               exit

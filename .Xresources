@@ -24,6 +24,8 @@ bottom.keysym.M-k: command:\033]720;10\007
 bottom.keysym.M-j: command:\033]721;10\007
 left.keysym.M-k: command:\033]720;10\007
 left.keysym.M-j: command:\033]721;10\007
+search.keysym.M-k: string:\033[A
+search.keysym.M-j: string:\033[B
 URxvt.keysym.M-v: perl:keyboard-select:activate
 URxvt.keysym.C-v: perl:clipboard:paste
 
