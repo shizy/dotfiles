@@ -163,7 +163,7 @@ endfunction
 :nnoremap  <A-h>      :bp!<CR>
 :nnoremap  <A-l>      :bn!<CR>
 :nnoremap  <A-x>      :Bdelete!<CR>
-:nnoremap  <A-z>      :qa<CR>
+:nnoremap  <A-z>      :call Save()<CR>:qa<CR>
 :nnoremap  <A-u>      <C-r>
 :nnoremap  <tab>      <C-w>w
 :nnoremap  <A-tab>    <C-w>W
@@ -197,18 +197,16 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ set syntax=tex |
-    \ nnoremap <buffer> <Leader>w :call Save()<CR>:call LatexMake()<CR> |
-    \ nnoremap <buffer> <Leader>x :call LatexPreviewClose()<CR> |
-    \ imap     <buffer> jk   <Esc>:call Save()<CR>:call LatexMake()<CR> |
+    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR> |
+    \ nnoremap <buffer> <Leader>x :call LatexPreviewClose()<CR>
 au CursorMoved *.tex :call LatexUpdate()
 au BufWinEnter *.tex :call LatexPreviewShow()
 au BufWinLeave *.tex :call LatexPreviewHide()
-au BufNewFile,BufRead,BufWinEnter /tmp/*
+au BufNewFile,BufRead,BufWinEnter .mutt/temp/*
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nonumber |
     \ set syntax=markdown |
-    \ nnoremap <Leader>w   :w<CR> |
-    \ imap jk              <Esc>:w<CR> |
-    \ setlocal fo+=aw
+    \ setlocal fo+=aw |
+    \ setlocal sessionoptions=""
 au BufWinEnter *.md          set syntax=markdown

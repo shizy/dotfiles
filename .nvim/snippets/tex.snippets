@@ -2,14 +2,16 @@ snippet \begin
 	\documentclass{article}
 	\usepackage[a4paper, margin=1in]{geometry}
 	\begin{document}
+
 	${1}
+
 	\end{document}
 snippet	\i
-	\textit{${1}}
+	\textit{${1}} ${2}
 snippet \b
-	\textbf{${1}}
+	\textbf{${1}} ${2}
 snippet \und
-	\underline{${1}}
+	\underline{${1}} ${2}
 snippet \o
 	\begin{enumerate}
 		\item ${1}
@@ -27,6 +29,16 @@ snippet \ss
 snippet \sss
 	\subsubsection*{${1}}
 snippet \hf
-	\hfill\\\\${1}
+	\hfill\\\\
+	${1}
 snippet \\
 	\textbackslash ${1}
+snippet \t
+	\begin{center}
+		\begin{tabular}{ ${1} }
+			${2}
+		\end{tabular}
+	\end{center}
+snippet \hl
+	\hline\\\\
+	${1}
