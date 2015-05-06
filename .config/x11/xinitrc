@@ -1,0 +1,12 @@
+#!/bin/bash
+
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]
+
+if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+    eval `dbus-launch --sh-syntax`
+fi
+
+xrdb -merge $XDG_CONFIG_HOME/x11/Xresources
+xrandr --dpi 113
+urxvtd -q -f -o
+exec i3 -c $XDG_CONFIG_HOME/i3/config

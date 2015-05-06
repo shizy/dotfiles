@@ -113,7 +113,7 @@ let g:tex_flavor = 'latex'
 let g:latexopenpreviews = []
 let s:latexpreviewline = 0
 function! LatexMake()
-    :silent ! latexmk -pdflatex='pdflatex -synctex=1' -pdf -outdir=/home/shizukesa/Docs '%:p'
+    :silent ! latexmk -pdflatex='pdflatex -synctex=1' -pdf -outdir=$HOME/docs '%:p'
     if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') == -1
         :silent ! zathura '%:r.pdf' &
         :call add(g:latexopenpreviews, expand('%:p:r') . '.pdf')
@@ -208,5 +208,6 @@ au BufNewFile,BufRead,BufWinEnter .mutt/temp/*
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ setlocal fo+=aw |
-    \ setlocal sessionoptions=""
+    \ imap jk <Esc>:w<CR> |
+    \ nmap <Leader>w :w<CR>
 au BufWinEnter *.md          set syntax=markdown

@@ -1,33 +1,41 @@
-# EXCLUDE
+# EXCLUDE ALL
 /*
-/.mutt/cache
-/.mutt/temp
+*.pyc
 
+# NVIM
 !/.nvim
 /.nvim/*
+
+!/.nvim/snippets
+!/.nvimrc
+
+# CONFIG
 !/.config
 /.config/*
-!/.config/zathura
 
-# INCLUDE folders
-!/.public
-!/.i3
-!/.fonts
-!/.mutt
-
-# INCLUDE files
-!/.gitignore
-!/.gitconfig
+!/.config/ag
+!/.config/git
+!/.config/i3
+!/.config/mutt
+!/.config/offlineimap
 !/.config/user-dirs.dir
-!/.ssh/config
-!/.weechat/weechat.conf
-!/.gnupg/gpg-agent.conf
-!/.muttrc
-!/.Xresources
-!/.xinitrc
-!/.zprofile
-!/.zshrc
-!/.offlineimaprc
-!/.nvimrc
-!/.nvim/snippets
-!/.agignore
+!/.config/x11
+!/.config/zathura
+!/.config/zsh
+
+# GPG
+!/.config/gnupg
+/.config/gnupg/*
+
+!/.config/gnupg/gpg-agent.conf
+
+# WEECHAT
+!/.config/weechat
+/.config/weechat/*
+
+!/.config/weechat/weechat.conf
+
+# OTHER
+!/.public
+!/.fonts
+!/.gitignore

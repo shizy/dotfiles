@@ -1,11 +1,11 @@
 # autoload
 autoload -U compinit promptinit colors
-compinit
+compinit -d $XDG_CACHE_HOME/zcompdump
 promptinit
 colors
 
 # prompt
-CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}: "
+CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
 typeset -U path
@@ -17,8 +17,8 @@ cd ~
 # vim-mode
 bindkey -v
 function zle-line-init zle-keymap-select {
-    NORMAL="%F{cyan}! $CMD_PROMPT"
-    INSERT="%F{green}  $CMD_PROMPT"
+    NORMAL="%F{cyan}  $CMD_PROMPT  "
+    INSERT="%F{green}  $CMD_PROMPT: "
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
     RPROMPT=""
     zle reset-prompt
@@ -26,16 +26,24 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# exports
-export EDITOR=nvim
+# keybinds
+bindkey "\eh" backward-char
+bindkey "\el" forward-char
+bindkey "^?" backward-delete-char
+
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M viins 'jk' accept-line
 
 # aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias wallpaper='~/.public/wallpaper.sh'
-alias vpn='~/.private/vpn-pls.sh'
-alias help="curl -F 'f:1=<-' ix.io"
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias wallpaper="$HOME/.public/wallpaper.sh"
+alias vpn="$HOME/.private/vpn-pls.sh"
+alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
+alias ..="cd .."
+alias grep="grep --color=auto"
+alias ssh='ssh -F $HOME/.private/ssh/ssh_config'
 
 rdp ()
 {
@@ -59,14 +67,14 @@ backup ()
 		mkdir $HOME/.private 2>/dev/null
 	fi
 
-    # tar and encrypt .private / Docs
+    # tar and encrypt .private / docs
     tar -cvf $HOME/private.tar -C $HOME/.private/ .
-    tar -cvf $HOME/docs.tar -C $HOME/Docs/ .
+    tar -cvf $HOME/docs.tar -C $HOME/docs/ .
     gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
     gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
     # requires gdrive from: https://github.com/prasmussen/gdrive
-    gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
-    gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+    gdrive -c $HOME/.private/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+    gdrive -c $HOME/.private/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
     rm $HOME/private.tar
     rm $HOME/private.tar.gpg
     rm $HOME/docs.tar

@@ -1,7 +1,8 @@
 [general]
 accounts = gmail
 fsync = False
-pythonfile = ~/.public/offlineimap.py
+metadata = ~/.mail/offlineimap
+pythonfile = ~/.config/offlineimap/offlineimap.py
 
 [Account gmail]
 localrepository = gmail-local

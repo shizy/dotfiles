@@ -1,6 +1,3 @@
 [user]
 	email = shizukesa4@gmail.com
 	name = Robert Winterstein
-
-[core]
-    excludesfile = ~/.gitignore

@@ -1,9 +1,8 @@
 # Paths
 set folder           = ~/.mail
-set header_cache     = ~/.mutt/cache/headers
-set message_cachedir = ~/.mutt/cache/bodies
-set mailcap_path     = ~/.mutt/.mailcap
-set tmpdir           = ~/.mutt/temp
+set header_cache     = ~/.cache/mutt/headers
+set message_cachedir = ~/.cache/mutt
+set mailcap_path     = ~/.config/mutt/mailcap
 
 # Account
 set spoolfile  = "=gmail/INBOX"
@@ -58,7 +57,7 @@ set confirmappend = no
 set delete        = yes
 unset tilde
 set text_flowed
-set editor        = 'nvim'
+set editor        = 'nano' #until neovim #2086 is resolved
 set meta_key      = yes
 
 # Headers
@@ -68,11 +67,11 @@ unhdr_order *
 hdr_order from: to: cc: date: subject:
 
 # Macros
-macro index,pager       <space>u        '<sync-mailbox><shell-escape>offlineimap -o<enter>'
+macro index,pager       <space>u        '<sync-mailbox><shell-escape>offlineimap -c ~/.config/offlineimap/offlineimaprc -o<enter>'
 macro index,pager       \el             <sidebar-next><sidebar-open><display-message>
 macro index,pager       \eh             <sidebar-prev><sidebar-open><display-message>
 macro index,pager       \em             <save-message>?<toggle-mailboxes>
-macro index,pager       \ex             '<save-message><kill-line>=gmail/trash<enter><sync-mailbox>'
+macro index,pager       \ex             '<save-message><kill-line>=gmail/[Gmail].Trash<enter><sync-mailbox>'
 macro index,pager       k               <previous-entry><display-message>
 macro index,pager       j               <next-entry><display-message>
 macro index,pager       \ez             <quit>
