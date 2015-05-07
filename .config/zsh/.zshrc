@@ -43,7 +43,6 @@ alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias ..="cd .."
 alias grep="grep --color=auto"
-alias ssh='ssh -F $HOME/.private/ssh/ssh_config'
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 
 rdp ()
