@@ -1,12 +1,12 @@
 *node_modules*
-*google_chrome*
+*google-chrome*
+.git*
 
 .mail/
 .npm/
 .cache/
 .local/
 .gnome/
-.git/
 .pm2/
 .gimp*/
 .cmake/
