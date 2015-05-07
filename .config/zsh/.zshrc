@@ -35,15 +35,15 @@ bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins 'jk' accept-line
 
 # aliases
+alias ..="cd .."
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias wallpaper="$HOME/.public/wallpaper.sh"
 alias vpn="$HOME/.private/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
-alias ..="cd .."
-alias grep="grep --color=auto"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
+alias ssh="$HOME/.public/git.sh"
 
 rdp ()
 {

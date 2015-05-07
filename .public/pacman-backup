@@ -1,7 +1,5 @@
 acpi
 alsa-utils
-android-tools
-android-udev
 autoconf
 automake
 bash
@@ -23,7 +21,6 @@ feh
 file
 filesystem
 findutils
-firefox
 flex
 gawk
 gcc
