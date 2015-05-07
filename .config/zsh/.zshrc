@@ -43,7 +43,7 @@ alias vpn="$HOME/.private/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
-alias ssh="$HOME/.public/git.sh"
+alias ssh="$HOME/.public/ssh.sh"
 
 rdp ()
 {
