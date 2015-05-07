@@ -53,6 +53,7 @@ linux
 logrotate
 lsof
 lvm2
+lynx
 m4
 make
 man-db
@@ -105,7 +106,6 @@ unzip
 usbutils
 util-linux
 vi
-w3m
 weechat
 wget
 which

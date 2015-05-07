@@ -261,8 +261,8 @@ bindsym Caps_Lock mode "Aa"
 # Extra Keys
 bindsym $mod+F4 exec ~/.public/extend_display.sh
 bindsym $mod+F8 exec ~/.public/lock.sh
-bindsym $mod+F9 exec xbacklight -dec 10
-bindsym $mod+F10 exec xbacklight -inc 10
+bindsym $mod+F9 exec xbacklight -dec 10 -steps 1
+bindsym $mod+F10 exec xbacklight -inc 10 -steps 1
 bindsym $mod+Insert exec scrot ~/Downloads/%Y-%m-%d-%T-screenshot.png
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+

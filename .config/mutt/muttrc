@@ -7,6 +7,7 @@ set mailcap_path     = ~/.config/mutt/mailcap
 # Account
 set spoolfile  = "=gmail/INBOX"
 set postponed  = "=gmail/[Gmail].Drafts"
+unset record
 set timeout    = 10
 set mail_check = 5
 mailboxes =gmail/INBOX
@@ -47,7 +48,7 @@ set sidebar_delim     = ' │'
 set sidebar_shortpath = yes
 
 # General
-auto_view text/html
+auto_view text/x-vcard text/html text/enriched
 alternative_order text/plain text/enriched text/html
 set status_format = '  %P %> New: %n  Flagged: %F  Total: %m  '
 set beep          = yes

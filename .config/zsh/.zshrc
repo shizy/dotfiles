@@ -44,6 +44,7 @@ alias vnc="vncviewer"
 alias ..="cd .."
 alias grep="grep --color=auto"
 alias ssh='ssh -F $HOME/.private/ssh/ssh_config'
+alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 
 rdp ()
 {
@@ -67,27 +68,29 @@ backup ()
 		mkdir $HOME/.private 2>/dev/null
 	fi
 
-    # tar and encrypt .private / docs
-    tar -cvf $HOME/private.tar -C $HOME/.private/ .
-    tar -cvf $HOME/docs.tar -C $HOME/docs/ .
-    gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
-    gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
-    # requires gdrive from: https://github.com/prasmussen/gdrive
-    gdrive -c $HOME/.private/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
-    gdrive -c $HOME/.private/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
-    rm $HOME/private.tar
-    rm $HOME/private.tar.gpg
-    rm $HOME/docs.tar
-    rm $HOME/docs.tar.gpg
+    if [[ $1 == *"pri"* ]]; then
+        # tar and encrypt .private / docs
+        tar -cvf $HOME/private.tar -C $HOME/.private/ .
+        tar -cvf $HOME/docs.tar -C $HOME/docs/ .
+        gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
+        gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
+        # requires gdrive from: https://github.com/prasmussen/gdrive
+        gdrive -c $HOME/.private/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+        gdrive -c $HOME/.private/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+        rm $HOME/private.tar
+        rm $HOME/private.tar.gpg
+        rm $HOME/docs.tar
+        rm $HOME/docs.tar.gpg
 
+    else
+        # packages
+        pacman -Qqne > $HOME/.public/pacman-backup
+        pacman -Qqm > $HOME/.public/aur-backup
 
-    # packages
-    pacman -Qqne > $HOME/.public/pacman-backup
-    pacman -Qqm > $HOME/.public/aur-backup
-
-    mv $HOME/.git.off $HOME/.git
-    git add -A
-    git commit -m "$(date)"
-    git push dot master
-    mv $HOME/.git $HOME/.git.off
+        mv $HOME/.git.off $HOME/.git
+        git add -A
+        git commit -m "$(date)"
+        git push dot master
+        mv $HOME/.git $HOME/.git.off
+    fi
 }
