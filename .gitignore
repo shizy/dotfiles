@@ -2,13 +2,6 @@
 /*
 *.pyc
 
-# NVIM
-!/.nvim
-/.nvim/*
-
-!/.nvim/snippets
-!/.nvimrc
-
 # CONFIG
 !/.config
 /.config/*
@@ -28,6 +21,13 @@
 /.config/gnupg/*
 
 !/.config/gnupg/gpg-agent.conf
+
+# NVIM
+!/.config/nvim
+/.config/nvim/*
+
+!/.config/nvim/snippets
+!/.config/nvim/.nvimrc
 
 # WEECHAT
 !/.config/weechat
