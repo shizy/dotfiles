@@ -13,11 +13,11 @@ case $ftype in
         i3-msg exec feh $result
         ;;
     *"text"*)
-        if [ ! -e "/tmp/nvim" ]; then
-            i3-msg 'exec urxvtc -name vim -e zsh -c "NVIM_LISTEN_ADDRESS=/tmp/nvim nvim -S ~/.nvim/sessions/session.vim"'
+        if [ ! -e "$XDG_RUNTIME_DIR/nvim-$(hostname)" ]; then
+            i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh"
         fi
 
-        python2 -c "from neovim import attach; nvim=attach('socket', path='/tmp/nvim'); nvim.command('e $result');"
+        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('e $result');"
         ;;
     *"pdf"*)
         zathura --fork $result

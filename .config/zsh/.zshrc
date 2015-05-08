@@ -1,6 +1,6 @@
 # autoload
 autoload -U compinit promptinit colors
-compinit -d $XDG_CACHE_HOME/zcompdump
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 promptinit
 colors
 
@@ -38,12 +38,12 @@ bindkey -M viins 'jk' accept-line
 alias ..="cd .."
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias wallpaper="$HOME/.public/wallpaper.sh"
-alias vpn="$HOME/.private/vpn-pls.sh"
+alias wallpaper="$PUBLIC/wallpaper.sh"
+alias vpn="$PRIVATE/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
-alias ssh="$HOME/.public/ssh.sh"
+alias ssh="$PUBLIC/ssh.sh"
 
 rdp ()
 {
@@ -58,33 +58,40 @@ rdp ()
 backup ()
 {
     # public
-	if [ ! -d "$HOME/.public" ]; then
-		mkdir $HOME/.public 2>/dev/null
+	if [ ! -d "$PUBLIC" ]; then
+		mkdir $PUBLIC 2>/dev/null
 	fi
 
     # private
-	if [ ! -d "$HOME/.private" ]; then
-		mkdir $HOME/.private 2>/dev/null
+	if [ ! -d "$PRIVATE" ]; then
+		mkdir $PRIVATE 2>/dev/null
 	fi
 
+    # backup private data
     if [[ $1 == *"pri"* ]]; then
-        # tar and encrypt .private / docs
-        tar -cvf $HOME/private.tar -C $HOME/.private/ .
-        tar -cvf $HOME/docs.tar -C $HOME/docs/ .
+        tar -cvf $HOME/private.tar -C $PRIVATE/ .
         gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
-        gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
         # requires gdrive from: https://github.com/prasmussen/gdrive
-        gdrive -c $HOME/.private/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
-        gdrive -c $HOME/.private/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+        gdrive -c $PRIVATE/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
         rm $HOME/private.tar
         rm $HOME/private.tar.gpg
+    fi
+
+    # backup docs
+    if [[ $1 == *"doc"* ]]; then
+        tar -cvf $HOME/docs.tar -C $HOME/docs/ .
+        gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
+        # requires gdrive from: https://github.com/prasmussen/gdrive
+        gdrive -c $PRIVATE/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
         rm $HOME/docs.tar
         rm $HOME/docs.tar.gpg
+    fi
 
-    else
+    # backup config to git
+    if [[ $1 == *"con"* ]]; then
         # packages
-        pacman -Qqne > $HOME/.public/pacman-backup
-        pacman -Qqm > $HOME/.public/aur-backup
+        pacman -Qqne > $PUBLIC/pacman-backup
+        pacman -Qqm > $PUBLIC/aur-backup
 
         mv $HOME/.git.off $HOME/.git
         git add -A

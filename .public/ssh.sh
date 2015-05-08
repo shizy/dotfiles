@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/bin/ssh -F $HOME/.private/ssh/ssh_config "$@"
+/usr/bin/ssh -F $PRIVATE/ssh/ssh_config "$@"
