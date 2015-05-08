@@ -27,7 +27,7 @@
 /.config/nvim/*
 
 !/.config/nvim/snippets
-!/.config/nvim/.nvimrc
+!/.config/nvim/nvimrc
 
 # WEECHAT
 !/.config/weechat
