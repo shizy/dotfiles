@@ -12,7 +12,7 @@ case $ftype in
     *"image"*)
         i3-msg exec feh $result
         ;;
-    *"text"*)
+    *"text"* | *"empty"*)
         if [ ! -e "$XDG_RUNTIME_DIR/nvim-$(hostname)" ]; then
             i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh"
         fi

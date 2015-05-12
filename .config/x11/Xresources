@@ -8,8 +8,8 @@ URxvt.saveLines: 10000
 URxvt.depth:      32
 URxvt.background: [85]#000000
 URxvt.scrollBar:  false
-URxvt.font:       xft:Inconsolata for Powerline:size=9:antialias=true
-URxvt.boldFont:   xft:Inconsolata for Powerline:bold:size=9:antialias=true
+URxvt.font:       xft:Inconsolata for Powerline:pixelsize=14:antialias=true
+URxvt.boldFont:   xft:Inconsolata for Powerline:bold:pixelsize=14:antialias=true
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
 URxvt.clipboard.autocopy: true

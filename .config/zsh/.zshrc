@@ -51,7 +51,7 @@ rdp ()
     read add
     echo -n "User@Domain: "
     read user
-    xfreerdp /u:$user /cert-ignore -grab-keyboard /v:$add
+    xfreerdp /size:100% /u:$user /cert-ignore -grab-keyboard /v:$add
 }
 
 # backup dots / eratta to git
@@ -67,36 +67,32 @@ backup ()
 		mkdir $PRIVATE 2>/dev/null
 	fi
 
-    # backup private data
-    if [[ $1 == *"pri"* ]]; then
-        tar -cvf $HOME/private.tar -C $PRIVATE/ .
-        gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
-        # requires gdrive from: https://github.com/prasmussen/gdrive
-        gdrive -c $PRIVATE/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
-        rm $HOME/private.tar
-        rm $HOME/private.tar.gpg
-    fi
-
-    # backup docs
-    if [[ $1 == *"doc"* ]]; then
-        tar -cvf $HOME/docs.tar -C $HOME/docs/ .
-        gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
-        # requires gdrive from: https://github.com/prasmussen/gdrive
-        gdrive -c $PRIVATE/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
-        rm $HOME/docs.tar
-        rm $HOME/docs.tar.gpg
-    fi
-
-    # backup config to git
-    if [[ $1 == *"con"* ]]; then
-        # packages
-        pacman -Qqne > $PUBLIC/pacman-backup
-        pacman -Qqm > $PUBLIC/aur-backup
-
-        mv $HOME/.git.off $HOME/.git
-        git add -A
-        git commit -m "$(date)"
-        git push dot master
-        mv $HOME/.git $HOME/.git.off
-    fi
+    case $1 in
+        *"pri"*)
+            tar -cvf $HOME/private.tar -C $PRIVATE/ .
+            gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
+            # requires gdrive from: https://github.com/prasmussen/gdrive
+            gdrive -c $PRIVATE/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+            rm $HOME/private.tar
+            rm $HOME/private.tar.gpg
+            ;;
+        *"doc"*)
+            tar -cvf $HOME/docs.tar -C $HOME/docs/ .
+            gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
+            # requires gdrive from: https://github.com/prasmussen/gdrive
+            gdrive -c $PRIVATE/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+            rm $HOME/docs.tar
+            rm $HOME/docs.tar.gpg
+            ;;
+        *"con"*)
+            # packages
+            pacman -Qqne > $PUBLIC/pacman-backup
+            pacman -Qqm > $PUBLIC/aur-backup
+            mv $HOME/.git.off $HOME/.git
+            git add -A
+            git commit -m "$(date)"
+            git push dot master
+            mv $HOME/.git $HOME/.git.off
+            ;;
+    esac
 }

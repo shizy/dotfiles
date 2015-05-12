@@ -72,6 +72,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -117,7 +118,7 @@ let g:tex_flavor = 'latex'
 let g:latexopenpreviews = []
 let s:latexpreviewline = 0
 function! LatexMake()
-    :silent ! latexmk -pdflatex='pdflatex -synctex=1' -pdf -outdir=$HOME/docs '%:p'
+    :silent ! latexmk -silent -pdflatex='pdflatex -synctex=1' -pdf -outdir=$HOME/docs '%:p'
     if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') == -1
         :silent ! zathura '%:r.pdf' &
         :call add(g:latexopenpreviews, expand('%:p:r') . '.pdf')
@@ -157,7 +158,7 @@ function! LatexPreviewClose()
         :call remove(g:latexopenpreviews, z)
     endif
     let x = system("ps -C zathura -o pid=,args | grep " . expand('%:t:r') . ".pdf | awk '{print $1}'")
-    execute "! kill " . x
+    execute "silent ! kill " . x
 endfunction
 
 " ========== MAPPINGS ==========
@@ -169,8 +170,7 @@ endfunction
 :nnoremap  <A-x>      :Bdelete!<CR>
 :nnoremap  <A-z>      :call Save()<CR>:qa<CR>
 :nnoremap  <A-u>      <C-r>
-:nnoremap  <tab>      <C-w>w
-:nnoremap  <A-tab>    <C-w>W
+:nnoremap  <A-Space>  <C-w>w
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
