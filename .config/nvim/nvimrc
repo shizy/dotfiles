@@ -170,7 +170,8 @@ endfunction
 :nnoremap  <A-x>      :Bdelete!<CR>
 :nnoremap  <A-z>      :call Save()<CR>:qa<CR>
 :nnoremap  <A-u>      <C-r>
-:nnoremap  <A-Space>  <C-w>w
+:nnoremap  <Tab>      <C-w>w
+:nnoremap  <A-Tab>    <C-w>W
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v

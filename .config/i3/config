@@ -155,7 +155,7 @@ focus_follows_mouse no
 
 bar {
         position top
-        status_command i3status --config ~/.config/i3/status
+        status_command i3status --config $XDG_CONFIG_HOME/i3/status
         strip_workspace_numbers yes
         tray_output none
 
@@ -216,9 +216,9 @@ assign [class="Vncviewer"] 1:
 
 exec compton --opacity-rule '85:class_g = "Zathura"'
 exec google-chrome-stable --restore-last-session
-exec sh ~/.cache/fehbg
-exec ~/.public/lock.sh start
-exec urxvtc -name vim -e ~/.public/nvim.sh
+exec sh $XDG_CACHE_HOME/fehbg
+exec $PUBLIC/lock.sh start
+exec urxvtc -name vim -e $PUBLIC/nvim.sh
 exec xdotool mousemove $(xrandr | grep -oP '(?<=current\ ).*?(?=,)' | awk '{print $1 " " $3}')
 
 # ========== MODES ===========
@@ -230,41 +230,40 @@ mode "Aa" {
 # ========== MAPPINGS ==========
 
 # Scratchpads
-bindsym Ctrl+grave exec ~/.public/scratchpad.sh top
-bindsym $mod+grave exec ~/.public/scratchpad.sh bottom
-bindsym Ctrl+$mod+grave exec ~/.public/scratchpad.sh left
+bindsym Ctrl+grave exec $PUBLIC/scratchpad.sh top
+bindsym $mod+grave exec $PUBLIC/scratchpad.sh bottom
+bindsym Ctrl+$mod+grave exec $PUBLIC/scratchpad.sh left
 
 # dmenu
 bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'Inconsolata for Powerline Sans Mono-8'
 
 # Shortcuts
-bindsym $mod+v exec urxvtc -name vim -e ~/.public/nvim.sh
+bindsym $mod+v exec urxvtc -name vim -e $PUBLIC/nvim.sh
 bindsym $mod+g exec google-chrome-stable --restore-last-session
 bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvtc -name term
-bindsym $mod+i exec urxvtc -name irc -e weechat-curses -d ~/.config/weechat
-bindsym $mod+w exec ~/.public/wallpaper.sh
+bindsym $mod+i exec urxvtc -name irc -e weechat-curses -d $XDG_CONFIG_HOME/weechat
+bindsym $mod+w exec $PUBLIC/wallpaper.sh
 bindsym $mod+n exec urxvtc -name connman -e connman-ncurses
-bindsym $mod+m exec urxvtc -name mutt -e mutt -F ~/.config/mutt/muttrc
-bindsym $mod+slash exec ~/.public/scratchpad.sh search '-e ~/.public/search.sh'
+bindsym $mod+m exec urxvtc -name mutt -e mutt -F $XDG_CONFIG_HOME/mutt/muttrc
+bindsym $mod+slash exec $PUBLIC/scratchpad.sh search $PUBLIC/search.sh
 
 # Utility
 bindsym Mod1+Return fullscreen
 bindsym $mod+Escape exec i3lock-wrapper
 bindsym Caps_Lock mode "Aa"
 bindsym $mod+z kill
-#bindsym $mod+j focus left
-#bindsym $mod+k focus right
-bindsym $mod+space focus right
-bindsym $mod+h workspace prev
-bindsym $mod+l workspace next
+bindsym $mod+Shift+Tab focus left
+bindsym $mod+Tab focus right
+bindsym $mod+h exec $PUBLIC/spaceorscreen.sh left
+bindsym $mod+l exec $PUBLIC/spaceorscreen.sh right
 
 # Extra Keys
-bindsym $mod+F4 exec ~/.public/extend_display.sh
-bindsym $mod+F8 exec ~/.public/lock.sh
+bindsym $mod+F4 exec $PUBLIC/extend_display.sh
+bindsym $mod+F8 exec $PUBLIC/lock.sh
 bindsym $mod+F9 exec xbacklight -dec 10 -steps 1
 bindsym $mod+F10 exec xbacklight -inc 10 -steps 1
-bindsym $mod+Insert exec scrot ~/downloads/%Y-%m-%d-%T-screenshot.png
+bindsym $mod+Insert exec scrot $HOME/downloads/%Y-%m-%d-%T-screenshot.png
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec $(amixer get Master | grep off > /dev/null && amixer -q set Master unmute) || amixer -q set Master mute
