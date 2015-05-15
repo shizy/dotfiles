@@ -47,9 +47,13 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
             ;;
     esac
 
-    col=$((($w / $FONT_WIDTH) + 1))
+    col=$(($w / $FONT_WIDTH))
     row=$(($h / $FONT_HEIGHT))
     cmd=''
+
+    if [ $(($w % $col)) -gt 0 ]; then
+        ((col++))
+    fi
 
     if [ $2 ]; then
        cmd="-e $2"

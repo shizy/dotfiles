@@ -45,8 +45,20 @@ alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ssh="$PUBLIC/ssh.sh"
 
-rdp ()
-{
+edit () {
+    ftype=$(file $1 --mime-type | awk '{print $2}')
+
+    if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
+
+        if [ ! -e "$XDG_RUNTIME_DIR/nvim-$(hostname)" ]; then
+            i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh" > /dev/null
+        fi
+
+        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $1');"
+    fi
+}
+
+rdp () {
     echo -n "Address: "
     read add
     echo -n "User@Domain: "
@@ -55,8 +67,7 @@ rdp ()
 }
 
 # backup dots / eratta to git
-backup ()
-{
+backup () {
     # public
 	if [ ! -d "$PUBLIC" ]; then
 		mkdir $PUBLIC 2>/dev/null

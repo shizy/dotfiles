@@ -11,6 +11,9 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
+# cargo
+export CARGO_HOME=$XDG_CACHE_HOME/cargo
+
 # git
 export GIT_SSH=$PUBLIC/ssh.sh
 

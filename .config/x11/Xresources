@@ -13,6 +13,8 @@ URxvt.boldFont:   xft:Inconsolata for Powerline:bold:pixelsize=14:antialias=true
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
 URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd: xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 mutt.metaSendsEscape: true
 

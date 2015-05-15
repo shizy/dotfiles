@@ -188,6 +188,8 @@ endfunction
 :nmap      <Leader>u  :PlugUpdate<CR>
 :imap      jj         <Esc>
 :imap      jk         <Esc>:call Save()<CR>
+:vmap      <          <gv
+:vmap      >          >gv
 
 :nnoremap <silent> <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 :vnoremap          <Leader><Space> zf
