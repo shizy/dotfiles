@@ -218,3 +218,4 @@ au BufNewFile,BufRead,BufWinEnter .cache/mutt/*
     \ imap jk <Esc>:w<CR> |
     \ nmap <Leader>w :w<CR>
 au BufWinEnter *.md          set syntax=markdown
+au filetype netrw nmap <buffer> <Esc> :bd<CR>

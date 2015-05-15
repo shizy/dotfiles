@@ -46,6 +46,11 @@ alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ssh="$PUBLIC/ssh.sh"
 
 edit () {
+
+    if [ ! -e $1 ]; then
+        touch $1
+    fi
+
     ftype=$(file $1 --mime-type | awk '{print $2}')
 
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then

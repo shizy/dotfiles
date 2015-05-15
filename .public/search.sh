@@ -5,7 +5,7 @@ if [ $(pidof | pgrep fzf) ]; then
     exit
 fi
 
-file=$(ag -p $XDG_CONFIG_HOME/ag/agignore -fli --hidden -g "" ~ /etc 2>/dev/null | fzf -m --query="$1" --select-1 --exit-0)
+file=$(ag -p $XDG_CONFIG_HOME/ag/agignore -fli --hidden -g "" ~ /etc 2>/dev/null | fzf -m --select-1 --query="$1" --exit-0)
 file=(${file//\r\n/ })
 
 for f in "${file[@]}"
