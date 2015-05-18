@@ -46,6 +46,10 @@ alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ssh="$PUBLIC/ssh.sh"
 alias men="man -k"
 
+man () {
+    urxvtc -e nvim -c "Man $1" -c only
+}
+
 edit () {
 
     if [ ! -e $1 ]; then
