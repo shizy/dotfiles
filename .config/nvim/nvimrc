@@ -226,7 +226,6 @@ au FileType netrw nmap <buffer> <Esc> :bd<CR>
 au WinEnter term://* startinsert
 au FileType help
     \ set ro |
-    \ set nomodifiable |
     \ nnoremap <buffer> <CR> <C-]> |
     \ nnoremap <buffer> f    <C-]> |
     \ nnoremap <buffer> u    <C-T> |
@@ -234,10 +233,10 @@ au FileType help
 au FileType man
     \ set ro |
     \ set nolist |
-    \ set nomodifiable |
     \ nnoremap <buffer> <CR>        :call <SNR>8_PreGetPage(v:count)<CR> |
     \ nnoremap <buffer> f           :call <SNR>8_PreGetPage(v:count)<CR> |
     \ nnoremap <buffer> u           :call <SNR>8_PopPage()<CR> |
     \ nnoremap <buffer> q           :q<CR> |
     \ nnoremap <buffer> <A-z>       :q<CR> |
-    \ nnoremap <buffer> <Leader>w   <NOP>
+    \ nnoremap <buffer> <Leader>w   <NOP> |
+    \ nnoremap <buffer> -           <NOP>

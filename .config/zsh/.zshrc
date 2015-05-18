@@ -44,10 +44,16 @@ alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ssh="$PUBLIC/ssh.sh"
-alias men="man -k"
+alias men="/usr/bin/man -k"
 
 man () {
-    urxvtc -e nvim -c "Man $1" -c only
+
+    if [ ! -e "$XDG_RUNTIME_DIR/man-$(hostname)" ]; then
+        i3-msg "exec urxvtc -name man -e $PUBLIC/nvim.sh man" > /dev/null
+        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('AirlineToggle');"
+    fi
+
+    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $1'); nvim.command('only');"
 }
 
 edit () {
