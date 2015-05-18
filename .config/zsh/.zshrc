@@ -44,11 +44,12 @@ alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ssh="$PUBLIC/ssh.sh"
+alias men="man -k"
 
 edit () {
 
     if [ ! -e $1 ]; then
-        touch $1
+        touch "$(pwd)/$1"
     fi
 
     ftype=$(file $1 --mime-type | awk '{print $2}')

@@ -34,11 +34,14 @@ set directory=$XDG_CACHE_HOME/nvim,.
 set backupdir=$XDG_CACHE_HOME/nvim,.
 set viminfo+=n$XDG_CACHE_HOME/nvim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/nvim,$VIM,$VIMRUNTIME
+
 let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc"
+let $PAGER=""
 
 syntax on
 filetype plugin indent on
 let mapleader = "\<Space>"
+:runtime! ftplugin/man.vim
 
 " ========== PACKAGES ==========
 
@@ -170,14 +173,15 @@ endfunction
 :nnoremap  <A-x>      :Bdelete!<CR>
 :nnoremap  <A-z>      :call Save()<CR>:qa<CR>
 :nnoremap  <A-u>      <C-r>
-:nnoremap  <Tab>      <C-w>w
-:nnoremap  <A-Tab>    <C-w>W
+:nnoremap  <A-Tab>    <C-w>w
+:nnoremap  <A-S-Tab>  <C-w>W
+:tnoremap  <A-Tab>    <C-\><C-n><C-w>w
+:tnoremap  <A-S-Tab>  <C-\><C-n><C-w>W
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
 :nmap      <Leader>w  :call Save()<CR>
 :nmap      <Leader>1  :w !sudo tee % > /dev/null
-:nmap      <Leader>-  :CtrlP<CR>
 :nmap      <Leader>/  <Esc>:%s/
 :vmap      <Leader>/  <Esc>:'<,'>s/
 :nmap      <Leader>t  :Tabularize /
@@ -215,7 +219,25 @@ au BufNewFile,BufRead,BufWinEnter .cache/mutt/*
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap jk <Esc>:w<CR> |
-    \ nmap <Leader>w :w<CR>
-au BufWinEnter *.md          set syntax=markdown
-au filetype netrw nmap <buffer> <Esc> :bd<CR>
+    \ imap <buffer> jk <Esc>:w<CR> |
+    \ nmap <buffer> <Leader>w :w<CR>
+au BufWinEnter *.md set syntax=markdown
+au FileType netrw nmap <buffer> <Esc> :bd<CR>
+au WinEnter term://* startinsert
+au FileType help
+    \ set ro |
+    \ set nomodifiable |
+    \ nnoremap <buffer> <CR> <C-]> |
+    \ nnoremap <buffer> f    <C-]> |
+    \ nnoremap <buffer> u    <C-T> |
+    \ nnoremap <buffer> q    :bd<CR>
+au FileType man
+    \ set ro |
+    \ set nolist |
+    \ set nomodifiable |
+    \ nnoremap <buffer> <CR>        :call <SNR>8_PreGetPage(v:count)<CR> |
+    \ nnoremap <buffer> f           :call <SNR>8_PreGetPage(v:count)<CR> |
+    \ nnoremap <buffer> u           :call <SNR>8_PopPage()<CR> |
+    \ nnoremap <buffer> q           :q<CR> |
+    \ nnoremap <buffer> <A-z>       :q<CR> |
+    \ nnoremap <buffer> <Leader>w   <NOP>

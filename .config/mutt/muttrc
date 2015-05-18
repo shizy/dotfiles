@@ -106,7 +106,7 @@ bind index,pager        \ea             group-reply
 bind index,pager        \ec             mail
 bind index,pager        \ef             forward-message
 bind index,pager        \er             reply
-bind index,pager        r               sync-mailbox
+bind index,pager        <space>w        sync-mailbox
 bind index,pager        \ej             half-down
 bind index,pager        \ek             half-up
 
