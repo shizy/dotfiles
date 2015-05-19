@@ -177,6 +177,10 @@ endfunction
 :nnoremap  <A-S-Tab>  <C-w>W
 :tnoremap  <A-Tab>    <C-\><C-n><C-w>w
 :tnoremap  <A-S-Tab>  <C-\><C-n><C-w>W
+:nnoremap  <A-Left>   :vertical resize -10<CR>
+:nnoremap  <A-Right>  :vertical resize +10<CR>
+:nnoremap  <A-Up>     :resize -10<CR>
+:nnoremap  <A-Down>   :resize +10<CR>
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v
