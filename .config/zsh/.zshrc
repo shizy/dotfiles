@@ -9,7 +9,7 @@ CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
 typeset -U path
-path=(~/bin ~/.npm/bin $path)
+path=($path)
 
 # default start dir
 cd ~
