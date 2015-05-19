@@ -39,3 +39,4 @@
 # OTHER
 !/.public
 !/.gitignore
+!/.zshenv
