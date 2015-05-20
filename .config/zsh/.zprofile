@@ -32,6 +32,10 @@ export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
 # neovim
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc" | source $MYVIMRC'
 
+# npm
+export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/node_modules
+
 # pass
 export PASSWORD_STORE_DIR=$PRIVATE/password-store
 

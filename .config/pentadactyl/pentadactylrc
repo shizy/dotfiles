@@ -7,6 +7,7 @@ set showtabline='never'
 set defsearch='duckduckgo'
 set suggestengines='duckduckgo'
 set complete='S'
+js editor.defaultRegister="+"
 
 set! browser.startup.homepage='https://duckduckgo.com'
 set! browser.search.defaultenginename='DuckDuckGo'
@@ -26,6 +27,8 @@ nmap <A-u>      :forward<CR>
 nmap <A-n>      <find-previous>
 nmap <A-f>      <S-f>
 nmap <A-t>      :tabs<CR>
+nmap y          <yank-selection>
+nmap <A-y>      <yank-location>
 nmap u          :back<CR>
 nmap r          :reload<CR>
 nmap <A-x>      :quit<CR>
