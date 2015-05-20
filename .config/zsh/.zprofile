@@ -3,7 +3,7 @@ export PUBLIC=$HOME/.public
 
 export PAGER=less
 export EDITOR=nvim
-export BROWSER=google-chrome
+export BROWSER=firefox
 export TERM=rxvt-unicode-256color
 
 # XDG
@@ -34,6 +34,10 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc" | source $MYVIMRC'
 
 # pass
 export PASSWORD_STORE_DIR=$PRIVATE/password-store
+
+# pentadactyl
+export PENTADACTYL_RUNTIME=$XDG_CONFIG_HOME/pentadactyl
+export PENTADACTYL_INIT='source $XDG_CONFIG_HOME/pentadactyl/pentadactylrc'
 
 # texlive
 export TEXMFVAR=$XDG_CACHE_HOME/texlive

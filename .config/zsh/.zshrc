@@ -57,12 +57,13 @@ man () {
 }
 
 edit () {
+    file="$(pwd)/$1"
 
-    if [ ! -e $1 ]; then
-        touch "$(pwd)/$1"
+    if [ ! -e $file ]; then
+        touch $file
     fi
 
-    ftype=$(file $1 --mime-type | awk '{print $2}')
+    ftype=$(file $file --mime-type | awk '{print $2}')
 
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
 
@@ -70,7 +71,7 @@ edit () {
             i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh" > /dev/null
         fi
 
-        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $1');"
+        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $file');"
     fi
 }
 

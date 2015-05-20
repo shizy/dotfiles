@@ -36,6 +36,13 @@
 !/.config/weechat/weechat.conf
 !/.config/weechat/irc.conf
 
+# PENTADACTYL
+!/.config/pentadactyl
+/.config/pentadactyl/*
+
+!/.config/pentadactyl/pentadactylrc
+!/.config/pentadactyl/chrome.css
+
 # OTHER
 !/.public
 !/.gitignore

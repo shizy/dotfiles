@@ -1,0 +1,66 @@
+"1.2pre
+
+set runtimepath=$XDG_CONFIG_HOME/pentadactyl
+set hintkeys='sadfjklewcmpgh'
+set guioptions=Cs
+set showtabline='never'
+set defsearch='duckduckgo'
+set suggestengines='duckduckgo'
+set complete='S'
+
+set! browser.startup.homepage='https://duckduckgo.com'
+set! browser.search.defaultenginename='DuckDuckGo'
+
+loadplugins '\.(js|penta)$'
+group user
+
+nmap <A-j>      <C-d>
+nmap <A-k>      <C-u>
+nmap <A-l>      :tabnext<CR>
+nmap <A-h>      :tabprevious<CR>
+nmap <A-S-h>    :tabmove -1
+nmap <A-S-l>    :tabmove +1
+nmap <A-o>      :tab<Space>open<Space>
+nmap <A-r>      :undo<CR>
+nmap <A-u>      :forward<CR>
+nmap <A-n>      <find-previous>
+nmap <A-f>      <S-f>
+nmap <A-t>      :tabs<CR>
+nmap u          :back<CR>
+nmap r          :reload<CR>
+nmap <A-x>      :quit<CR>
+nmap <A-z>      :wqall<CR>
+nmap <A-d>      :downloads<Space>
+nmap <A-b>      :bmarks<Space>
+"nmap -b h      5h
+"nmap -b j      5j
+"nmap -b k      5k
+"nmap -b l      5l
+
+source $XDG_CONFIG_HOME/pentadactyl/chrome.css
+
+hi Normal color: white; background-color: #111;
+hi NonText color: #111;
+hi StatusLine font-size: 9pt;
+hi StatusNormal color: #888; background-color: black;
+hi StatusLineNormal color: #888; background-color: black;
+hi StatusLineSecure color: #66D9EF; background-color: black;
+hi StatusLineExtended color: #66D9EF; background-color: black;
+hi StatusLineBroken color: F92672; background-color: black;
+hi CmdLine font-size: 9pt
+hi CmdNormal background-color: black;
+hi Hint font-size: 10pt; font-weight: bold; color: #66D9EF; border: 1px solid #000; background-color: #333; padding: 3px;
+hi Hint[active] background-color: #333;
+hi HintActive background-color: none;
+hi HintElem background-color: none;
+hi Title color: #66D9EF; font-weight: bold;
+hi CompTitle color: #66D9EF; font-weight: bold;
+hi CompTitleSep height: 1px; background-color: #66D9EF
+hi CompItem[selected] background: #333;
+hi HelpTabTitle color: #66D9EF; font-weight: bold;
+hi DownloadTitle color: #66D9EF; font-weight: bold;
+hi ErrorMsg color: #F92672; background-color: none;
+
+silent ! rm -r $HOME/.mozilla > /dev/null
+
+" vim: set ft=pentadactyl:

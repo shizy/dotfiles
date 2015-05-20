@@ -1,3 +1,5 @@
+source "if [ ! -e $XDG_CACHE_HOME/mutt ]; then mkdir $XDG_CACHE_HOME/mutt > /dev/null; fi |"
+
 # Paths
 set folder           = $XDG_DATA_HOME/mail
 set header_cache     = $XDG_CACHE_HOME/mutt/headers
@@ -109,6 +111,7 @@ bind index,pager        \er             reply
 bind index,pager        <space>w        sync-mailbox
 bind index,pager        \ej             half-down
 bind index,pager        \ek             half-up
+bind index,pager        \ez             quit
 
 bind pager              i               noop
 bind pager              u               exit

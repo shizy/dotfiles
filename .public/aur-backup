@@ -6,7 +6,6 @@ dmenu-xft
 foremost
 freerdp-git
 fzf
-google-chrome
 i3lock-wrapper
 i3status-git
 libtermkey-bzr
@@ -16,6 +15,7 @@ mutt-sidebar
 neovim-git
 netextender
 otf-inconsolata-powerline-git
+pentadactyl-git
 perl-term-shellui
 powerdown-git
 python2-neovim

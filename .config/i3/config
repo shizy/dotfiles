@@ -36,8 +36,6 @@ client.urgent				#000000 #000000 #FD971F
 
 # ========== RULES ==========
 
-for_window [class="Google-chrome-stable"] border none
-for_window [class="Google-chrome"] border none
 for_window [class="Firefox"] border none
 for_window [class="URxvt"] border none
 for_window [class="MPlayer"] border none
@@ -59,11 +57,10 @@ for_window [class="URxvt" instance="search"] floating enable
 
 assign [class="xfreerdp"] 1:
 assign [class="Vncviewer"] 1:
-assign [class="Google-chrome-stable"] 2:
-assign [class="Google-chrome"] 2:
+assign [class="Firefox"] 2:
 assign [class="URxvt" instance="vim"] 3:
 assign [class="Gimp"] 4:
-assign [class="URxvt" instance="man"] 5:
+assign [class="URxvt" instance="^man$"] 5:
 assign [class="MPlayer"] 8:
 assign [class="URxvt" instance="irc"] 9:
 assign [class="URxvt" instance="mutt"] 10:
@@ -71,7 +68,7 @@ assign [class="URxvt" instance="mutt"] 10:
 # ========== AUTOSTART ==========
 
 exec compton --opacity-rule '85:class_g = "Zathura"'
-exec google-chrome-stable --restore-last-session
+exec firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
 exec sh $XDG_CACHE_HOME/fehbg
 exec $PUBLIC/lock.sh start
 exec urxvtc -name vim -e $PUBLIC/nvim.sh
@@ -93,14 +90,14 @@ bindsym Ctrl+$mod+grave exec $PUBLIC/scratchpad.sh left
 # Shortcuts
 bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'Inconsolata for Powerline Sans Mono-8'
 bindsym $mod+v exec urxvtc -name vim -e $PUBLIC/nvim.sh
-bindsym $mod+g exec google-chrome-stable --restore-last-session
-bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
+#bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec urxvtc -name term
 bindsym $mod+i exec urxvtc -name irc -e weechat-curses -d $XDG_CONFIG_HOME/weechat
 bindsym $mod+w exec $PUBLIC/wallpaper.sh
 bindsym $mod+n exec urxvtc -name connman -e connman-ncurses
 bindsym $mod+m exec urxvtc -name mutt -e mutt -F $XDG_CONFIG_HOME/mutt/muttrc
 bindsym $mod+slash exec $PUBLIC/scratchpad.sh search $PUBLIC/search.sh
+bindsym $mod+f exec firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
 
 # Utility
 bindsym Mod1+Return fullscreen
