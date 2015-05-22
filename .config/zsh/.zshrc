@@ -5,6 +5,11 @@ promptinit
 colors
 
 # prompt
+if [ -n "$SSH_CLIENT" ]; then
+    RPROMPT="@%m"
+else
+    RPROMPT=""
+fi
 CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
@@ -20,7 +25,6 @@ function zle-line-init zle-keymap-select {
     NORMAL="%F{cyan}  $CMD_PROMPT  "
     INSERT="%F{green}  $CMD_PROMPT: "
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
-    RPROMPT=""
     zle reset-prompt
 }
 zle -N zle-line-init

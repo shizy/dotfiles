@@ -53,4 +53,6 @@ export RXVT_SOCKET=$XDG_RUNTIME_DIR/urxvtd-$(hostname)
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 
 
-exec startx $XDG_CONFIG_HOME/x11/xinitrc
+if [[ $(tty) == "/dev/tty1" ]]; then
+    exec startx $XDG_CONFIG_HOME/x11/xinitrc
+fi

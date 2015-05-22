@@ -4,6 +4,7 @@ source "if [ ! -e $XDG_CACHE_HOME/mutt ]; then mkdir $XDG_CACHE_HOME/mutt > /dev
 set folder           = $XDG_DATA_HOME/mail
 set header_cache     = $XDG_CACHE_HOME/mutt/headers
 set message_cachedir = $XDG_CACHE_HOME/mutt/
+set certificate_file = $XDG_CACHE_HOME/mutt/certs
 set mailcap_path     = $XDG_CONFIG_HOME/mutt/mailcap
 set tmpdir           = $XDG_CACHE_HOME/mutt
 
