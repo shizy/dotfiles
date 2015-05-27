@@ -14,7 +14,7 @@ CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
 typeset -U path
-path=($path)
+path=($NPM_CONFIG_PREFIX/bin $path)
 
 # default start dir
 cd ~

@@ -59,10 +59,11 @@ set beep          = yes
 set beep_new      = yes
 set sleep_time    = 0
 set confirmappend = no
+set recall        = no
 set delete        = yes
 unset tilde
 set text_flowed
-set editor        = 'nano' #until neovim #2086 is resolved
+set editor        = 'nvim'
 set meta_key      = yes
 
 # Headers
@@ -106,7 +107,7 @@ bind index,pager        s               noop
 bind index,pager        d               noop
 bind index,pager        q               noop
 bind index,pager        \ea             group-reply
-bind index,pager        \ec             mail
+#bind index,pager        \ec             mail
 bind index,pager        \ef             forward-message
 bind index,pager        \er             reply
 bind index,pager        <space>w        sync-mailbox

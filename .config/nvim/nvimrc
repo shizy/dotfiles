@@ -5,6 +5,10 @@ if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall
 endif
 
+if empty(glob('$XDG_CONFIG_HOME/nvim/spell'))
+    silent ! mkdir $XDG_CONFIG_HOME/nvim/spell > /dev/null
+endif
+
 " If GUI Version
 if has('gui_running')
     set guioptions-=m
@@ -220,15 +224,16 @@ au BufNewFile,BufRead,BufWinEnter *.tex
 au CursorMoved *.tex :call LatexUpdate()
 au BufWinEnter *.tex :call LatexPreviewShow()
 au BufWinLeave *.tex :call LatexPreviewHide()
-au BufNewFile,BufRead,BufWinEnter .cache/mutt/*
+au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap <buffer> jk <Esc>:w<CR> |
-    \ nmap <buffer> <Leader>w :w<CR>
+    \ imap <buffer> jk <NOP> |
+    \ nmap <buffer> <Leader>w <NOP> |
 au BufWinEnter *.md set syntax=markdown
+au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
 au WinEnter term://* startinsert
 au FileType help
