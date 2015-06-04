@@ -230,8 +230,8 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap <buffer> jk <NOP> |
-    \ nmap <buffer> <Leader>w <NOP> |
+    \ imap <buffer> jk :w<CR> |
+    \ nmap <buffer> <Leader>w :w<CR> |
 au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>

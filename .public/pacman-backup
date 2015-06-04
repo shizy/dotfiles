@@ -23,6 +23,7 @@ filesystem
 findutils
 firefox
 flex
+foremost
 gawk
 gcc
 gettext
@@ -101,6 +102,7 @@ texlive-core
 tigervnc
 traceroute
 ttf-liberation
+unclutter
 unrar
 unzip
 usbutils

@@ -16,33 +16,32 @@ stack+=$(/usr/bin/man -k "" | awk '{print $1,$2}' | sed -e 's/^/man:\t/')
 selection=$(fzf -m --select-1 --exit-0 <<< "$stack" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
 selection=(${selection//\r\n/ })
 
-i3-msg '[class="URxvt" instance="search"] scratchpad show'
+launch () {
 
-for sel in "${selection[@]}"
-do
-    sel=(${sel//:/ })
-    target=${sel[1]}
-
-    case ${sel[0]} in
+    case $1 in
         "file")
-            ftype=$(file $target --mime-type | awk '{print $2}')
+            ftype=$(file $2 --mime-type | awk '{print $2}')
 
             case $ftype in
                 *"image"*)
-                    i3-msg exec feh $target > /dev/null
+                    i3-msg exec feh $2 > /dev/null
                     ;;
-                *"text"* | *"empty"*)
+                *"text"* | *"empty"* | *"javascript"*)
                     if [ ! -e "$XDG_RUNTIME_DIR/nvim-$(hostname)" ]; then
                         i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh" > /dev/null
                     fi
 
-                    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $target');"
+                    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $2');"
                     ;;
                 *"pdf"*)
-                    zathura --fork $target
+                    zathura --fork $2
                     ;;
                 *"video"*)
-                    i3-msg exec mplayer $target > /dev/null
+                    i3-msg exec mplayer $2 > /dev/null
+                    ;;
+                *"symlink"*)
+                    target=$(readlink $2)
+                    launch $1 $target
                     ;;
             esac
             ;;
@@ -52,15 +51,24 @@ do
                 python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('AirlineToggle');"
             fi
 
-            python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $target'); nvim.command('only');"
+            python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $2'); nvim.command('only');"
             ;;
         "proc")
-            if [ "x$target" != "x" ]
+            if [ "x$2" != "x" ]
             then
-                kill -${1:-9} $target
+                kill -${1:-9} $2
             fi
             ;;
     esac
+}
+
+i3-msg '[class="URxvt" instance="search"] scratchpad show'
+
+for sel in "${selection[@]}"
+do
+    sel=(${sel//:/ })
+    target=${sel[1]}
+    launch ${sel[0]} $target
 done
 
 i3-msg '[class="URxvt" instance="search"] kill'

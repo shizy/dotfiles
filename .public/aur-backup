@@ -3,7 +3,6 @@ cargo-bin
 compton
 connman-ncurses-git
 dmenu-xft
-foremost
 freerdp-git
 fzf
 girara-git
@@ -12,7 +11,6 @@ i3status-git
 libtermkey-bzr
 libudev.so.0
 libvterm-git-neovim
-lua51-messagepack
 mutt-sidebar
 neovim-git
 netextender
