@@ -85,7 +85,6 @@ call plug#end()
 
 " ========== SETTINGS ==========
 
-
 " Molokai
 color molokai
 hi Normal ctermbg=none
@@ -97,6 +96,7 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 
 " Airline
+let g:airline_detect_crypt = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'simple'
 let g:airline_powerline_fonts = 1
@@ -230,7 +230,7 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal nonumber |
     \ set syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap <buffer> jk :w<CR> |
+    \ imap <buffer> jk <Esc>:w<CR> |
     \ nmap <buffer> <Leader>w :w<CR> |
 au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
