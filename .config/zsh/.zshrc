@@ -49,16 +49,9 @@ alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ssh="$PUBLIC/ssh.sh"
 alias men="/usr/bin/man -k"
+alias firefox="firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy"
 
-man () {
-
-    if [ ! -e "$XDG_RUNTIME_DIR/man-$(hostname)" ]; then
-        i3-msg "exec urxvtc -name man -e $PUBLIC/nvim.sh man" > /dev/null
-        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('AirlineToggle');"
-    fi
-
-    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $1'); nvim.command('only');"
-}
+man () { $PUBLIC/nvim.sh "Man $1" }
 
 edit () {
     file="$(pwd)/$1"
@@ -71,11 +64,7 @@ edit () {
 
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
 
-        if [ ! -e "$XDG_RUNTIME_DIR/nvim-$(hostname)" ]; then
-            i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh" > /dev/null
-        fi
-
-        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $file');"
+        $PUBLIC/nvim.sh "hide e $file"
     fi
 }
 

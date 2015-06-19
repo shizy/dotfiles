@@ -1,0 +1,60 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = Inconsolata for Powerline 9
+scrollback_lines = 10000
+search_wrap = true
+cursor_blink = system
+cursor_shape = block
+
+# set size hints for the window
+#size_hints = false
+
+# emit escape sequences for other keys modified by Control
+#modify_other_keys = false
+
+[colors]
+#cursor = #dcdccc
+foreground = #A0A0A0
+foreground_bold = #66D9EF
+background = rgba(0, 0, 0, 0.85)
+
+# if unset, will reverse foreground and background
+#highlight = #FD971F
+
+# colors from color0 to color254 can be set
+color0 = #303030
+color1 = #F92672
+color2 = #A6E22E
+color3 = #FD971F
+color4 = #AE81FF
+color5 = #EF5939
+color6 = #66D9EF
+color7 = #CFCFCF
+color8 = #686868
+color9 = #F92672
+color10 = #A6E22E
+color11 = #FD971F
+color12 = #AE81FF
+color13 = #EF5939
+color14 = #66D9EF
+color15 = #FFFFFF
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s

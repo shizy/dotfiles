@@ -36,7 +36,7 @@ set breakindent
 set linebreak
 set directory=$XDG_CACHE_HOME/nvim,.
 set backupdir=$XDG_CACHE_HOME/nvim,.
-set viminfo+=n$XDG_CACHE_HOME/nvim/viminfo
+set viminfo+=n$XDG_CACHE_HOME/nvim/nviminfo
 set runtimepath=$XDG_CONFIG_HOME/nvim,$VIM,$VIMRUNTIME
 
 let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc"
@@ -96,14 +96,23 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 
 " Airline
-let g:airline_detect_crypt = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'simple'
-let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+let g:airline_detect_crypt = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'simple'
 let g:airline_symbols.whitespace = ''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = ' '
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 " Sessions
 function! Save()
@@ -138,7 +147,7 @@ function! LatexMake()
     :call LatexFocus()
 endfunction
 function! LatexFocus()
-    :silent ! i3-msg '[class="URxvt" instance="vim"] focus'
+    :silent ! i3-msg '[class="Termite" title="vim"] focus'
     :redraw!
 endfunction
 function! LatexUpdate()

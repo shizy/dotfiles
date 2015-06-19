@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $(pidof | pgrep fzf) ]; then
-    i3-msg '[class="URxvt" instance="search"] kill'
+    i3-msg '[class="Termite" title="search"] kill'
     exit
 fi
 
@@ -27,11 +27,8 @@ launch () {
                     i3-msg exec feh $2 > /dev/null
                     ;;
                 *"text"* | *"empty"* | *"javascript"*)
-                    if [ ! -e "$XDG_RUNTIME_DIR/nvim-$(hostname)" ]; then
-                        i3-msg "exec urxvtc -name vim -e $PUBLIC/nvim.sh" > /dev/null
-                    fi
-
-                    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $2');"
+                    $PUBLIC/nvim.sh "hide e $2"
+                    #python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $2');"
                     ;;
                 *"pdf"*)
                     zathura --fork $2
@@ -46,12 +43,8 @@ launch () {
             esac
             ;;
         "man")
-            if [ ! -e "$XDG_RUNTIME_DIR/man-$(hostname)" ]; then
-                i3-msg "exec urxvtc -name man -e $PUBLIC/nvim.sh man" > /dev/null
-                python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('AirlineToggle');"
-            fi
-
-            python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $2'); nvim.command('only');"
+            $PUBLIC/nvim.sh "Man $2"
+            #python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $2'); nvim.command('only');"
             ;;
         "proc")
             if [ "x$2" != "x" ]
@@ -62,7 +55,7 @@ launch () {
     esac
 }
 
-i3-msg '[class="URxvt" instance="search"] scratchpad show'
+i3-msg '[class="Termite" title="search"] scratchpad show'
 
 for sel in "${selection[@]}"
 do
@@ -71,4 +64,4 @@ do
     launch ${sel[0]} $target
 done
 
-i3-msg '[class="URxvt" instance="search"] kill'
+i3-msg '[class="URxvt" title="search"] kill'

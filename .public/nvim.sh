@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# using nvim to view man pages in a dedicated workspace
-if [[ $1 == "man" ]]; then
-    target="man"
-    suffix= ""
-else
-    target="nvim"
-    suffix="-S $XDG_CACHE_HOME/nvim/session.vim"
+target="nvim"
+suffix="-S $XDG_CACHE_HOME/nvim/session.vim -i $XDG_CACHE_HOME/nvim/nviminfo"
+
+if [ ! -e "$XDG_RUNTIME_DIR/nvim" ]; then
+    termite --title=vim -e "/usr/bin/nvim $suffix" & disown
 fi
 
-rm $XDG_RUNTIME_DIR/$target-$(hostname) 2>/dev/null
-NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/$target-$(hostname) /usr/bin/nvim $suffix
+#foreach!
+if [ "$1" ]; then
+    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('$1');"
+fi

@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# TODO:
-#
-# get from xprop: WM_NORMAL_HINTS: resize increment
-# support for disjointed screensizes for multiple screens
-
-FONT_WIDTH=7
-FONT_HEIGHT=15
-
 running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
 
 # if not running, spawn scratchpad based on direction and workspace size
@@ -21,25 +13,25 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
     w_height=$(grep -oP '(?<="height":).*?(?=,)' <<< "$res")
 
     case $1 in
-        *"top"*)
+        "top")
             x=$w_left
             y=$w_top
             h=$(($w_height / 2))
             w=$w_width
             ;;
-        *"bot"* | *"sea"*)
+        "bottom" | "search")
             x=$w_left
             y=$((($w_height / 2) + $w_top))
             h=$(($w_height / 2))
             w=$w_width
             ;;
-        *"lef"*)
+        "left")
             x=$w_left
             y=$w_top
             h=$w_height
             w=$(($w_width / 2))
             ;;
-        *"rig"*)
+        "right")
             x=$(($w_width / 2))
             y=$w_top
             h=$w_height
@@ -47,23 +39,17 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
             ;;
     esac
 
-    col=$(($w / $FONT_WIDTH))
-    row=$(($h / $FONT_HEIGHT))
     cmd=''
 
-    if [ $(($w % $col)) -gt 0 ]; then
-        ((col++))
-    fi
-
     if [ $2 ]; then
-       cmd="-e $2"
+       cmd="-e $2 &"
     fi
 
-    exec urxvtc -geometry ${col}x${row} -name $1 $cmd &
-    wait $!
-    i3-msg "[class=\"URxvt\" instance=\"$1\"] move scratchpad, border none, move position ${x}px ${y}px"
+    termite --geometry ${w}x${h} --title=$1 $cmd & disown
+    sleep 0.25
+    i3-msg "[class=\"Termite\" title=\"$1\"] move scratchpad, move position ${x}px ${y}px"
 else
-    i3-msg "[class=\"URxvt\" instance=\"$1\"] scratchpad show"
+    i3-msg "[class=\"Termite\" title=\"$1\"] scratchpad show"
 fi
 
 
