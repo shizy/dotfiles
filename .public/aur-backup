@@ -17,7 +17,6 @@ lua52-messagepack
 mutt-sidebar
 neovim-git
 netextender
-otf-inconsolata-powerline-git
 pentadactyl-git
 perl-term-shellui
 powerdown-git
@@ -29,8 +28,8 @@ termite-git
 texlive-local-dirtree
 texlive-localmanager-git
 ttf-font-awesome
+ttf-mplus
 unibilium
-vte3-select-text
 xor
 xxd
 zathura-git

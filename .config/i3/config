@@ -2,7 +2,8 @@
 
 set $mod Mod4
 floating_modifier $mod
-font pango:Inconsolata for Powerline, Icons 8
+#font pango:Inconsolata for Powerline, Icons 8
+font pango:M+ 1m, Icons 7
 workspace_auto_back_and_forth yes
 focus_follows_mouse no
 
@@ -91,7 +92,8 @@ bindsym $mod+grave exec $PUBLIC/scratchpad.sh bottom
 bindsym Ctrl+$mod+grave exec $PUBLIC/scratchpad.sh left
 
 # Shortcuts
-bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'Inconsolata for Powerline Sans Mono-8'
+#bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'Inconsolata for Powerline Sans Mono-8'
+bindsym $mod+semicolon exec dmenu_run -nb '#000000' -nf '#888888' -sf '#000000' -sb '#66D9EF' -b -fn 'M+ 1n-8'
 bindsym $mod+v exec $PUBLIC/nvim.sh
 #bindsym $mod+Shift+g exec ssh -f -D 8888 vftc sleep 10; exec google-chrome-stable --proxy-server="socks5://127.0.0.1:8888"
 bindsym $mod+Return exec termite --title=term
