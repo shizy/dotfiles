@@ -47,7 +47,7 @@ alias vpn="$PRIVATE/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
-alias ssh="ssh -F $PRIVATE/ssh/ssh_config"
+alias ssh="$PUBLIC/ssh.sh"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
 alias firefox="firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy"
