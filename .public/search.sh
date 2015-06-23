@@ -28,7 +28,6 @@ launch () {
                     ;;
                 *"text"* | *"empty"* | *"javascript"*)
                     $PUBLIC/nvim.sh "hide e $2"
-                    #python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim-$(hostname)'); nvim.command('hide e $2');"
                     ;;
                 *"pdf"*)
                     zathura --fork $2
@@ -44,7 +43,6 @@ launch () {
             ;;
         "man")
             $PUBLIC/nvim.sh "Man $2"
-            #python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/man-$(hostname)'); nvim.command('Man $2'); nvim.command('only');"
             ;;
         "proc")
             if [ "x$2" != "x" ]
