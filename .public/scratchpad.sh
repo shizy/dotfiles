@@ -45,8 +45,8 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
        cmd="-e $2 &"
     fi
 
-    termite --geometry ${w}x${h} --title=$1 $cmd & disown
-    sleep 0.25
+    termite -c $XDG_CONFIG_HOME/termite/config.light --geometry ${w}x${h} --title=$1 $cmd & disown
+    sleep 0.15
     i3-msg "[class=\"Termite\" title=\"$1\"] move scratchpad, move position ${x}px ${y}px"
 else
     i3-msg "[class=\"Termite\" title=\"$1\"] scratchpad show"

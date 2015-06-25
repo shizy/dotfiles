@@ -19,11 +19,16 @@ path=($NPM_CONFIG_PREFIX/bin $path)
 # default start dir
 cd ~
 
+# ls colors fix for termite
+eval $(dircolors $XDG_CONFIG_HOME/termite/dircolors)
+
 # vim-mode
 bindkey -v
 function zle-line-init zle-keymap-select {
-    NORMAL="%F{cyan}  $CMD_PROMPT  "
-    INSERT="%F{green}  $CMD_PROMPT: "
+    #NORMAL="%F{cyan}  $CMD_PROMPT  "
+    #INSERT="%F{green}  $CMD_PROMPT: "
+    NORMAL="%B%F{200}  $CMD_PROMPT%f%b  "
+    INSERT="%B%F{200}  $CMD_PROMPT%f%b: "
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
     zle reset-prompt
 }

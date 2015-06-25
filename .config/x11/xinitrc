@@ -2,5 +2,9 @@
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]
 
+if [ -z "${DBUS_SESSION_BUS_ADDRESS-}" ] && type dbus-launch >/dev/null; then
+  eval $(dbus-launch --sh-syntax --exit-with-session)
+fi
+
 xrandr --dpi 113
-exec i3 -c $XDG_CONFIG_HOME/i3/config
+exec i3

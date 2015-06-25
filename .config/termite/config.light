@@ -14,28 +14,27 @@ cursor_blink = system
 cursor_shape = block
 
 [colors]
-cursor = #F1FAEE
-foreground = #A8A8A8
-background = rgba(0, 0, 0, 0.90)
+cursor = #313131
+foreground = #282828
+background = rgba(241, 250, 238, 0.90)
 
-# need to edit for dark!
-color0 = #686868
-color1 = #787878
-color2 = #888888
-color3 = #A8A8A8
-color4 = #B8B8B8
-color5 = #D8D8D8
-color6 = #E8E8E8
-color7 = #F8F8F8
+color0 = #080808
+color1 = #181818
+color2 = #282828
+color3 = #484848
+color4 = #585858
+color5 = #787878
+color6 = #888888
+color7 = #989898
 
-color8 = #686868
-color9 = #787878
-color10 = #888888
-color11 = #A8A8A8
-color12 = #B8B8B8
-color13 = #D8D8D8
-color14 = #E8E8E8
-color15 = #F8F8F8
+color8 = #080808
+color9 = #181818
+color10 = #282828
+color11 = #484848
+color12 = #585858
+color13 = #787878
+color14 = #888888
+color15 = #989898
 
 #181818
 #282828

@@ -16,19 +16,29 @@ bar {
 
         colors {
 
-              statusline        #888888
-              separator         #000000
+            statusline        #383838
+            separator         #F1FAEE
+            background        #F1FAEE
 
-              focused_workspace  #000000 #000000 #66D9EF
-              active_workspace   #000000 #000000 #FFFFFF
-              inactive_workspace #000000 #000000 #888888
-              urgent_workspace   #000000 #000000 #FD971F
+            #statusline        #888888
+            #separator         #000000
+            #background        #000000
+
+            focused_workspace  #F1FAEE #F1FAEE #457B9D
+            active_workspace   #F1FAEE #F1FAEE #A8DADC
+            inactive_workspace #F1FAEE #F1FAEE #383838
+            urgent_workspace   #F1FAEE #F1FAEE #E63946
+
+            #focused_workspace  #000000 #000000 #66D9EF
+            #active_workspace   #000000 #000000 #FFFFFF
+            #inactive_workspace #000000 #000000 #888888
+            #urgent_workspace   #000000 #000000 #FD971F
         }
-
 }
 
 # ========== COLORS ==========
 
+hide_edge_borders horizontal
 client.focused				#000000 #000000 #66D9EF
 client.unfocused			#000000 #000000 #333333
 client.focused_inactive		#000000 #000000 #888888
@@ -36,16 +46,16 @@ client.urgent				#000000 #000000 #FD971F
 
 # ========== RULES ==========
 
+for_window [class="Termite"] border none
 for_window [class="Firefox"] border none
 for_window [class="URxvt"] border none
 for_window [class="MPlayer"] border none
 for_window [class="Zathura"] border none
 for_window [title="connman"] border none, floating enable
 for_window [class="Termite" title="mutt"] focus
-for_window [class="Termite" title="search"] floating enable, border none, move position 0px 410px
+for_window [class="Termite" title="vim"] border none
 for_window [class="feh"] floating enable, border none
 for_window [class="xfreerdp"] border none
-for_window [class="Termite"] border none
 for_window [class="Termite" title="irc"] floating enable, floating disable #termite/weechat quirk
 
 # Scratchpads
