@@ -2,6 +2,7 @@
 
 set runtimepath=$XDG_CONFIG_HOME/pentadactyl
 set hintkeys='sadfjklewcmpgh'
+set hintinputs=label
 set guioptions=Cs
 set showtabline='never'
 set defsearch='duckduckgo'

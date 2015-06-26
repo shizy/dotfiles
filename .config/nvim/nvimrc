@@ -20,6 +20,7 @@ endif
 
 " ========== OPTIONS ==========
 
+set noshowmode
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -87,16 +88,10 @@ call plug#end()
 
 " Molokai
 color molokai
-hi Normal ctermbg=none
-hi LineNr ctermfg=236 ctermbg=none
-hi CursorLine ctermbg=203
-hi CursorLineNr ctermfg=208 ctermbg=none
-hi Comment cterm=italic
 let g:molokai_original = 1
 let g:rehash256 = 1
 
 " Airline
-source $XDG_CONFIG_HOME/nvim/shizy-airline-theme.vim
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -125,7 +120,6 @@ let g:multi_cursor_next_key = '<S-s>'
 let g:multi_cursor_skip_key = 's'
 
 " Git-Gutter
-hi SignColumn ctermbg=none
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
@@ -258,3 +252,6 @@ au FileType man
     \ nnoremap <buffer> <A-z>       :q<CR> |
     \ nnoremap <buffer> <Leader>w   <NOP> |
     \ nnoremap <buffer> -           <NOP>
+
+" Color & theme over-rides
+source $XDG_CONFIG_HOME/nvim/theme-overrides.vim

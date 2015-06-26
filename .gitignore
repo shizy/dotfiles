@@ -30,6 +30,7 @@
 
 !/.config/nvim/snippets
 !/.config/nvim/nvimrc
+!/.config/nvim/theme-overrides.vim
 
 # WEECHAT
 !/.config/weechat

@@ -23,6 +23,10 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
             x=$w_left
             y=$((($w_height / 2) + $w_top))
             h=$(($w_height / 2))
+            if [ $1 == "search" ]; then
+                y=$(($w_height - ($w_height / 3) + $w_top))
+                h=$(($w_height / 3))
+            fi
             w=$w_width
             ;;
         "left")

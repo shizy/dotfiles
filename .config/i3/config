@@ -78,7 +78,7 @@ assign [class="Termite" title="mutt"] 10:
 
 # ========== AUTOSTART ==========
 
-exec compton --opacity-rule '85:class_g = "Zathura"'
+exec compton --opacity-rule '90:class_g = "Zathura"'
 exec firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
 exec sh $XDG_CACHE_HOME/fehbg
 exec $PUBLIC/lock.sh start
