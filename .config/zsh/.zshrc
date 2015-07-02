@@ -44,20 +44,19 @@ bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins 'jk' accept-line
 
 # aliases
+alias ~="cd ~"
 alias ..="cd .."
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias wallpaper="$PUBLIC/wallpaper.sh"
 alias vpn="$PRIVATE/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
-alias ssh="$PUBLIC/ssh.sh"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
 alias firefox="firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy"
 
-man () { $PUBLIC/nvim.sh "Man $1" }
+man () { nvim "Man $1" }
 
 edit () {
     file="$(pwd)/$1"
@@ -70,7 +69,7 @@ edit () {
 
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
 
-        $PUBLIC/nvim.sh "hide e $file"
+        nvim "hide e $file"
     fi
 }
 
@@ -84,10 +83,6 @@ rdp () {
 
 # backup dots / eratta to git
 backup () {
-    # public
-	if [ ! -d "$PUBLIC" ]; then
-		mkdir $PUBLIC 2>/dev/null
-	fi
 
     # private
 	if [ ! -d "$PRIVATE" ]; then
@@ -113,8 +108,8 @@ backup () {
             ;;
         *"con"*)
             # packages
-            pacman -Qqne > $PUBLIC/pacman-backup
-            pacman -Qqm > $PUBLIC/aur-backup
+            pacman -Qqne > $XDG_CACHE_HOME/pacman-backup
+            pacman -Qqm > $XDG_CACHE_HOME/aur-backup
             mv $HOME/.git.off $HOME/.git
             git add -A
             git commit -m "$(date)"

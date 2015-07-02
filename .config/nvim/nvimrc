@@ -188,6 +188,7 @@ endfunction
 :nnoremap  <A-Right>  :vertical resize +10<CR>
 :nnoremap  <A-Up>     :resize -10<CR>
 :nnoremap  <A-Down>   :resize +10<CR>
+:nnoremap  <A-/>      :noh<CR>
 :nnoremap  <Leader>x  ZZ
 :nmap      <Leader>h  <C-w>s
 :nmap      <Leader>v  <C-w>v

@@ -10,7 +10,7 @@ i3lock-wrapper
 i3status-git
 libtermkey-bzr
 libudev.so.0
-libvterm-git-neovim
+libvterm-bzr
 mutt-sidebar
 neovim-git
 netextender

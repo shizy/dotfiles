@@ -31,7 +31,7 @@ set move           = no
 # Pager
 set pager_format      = ''
 set pager_context     = 10
-set pager_index_lines = 20
+set pager_index_lines = 10
 set pager_stop
 
 # Index
@@ -78,8 +78,8 @@ macro index,pager       \el             <sidebar-next><sidebar-open><display-mes
 macro index,pager       \eh             <sidebar-prev><sidebar-open><display-message>
 macro index,pager       \em             <save-message>?<toggle-mailboxes>
 macro index,pager       \ex             '<save-message><kill-line>=gmail/[Gmail].Trash<enter><sync-mailbox>'
-macro index,pager       k               <previous-entry><display-message>
-macro index,pager       j               <next-entry><display-message>
+macro index,pager       k               <previous-entry>
+macro index,pager       j               <next-entry>
 macro index,pager       \ec             ":set smtp_pass=`pass web/google`;<enter><mail>"
 
 macro index             /               '<limit><kill-line>~B '
@@ -123,32 +123,32 @@ bind browser            u               exit
 bind compose            u               exit
 
 # COLORS
-color sidebar_new       color208        default
+color sidebar_new       color200        default
 
-color error             color222        color232
-color markers           color161        color232
+color error             color203        default
+color markers           color200        color232
 color tilde             color108        default
-color status            color81         color232
+color status            color203        color232
 
 color indicator         color252        color236
-color tree              color81         default
-color index             color252        default ~N #new
-color index             color244        default ~O #old
-color index             color154        default ~Q #replied
-color index             color161        default ~F #flagged
-color index             color222        default ~D #deleted
+color tree              color203        default
+color index             color201        default ~N #new
+color index             color203        default ~O #old
+color index             default         default ~Q #replied
+color index             color200        default ~F #flagged
+color index             color232        default ~D #deleted
 
-color hdrdefault        color141        default
-color header            color154        default "^Subject"
+color hdrdefault        color204        default
+color header            color202        default "^Subject"
 
-color body              color208        default "(finger|ftp|http|https|news|telnet)://[^ >]*"
-color body              color208        default "<URL:[^ ]*>"
-color body              color208        default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
-color body              color208        default "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
-color body              color208        default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body              color201        default "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body              color201        default "<URL:[^ ]*>"
+color body              color201        default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body              color201        default "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
+color body              color201        default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
 
-color attachment        color161        default
-color signature         color252        default
+color attachment        color203        default
+color signature         default         default
 
 color quoted            color238        default
 color quoted1           color237        default

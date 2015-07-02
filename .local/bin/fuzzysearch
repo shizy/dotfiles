@@ -27,7 +27,7 @@ launch () {
                     i3-msg exec feh $2 > /dev/null
                     ;;
                 *"text"* | *"empty"* | *"javascript"*)
-                    $PUBLIC/nvim.sh "hide e $2"
+                    nvim "hide e $2"
                     ;;
                 *"pdf"*)
                     zathura --fork $2
@@ -42,7 +42,7 @@ launch () {
             esac
             ;;
         "man")
-            $PUBLIC/nvim.sh "Man $2"
+            nvim "Man $2"
             ;;
         "proc")
             if [ "x$2" != "x" ]

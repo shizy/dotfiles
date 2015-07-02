@@ -1,21 +1,26 @@
+
 export PRIVATE=$HOME/.private
-export PUBLIC=$HOME/.public
 
 export PAGER=less
 export EDITOR=nvim
 export BROWSER=firefox
-export TERM=termite
+export TERM=xterm-termite
 
 # XDG
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
+export PATH=$HOME/.local/bin:$PATH
+
+# bzr
+export BZR_LOG=/dev/null
+
 # cargo
 export CARGO_HOME=$XDG_CACHE_HOME/cargo
 
 # git
-export GIT_SSH=$PUBLIC/ssh.sh
+export GIT_SSH=$HOME/.local/bin/ssh
 
 # gnupg
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
@@ -50,10 +55,7 @@ export TEXMFVAR=$XDG_CACHE_HOME/texlive
 # urxvt
 export RXVT_SOCKET=$XDG_RUNTIME_DIR/urxvtd-$(hostname)
 
-# x11
-export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
-
 
 if [[ $(tty) == "/dev/tty1" ]]; then
-    exec startx $XDG_CONFIG_HOME/x11/xinitrc
+    exec mystartx $XDG_CONFIG_HOME/x11/xinitrc
 fi

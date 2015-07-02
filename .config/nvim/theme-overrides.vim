@@ -23,10 +23,7 @@ hi IncSearch                ctermfg=201 ctermbg=200
 hi Search                   ctermfg=234 ctermbg=201
 
 let g:airline#themes#shizy#palette = {}
-
 let s:dark = 232
-let s:termbg = 232
-let s:termbg2= 234
 
 let s:N1 = [ '' , '', 203 , 201 ]
 let s:N2 = [ '' , '', s:dark , 203 ]

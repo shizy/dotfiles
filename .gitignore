@@ -2,6 +2,17 @@
 /*
 *.pyc
 
+# CACHE
+!/.cache
+/.cache/*
+!/.cache/pacman-backup
+!/.cache/aur-backup
+
+# LOCAL/BIN
+!/.local
+/.local/*
+!/.local/bin
+
 # CONFIG
 !/.config
 /.config/*

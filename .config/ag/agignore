@@ -3,7 +3,7 @@
 
 .git*
 .cache/
-.local/
+.local/share/
 
 /etc/ca-certificates/
 /etc/fonts

@@ -9,7 +9,6 @@ bzip2
 connman
 coreutils
 cryptsetup
-cups
 device-mapper
 dhcpcd
 dialog
