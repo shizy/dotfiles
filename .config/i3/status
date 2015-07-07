@@ -5,10 +5,6 @@ general {
         color_degraded = "#A8DADC"
         color_bad = "#E63946"
         color_separator = "#000000"
-        #color_good = "#66D9EF"
-        #color_degraded = "#FD971F"
-        #color_bad = "#F92672"
-        #color_separator = "#000000"
         interval = 2
 }
 

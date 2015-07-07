@@ -56,6 +56,7 @@ export TEXMFVAR=$XDG_CACHE_HOME/texlive
 export RXVT_SOCKET=$XDG_RUNTIME_DIR/urxvtd-$(hostname)
 
 
+source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
 if [[ $(tty) == "/dev/tty1" ]]; then
     exec mystartx $XDG_CONFIG_HOME/x11/xinitrc
 fi

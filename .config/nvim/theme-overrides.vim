@@ -18,7 +18,7 @@ hi VertSplit                cterm=bold ctermfg=203 ctermbg=203
 hi ModeMsg                  ctermfg=203
 hi NonText                  ctermfg=203
 hi WarningMsg               ctermfg=200 ctermbg=none cterm=none
-hi SpellBad                 ctermbg=200
+hi SpellBad                 ctermfg=200 ctermbg=201
 hi IncSearch                ctermfg=201 ctermbg=200
 hi Search                   ctermfg=234 ctermbg=201
 
@@ -62,3 +62,9 @@ let g:airline#themes#shizy#palette.inactive_modified = {
       \ 'airline_c': [ '', '', 200, s:dark, '' ] ,
       \ }
 
+let g:airline#themes#shizy#palette.normal.airline_warning = [ '', '', 200, 201 ]
+let g:airline#themes#shizy#palette.normal_modified.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning
+let g:airline#themes#shizy#palette.insert.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning
+let g:airline#themes#shizy#palette.insert_modified.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning
+let g:airline#themes#shizy#palette.visual.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning
+let g:airline#themes#shizy#palette.visual_modified.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning

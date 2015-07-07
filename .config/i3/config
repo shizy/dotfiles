@@ -20,19 +20,10 @@ bar {
             separator         #F1FAEE
             background        #F1FAEE
 
-            #statusline        #888888
-            #separator         #000000
-            #background        #000000
-
             focused_workspace  #F1FAEE #F1FAEE #457B9D
             active_workspace   #F1FAEE #F1FAEE #A8DADC
             inactive_workspace #F1FAEE #F1FAEE #383838
             urgent_workspace   #F1FAEE #F1FAEE #E63946
-
-            #focused_workspace  #000000 #000000 #66D9EF
-            #active_workspace   #000000 #000000 #FFFFFF
-            #inactive_workspace #000000 #000000 #888888
-            #urgent_workspace   #000000 #000000 #FD971F
         }
 }
 
