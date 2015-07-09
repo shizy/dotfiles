@@ -4,7 +4,7 @@ target="nvim"
 suffix="-S $XDG_CACHE_HOME/nvim/session.vim -i $XDG_CACHE_HOME/nvim/nviminfo"
 
 if [ ! -e "$XDG_RUNTIME_DIR/nvim" ]; then
-    termite --title=vim -e "/usr/bin/nvim $suffix" & disown > /dev/null
+    termite --title=vim -e "/usr/bin/nvim $suffix" & disown
 fi
 
 #foreach!
