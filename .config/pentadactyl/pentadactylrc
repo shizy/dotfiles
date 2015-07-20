@@ -18,29 +18,37 @@ set! signon.rememberSignons=false
 loadplugins '\.(js|penta)$'
 group user
 
-nmap <A-j>      <C-d>
-nmap <A-k>      <C-u>
-nmap <A-l>      :tabnext<CR>
-nmap <A-h>      :tabprevious<CR>
-nmap <A-S-h>    :tabmove -1
-nmap <A-S-l>    :tabmove +1
-nmap <A-o>      :tab<Space>open<Space>
-nmap <A-u>      :forward<CR>
-nmap <A-n>      <find-previous>
-nmap <A-f>      <S-f>
-nmap <A-t>      :tabs<CR>
-nmap y          <yank-selection>
-nmap <C-c>      <yank-selection>
-nmap <A-y>      <yank-location>
-nmap <C-p>      <S-Insert>
-nmap u          :back<CR>
-nmap r          :reload<CR>
-nmap <A-x>      :quit<CR>
-nmap <A-z>      :wqall<CR>
-nmap <A-d>      :downloads<Space>
-nmap <A-b>      :bmarks<Space>
-nmap <A-.>      ]]
-nmap <A-,>      [[
+map             <Space>             <Leader>
+
+nmap            <A-j>               <C-d>
+nmap            <A-k>               <C-u>
+nmap            <A-l>               :tabnext<CR>
+nmap            <A-h>               :tabprevious<CR>
+nmap            <A-Space>           :b<Space>
+nmap            <A-b>               :b<Space>#<CR>
+nmap            <A-o>               :tab<Space>open<Space>
+nmap            <A-u>               :forward<CR>
+nmap            <A-n>               <find-previous>
+nmap            <A-f>               <S-f>
+nmap            y                   <yank-selection>
+nmap            <C-c>               <yank-selection>
+nmap            <A-y>               <yank-location>
+nmap            <C-p>               <S-Insert>
+nmap            u                   :back<CR>
+nmap            r                   :reload<CR>
+nmap            <A-S-x>             :quit<CR>
+nmap            <A-x>               :bdelete<Space>
+nmap            <A-z>               :wqall<CR>
+nmap            <A-.>               ]]
+nmap            <A-,>               [[
+nmap            <Leader>b           :bmarks<CR>;
+nmap            <Leader>d           :downloads<CR>;
+nmap            <Leader>h           :history<CR>;
+nmap            <Leader>w           :bmark<CR>
+
+cmap            jj                  <Esc><Esc>
+cmap            <A-Space>           <Esc><Esc>
+cmap            jk                  <CR>
 
 source $XDG_CONFIG_HOME/pentadactyl/chrome.css
 
@@ -63,9 +71,14 @@ hi CompTitle color: #457B9D; font-weight: bold;
 hi CompTitleSep height: 1px; background-color: #457B9D;
 hi CompItem[selected] background: #383838; color: #E63946; font-weight: bold;
 hi HelpTabTitle color: #457B9D; font-weight: bold;
+hi HelpString color: #457B9D; font-weight: bold;
+hi HelpOpt color: #457B9D; font-weight: bold;
+hi StatusQuestion color: #457B9D; font-weight: bold;
 hi DownloadTitle color: #457B9D; font-weight: bold;
 hi ErrorMsg color: #E63946; background-color: none;
+hi MoreMsg color: #E63946; background-color: none;
 hi Question color: #E63946; font-weight: bold;
+hi URL color: #457B9D;
 
 silent ! rm -r $HOME/.mozilla > /dev/null
 

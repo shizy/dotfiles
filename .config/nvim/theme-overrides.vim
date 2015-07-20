@@ -21,6 +21,11 @@ hi WarningMsg               ctermfg=200 ctermbg=none cterm=none
 hi SpellBad                 ctermfg=200 ctermbg=201
 hi IncSearch                ctermfg=201 ctermbg=200
 hi Search                   ctermfg=234 ctermbg=201
+hi StatusLine               ctermfg=201 ctermbg=203
+hi WildMenu                 ctermfg=200 ctermbg=201 cterm=bold
+hi TabLine                  ctermfg=203 ctermbg=none cterm=none
+hi TabLineSel               ctermfg=203 ctermbg=201
+hi TabLineFill              cterm=none
 
 let g:airline#themes#shizy#palette = {}
 let s:dark = 232

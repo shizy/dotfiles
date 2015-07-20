@@ -20,6 +20,7 @@ endif
 
 " ========== OPTIONS ==========
 
+set hidden
 set noshowmode
 set tabstop=4
 set shiftwidth=4
@@ -39,6 +40,10 @@ set directory=$XDG_CACHE_HOME/nvim,.
 set backupdir=$XDG_CACHE_HOME/nvim,.
 set viminfo+=n$XDG_CACHE_HOME/nvim/nviminfo
 set runtimepath=$XDG_CONFIG_HOME/nvim,$VIM,$VIMRUNTIME
+set wildcharm=<Tab>
+set wildmenu
+set wildmode=full,list
+set wildignorecase
 
 let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc"
 let $PAGER=""
@@ -67,7 +72,7 @@ Plug 'godlygeek/tabular'
 Plug 'terryma/vim-multiple-cursors'
 
 " Utility
-Plug 'tpope/vim-vinegar'
+"Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -96,12 +101,12 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_detect_crypt = 0
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'shizy'
 let g:airline_symbols.whitespace = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline#extensions#tabline#show_tab_type = 0
+"let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -125,52 +130,7 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 " LaTeX
-let g:tex_flavor = 'latex'
-let g:latexopenpreviews = []
-let s:latexpreviewline = 0
-function! LatexMake()
-    :silent ! latexmk -silent -pdflatex='pdflatex -synctex=1' -pdf -outdir=$HOME/docs '%:p'
-    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') == -1
-        :silent ! zathura '%:r.pdf' &
-        :call add(g:latexopenpreviews, expand('%:p:r') . '.pdf')
-        :silent ! sleep 1
-    endif
-    :call LatexUpdate()
-    :call LatexFocus()
-endfunction
-function! LatexFocus()
-    :silent ! i3-msg '[class="Termite" title="vim"] focus'
-    :redraw!
-endfunction
-function! LatexUpdate()
-    if line(".") != s:latexpreviewline
-        if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
-            execute "silent ! zathura --synctex-forward " . line('.') . ":" . col('.') . ":%:p %:p:r.pdf"
-        endif
-    endif
-endfunction
-function! LatexPreviewShow()
-    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
-        :silent ! i3-msg '[class="Zathura"] scratchpad show, floating disable'
-        :call LatexFocus()
-    endif
-endfunction
-function! LatexPreviewHide()
-    if index(g:latexopenpreviews, expand('%:p:r') . '.pdf') > -1
-        :silent ! i3-msg '[class="Zathura"] move scratchpad'
-        :call LatexFocus()
-    endif
-endfunction
-function! LatexPreviewClose()
-    let z = index(g:latexopenpreviews, expand('%:p:r') . '.pdf')
-    if z == 1
-        :close
-    elseif z > -1
-        :call remove(g:latexopenpreviews, z)
-    endif
-    let x = system("ps -C zathura -o pid=,args | grep " . expand('%:t:r') . ".pdf | awk '{print $1}'")
-    execute "silent ! kill " . x
-endfunction
+source $XDG_CONFIG_HOME/nvim/latex.vim
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -180,44 +140,64 @@ let g:syntastic_check_on_wq = 0
 
 " ========== MAPPINGS ==========
 
-:noremap   <A-j>      10j
-:noremap   <A-k>      10k
-:nnoremap  <A-h>      :bp!<CR>
-:nnoremap  <A-l>      :bn!<CR>
-:nnoremap  <A-x>      :Bdelete!<CR>
-:nnoremap  <A-z>      :call Save()<CR>:qa<CR>
-:nnoremap  <A-u>      <C-r>
-:nnoremap  <A-Tab>    <C-w>w
-:nnoremap  <A-S-Tab>  <C-w>W
-:tnoremap  <A-Tab>    <C-\><C-n><C-w>w
-:tnoremap  <A-S-Tab>  <C-\><C-n><C-w>W
-:nnoremap  <A-Left>   :vertical resize -10<CR>
-:nnoremap  <A-Right>  :vertical resize +10<CR>
-:nnoremap  <A-Up>     :resize -10<CR>
-:nnoremap  <A-Down>   :resize +10<CR>
-:nnoremap  <A-/>      :noh<CR>
-:nnoremap  <A-.>      :lnext<CR>
-:nnoremap  <A-,>      :lprev<CR>
-:nnoremap  <Leader>x  ZZ
-:nmap      <Leader>h  <C-w>s
-:nmap      <Leader>v  <C-w>v
-:nmap      <Leader>w  :call Save()<CR>
-:nmap      <Leader>1  :w !sudo tee % > /dev/null
-:nmap      <Leader>/  <Esc>:%s/
-:vmap      <Leader>/  <Esc>:'<,'>s/
-:nmap      <Leader>t  :Tabularize /
-:vmap      <Leader>t  :Tabularize /
-:nmap      <Leader>s  :Gstatus<CR>
-:nmap      <Leader>c  :Gcommit -m<space>
-:nmap      <Leader>p  :Gpush<space>
-:nmap      <Leader>u  :PlugUpdate<CR>
-:imap      jj         <Esc>
-:imap      jk         <Esc>:call Save()<CR>
-:vmap      <          <gv
-:vmap      >          >gv
+noremap             <A-j>           10j
+noremap             <A-k>           10k
 
-:nnoremap <silent> <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-:vnoremap          <Leader><Space> zf
+nnoremap            <A-l>           e
+nnoremap            <A-h>           b
+nnoremap            <A-S-l>         $
+nnoremap            <A-S-h>         ^
+nnoremap            <A-S-j>         G
+nnoremap            <A-S-k>         gg
+nnoremap            <A-b>           :b#<CR>
+nnoremap            <A-w>           <C-w>p
+nnoremap            <A-z>           :call Save()<CR>:qa<CR>
+nnoremap            <A-u>           <C-r>
+nnoremap            <A-Tab>         <C-w>w
+nnoremap            <A-S-Tab>       <C-w>W
+nnoremap            <A-Left>        :vertical resize -10<CR>
+nnoremap            <A-Right>       :vertical resize +10<CR>
+nnoremap            <A-Up>          :resize -10<CR>
+nnoremap            <A-Down>        :resize +10<CR>
+nnoremap            <A-/>           :noh<CR>
+nnoremap            <A-.>           :lnext<CR>
+nnoremap            <A-,>           :lprev<CR>
+nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
+nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
+nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
+nmap                <A-x>           :ls<CR>:Bdelete!<Space><Tab><C-p>
+nmap                <A-S-x>         :Bdelete!<CR>
+nmap                <A-q>           ZZ
+nmap                <Leader>w       :call Save()<CR>
+nmap                <Leader>1       :w !sudo tee % > /dev/null
+nmap                <Leader>/       <Esc>:%s/
+nmap                <Leader>t       :Tabularize /
+nmap                <Leader>s       :Gstatus<CR><C-n>
+nmap                <Leader>p       :Gpush<space>
+nmap                <Leader>u       :PlugUpdate<CR>
+nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
+
+imap                jj              <Esc>
+imap                jk              <Esc>:call Save()<CR>
+
+cmap                <A-l>           <C-n>
+cmap                <A-h>           <C-p>
+cmap                <A-j>           <Down>
+cmap                <A-k>           <Up>
+cmap                jj              <C-c><Esc>
+cmap                <A-Space>       <C-c><Esc>
+cmap                jk              <CR>
+
+tnoremap            <A-Tab>         <C-\><C-n><C-w>w
+tnoremap            <A-S-Tab>       <C-\><C-n><C-w>W
+
+vnoremap            <Leader><Space> zf
+vmap                <Leader>/       <Esc>:'<,'>s/
+vmap                <Leader>t       :Tabularize /
+vmap                <A-,>           <gv
+vmap                <A-.>           >gv
+
 
 " ========== AUTOCOMMANDS ==========
 
@@ -244,6 +224,12 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal fo+=aw |
     \ imap <buffer> jk <Esc>:w<CR> |
     \ nmap <buffer> <Leader>w :w<CR> |
+au FileType gitcommit
+    \ nmap <buffer> <A-.>   <C-n> |
+    \ nmap <buffer> <A-,>   <C-p> |
+    \ nmap <buffer> c       <S-c>i |
+    \ nmap <buffer> q       :wq<CR> |
+    \ nmap <buffer> p       :wq<CR>:Gpush<space> |
 au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
@@ -253,14 +239,12 @@ au FileType help
     \ nnoremap <buffer> <CR> <C-]> |
     \ nnoremap <buffer> f    <C-]> |
     \ nnoremap <buffer> u    <C-T> |
-    \ nnoremap <buffer> q    :bd<CR>
 au FileType man
     \ set ro |
     \ set nolist |
     \ nnoremap <buffer> <CR>        :call <SNR>8_PreGetPage(v:count)<CR> |
     \ nnoremap <buffer> f           :call <SNR>8_PreGetPage(v:count)<CR> |
     \ nnoremap <buffer> u           :call <SNR>8_PopPage()<CR> |
-    \ nnoremap <buffer> q           :q<CR> |
     \ nnoremap <buffer> <A-z>       :q<CR> |
     \ nnoremap <buffer> <Leader>w   <NOP> |
     \ nnoremap <buffer> -           <NOP>

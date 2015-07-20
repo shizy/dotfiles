@@ -63,7 +63,7 @@ set recall        = no
 set delete        = yes
 unset tilde
 set text_flowed
-set editor        = 'nvim'
+set editor        = '/usr/bin/nvim -i $XDG_CACHE_HOME/nvim/nviminfo'
 set meta_key      = yes
 
 # Headers
@@ -74,8 +74,8 @@ hdr_order from: to: cc: date: subject:
 
 # Macros
 macro index,pager       <space>u        '<sync-mailbox><shell-escape>offlineimap -c $XDG_CONFIG_HOME/offlineimap/offlineimaprc -o<enter>'
-macro index,pager       \el             <sidebar-next><sidebar-open><display-message>
-macro index,pager       \eh             <sidebar-prev><sidebar-open><display-message>
+macro index,pager       \el             <sidebar-next><sidebar-open>
+macro index,pager       \eh             <sidebar-prev><sidebar-open>
 macro index,pager       \em             <save-message>?<toggle-mailboxes>
 macro index,pager       \ex             '<save-message><kill-line>=gmail/[Gmail].Trash<enter><sync-mailbox>'
 macro index,pager       k               <previous-entry>
@@ -85,7 +85,7 @@ macro index,pager       \ec             ":set smtp_pass=`pass web/google`;<enter
 macro index             /               '<limit><kill-line>~B '
 macro index             \e/             '<limit><kill-line>all<enter><last-entry>'
 
-macro pager             !               <flag-message><display-message>
+macro pager             !               <flag-message>
 macro pager             gg              <exit><first-entry>
 macro pager             G               <exit><last-entry>
 macro pager             /               '<exit><limit><kill-line>~B '
