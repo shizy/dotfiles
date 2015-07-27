@@ -63,16 +63,15 @@ Plug 'moll/vim-bbye'
 " Looks
 Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
+"Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 
 " Interaction
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
-Plug 'terryma/vim-multiple-cursors'
 
 " Utility
-"Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'

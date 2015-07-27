@@ -27,20 +27,47 @@ hi TabLine                  ctermfg=203 ctermbg=none cterm=none
 hi TabLineSel               ctermfg=203 ctermbg=201
 hi TabLineFill              cterm=none
 
-let g:airline#themes#shizy#palette = {}
+let s:light = 201
+let s:med = 203
 let s:dark = 232
+let s:darker = 234
+let s:warn = 200
+let s:info = 202
 
-let s:N1 = [ '' , '', 203 , 201 ]
-let s:N2 = [ '' , '', s:dark , 203 ]
-let s:N3 = [ '' , '', 203 , s:dark ]
+" For Lightline
+"let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+"let s:p.normal.left = [ [ s:med, s:light ], [ s:dark, s:med ], [ s:med, s:dark ] ]
+"let s:p.normal.right = [ [ s:med, s:dark ], [ s:dark, s:med ], [ s:med, s:light ] ]
+"let s:p.inactive.right = [ [ s:darker, s:dark ], [ s:darker, s:dark ] ]
+"let s:p.inactive.left = [ [ s:darker, s:dark ], [ s:darker, s:dark ] ]
+"let s:p.insert.left = [ [ s:dark, s:info ], [ s:dark, s:med ], [ s:med, s:dark ] ]
+"let s:p.insert.right = [ [ s:med, s:dark ], [ s:dark, s:med ], [ s:dark, s:info ] ]
+"let s:p.insert.middle = [ [ s:base03, s:base02 ] ]
+"let s:p.replace.left = [ [ s:base3, s:red ], [ s:base3, s:base01 ] ]
+"let s:p.visual.left = [ [ s:base3, s:orange ], [ s:base1, s:base02 ] ]
+"let s:p.normal.middle = [ [ s:base1, s:base03 ] ]
+"let s:p.inactive.middle = [ [ s:base0, s:base02 ] ]
+"let s:p.tabline.left = [ [ s:base03, s:base02 ] ]
+"let s:p.tabline.tabsel = [ [ s:base00, s:base03 ] ]
+"let s:p.tabline.middle = [ [ s:base03, s:base02 ] ]
+"let s:p.tabline.right =[ [ s:base01, s:base02 ] ]
+"let s:p.normal.error = [ [ s:base2, s:red ] ]
+"let s:p.normal.warning = [ [ s:base02, s:yellow ] ]
+"let g:lightline#colorscheme#shizy#palette = lightline#colorscheme#flatten(s:p)
+
+" For Airline
+let g:airline#themes#shizy#palette = {}
+let s:N1 = [ '' , '', s:med , s:light ]
+let s:N2 = [ '' , '', s:dark , s:med ]
+let s:N3 = [ '' , '', s:med , s:dark ]
 let g:airline#themes#shizy#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 let g:airline#themes#shizy#palette.normal_modified = {
-      \ 'airline_c': [ '' , '', 200, s:dark    , '' ] ,
+      \ 'airline_c': [ '' , '', s:warn, s:dark    , '' ] ,
       \ }
 
-let s:I1 = [ '', '' , s:dark , 202 ]
-let s:I2 = [ '' , '', s:dark , 203 ]
-let s:I3 = [ '' , '', 203 , s:dark ]
+let s:I1 = [ '', '' , s:dark , s:info ]
+let s:I2 = [ '' , '', s:dark , s:med ]
+let s:I3 = [ '' , '', s:med , s:dark ]
 let g:airline#themes#shizy#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 let g:airline#themes#shizy#palette.insert_modified = copy(g:airline#themes#shizy#palette.normal_modified)
 "let g:airline#themes#shizy#palette.insert_paste = {
@@ -53,21 +80,21 @@ let g:airline#themes#shizy#palette.insert_modified = copy(g:airline#themes#shizy
 "let g:airline#themes#shizy#palette.replace_modified = copy(g:airline#themes#shizy#palette.normal_modified)
 
 
-let s:V1 = [ '' , '' , s:dark , 200 ]
-let s:V2 = [ '' , '' , s:dark , 203 ]
-let s:V3 = [ '' , '' , 203 , s:dark ]
+let s:V1 = [ '' , '' , s:dark , s:warn ]
+let s:V2 = [ '' , '' , s:dark , s:med ]
+let s:V3 = [ '' , '' , s:med , s:dark ]
 let g:airline#themes#shizy#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
 let g:airline#themes#shizy#palette.visual_modified = copy(g:airline#themes#shizy#palette.normal_modified)
 
 
-let s:IA  = [ '' , '' , 234 , s:dark  , '' ]
-let s:IA2 = [ '' , '' , 234 , s:dark , '' ]
+let s:IA  = [ '' , '' , s:darker , s:dark  , '' ]
+let s:IA2 = [ '' , '' , s:darker , s:dark , '' ]
 let g:airline#themes#shizy#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA2, s:IA2)
 let g:airline#themes#shizy#palette.inactive_modified = {
-      \ 'airline_c': [ '', '', 200, s:dark, '' ] ,
+      \ 'airline_c': [ '', '', s:warn, s:dark, '' ] ,
       \ }
 
-let g:airline#themes#shizy#palette.normal.airline_warning = [ '', '', 200, 201 ]
+let g:airline#themes#shizy#palette.normal.airline_warning = [ '', '', s:warn, s:light ]
 let g:airline#themes#shizy#palette.normal_modified.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning
 let g:airline#themes#shizy#palette.insert.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning
 let g:airline#themes#shizy#palette.insert_modified.airline_warning = g:airline#themes#shizy#palette.normal.airline_warning

@@ -1,7 +1,7 @@
 "1.2pre
 
 set runtimepath=$XDG_CONFIG_HOME/pentadactyl
-set hintkeys='sadfjklewcmpgh'
+set hintkeys='sadfklewcmpgh'
 set hintinputs=label
 set guioptions=Cs
 set showtabline='never'
@@ -73,6 +73,7 @@ hi CompItem[selected] background: #383838; color: #E63946; font-weight: bold;
 hi HelpTabTitle color: #457B9D; font-weight: bold;
 hi HelpString color: #457B9D; font-weight: bold;
 hi HelpOpt color: #457B9D; font-weight: bold;
+hi HelpNote color: #457B9D; font-weight: bold;
 hi StatusQuestion color: #457B9D; font-weight: bold;
 hi DownloadTitle color: #457B9D; font-weight: bold;
 hi ErrorMsg color: #E63946; background-color: none;
