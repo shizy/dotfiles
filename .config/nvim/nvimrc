@@ -120,6 +120,18 @@ function! Save()
     :w
 endfunction
 
+" Window Zoom
+function! Zoom()
+    if exists('t:zoomed_window')
+        exe "norm! 5\<C-w>="
+        unlet t:zoomed_window
+    else
+        :vertical res
+        :res
+        let t:zoomed_window = 1
+    endif
+endfunction
+
 " Multi Cursor
 let g:multi_cursor_next_key = '<S-s>'
 let g:multi_cursor_skip_key = 's'
@@ -168,6 +180,7 @@ nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
 nmap                <A-x>           :ls<CR>:Bdelete!<Space><Tab><C-p>
 nmap                <A-S-x>         :Bdelete!<CR>
 nmap                <A-q>           ZZ
+nmap                <A-o>           :call Zoom()<CR>
 nmap                <Leader>w       :call Save()<CR>
 nmap                <Leader>1       :w !sudo tee % > /dev/null
 nmap                <Leader>/       <Esc>:%s/
