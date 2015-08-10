@@ -18,6 +18,7 @@
 /.config/*
 
 !/.config/ag
+!/.config/cower
 !/.config/fontconfig
 !/.config/git
 !/.config/i3

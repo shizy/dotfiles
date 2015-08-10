@@ -52,6 +52,7 @@ syntax on
 filetype plugin indent on
 let mapleader = "\<Space>"
 :runtime! ftplugin/man.vim
+source $XDG_CONFIG_HOME/nvim/functions.vim
 
 " ========== PACKAGES ==========
 
@@ -141,7 +142,7 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 " LaTeX
-source $XDG_CONFIG_HOME/nvim/latex.vim
+let g:tex_flavor = 'latex'
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -181,6 +182,7 @@ nmap                <A-x>           :ls<CR>:Bdelete!<Space><Tab><C-p>
 nmap                <A-S-x>         :Bdelete!<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
+nmap                <A-t>           :tabe %<CR>
 nmap                <Leader>w       :call Save()<CR>
 nmap                <Leader>1       :w !sudo tee % > /dev/null
 nmap                <Leader>/       <Esc>:%s/
@@ -189,6 +191,12 @@ nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
 nmap                <Leader>u       :PlugUpdate<CR>
 nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
+nmap                <Leader>i       zg
+nmap                <A-1>           1gt
+nmap                <A-2>           2gt
+nmap                <A-3>           3gt
+nmap                <A-4>           4gt
+nmap                <A-5>           5gt
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
@@ -222,12 +230,10 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal nocin inde= |
     \ set syntax=tex |
     \ nnoremap <buffer> <Leader>l :call LatexMake()<CR> |
-    \ nnoremap <buffer> <Leader>x :call LatexPreviewClose()<CR> |
+    \ nnoremap <buffer> <A-o>     :call LatexTogglePreview()<CR> |
     \ nnoremap <buffer> <A-.>      ]s |
     \ nnoremap <buffer> <A-,>      [s
-au CursorMoved *.tex :call LatexUpdate()
-au BufWinEnter *.tex :call LatexPreviewShow()
-au BufWinLeave *.tex :call LatexPreviewHide()
+au CursorMoved *.tex :call LatexUpdatePreview()
 au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal spell |
     \ setlocal spelllang=en_us |
@@ -236,6 +242,8 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal fo+=aw |
     \ imap <buffer> jk <Esc>:w<CR> |
     \ nmap <buffer> <Leader>w :w<CR> |
+    \ nnoremap <buffer> <A-.>      ]s |
+    \ nnoremap <buffer> <A-,>      [s
 au FileType gitcommit
     \ nmap <buffer> <A-.>   <C-n> |
     \ nmap <buffer> <A-,>   <C-p> |

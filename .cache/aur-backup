@@ -2,6 +2,7 @@ aura-bin
 cargo-bin
 compton
 connman-ncurses-git
+cower
 dmenu-xft
 freerdp-git
 fzf

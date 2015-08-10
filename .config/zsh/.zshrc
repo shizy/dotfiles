@@ -26,17 +26,19 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # keybinds
-bindkey "\eh" backward-char
-bindkey "\el" forward-char
+#bindkey "\eh" backward-char
+#bindkey "\el" forward-char
 bindkey "^?" backward-delete-char
 
+bindkey -M vicmd "\eh" backward-word
+bindkey -M vicmd "\el" forward-word
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins 'jk' accept-line
 
 # aliases
 alias ~="cd ~"
 alias ..="cd .."
-alias ls="ls --color=auto"
+alias ls="ls -Al --color=auto"
 alias grep="grep --color=auto"
 alias vpn="$PRIVATE/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'

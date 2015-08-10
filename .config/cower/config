@@ -1,0 +1,3 @@
+Color = auto
+TargetDir = $HOME/builds
+MaxThreads = 2
