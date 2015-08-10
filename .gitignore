@@ -44,6 +44,7 @@
 !/.config/nvim/nvimrc
 !/.config/nvim/theme-overrides.vim
 !/.config/nvim/latex.vim
+!/.config/nvim/functions.vim
 
 # WEECHAT
 !/.config/weechat
