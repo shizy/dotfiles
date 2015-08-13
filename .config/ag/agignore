@@ -1,9 +1,11 @@
 *node_modules*
 *google-chrome*
+*wp-*
 
 .git*
 .cache/
-.local/share/
+local/share/
 
-/etc/ca-certificates/
-/etc/fonts
+ca-certificates/
+fonts/
+certs/

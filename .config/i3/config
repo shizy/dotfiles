@@ -107,7 +107,7 @@ bindsym $mod+f exec firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
 bindsym Mod1+Return fullscreen
 bindsym $mod+Escape exec i3lock-wrapper
 bindsym Caps_Lock mode "Aa"
-bindsym $mod+z kill
+bindsym $mod+Shift+x kill
 bindsym $mod+Shift+Tab focus left
 bindsym $mod+Tab focus right
 bindsym $mod+h exec spaceorscreen left
