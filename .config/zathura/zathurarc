@@ -3,6 +3,6 @@ set recolor-darkcolor #FFFFFF
 set recolor-lightcolor #000000
 set adjust-open width
 
-map <S-j> navigate next
-map <S-k> navigate previous
-map <S-z> quit
+map <A-j> navigate next
+map <A-k> navigate previous
+map <A-z> quit

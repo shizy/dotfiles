@@ -38,7 +38,7 @@ bindkey -M viins 'jk' accept-line
 # aliases
 alias ~="cd ~"
 alias ..="cd .."
-alias ls="ls -Al --color=auto"
+alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
 alias vpn="$PRIVATE/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'

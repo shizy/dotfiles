@@ -22,7 +22,7 @@ endfunction
 function! LatexShowPreview()
     call LatexStartPreview()
     call ZoomIn()
-    silent ! i3-msg '[class="Zathura"] scratchpad show, floating disable'
+    call system("i3-msg '[class=\"Zathura\" title=\"" . expand('%:t:r') . "\"] scratchpad show, floating disable'")
     let t:latex_preview = 1
     call LatexResetFocus()
 endfunction
