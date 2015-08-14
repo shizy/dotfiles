@@ -1,21 +1,16 @@
 #!/bin/bash
 
-if [ $(pidof | pgrep fzf) ]; then
-    i3-msg '[class="Termite" title="search"] kill'
-    exit
-fi
 
 # ag file search
 stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore -fli --hidden -g "" ~ /etc 2>/dev/null | sed -e 's/^/file:\t/')
 # man page search
 stack+=$(/usr/bin/man -k "" | awk '{print $1,$2}' | sed -e 's/^/man:\t/')
 # pacman listing
-stack+=$(pacman -Sl | sed -e 's/^/pkg:\t/' -e 's/\ /\ \/ \ /g')
+stack+=$(pacman -Sl | awk '{print $1,$2,$4}' | sed -e 's/^/pkg:\t/' -e 's/\ /\ \/ \ /g')
+stack+=$(pacman -Qqm | sed -e 's/^/pkg:\t\ aur\ \/\ /' -e 's/$/\ \/\ \[installed\]/')
 # process search
 stack+=$(ps -eo "%p : %U %c %a" | sed -e 's/^/proc:\t/')
 
-#TODO:
-#alt-o:execute(fuzzylaunch {})?
 
 # will probably choke on a file / folder with a space in it!
 selection=$(fzf -m --select-1 --exit-0 <<< "$stack" --bind "alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
@@ -23,47 +18,58 @@ selection=(${selection//\r\n/ })
 
 launch () {
     hide=true
+    targets=(${2//;/ })
 
     case $1 in
         "file")
-            ftype=$(file $2 --mime-type | awk '{print $2}')
+            for file in ${targets[@]}
+            do
+                ftype=$(file $file --mime-type | awk '{print $file}')
 
-            case $ftype in
-                *"image"*)
-                    i3-msg exec feh $2 > /dev/null
-                    ;;
-                *"text"* | *"empty"* | *"javascript"*)
-                    nvim "hide e $2"
-                    ;;
-                *"pdf"*)
-                    zathura --fork $2
-                    ;;
-                *"video"*)
-                    i3-msg exec mplayer $2 > /dev/null
-                    ;;
-                *"symlink"*)
-                    target=$(readlink $2)
-                    launch $1 $target
-                    ;;
-            esac
+                case $ftype in
+                    *"image"*)
+                        i3-msg exec feh $file > /dev/null
+                        ;;
+                    *"text"* | *"empty"* | *"javascript"*)
+                        nvim "hide e $file"
+                        ;;
+                    *"pdf"*)
+                        zathura --fork $file
+                        ;;
+                    *"video"*)
+                        i3-msg exec mplayer $file > /dev/null
+                        ;;
+                    *"symlink"*)
+                        target=$(readlink $file)
+                        launch $1 $target
+                        ;;
+                esac
+            done
             ;;
         "man")
-            nvim "Man $2"
+            for man in ${targets[@]}
+            do
+                nvim "Man $man"
+            done
             ;;
         "proc")
-            echo $2
-            if [ "x$2" != "x" ]
-            then
-                kill $2
-            fi
+            for proc in ${targets[@]}
+            do
+                if [ "x$proc" != "x" ]
+                then
+                    kill $proc
+                fi
+            done
             ;;
         "pkg")
-            pkg=(${2//\// })
+            toremove=($(grep -oP '([^|;|\/]*?)+.(?=\/\[installed\];)' <<< $2))
+            toinstall=($(grep -oP '\/([^|\/|;]+)\/(?!\[installed\])' <<< $2 | sed -e 's/\///g'))
             hide=false
-            if [ "${pkg[3]}" == "[installed]" ]; then
-                sudo pacman -Rns ${pkg[1]}
-            else
-                sudo pacman -S ${pkg[1]}
+            if [[ ${#toremove[@]} -gt 0 ]]; then
+                sudo pacman -Rns ${toremove[@]}
+            fi
+            if [[ ${#toinstall[@]} -gt 0 ]]; then
+                sudo pacman -S ${toinstall[@]}
             fi
             ;;
     esac
@@ -73,11 +79,17 @@ if [ $hide ]; then
     i3-msg '[class="Termite" title="search"] scratchpad show'
 fi
 
+declare -A collection
 for sel in "${selection[@]}"
 do
     sel=(${sel//:/ })
-    target=${sel[1]}
-    launch ${sel[0]} $target
+    #launch ${sel[0]} ${sel[1]}
+    collection[${sel[0]}]+="${sel[1]};"
+done
+
+for class in ${!collection[@]}
+do
+    launch $class ${collection[$class]}
 done
 
 i3-msg '[class="Termite" title="search"] kill'
