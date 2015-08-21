@@ -14,6 +14,9 @@ set! browser.startup.homepage='https://duckduckgo.com'
 set! browser.search.defaultenginename='DuckDuckGo'
 set! services.sync.prefs.signon.rememberSignons=false
 set! signon.rememberSignons=false
+set! network.http.pipelining=true
+set! network.http.proxy.pipelining=true
+set! privacy.trackingprotection.enabled=true
 
 loadplugins '\.(js|penta)$'
 group user
@@ -36,6 +39,7 @@ nmap            <A-y>               <yank-location>
 nmap            <C-p>               <S-Insert>
 nmap            u                   :back<CR>
 nmap            r                   :reload<CR>
+nmap            d                   <nop>
 nmap            <A-S-x>             :quit<CR>
 nmap            <A-x>               :bdelete<Space>
 nmap            <A-z>               :wqall<CR>
@@ -44,7 +48,7 @@ nmap            <A-,>               [[
 nmap            <Leader>b           :bmarks<CR>;
 nmap            <Leader>d           :downloads<CR>;
 nmap            <Leader>h           :history<CR>;
-nmap            <Leader>w           :bmark<CR>
+nmap            <Leader>w           <nop>
 
 cmap            jj                  <Esc><Esc>
 cmap            <A-Space>           <Esc><Esc>

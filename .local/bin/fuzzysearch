@@ -13,11 +13,10 @@ stack+=$(ps -eo "%p : %U %c %a" | sed -e 's/^/proc:\t/')
 
 
 # will probably choke on a file / folder with a space in it!
-selection=$(fzf -m --select-1 --exit-0 <<< "$stack" --bind "alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
+selection=$(fzf -m --select-1 --exit-0 <<< "$stack" --bind "alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle,alt-x:unix-line-discard" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
 selection=(${selection//\r\n/ })
 
 launch () {
-    hide=true
     targets=(${2//;/ })
 
     case $1 in
@@ -64,26 +63,28 @@ launch () {
         "pkg")
             toremove=($(grep -oP '([^|;|\/]*?)+.(?=\/\[installed\];)' <<< $2))
             toinstall=($(grep -oP '\/([^|\/|;]+)\/(?!\[installed\])' <<< $2 | sed -e 's/\///g'))
-            hide=false
+            cmd=""
             if [[ ${#toremove[@]} -gt 0 ]]; then
-                sudo pacman -Rns ${toremove[@]}
+                cmd+="sudo pacman -Rns ${toremove[@]};"
+                # pacman -Ql to ensure proper removal?
             fi
             if [[ ${#toinstall[@]} -gt 0 ]]; then
-                sudo pacman -S ${toinstall[@]}
+                cmd+="sudo pacman -S ${toinstall[@]};"
+            fi
+            if [[ "$cmd" != "" ]]; then
+                cmd+='read -p "Press any key to exit...";'
+                #consider dispatching to new window?
+                #termite --title=term -e "zsh -c \"$cmd\"" & disown
+                eval $cmd
             fi
             ;;
     esac
 }
 
-if [ $hide ]; then
-    i3-msg '[class="Termite" title="search"] scratchpad show'
-fi
-
 declare -A collection
 for sel in "${selection[@]}"
 do
     sel=(${sel//:/ })
-    #launch ${sel[0]} ${sel[1]}
     collection[${sel[0]}]+="${sel[1]};"
 done
 
@@ -91,5 +92,3 @@ for class in ${!collection[@]}
 do
     launch $class ${collection[$class]}
 done
-
-i3-msg '[class="Termite" title="search"] kill'

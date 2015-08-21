@@ -18,12 +18,13 @@
 /.config/*
 
 !/.config/ag
+!/.config/bspwm
 !/.config/cower
 !/.config/fontconfig
 !/.config/git
-!/.config/i3
 !/.config/mutt
 !/.config/offlineimap
+!/.config/sxhkd
 !/.config/termite
 !/.config/user-dirs.dir
 !/.config/x11

@@ -17,6 +17,7 @@ dwarffortress
 e2fsprogs
 fakeroot
 feh
+figlet
 file
 filesystem
 findutils
@@ -35,7 +36,6 @@ gptfdisk
 grep
 groff
 gzip
-i3-wm
 i3lock
 inetutils
 iproute2

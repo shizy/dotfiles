@@ -26,8 +26,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # keybinds
-#bindkey "\eh" backward-char
-#bindkey "\el" forward-char
 bindkey "^?" backward-delete-char
 
 bindkey -M vicmd "\eh" backward-word

@@ -30,7 +30,7 @@ bar {
 # ========== COLORS ==========
 
 hide_edge_borders horizontal
-client.focused				#000000 #000000 #66D9EF
+client.focused				#000000 #F1FAEE #000000
 client.unfocused			#000000 #000000 #333333
 client.focused_inactive		#000000 #000000 #888888
 client.urgent				#000000 #000000 #FD971F
@@ -39,12 +39,11 @@ client.urgent				#000000 #000000 #FD971F
 
 for_window [class="Termite"] border none
 for_window [class="Firefox"] border none
-for_window [class="URxvt"] border none
 for_window [class="MPlayer"] border none
 for_window [class="Zathura"] border none
 for_window [title="connman"] border none, floating enable
-for_window [class="Termite" title="mutt"] focus
-for_window [class="Termite" title="vim"] border none
+for_window [class="Termite" title="mutt"] border none, focus
+#for_window [class="Termite" title="vim"] border none
 for_window [class="feh"] floating enable, border none
 for_window [class="xfreerdp"] border none
 for_window [class="Termite" title="irc"] floating enable, floating disable #termite/weechat quirk

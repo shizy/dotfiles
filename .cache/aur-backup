@@ -1,3 +1,4 @@
+bspwm-git
 cargo-bin
 compton
 connman-ncurses-git
@@ -7,7 +8,6 @@ freerdp-git
 fzf
 girara-git
 i3lock-wrapper
-i3status-git
 libtermkey-bzr
 libudev.so.0
 libvterm-bzr
@@ -21,12 +21,14 @@ python-neovim
 python2-neovim
 python2-trollius
 silver-searcher-git
+sxhkd-git
 termite-git
 texlive-local-dirtree
 texlive-localmanager-git
 ttf-font-awesome
 ttf-mplus
 xor
+xtitle-git
 xxd
 zathura-git
 zathura-pdf-mupdf-git

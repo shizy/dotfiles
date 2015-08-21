@@ -1,0 +1,111 @@
+{Super_L,@Super_L}
+    scratchpad jeeves {show,hide} jeeves
+
+super + {Shift_L,@Shift_L,Control_L,@Control_L,Alt_L,@Alt_L}
+    scratchpad jeeves {hide,show,hide,show,hide,show}
+
+# Navigation
+
+super + {h,j,k,l}
+    scratchpad jeeves hide; \
+	bspc window -f {left,down,up,right}; \
+    bspc desktop -c;
+
+super + shift + {h,l}
+    scratchpad jeeves hide; \
+	bspc desktop -f {prev,next}.occupied
+
+super + {comma,period}
+    scratchpad jeeves hide; \
+	bspc desktop -f {prev,next}.urgent; \
+    bspc window -f {prev,next}.urgent;
+
+super + shift + {1-9,0}
+    scratchpad jeeves hide; \
+	bspc window -d ^{1-9,10}
+
+super + {1-9,0}
+    bspc desktop -f ^{1-9,10}
+
+super + Tab
+	bspc desktop -f last
+
+# Window Control
+
+super + ctrl + {1-9}
+	bspc window -r 0.{1-9}
+
+super + ctrl + {h,j,k,l}
+	bspc window -p {left,down,up,right}
+
+super + {h,j,k,l}
+	bspc window -s {left,down,up,right}
+
+super + {Left,Down,Up,Right}
+	bspc window -e {left -10,up -10,up +10,left +10}
+
+super + space
+    scratchpad jeeves hide; \
+    bspc window -t floating;
+
+super + Return
+    scratchpad jeeves hide; \
+    bspc window -t fullscreen;
+
+super + shift + x
+    bspc window -k
+
+# Scratchpads & Search
+
+{ctrl,super,ctrl + super} + grave
+    scratchpad {top,bottom,left}
+
+super + slash
+    scratchpad search fuzzysearch
+
+# Peripherals
+
+super + {F4, F8}
+    {extend_display,lockscreen}
+
+super + {F9, F10}
+    {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
+
+{_, super} + XF86Audio{LowerVolume,RaiseVolume,Mute}
+    amixer -q set Master {5-,5+,toggle,5-,5+,toggle}
+
+super + insert
+    scrot $HOME/downloads/%Y-%m-%T-screenshot.png
+
+# Shortcuts
+super + i
+    termite --title=irc -e "weechat-curses -d $XDG_CONFIG_HOME/weechat"
+
+super + v
+    nvim
+
+super + m
+    termite --title=mutt -e "mutt -F $XDG_CONFIG_HOME/mutt/muttrc"
+
+super + w
+    wallpaper
+
+super + n
+    termite --title=connman -e "connman-ncurses"
+
+super + t
+	termite --title=term
+
+super + f
+    firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
+
+super + Escape
+    i3lock-wrapper
+
+# Utility
+
+#super + shift + r
+#	pkill -USR1 -x sxhkd
+
+super + shift + q
+	bspc quit

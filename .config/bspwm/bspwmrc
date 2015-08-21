@@ -1,0 +1,34 @@
+#! /bin/sh
+
+# Config
+
+bspc config focused_border_color        "#F1FAEE"
+bspc config active_corder_color         "#383838"
+bscp config normal_border_color         "#383838"
+bspc config presel_border_color         "#E63946"
+bspc config urgent_border_color         "#E63946"
+bspc config focused_locked_border_color "#383838"
+
+bspc config border_width            2
+bspc config window_gap              12
+bspc config split_ratio             0.50
+
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bspc config leaf_monocle            true
+bspc config focus_by_distance       true
+
+bspc config external_rules_command  "$XDG_CONFIG_HOME/bspwm/rules.sh"
+#bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+
+# Autostart
+
+compton --opacity-rule '90:class_g = "Zathura"' &
+firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy &
+sh $XDG_CACHE_HOME/fehbg &
+lockscreen start &
+nvim &
+xdotool mousemove $(xrandr | grep -oP '(?<=current\ ).*?(?=,)' | awk '{print $1 " " $3}') &
+unclutter &
+xset r rate 200 25 &

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]
+[[ -z $DISPLAY && $XDG_VNTR -eq 1 ]]
 
 xrandr --dpi 113
-exec i3
+#exec i3
+sxhkd &
+exec bspwm
