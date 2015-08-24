@@ -154,6 +154,10 @@ let g:syntastic_check_on_wq = 0
 
 noremap             <A-j>           10j
 noremap             <A-k>           10k
+map                 <A-C-j>         <C-w>j
+map                 <A-C-k>         <C-w>k
+map                 <A-C-h>         <C-w>h
+map                 <A-C-l>         <C-w>l
 
 nnoremap            <A-l>           e
 nnoremap            <A-h>           b
@@ -162,11 +166,9 @@ nnoremap            <A-S-h>         ^
 nnoremap            <A-S-j>         G
 nnoremap            <A-S-k>         gg
 nnoremap            <A-b>           :b#<CR>
-nnoremap            <A-w>           <C-w>p
+nnoremap            <A-Tab>         <C-w>p
 nnoremap            <A-z>           :call Save()<CR>:qa<CR>
 nnoremap            <A-u>           <C-r>
-nnoremap            <A-Tab>         <C-w>w
-nnoremap            <A-S-Tab>       <C-w>W
 nnoremap            <A-Left>        :vertical resize -10<CR>
 nnoremap            <A-Right>       :vertical resize +10<CR>
 nnoremap            <A-Up>          :resize -10<CR>
@@ -209,8 +211,10 @@ cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>
 
-tnoremap            <A-Tab>         <C-\><C-n><C-w>w
-tnoremap            <A-S-Tab>       <C-\><C-n><C-w>W
+tmap                <A-C-j>         <C-\><C-n><C-w>j
+tmap                <A-C-k>         <C-\><C-n><C-w>k
+tmap                <A-C-h>         <C-\><C-n><C-w>h
+tmap                <A-C-l>         <C-\><C-n><C-w>l
 
 vnoremap            <Leader><Space> zf
 vmap                <Leader>/       <Esc>:'<,'>s/

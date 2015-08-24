@@ -6,12 +6,12 @@ super + {Shift_L,@Shift_L,Control_L,@Control_L,Alt_L,@Alt_L}
 
 # Navigation
 
-super + {h,j,k,l}
+super + ctrl + {h,j,k,l}
     scratchpad jeeves hide; \
 	bspc window -f {left,down,up,right}; \
     bspc desktop -c;
 
-super + shift + {h,l}
+super + {h,l}
 	bspc desktop -f {prev,next}.occupied
 
 super + {comma,period}
@@ -34,10 +34,10 @@ super + Tab
 super + ctrl + {1-9}
 	bspc window -r 0.{1-9}
 
-super + ctrl + {h,j,k,l}
+super + ctrl + shift + {h,j,k,l}
 	bspc window -p {left,down,up,right}
 
-super + {h,j,k,l}
+super + shift + {h,j,k,l}
 	bspc window -s {left,down,up,right}
 
 super + {Left,Down,Up,Right}
