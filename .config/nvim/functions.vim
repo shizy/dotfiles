@@ -3,11 +3,10 @@ let s:latex_preview_line = 0
 
 function! LatexMake()
     silent ! latexmk -silent -pdflatex='pdflatex -synctex=1' -pdf -outdir=$HOME/docs '%:p'
-    "update
 endfunction
 
 function! LatexResetFocus()
-    silent ! i3-msg '[class="Termite" title="vim"] focus'
+    silent ! xdotool search --name vim windowactivate
     redraw!
 endfunction
 
@@ -22,14 +21,16 @@ endfunction
 function! LatexShowPreview()
     call LatexStartPreview()
     call ZoomIn()
-    call system("i3-msg '[class=\"Zathura\" title=\"" . expand('%:t:r') . "\"] scratchpad show, floating disable'")
+    call system("xdotool search --name " . expand('%:t:r') . " windowmap")
     let t:latex_preview = 1
     call LatexResetFocus()
 endfunction
 
 function! LatexHidePreview()
-    silent ! i3-msg '[class="Zathura"] move scratchpad'
-    unlet t:latex_preview
+    call system("xdotool search --onlyvisible --name " . expand('%:t:r') . " windowunmap")
+    if exists('t:latex_preview')
+        unlet t:latex_preview
+    endif
     call ZoomOut()
     " windows dont equalize!
 endfunction
@@ -49,8 +50,13 @@ function! LatexStartPreview()
 endfunction
 
 function! LatexStopPreview()
-    let x = LatexFindPreview(expand('%:t:r'))
-    execute "silent ! kill " . x
+    if exists('t:latex_preview')
+        let x = LatexFindPreview(expand('%:t:r'))
+        execute "silent ! kill " . x
+        unlet t:latex_preview
+    else
+        exe "norm! 5\ZZ"
+    endif
 endfunction
 
 function! LatexUpdatePreview()
@@ -61,6 +67,19 @@ function! LatexUpdatePreview()
         endif
     endif
 endfunction
+
+au BufWinLeave *.tex :call LatexHidePreview()
+au CursorMoved *.tex :call LatexUpdatePreview()
+au BufNewFile,BufRead,BufWinEnter *.tex
+    \ setlocal spell |
+    \ setlocal spelllang=en_us |
+    \ setlocal nocin inde= |
+    \ set syntax=tex |
+    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR> |
+    \ nnoremap <buffer> <A-o>     :call LatexTogglePreview()<CR> |
+    \ nnoremap <buffer> <A-.>      ]s |
+    \ nnoremap <buffer> <A-,>      [s |
+    \ nnoremap <buffer> <A-q>     :call LatexStopPreview()<CR>
 
 " Zoom
 function! Zoom()
@@ -73,7 +92,9 @@ endfunction
 
 function! ZoomOut()
     exe "norm! 5\<C-w>="
-    unlet t:zoomed_window
+    if exists('t:zoomed_window')
+        unlet t:zoomed_window
+    endif
 endfunction
 
 function! ZoomIn()

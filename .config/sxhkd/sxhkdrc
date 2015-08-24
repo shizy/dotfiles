@@ -24,6 +24,7 @@ super + shift + {1-9,0}
 	bspc window -d ^{1-9,10}
 
 super + {1-9,0}
+    scratchpad jeeves hide; \
     bspc desktop -f ^{1-9,10}
 
 super + Tab
