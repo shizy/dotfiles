@@ -12,7 +12,6 @@ super + {h,j,k,l}
     bspc desktop -c;
 
 super + shift + {h,l}
-    scratchpad jeeves hide; \
 	bspc desktop -f {prev,next}.occupied
 
 super + {comma,period}
@@ -72,7 +71,7 @@ super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
 
 {_, super} + XF86Audio{LowerVolume,RaiseVolume,Mute}
-    amixer -q set Master {5-,5+,toggle,5-,5+,toggle}
+    amixer -q set Master {5-,5-,5+,5+,toggle,toggle}
 
 super + insert
     scrot $HOME/downloads/%Y-%m-%T-screenshot.png
@@ -101,6 +100,9 @@ super + f
 
 super + Escape
     i3lock-wrapper
+
+super + semicolon
+    dmenu_run -nb '#F1FAEE' -nf '#383838' -sf '#E63946' -sb '#383838' -b -fn 'M+ 1n-9'
 
 # Utility
 

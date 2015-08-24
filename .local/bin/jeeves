@@ -1,7 +1,13 @@
 #!/bin/bash
 
+if [ $(pgrep -c jeeves) -gt 1 ]; then
+    exit
+fi
+
 #TODO:
 # get font height to calculate rows
+# move to screen coords
+
 
 icons=("" "" "" "IV" "V" "VI" "VII" "VIII" "" "")
 urg=$(tput setaf 200)
@@ -97,5 +103,8 @@ update () {
 
 tput civis
 bspc control --subscribe | while read -r line; do update $line; done &
-while :; do sleep 5; update; done
+while :; do
+    [ "$(xdotool search --onlyvisible --name jeeves)" ] && update;
+    sleep 5;
+done
 wait

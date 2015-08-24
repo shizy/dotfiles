@@ -30,7 +30,6 @@
 !/.config/x11
 !/.config/zathura
 !/.config/zsh
-!/.config/i3
 
 # GPG
 !/.config/gnupg

@@ -24,6 +24,7 @@ findutils
 firefox
 flex
 foremost
+freerdp
 gawk
 gcc
 gettext
@@ -41,7 +42,6 @@ inetutils
 iproute2
 iputils
 iw
-ix
 jfsutils
 less
 libtool

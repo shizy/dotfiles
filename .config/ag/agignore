@@ -5,7 +5,7 @@
 .git*
 .cache/
 local/share/
-builds/
+local/src/
 
 ca-certificates/
 fonts/

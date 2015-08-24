@@ -62,7 +62,7 @@ create () {
         config=$XDG_CONFIG_HOME/termite/config.nav ||
         config=$XDG_CONFIG_HOME/termite/config.light
 
-    termite -c $config  --geometry ${w}x${h} --title=$1 $cmd &
+    termite -c $config --geometry ${w}x${h} --title=$1 $cmd &
     until [ $(xdotool search --name $1) ]; do :
     done
     xdotool search --name $1 windowmove $x $y
