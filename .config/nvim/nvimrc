@@ -64,7 +64,6 @@ Plug 'moll/vim-bbye'
 " Looks
 Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
-"Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 
 " Interaction

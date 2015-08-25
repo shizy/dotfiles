@@ -11,7 +11,6 @@ stack+=$(pacman -Qqm | sed -e 's/^/pkg:\t\ aur\ \/\ /' -e 's/$/\ \/\ \[installed
 # process search
 stack+=$(ps -eo "%p : %U %c %a" | sed -e 's/^/proc:\t/')
 
-
 # will probably choke on a file / folder with a space in it!
 selection=$(fzf -m --select-1 --exit-0 <<< "$stack" --bind "alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle,alt-x:unix-line-discard" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
 selection=(${selection//\r\n/ })

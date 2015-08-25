@@ -1,13 +1,15 @@
 {Super_L,@Super_L}
     scratchpad jeeves {show,hide} jeeves
 
-super + {Shift_L,@Shift_L,Control_L,@Control_L,Alt_L,@Alt_L}
-    scratchpad jeeves {hide,show,hide,show,hide,show}
+super + {Shift_L,Control_L,Alt_L}
+    scratchpad jeeves hide
+
+super + {@Shift_L,@Control_L,@Alt_L}
+    scratchpad jeeves show
 
 # Navigation
 
 super + ctrl + {h,j,k,l}
-    scratchpad jeeves hide; \
 	bspc window -f {left,down,up,right}; \
     bspc desktop -c;
 
@@ -20,15 +22,13 @@ super + {comma,period}
     bspc window -f {prev,next}.urgent;
 
 super + shift + {1-9,0}
-    scratchpad jeeves hide; \
 	bspc window -d ^{1-9,10}
 
 super + {1-9,0}
-    scratchpad jeeves hide; \
     bspc desktop -f ^{1-9,10}
 
 super + Tab
-	bspc desktop -f last
+	bspc monitor -f last || bspc desktop -f last
 
 # Window Control
 
@@ -107,8 +107,8 @@ super + semicolon
 
 # Utility
 
-#super + shift + r
-#	pkill -USR1 -x sxhkd
+ctrl + shift + r
+	pkill -USR1 -x sxhkd
 
 super + shift + q
 	bspc quit

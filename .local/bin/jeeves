@@ -9,7 +9,7 @@ fi
 # move to screen coords
 
 
-icons=("" "" "" "IV" "V" "VI" "VII" "VIII" "" "")
+icons=(" " " " " " "IV" "V" "VI" "VII" "VIII" " " " ")
 urg=$(tput setaf 200)
 occ=$(tput setaf 203)
 cur=$(tput setaf 202)
@@ -58,23 +58,40 @@ update () {
     vpn=""
     unlocked=""
 
-    desktops=($(sed -e 's/:/\ /g' <<< "$wm_status"))
-    len=$((${#desktops[@]}-2))
+    #desktops=($(sed -e 's/:/\ /g' <<< "$wm_status"))
+    desktops=($(grep -oP '(?<=\:)..(?=\:)' <<< "$wm_status"))
+    #len=$((${#desktops[@]}-2))
     desktop_status=""
-    prev_desktop=$(bspc query -D -d prev)
-    for desktop in ${desktops[@]:1:$len}
-    do
-        stat=${desktop:0:1}
-        dtop=${desktop:1:1}-1
+    dtop=1
+    cur_desktop=$(bspc query -D -d)
+    monitors=$(bspc query -M | wc -l)
 
-        case $stat in
-            o) desktop_status+="  ${occ}${icons[$dtop]}${res}  ";;
-            O) desktop_status+="  ${cur}${icons[$dtop]}${res}  ";;
-            u)
-                desktop_status+="  ${urg}${icons[$dtop]}${res}  "
+    #[ $(bspc query -M | wc -l) -gt 1 ] &&
+        #cur_monitor="." ||
+        #cur_monitor=" "
+
+    for desktop in ${desktops[@]}
+    do
+        #stat=${desktop:0:1}
+        #dtop=${desktop:1:1}-1
+
+        [ $dtop -eq $cur_desktop ] && [ $monitors -gt 1 ] &&
+            icon="${icons[$(($dtop - 1))]}" ||
+            icon=" ${icons[$(($dtop -1 ))]} "
+
+        case $desktop in
+            "o"*) desktop_status+=" ${occ}$icon${res} ";;
+            "O"*) desktop_status+=" ${cur}$icon${res} ";;
+            "u"*)
+                desktop_status+=" ${urg}$icon${res} "
                 urgent+=$dtop
                 ;;
+            "LT")
+                desktop_status+="\t"
+                dtop=$(($dtop - 1))
         esac
+
+        dtop=$(($dtop + 1))
     done
 
     if [ "$urgent" != "$last_urgent" ] && [ "$urgent" != "" ]; then
@@ -104,7 +121,7 @@ update () {
 tput civis
 bspc control --subscribe | while read -r line; do update $line; done &
 while :; do
-    [ "$(xdotool search --onlyvisible --name jeeves)" ] && update;
-    sleep 5;
+    [ "$(xdotool search --onlyvisible --name jeeves)" ] && update
+    sleep 2;
 done
 wait
