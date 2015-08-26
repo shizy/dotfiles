@@ -18,6 +18,7 @@ bold=$(tput bold)
 bkg=$(tput setab 203)
 cols=$(tput cols)
 horiz=$(for i in $(seq 1 $cols); do printf "%.0s"; done; echo "")
+last_focused=""
 last_urgent=""
 
 update () {
@@ -45,12 +46,12 @@ update () {
         vol_level="\t(Mute)" ||
         vol_level="\t($(amixer get -M Master | grep -oP '(?<=\[).*?(?=\%\])')%)"
 
-    eth=$(connmanctl services | grep -oP '(?<=A.\ ).*?(?=\ *?ethernet)')
+    eth=$(connmanctl services | grep -oP '(?<=AR\ ).*?(?=\ *?ethernet)')
     [ "$eth" == "Wired" ] &&
         eth_speed="\t($eth)" ||
         eth_speed=""
 
-    wifi=$(connmanctl services | grep -oP '(?<=A.\ ).*?(?=\ *?wifi)')
+    wifi=$(connmanctl services | grep -oP '(?<=AO\ ).*?(?=\ *?wifi)')
     [ "$wifi" != "" ] &&
         wifi_ssid="\t($wifi)" ||
         wifi_ssid=""
@@ -58,22 +59,14 @@ update () {
     vpn=""
     unlocked=""
 
-    #desktops=($(sed -e 's/:/\ /g' <<< "$wm_status"))
     desktops=($(grep -oP '(?<=\:)..(?=\:)' <<< "$wm_status"))
-    #len=$((${#desktops[@]}-2))
     desktop_status=""
     dtop=1
     cur_desktop=$(bspc query -D -d)
     monitors=$(bspc query -M | wc -l)
 
-    #[ $(bspc query -M | wc -l) -gt 1 ] &&
-        #cur_monitor="." ||
-        #cur_monitor=" "
-
     for desktop in ${desktops[@]}
     do
-        #stat=${desktop:0:1}
-        #dtop=${desktop:1:1}-1
 
         [ $dtop -eq $cur_desktop ] && [ $monitors -gt 1 ] &&
             icon="${icons[$(($dtop - 1))]}" ||
@@ -81,12 +74,12 @@ update () {
 
         case $desktop in
             "o"*) desktop_status+=" ${occ}$icon${res} ";;
-            "O"*) desktop_status+=" ${cur}$icon${res} ";;
+            "O"*|"F"*) desktop_status+=" ${cur}$icon${res} ";;
             "u"*)
                 desktop_status+=" ${urg}$icon${res} "
                 urgent+=$dtop
                 ;;
-            "LT")
+            "L"*)
                 desktop_status+="\t"
                 dtop=$(($dtop - 1))
         esac
@@ -116,9 +109,11 @@ update () {
     clear
     echo -en "$(sed -e 's/\\n$//g' <<< "$output")"
     xdotool search --name jeeves windowsize 400 $(($rows * 15))
+
 }
 
 tput civis
+xdotool search --name jeeves set_window --overrideredirect 1
 bspc control --subscribe | while read -r line; do update $line; done &
 while :; do
     [ "$(xdotool search --onlyvisible --name jeeves)" ] && update

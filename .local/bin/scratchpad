@@ -10,6 +10,7 @@ hide () {
 
 create () {
 
+    config=$XDG_CONFIG_HOME/termite/config.light
     res=$(bspc query -T -m | head -n 1 | awk '{print $2}')
     res=(${res//[x|\+]/ })
     w_top=$((1 + ${res[3]}))
@@ -55,12 +56,9 @@ create () {
             y=100
             h=400
             w=400
+            config=$XDG_CONFIG_HOME/termite/config.nav
             ;;
     esac
-
-    [ "$1" == "jeeves" ] &&
-        config=$XDG_CONFIG_HOME/termite/config.nav ||
-        config=$XDG_CONFIG_HOME/termite/config.light
 
     termite -c $config --geometry ${w}x${h} --title=$1 $cmd &
     until [ $(xdotool search --name $1) ]; do :
@@ -74,6 +72,4 @@ case $2 in
     *) hide $1 || show $1 || create $1 $2;;
 esac
 
-if [ "$1" != "jeeves" ]; then
-    bspc window $(printf "0x%x\n" $(xdotool search --name $1) | head -n 1) -d focused -f
-fi
+bspc window $(printf "0x%x\n" $(xdotool search --name $1) | head -n 1) -d focused -f
