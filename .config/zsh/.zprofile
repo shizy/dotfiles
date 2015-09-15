@@ -4,7 +4,6 @@ export PRIVATE=$HOME/.private
 export PAGER=less
 export EDITOR=nvim
 export BROWSER=firefox
-export TERM=xterm-termite
 
 # XDG
 export XDG_CACHE_HOME=$HOME/.cache
@@ -24,6 +23,9 @@ export GIT_SSH=$HOME/.local/bin/ssh
 
 # gnupg
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+
+# go
+export GOPATH=$HOME/dev/go
 
 # gimp
 export GIMP2_DIRECTORY=$XDG_CONFIG_HOME/gimp

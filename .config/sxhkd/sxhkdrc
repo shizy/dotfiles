@@ -34,8 +34,17 @@ super + ctrl + shift + {h,j,k,l}
 super + shift + {h,j,k,l}
 	bspc window -s {left,down,up,right}
 
-super + {Left,Down,Up,Right}
-	bspc window -e {left -10,up -10,up +10,left +10}
+super + Right
+    bspc window -e right +10 || bspc window -e left +10
+
+super + Left
+    bspc window -e left -10 || bspc window -e right -10
+
+super + Up
+    bspc window -e up -10 || bspc window -e down -10
+
+super + Down
+    bspc window -e down +10 || bspc window -e up +10
 
 super + space
     bspc window -t floating;

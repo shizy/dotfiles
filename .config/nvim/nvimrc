@@ -78,6 +78,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
 " Syntax & Highlighting
+Plug 'fatih/vim-go'
 Plug 'scrooloose/syntastic'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'

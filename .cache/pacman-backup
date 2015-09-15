@@ -33,6 +33,7 @@ gimp
 git
 glibc
 gnu-netcat
+go
 gptfdisk
 grep
 groff
@@ -57,10 +58,10 @@ make
 man-db
 man-pages
 mdadm
-minicom
 mplayer
 mtr
 nano
+net-tools
 netctl
 nethack
 nmap
@@ -81,6 +82,7 @@ pkg-config
 pkgstats
 procps-ng
 psmisc
+putty
 python2-pip
 reiserfsprogs
 rng-tools

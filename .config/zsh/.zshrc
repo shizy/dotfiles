@@ -9,7 +9,7 @@ CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
 typeset -U path
-path=($NPM_CONFIG_PREFIX/bin $path)
+path=($NPM_CONFIG_PREFIX/bin $HOME/dev/go/bin $path)
 
 # default start dir
 cd ~
@@ -44,7 +44,6 @@ alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
-alias serial="sudo minicom -D /dev/ttyUSB0"
 alias firefox="firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy"
 
 man () { nvim "Man $1" }

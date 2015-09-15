@@ -18,7 +18,6 @@ bold=$(tput bold)
 bkg=$(tput setab 203)
 cols=$(tput cols)
 horiz=$(for i in $(seq 1 $cols); do printf "%.0s"; done; echo "")
-last_focused=""
 last_urgent=""
 
 update () {
