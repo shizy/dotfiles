@@ -107,7 +107,7 @@ update () {
     rows=$(($(grep -o '\n' <<< "$output" | wc -l) + 10))
     clear
     echo -en "$(sed -e 's/\\n$//g' <<< "$output")"
-    xdotool search --name jeeves windowsize 400 $(($rows * 15))
+    xdotool search --name jeeves windowsize 400 $(($rows * 16))
 
 }
 

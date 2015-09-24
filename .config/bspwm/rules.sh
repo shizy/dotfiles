@@ -31,5 +31,8 @@ if [ "$class" = Termite ]; then
         jeeves)
             echo "floating=on sticky=on locked=on"
             ;;
+        dispatch)
+            echo "desktop=^1"
+            ;;
     esac
 fi

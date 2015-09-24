@@ -12,6 +12,7 @@ libtermkey-bzr
 libudev.so.0
 libvterm-bzr
 mutt-sidebar
+ncurses5-compat-libs
 neovim-git
 netextender
 pentadactyl-git

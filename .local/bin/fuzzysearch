@@ -10,6 +10,8 @@ stack+=$(pacman -Sl | awk '{print $1,$2,$4}' | sed -e 's/^/pkg:\t/' -e 's/\ /\ \
 stack+=$(pacman -Qqm | sed -e 's/^/pkg:\t\ aur\ \/\ /' -e 's/$/\ \/\ \[installed\]/')
 # process search
 stack+=$(ps -eo "%p : %U %c %a" | sed -e 's/^/proc:\t/')
+# ssh locations
+stack+=$(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$' | sed -e 's/^/ssh:\t/')
 
 # will probably choke on a file / folder with a space in it!
 selection=$(fzf -m --select-1 --exit-0 <<< "$stack" --bind "alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle,alt-x:unix-line-discard" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
@@ -71,11 +73,17 @@ launch () {
                 cmd+="sudo pacman -S ${toinstall[@]};"
             fi
             if [[ "$cmd" != "" ]]; then
+                # press key to exit not working
                 cmd+='read -p "Press any key to exit...";'
-                #consider dispatching to new window?
-                #termite --title=term -e "zsh -c \"$cmd\"" & disown
-                eval $cmd
+                setsid termite --title=dispatch -e "zsh -c \"$cmd\"" &
             fi
+            ;;
+        "ssh")
+            for loc in ${targets[@]}
+            do
+                # get proper dispatch setup!
+                setsid termite --title=dispatch -e "zsh -c \"ssh $loc\"" &
+            done
             ;;
     esac
 }
@@ -91,3 +99,7 @@ for class in ${!collection[@]}
 do
     launch $class ${collection[$class]}
 done
+
+# cheap hack to ensure dipatched windows are created before exit
+scratchpad search hide
+sleep 1
