@@ -13,7 +13,6 @@ device-mapper
 dhcpcd
 dialog
 diffutils
-dwarffortress
 e2fsprogs
 fakeroot
 feh
@@ -45,6 +44,7 @@ iputils
 iw
 jfsutils
 less
+lib32-libdatrie
 libtool
 libutil-linux
 licenses

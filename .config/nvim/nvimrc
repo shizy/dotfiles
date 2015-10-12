@@ -160,12 +160,12 @@ map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 
-nnoremap            <A-l>           e
-nnoremap            <A-h>           b
-nnoremap            <A-S-l>         $
-nnoremap            <A-S-h>         ^
-nnoremap            <A-S-j>         G
-nnoremap            <A-S-k>         gg
+"nnoremap            <A-l>           e
+"nnoremap            <A-h>           b
+"nnoremap            <A-S-l>         $
+"nnoremap            <A-S-h>         ^
+"nnoremap            <A-S-j>         G
+"nnoremap            <A-S-k>         gg
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <A-Tab>         <C-w>p
 nnoremap            <A-z>           :call Save()<CR>:qa<CR>

@@ -49,6 +49,7 @@ nmap            <Leader>b           :bmarks<CR>;
 nmap            <Leader>d           :downloads<CR>;
 nmap            <Leader>h           :history<CR>;
 nmap            <Leader>w           <nop>
+nmap            <A-Tab>             :buffer #<CR>
 
 cmap            jj                  <Esc><Esc>
 cmap            <A-Space>           <Esc><Esc>

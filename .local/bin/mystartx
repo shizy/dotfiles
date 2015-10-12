@@ -3,8 +3,8 @@
 export DISPLAY=:"$XDG_VTNR"
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 
-if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
-    eval `dbus-launch --auto-syntax`
-fi
+#if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+#    eval `dbus-launch --auto-syntax`
+#fi
 
 exec xinit $1 -- "$DISPLAY" vt"$XDG_VTNR" -noreset -nolisten tcp -auth $XAUTHORITY
