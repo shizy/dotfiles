@@ -22,6 +22,7 @@
 !/.config/cower
 !/.config/fontconfig
 !/.config/git
+!/.config/mozilla
 !/.config/mutt
 !/.config/offlineimap
 !/.config/sxhkd

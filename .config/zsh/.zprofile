@@ -18,6 +18,9 @@ export BZR_LOG=/dev/null
 # cargo
 export CARGO_HOME=$XDG_CACHE_HOME/cargo
 
+#firefox
+export XRE_IMPORT_PROFILES=1
+
 # git
 export GIT_SSH=$HOME/.local/bin/ssh
 
