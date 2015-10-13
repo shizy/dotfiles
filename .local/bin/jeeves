@@ -74,7 +74,7 @@ update () {
         case $desktop in
             "o"*) desktop_status+=" ${occ}$icon${res} ";;
             "O"*|"F"*) desktop_status+=" ${cur}$icon${res} ";;
-            "u"*)
+            "u"*|"U"*)
                 desktop_status+=" ${urg}$icon${res} "
                 urgent+=$dtop
                 ;;
@@ -105,10 +105,10 @@ update () {
     [ -e /tmp/xautolock-disable ] && output+="  $unlocked\n"
 
     rows=$(($(grep -o '\n' <<< "$output" | wc -l) + 10))
+    output=$(sed -e 's/\\n$//g' <<< "$output")
     clear
-    echo -en "$(sed -e 's/\\n$//g' <<< "$output")"
-    xdotool search --name jeeves windowsize 400 $(($rows * 16))
-
+    echo -en "$output"
+    xdotool search --name jeeves windowsize 400 $(($rows * 14))
 }
 
 tput civis

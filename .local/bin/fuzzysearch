@@ -73,8 +73,7 @@ launch () {
                 cmd+="sudo pacman -S ${toinstall[@]};"
             fi
             if [[ "$cmd" != "" ]]; then
-                # press key to exit not working
-                cmd+='read -p "Press any key to exit...";'
+                cmd+="read REPLY;"
                 setsid termite --title=dispatch -e "zsh -c \"$cmd\"" &
             fi
             ;;

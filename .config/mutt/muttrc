@@ -44,12 +44,12 @@ set index_format = '%Z  %{%b %d}  %-30.30L  -  %s'
 set menu_scroll
 
 # Side-bar
-set sidebar_format    = '  %B %> %N  '
+#set sidebar_format    = '  %B %> %N  '
 set sidebar_visible   = yes
 set sidebar_width     = 32
 set sidebar_sort      = yes
 set sidebar_delim     = '  '
-set sidebar_shortpath = yes
+#set sidebar_shortpath = yes
 
 # General
 auto_view text/x-vcard text/html text/enriched

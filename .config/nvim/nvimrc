@@ -101,12 +101,10 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_detect_crypt = 0
-"let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'shizy'
 let g:airline_symbols.whitespace = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-"let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -160,12 +158,6 @@ map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 
-"nnoremap            <A-l>           e
-"nnoremap            <A-h>           b
-"nnoremap            <A-S-l>         $
-"nnoremap            <A-S-h>         ^
-"nnoremap            <A-S-j>         G
-"nnoremap            <A-S-k>         gg
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <A-Tab>         <C-w>p
 nnoremap            <A-z>           :call Save()<CR>:qa<CR>
