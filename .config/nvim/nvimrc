@@ -110,27 +110,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#whitespace#trailing_format = '  %s'
 
-" Sessions
-function! Save()
-    if empty(glob('$XDG_CACHE_HOME/nvim'))
-        silent ! mkdir $XDG_CACHE_HOME/nvim > /dev/null
-    endif
-    :mks! $XDG_CACHE_HOME/nvim/session.vim
-    :w
-endfunction
-
-" Window Zoom
-function! Zoom()
-    if exists('t:zoomed_window')
-        exe "norm! 5\<C-w>="
-        unlet t:zoomed_window
-    else
-        :vertical res
-        :res
-        let t:zoomed_window = 1
-    endif
-endfunction
-
 " Multi Cursor
 let g:multi_cursor_next_key = '<S-s>'
 let g:multi_cursor_skip_key = 's'

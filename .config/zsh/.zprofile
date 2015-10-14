@@ -1,6 +1,5 @@
 
-export PRIVATE=$HOME/.private
-
+export PRIVATE=$HOME/.local/private
 export PAGER=less
 export EDITOR=nvim
 export BROWSER=firefox

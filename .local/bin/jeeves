@@ -55,6 +55,11 @@ update () {
         wifi_ssid="\t($wifi)" ||
         wifi_ssid=""
 
+    caps=$(xset -q | grep -oP '(?<=Caps\ Lock\:).*?(?=0)' | sed -e 's/ //g')
+    [ "$caps" == "on" ] &&
+        caps="" ||
+        caps=""
+
     vpn=""
     unlocked=""
 
@@ -103,6 +108,7 @@ update () {
     [ "$eth" == "Wired" ] && output+="  $eth_speed\n"
     [ -e /tmp/vpn ] && output+="  $vpn\n"
     [ -e /tmp/xautolock-disable ] && output+="  $unlocked\n"
+    [ "$caps" != "" ] && output+="  $caps\n"
 
     rows=$(($(grep -o '\n' <<< "$output" | wc -l) + 10))
     output=$(sed -e 's/\\n$//g' <<< "$output")
