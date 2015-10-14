@@ -50,10 +50,15 @@ nmap            <Leader>d           :downloads<CR>;
 nmap            <Leader>h           :history<CR>;
 nmap            <Leader>w           <nop>
 nmap            <A-Tab>             :buffer #<CR>
+nmap            <A-s>               :saveas<space>
 
 cmap            jj                  <Esc><Esc>
 cmap            <A-Space>           <Esc><Esc>
 cmap            jk                  <CR>
+cmap            <A-j>               <Tab>
+cmap            <A-k>               <S-Tab>
+cmap            <A-h>               <Left>
+cmap            <A-l>               <Right>
 
 source $XDG_CONFIG_HOME/pentadactyl/chrome.css
 
