@@ -9,6 +9,9 @@ fi
 # move to screen coords
 
 
+WIFI="wlo1"
+CAT5="enp0s25"
+
 icons=(" " " " " " "IV" "V" "VI" "VII" "VIII" " " " ")
 urg=$(tput setaf 200)
 occ=$(tput setaf 203)
@@ -45,15 +48,25 @@ update () {
         vol_level="\t(Mute)" ||
         vol_level="\t($(amixer get -M Master | grep -oP '(?<=\[).*?(?=\%\])')%)"
 
-    eth=$(connmanctl services | grep -oP '(?<=AR\ ).*?(?=\ *?ethernet)')
-    [ "$eth" == "Wired" ] &&
-        eth_speed="\t($eth)" ||
-        eth_speed=""
+    eth=$(ip link | grep 'state UP' | grep $CAT5)
+    [ "$eth" != "" ] &&
+        eth_icon="" ||
+        eth_icon=""
 
-    wifi=$(connmanctl services | grep -oP '(?<=AO\ ).*?(?=\ *?wifi)')
+    wifi=$(ip link | grep 'state UP' | grep $WIFI)
     [ "$wifi" != "" ] &&
-        wifi_ssid="\t($wifi)" ||
+        wifi_ssid="" ||
         wifi_ssid=""
+
+    #eth=$(connmanctl services | grep -oP '(?<=AR\ ).*?(?=\ *?ethernet)')
+    #[ "$eth" == "Wired" ] &&
+    #    eth_speed="\t($eth)" ||
+    #    eth_speed=""
+
+    #wifi=$(connmanctl services | grep -oP '(?<=AO\ ).*?(?=\ *?wifi)')
+    #[ "$wifi" != "" ] &&
+    #    wifi_ssid="\t($wifi)" ||
+    #    wifi_ssid=""
 
     caps=$(xset -q | grep -oP '(?<=Caps\ Lock\:).*?(?=0)' | sed -e 's/ //g')
     [ "$caps" == "on" ] &&
@@ -105,7 +118,7 @@ update () {
     output+="  $power_icon\t($power%)\n"
     output+="  $vol_level\n"
     [ "$wifi" != "" ] && output+="  $wifi_ssid\n"
-    [ "$eth" == "Wired" ] && output+="  $eth_speed\n"
+    [ "$eth" == "Wired" ] && output+="  $eth_icon\n"
     [ -e /tmp/vpn ] && output+="  $vpn\n"
     [ -e /tmp/xautolock-disable ] && output+="  $unlocked\n"
     [ "$caps" != "" ] && output+="  $caps\n"
