@@ -103,7 +103,7 @@ backup () {
             mv $HOME/.git.off $HOME/.git
             git add -A
             git commit -m "$(date)"
-            git push dot master
+            git push origin master
             mv $HOME/.git $HOME/.git.off
             ;;
     esac
