@@ -1,0 +1,79 @@
+#!/bin/bash
+
+#what a mess...
+
+index=1
+num=1
+medium=()
+
+connmanctl scan wifi >/dev/null
+
+IFS_bkp=$IFS
+IFS=$'\n'
+services=( $(connmanctl services) )
+IFS=$IFS_bkp
+
+echo ""
+for service in "${services[@]}"
+do
+    echo -e "\t$index) $service"
+    index=$(($index + 1))
+    medium+=($(awk '{print $NF}' <<< "$service"))
+done
+echo ""
+
+read -p "Choose which connection?: " choice
+case $choice in
+    [1-9]*)
+        num=$(($choice - 1))
+        ;;
+    *) exit ;;
+esac
+
+echo -e "\tc) Connect"
+echo -e "\td) Disconnect"
+echo -e "\ts) Configure Connection"
+echo ""
+read -p "Perform which action?: " action
+echo ""
+case $action in
+    c)
+        #connect
+        connmanctl connect ${medium[$num]}
+        ;;
+    d)
+        #disconnect
+        connmanctl disconnect ${medium[$num]}
+        ;;
+    s)
+        echo -e "\ta) Enable Autoconnect"
+        echo -e "\td) DHCP"
+        echo -e "\tm) Disable Autoconnect"
+        echo -e "\ts) Static IP"
+        echo ""
+        read -p "Configure which setting?: " method
+        case $method in
+            a)
+                #autoconnect
+                connmanctl config ${medium[$num]} --autoconnect yes
+                ;;
+            d)
+                #dhcp
+                connmanctl config ${medium[$num]} --ipv4 dhcp
+                ;;
+            m)
+                #autoconnect
+                connmanctl config ${medium[$num]} --autoconnect no
+                ;;
+            s)
+                #static ip
+                read -p "Enter IP Address: " ip
+                read -p "Enter Netmask: " netmask
+                read -p "Enter Gateway: " gateway
+                connmanctl config ${medium[$num]} --ipv4 manual $ip $netmask $gateway
+                ;;
+        esac
+        ;;
+esac
+result=$(connmanctl services | grep ${medium[$num]})
+echo -e "\n\t$result"

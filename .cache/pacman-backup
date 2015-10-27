@@ -5,6 +5,7 @@ bash
 binutils
 bison
 bzip2
+connman
 coreutils
 cryptsetup
 device-mapper
@@ -78,6 +79,7 @@ tar
 texinfo
 texlive-core
 tigervnc
+ttf-dejavu
 unclutter
 usbutils
 util-linux

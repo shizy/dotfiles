@@ -1,7 +1,7 @@
 #!/bin/bash
 
 target="nvim"
-suffix="-S $XDG_CACHE_HOME/nvim/session.vim -i $XDG_CACHE_HOME/nvim/nviminfo"
+suffix="-S $XDG_CACHE_HOME/nvim/session.vim" # -i $XDG_CACHE_HOME/nvim/nviminfo"
 
 if [ ! -e "$XDG_RUNTIME_DIR/nvim" ]; then
     termite --title=vim -e "/usr/bin/nvim $suffix" & disown
