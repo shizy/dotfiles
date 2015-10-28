@@ -27,6 +27,7 @@ gawk
 gcc
 gettext
 gimp
+girara
 git
 glibc
 gptfdisk
@@ -72,14 +73,17 @@ s-nail
 sed
 shadow
 sudo
+sxhkd
 sysfsutils
 syslinux
 systemd-sysvcompat
 tar
 texinfo
 texlive-core
+the_silver_searcher
 tigervnc
 ttf-dejavu
+ttf-liberation
 unclutter
 usbutils
 util-linux
@@ -97,4 +101,6 @@ xfsprogs
 xorg-server
 xorg-xbacklight
 xorg-xinit
+zathura
+zathura-pdf-mupdf
 zsh

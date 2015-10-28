@@ -90,9 +90,6 @@ super + m
 super + w
     wallpaper
 
-super + n
-    sudo connman_dmenu
-
 super + t
 	termite --title=term
 

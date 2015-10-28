@@ -8,10 +8,6 @@ fi
 # get font height to calculate rows
 # move to screen coords
 
-
-WIFI="wlo1"
-WIRE="enp0s25"
-
 icons=(" " " " " " "IV" "V" "VI" "VII" "VIII" " " " ")
 urg=$(tput setaf 200)
 occ=$(tput setaf 203)

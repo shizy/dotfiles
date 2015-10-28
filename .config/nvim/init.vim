@@ -1,14 +1,14 @@
 " Auto install Plug & Spell Files
-if empty(glob('$XDG_DATA_HOME/nvim/autoload/plug.vim'))
+if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
     echo "Downloading and installing Plug"
-    silent !curl -fLo $XDG_DATA_HOME/nvim/autoload/plug.vim --create-dirs
+    silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall
 endif
 
-if empty(glob('$XDG_DATA_HOME/nvim/spell'))
+if empty(glob('$XDG_DATA_HOME/nvim/site/spell'))
     echo "Downloading and installing Spell Files"
-    silent !curl -o $XDG_DATA_HOME/nvim/spell/en.utf-8.spl --create-dirs
+    silent !curl -o $XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl --create-dirs
     \ http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
 endif
 
@@ -32,27 +32,17 @@ set expandtab
 set number
 set noswapfile
 set cursorline
-set ttyfast
 set lazyredraw
-set t_Co=256
 set encoding=utf-8
 set clipboard=unnamedplus
 set breakindent
 set linebreak
 set nobackup
 set nowritebackup
-"set directory=$XDG_CACHE_HOME/nvim,.
-"set backupdir=$XDG_CACHE_HOME/nvim,.
-"set viminfo+=n$XDG_CACHE_HOME/nvim/nviminfo
-"set runtimepath=$XDG_CONFIG_HOME/nvim,$VIM,$VIMRUNTIME
-set runtimepath=$XDG_DATA_HOME/nvim,$VIM,$VIMRUNTIME
 set wildcharm=<Tab>
 set wildmenu
 set wildmode=full,list
 set wildignorecase
-
-"let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc"
-"let $PAGER=""
 
 syntax on
 filetype plugin indent on
@@ -62,7 +52,7 @@ source $XDG_CONFIG_HOME/nvim/functions.vim
 
 " ========== PACKAGES ==========
 
-call plug#begin('$XDG_DATA_HOME/nvim/plugged')
+call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Buffer Management
 Plug 'moll/vim-bbye'

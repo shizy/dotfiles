@@ -3,7 +3,6 @@ compton
 cower
 dmenu-xft
 fzf
-girara-git
 i3lock-wrapper
 ix
 libtermkey
@@ -15,10 +14,7 @@ pentadactyl-git
 python-neovim
 python2-neovim
 python2-trollius
-silver-searcher-git
-sxhkd-git
 termite-git
 ttf-font-awesome
 ttf-mplus
 xtitle-git
-zathura-git
