@@ -41,6 +41,7 @@ iputils
 iw
 jfsutils
 less
+libpulse
 libtool
 licenses
 linux

@@ -135,3 +135,28 @@ function TabLabel(n)
     else
         return gettabvar(a:n, 'label')
 endfunction
+
+" Statusline
+
+function! FugitiveStatus()
+    let x = fugitive#head()
+    if x==""
+        return ""
+    endif
+    return "  " . x . " "
+endfunction
+
+function! FileFlags()
+    let output = ""
+    if &ro == 1
+        let output .= "  "
+    endif
+    if &modified == 1
+        let output .= "   "
+    endif
+    let ws = search('\s\+$', 'nw')
+    if ws != 0
+        let output .= " " . ws . " "
+    endif
+    return output
+endfunction

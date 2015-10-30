@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ln -s ~/.local/share/dwarffortress ~/.dwarffortress
+/usr/bin/dwarffortress
+rm ~/.dwarffortress

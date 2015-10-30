@@ -57,10 +57,8 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 " Buffer Management
 Plug 'moll/vim-bbye'
 
-" Looks
+" Color Scheme
 Plug 'tomasr/molokai'
-Plug 'bling/vim-airline'
-Plug 'airblade/vim-gitgutter'
 
 " Interaction
 Plug 'tpope/vim-sensible'
@@ -75,7 +73,7 @@ Plug 'garbas/vim-snipmate'
 
 " Syntax & Highlighting
 Plug 'fatih/vim-go'
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
@@ -87,42 +85,29 @@ call plug#end()
 
 " ========== SETTINGS ==========
 
+" LaTeX
+let g:tex_flavor = 'latex'
+
 " Molokai
 color molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
 
-" Airline
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_detect_crypt = 0
-let g:airline_theme = 'shizy'
-let g:airline_symbols.whitespace = ''
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline#extensions#whitespace#trailing_format = '  %s'
-
 " Multi Cursor
 let g:multi_cursor_next_key = '<S-s>'
 let g:multi_cursor_skip_key = 's'
 
-" Git-Gutter
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-
-" LaTeX
-let g:tex_flavor = 'latex'
-
-" Syntastic
-let g:syntastic_javascript_jshint_exec = '$XDG_DATA_HOME/node_modules/bin/jshint'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Neomake
+let g:neomake_error_sign = {
+            \ 'text': '',
+            \ 'texthl': 'ErrorMsg',
+            \ }
+let g:neomake_warning_sign = {
+            \ 'text': '',
+            \ 'texthl': 'WarningMsg',
+            \ }
+let g:neomake_javascript_jshint_exe = '/home/shizy/.local/share/node_modules/bin/jshint'
+let g:neomake_javascript_enabled_makers = ['jshint']
 
 " ========== MAPPINGS ==========
 
@@ -193,6 +178,7 @@ vmap                <A-.>           >gv
 
 " ========== AUTOCOMMANDS ==========
 
+au BufWritePost * Neomake
 au BufNewFile,BufRead *.styl set filetype=stylus
 au BufNewFile,BufRead *.ejs  set filetype=js
 au BufNewFile,BufRead *.ejs  set filetype=html
@@ -233,3 +219,4 @@ au FileType man
 
 " Color & theme over-rides
 source $XDG_CONFIG_HOME/nvim/theme-overrides.vim
+
