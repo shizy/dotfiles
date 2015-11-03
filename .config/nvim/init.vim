@@ -72,6 +72,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
 " Syntax & Highlighting
+Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'benekastah/neomake'
 Plug 'jelera/vim-javascript-syntax'
@@ -93,10 +94,6 @@ color molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
 
-" Multi Cursor
-let g:multi_cursor_next_key = '<S-s>'
-let g:multi_cursor_skip_key = 's'
-
 " Neomake
 let g:neomake_error_sign = {
             \ 'text': '',
@@ -108,6 +105,8 @@ let g:neomake_warning_sign = {
             \ }
 let g:neomake_javascript_jshint_exe = '/home/shizy/.local/share/node_modules/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
+"let g:neomake_tex_latexmk_args = ['-silent', '-pdflatex="pdflatex -synctex=1"', '-pdf', '-outdir="/home/shizy/docs/%:p']
+"let g:neomake_tex_enabled_makers = ['latexmk']
 
 " ========== MAPPINGS ==========
 
@@ -137,13 +136,16 @@ nmap                <A-x>           :ls<CR>:Bdelete!<Space><Tab><C-p>
 nmap                <A-S-x>         :Bdelete!<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
-nmap                <A-t>           :tabe %<CR>
+"nmap                <A-t>           :tabe %<CR>
+nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <Leader>w       :call Save()<CR>
 nmap                <Leader>1       :w !sudo tee % > /dev/null
 nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>t       :Tabularize /
+nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
+nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
 nmap                <Leader>u       :PlugUpdate<CR>
 nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>i       zg
@@ -164,6 +166,10 @@ cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>
 
+tmap                <Esc>           <C-\><C-n>
+tmap                <A-q>           <C-\><C-n>ZZ
+tmap                <A-b>           <C-\><C-n>:b#<CR>
+tmap                <A-Tab>         <C-\><C-n><C-w>p
 tmap                <A-C-j>         <C-\><C-n><C-w>j
 tmap                <A-C-k>         <C-\><C-n><C-w>k
 tmap                <A-C-h>         <C-\><C-n><C-w>h
@@ -174,6 +180,7 @@ vmap                <Leader>/       <Esc>:'<,'>s/
 vmap                <Leader>t       :Tabularize /
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
+vmap                <Leader>b       <Esc>:'<,'>:Gbrowse<CR>
 
 
 " ========== AUTOCOMMANDS ==========
@@ -198,10 +205,13 @@ au FileType gitcommit
     \ nmap <buffer> c       <S-c>i |
     \ nmap <buffer> q       :wq<CR> |
     \ nmap <buffer> p       :wq<CR>:Gpush<space> |
+au FileType git
+    \ setlocal nofoldenable |
+    \ nmap  <buffer> q      :lclose<CR>:bw<CR> |
 au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
-au WinEnter term://* startinsert
+au WinEnter,BufWinEnter term://* startinsert
 au FileType help
     \ set ro |
     \ nnoremap <buffer> <CR> <C-]> |

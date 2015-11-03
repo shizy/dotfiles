@@ -21,7 +21,7 @@ super + {1-9,0}
     bspc desktop -f ^{1-9,10}
 
 super + Tab
-	bspc monitor -f last || bspc desktop -f last
+	bspc monitor -f last || bspc desktop -f last || bspc monitor -f next
 
 # Window Control
 

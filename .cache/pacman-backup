@@ -14,6 +14,7 @@ dialog
 diffutils
 dwarffortress
 e2fsprogs
+ethtool
 fakeroot
 feh
 figlet
@@ -42,6 +43,7 @@ iw
 jfsutils
 less
 libpulse
+libtermkey
 libtool
 licenses
 linux
@@ -54,6 +56,7 @@ man-pages
 mdadm
 mtr
 nano
+neovim
 netctl
 nmap
 nodejs
@@ -69,6 +72,8 @@ pkg-config
 procps-ng
 psmisc
 putty
+python-neovim
+python2-neovim
 reiserfsprogs
 s-nail
 sed

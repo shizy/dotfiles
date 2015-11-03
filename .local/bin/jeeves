@@ -44,12 +44,12 @@ update () {
         vol_level="\t(Mute)" ||
         vol_level="\t($(amixer get -M Master | grep -oP '(?<=\[).*?(?=\%\])')%)"
 
-    eth=$(connmanctl services | grep -oP '(?<=AR\ ).*?(?=\ *?ethernet)')
+    eth=$(connmanctl services | grep -oP '(?<=R\ ).*?(?=\ *?ethernet)')
     [ "$eth" == "Wired" ] &&
         eth_speed="\t($eth)" ||
         eth_speed=""
 
-    wifi=$(connmanctl services | grep -oP '(?<=AO\ ).*?(?=\ *?wifi)')
+    wifi=$(connmanctl services | grep -oP '(?<=O\ ).*?(?=\ *?wifi)')
     [ "$wifi" != "" ] &&
         wifi_ssid="\t($wifi)" ||
         wifi_ssid=""

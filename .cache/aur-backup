@@ -5,14 +5,10 @@ dmenu-xft
 fzf
 i3lock-wrapper
 ix
-libtermkey
 libvterm-bzr
 mutt-sidebar
-neovim-git
 netextender
 pentadactyl-git
-python-neovim
-python2-neovim
 python2-trollius
 termite-git
 ttf-font-awesome

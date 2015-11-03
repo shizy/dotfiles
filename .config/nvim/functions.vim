@@ -75,7 +75,7 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ set syntax=tex |
-    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR> |
+"    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR> |
     \ nnoremap <buffer> <A-o>     :call LatexTogglePreview()<CR> |
     \ nnoremap <buffer> <A-.>      ]s |
     \ nnoremap <buffer> <A-,>      [s |

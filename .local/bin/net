@@ -39,6 +39,7 @@ echo ""
 case $action in
     c)
         #connect
+        connmanctl agent on
         connmanctl connect ${medium[$num]}
         ;;
     d)
