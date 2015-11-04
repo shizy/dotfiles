@@ -103,8 +103,10 @@ let g:neomake_warning_sign = {
             \ }
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/node_modules/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
-"let g:neomake_tex_latexmk_args = ['-silent', '-pdflatex="pdflatex -synctex=1"', '-pdf', '-outdir="/home/shizy/docs/%:p']
-"let g:neomake_tex_enabled_makers = ['latexmk']
+let g:neomake_tex_pdflatex_maker = {
+    \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
+    \ }
+let g:neomake_tex_enabled_makers = ['pdflatex']
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Tab>"
@@ -150,7 +152,7 @@ nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
 nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
-"nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
+nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
 nmap                <A-1>           1gt

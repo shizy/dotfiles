@@ -1,10 +1,6 @@
 " LaTeX
 let s:latex_preview_line = 0
 
-function! LatexMake()
-    silent ! latexmk -silent -pdflatex='pdflatex -synctex=1' -pdf -outdir=$HOME/docs '%:p'
-endfunction
-
 function! LatexResetFocus()
     silent ! xdotool search --name vim windowactivate
     redraw!
@@ -40,10 +36,10 @@ function! LatexFindPreview(file)
 endfunction
 
 function! LatexStartPreview()
-    if !LatexFindPreview(expand('%:t:r'))
+    if !LatexFindPreview(expand('%:r') . ".pdf")
         call ZoomIn()
         let t:latex_preview = 1
-        silent ! zathura '%:r.pdf' &
+        call system("zathura " . expand("%:r") . ".pdf &")
         silent ! sleep 1
         call LatexResetFocus()
     endif
@@ -63,7 +59,7 @@ function! LatexUpdatePreview()
     if exists('t:latex_preview')
         if line(".") != s:latex_preview_line
             let s:latex_preview_line = line(".")
-            execute "silent ! zathura --synctex-forward " . line('.') . ":" . col('.') . ":%:p %:p:r.pdf"
+            call system("zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . expand("%:p") . " " . expand("%:p:r") . ".pdf")
         endif
     endif
 endfunction
@@ -74,8 +70,7 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
-    \ set syntax=tex |
-"    \ nnoremap <buffer> <Leader>l :call LatexMake()<CR> |
+    \ setlocal syntax=tex |
     \ nnoremap <buffer> <A-o>     :call LatexTogglePreview()<CR> |
     \ nnoremap <buffer> <A-.>      ]s |
     \ nnoremap <buffer> <A-,>      [s |
