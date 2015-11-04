@@ -74,6 +74,7 @@ psmisc
 putty
 python-neovim
 python2-neovim
+python2-trollius
 reiserfsprogs
 s-nail
 sed

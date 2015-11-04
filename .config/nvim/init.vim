@@ -166,6 +166,8 @@ cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>
 
+tmap                <A-z>           <C-\><C-n>:qa<CR>
+tmap                <A-Space>       <C-\><C-n><C-w>:ls<CR>:b<Space><Tab><C-p> "For whatever reason <C-w> aleviates some bug residing here
 tmap                <Esc>           <C-\><C-n>
 tmap                <A-q>           <C-\><C-n>ZZ
 tmap                <A-b>           <C-\><C-n>:b#<CR>
@@ -212,6 +214,7 @@ au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
 au WinEnter,BufWinEnter term://* startinsert
+au WinLeave,BufWinLeave term://* stopinsert
 au FileType help
     \ set ro |
     \ nnoremap <buffer> <CR> <C-]> |

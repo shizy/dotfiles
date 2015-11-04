@@ -2,9 +2,13 @@
 	email = shizukesa4@gmail.com
 	name = Robert Winterstein
 
+[github]
+    user = shizy
+
 [core]
     editor = /usr/bin/nvim
-    autocrlf = true
+    autocrlf = input
+    safecrlf = true
 
 [format]
     pretty = "format:%an  |  &h  &ar  |  %s%d"
