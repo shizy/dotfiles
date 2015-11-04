@@ -43,7 +43,6 @@ iw
 jfsutils
 less
 libpulse
-libtermkey
 libtool
 licenses
 linux
@@ -72,9 +71,7 @@ pkg-config
 procps-ng
 psmisc
 putty
-python-neovim
 python2-neovim
-python2-trollius
 reiserfsprogs
 s-nail
 sed
