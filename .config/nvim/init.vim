@@ -136,7 +136,6 @@ nmap                <A-x>           :ls<CR>:Bdelete!<Space><Tab><C-p>
 nmap                <A-S-x>         :Bdelete!<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
-"nmap                <A-t>           :tabe %<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <Leader>w       :call Save()<CR>
 nmap                <Leader>1       :w !sudo tee % > /dev/null
@@ -146,7 +145,6 @@ nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
 nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
-nmap                <Leader>u       :PlugUpdate<CR>
 nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>i       zg
 nmap                <A-1>           1gt
@@ -215,20 +213,10 @@ au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
 au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
-au FileType help
+au FileType help,man
     \ set ro |
-    \ nnoremap <buffer> <CR> <C-]> |
-    \ nnoremap <buffer> f    <C-]> |
-    \ nnoremap <buffer> u    <C-T> |
-au FileType man
-    \ set ro |
-    \ set nolist |
-    \ nnoremap <buffer> <CR>        :call <SNR>8_PreGetPage(v:count)<CR> |
-    \ nnoremap <buffer> f           :call <SNR>8_PreGetPage(v:count)<CR> |
-    \ nnoremap <buffer> u           :call <SNR>8_PopPage()<CR> |
-    \ nnoremap <buffer> <A-z>       :q<CR> |
-    \ nnoremap <buffer> <Leader>w   <NOP> |
-    \ nnoremap <buffer> -           <NOP>
+    \ nmap <buffer> <CR> <C-]> |
+    \ nmap <buffer> u    <C-T> |
 
 " Color & theme over-rides
 source $XDG_CONFIG_HOME/nvim/theme-overrides.vim
