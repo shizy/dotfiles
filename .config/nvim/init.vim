@@ -66,15 +66,13 @@ Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 
 " Utility
+Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 
 " Syntax & Highlighting
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
-Plug 'benekastah/neomake'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
@@ -103,10 +101,17 @@ let g:neomake_warning_sign = {
             \ 'text': '',
             \ 'texthl': 'WarningMsg',
             \ }
-let g:neomake_javascript_jshint_exe = '/home/shizy/.local/share/node_modules/bin/jshint'
+let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/node_modules/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 "let g:neomake_tex_latexmk_args = ['-silent', '-pdflatex="pdflatex -synctex=1"', '-pdf', '-outdir="/home/shizy/docs/%:p']
 "let g:neomake_tex_enabled_makers = ['latexmk']
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsSnippetsDir = $XDG_CONFIG_HOME . "/nvim/snippets"
 
 " ========== MAPPINGS ==========
 
@@ -145,7 +150,8 @@ nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
 nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
-nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
+"nmap                <Leader>e       :e %:h<Tab><Tab><C-p>
+nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
 nmap                <A-1>           1gt
 nmap                <A-2>           2gt
@@ -193,7 +199,7 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nonumber |
-    \ set syntax=markdown |
+    \ setlocal syntax=markdown |
     \ setlocal fo+=aw |
     \ imap <buffer> jk <Esc>:w<CR> |
     \ nmap <buffer> <Leader>w :w<CR> |
@@ -213,8 +219,9 @@ au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
 au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
+au FileType snippets nnoremap <buffer> <A-q> :Bdelete!<CR>ZZ
 au FileType help,man
-    \ set ro |
+    \ setlocal ro |
     \ nmap <buffer> <CR> <C-]> |
     \ nmap <buffer> u    <C-T> |
 
