@@ -104,7 +104,8 @@ backup () {
             mv $XDG_CONFIG_HOME/gitignore $HOME/.gitignore
             git --work-tree=$HOME --git-dir=$HOME/.local/git add -A
             git --work-tree=$HOME --git-dir=$HOME/.local/git commit -m "$(date)"
-            git --work-tree=$HOME --git-dir=$HOME/.local/git push origin master
+            #git --work-tree=$HOME --git-dir=$HOME/.local/git push origin master
+            git --work-tree=$HOME --git-dir=$HOME/.local/git push git@github.com:shizy/dotfiles.git
             #mv $HOME/.git $HOME/.git.off
             mv $HOME/.gitignore $XDG_CONFIG_HOME/gitignore
             ;;
