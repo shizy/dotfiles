@@ -1,7 +1,10 @@
+source "pass web/google > /dev/null; |"
 source "if [ ! -e $XDG_CACHE_HOME/mutt ]; then mkdir $XDG_CACHE_HOME/mutt > /dev/null; fi |"
+source "if [ ! -e $HOME/.local/mail ]; then mkdir $HOME/.local/mail > /dev/null; fi |"
+source "if [ ! -e $HOME/.local/mail/offlineimap ]; then offlineimap -c $XDG_CONFIG_HOME/offlineimap/offlineimaprc -o; fi |"
 
 # Paths
-set folder           = $XDG_DATA_HOME/mail
+set folder           = $HOME/.local/mail
 set header_cache     = $XDG_CACHE_HOME/mutt/headers
 set message_cachedir = $XDG_CACHE_HOME/mutt/
 set certificate_file = $XDG_CACHE_HOME/mutt/certs

@@ -1,7 +1,7 @@
 [general]
 accounts = gmail
 fsync = False
-metadata = ~/.local/share/mail/offlineimap
+metadata = ~/.local/mail/offlineimap
 pythonfile = ~/.config/offlineimap/offlineimap.py
 
 [Account gmail]
@@ -12,7 +12,7 @@ maxage = 90
 
 [Repository gmail-local]
 type = Maildir
-localfolders = ~/.local/share/mail/gmail
+localfolders = ~/.local/mail/gmail
 
 [Repository gmail-remote]
 maxconnections = 1

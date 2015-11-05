@@ -48,6 +48,7 @@ licenses
 linux
 logrotate
 lvm2
+lynx
 m4
 make
 man-db
@@ -63,6 +64,7 @@ npm
 offlineimap
 openssh
 pacman
+pass
 patch
 pciutils
 pcmciautils

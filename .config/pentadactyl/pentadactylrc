@@ -50,7 +50,7 @@ nmap            <Leader>d           :downloads<CR>;
 nmap            <Leader>h           :history<CR>;
 nmap            <Leader>w           <nop>
 nmap            <A-Tab>             :buffer #<CR>
-nmap            <A-s>               :saveas<space>
+nmap            <A-s>               :saveas<space>downloads/
 
 cmap            jj                  <Esc><Esc>
 cmap            <A-Space>           <Esc><Esc>
