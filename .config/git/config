@@ -5,6 +5,9 @@
 [github]
     user = shizy
 
+[push]
+    default = simple
+
 [core]
     editor = /usr/bin/nvim
     autocrlf = input
