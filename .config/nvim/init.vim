@@ -144,7 +144,7 @@ nmap                <A-S-x>         :Bdelete!<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
-nmap                <Leader>w       :call Save()<CR>
+nmap                <A-w>           :call Save()<CR>
 nmap                <Leader>1       :w !sudo tee % > /dev/null
 nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>t       :Tabularize /

@@ -1,9 +1,13 @@
 connman
+curl
 figlet
 freerdp
 gnupg
 lynx
 neovim
+nmap
+nodejs
+npm
 offlineimap
 pass
 pinentry
@@ -13,8 +17,10 @@ the-silver-searcher
 ttf-liberation
 unclutter
 weechat
+wget
 xautlock
 xdotool
+xf86-input-synaptics
 xorg-server
 xorg-xbacklight
 xorg-xinit

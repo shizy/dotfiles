@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Script to do much of the heavy lifting when getting my home directory setup after cloning the dots from github
+
+if [ "$SHELL" -eq "/bin/bash" ]; then
+
+# Set default shell
+chsh -s /usr/bin/zsh
+
+# Cleanup old bash stuff
+rm -rf ~/.bash*
+
+# Set default Git locations
+mv ~/.gitignore ~/.config/gitignore
+mv ~/.git ~/.local/git
+
+# Create daily dirs
+mkdir ~/docs
+mkdir ~/downloads
+mkdir ~/dev
+
+# Install preferred programs in pacman backup
+sudo pacman -S $(cat ~/.cache/pacman-backup)
+
+# Install cower and download aur backup
+mkdir -p ~/.local/src/cower
+wget -O ~/.local/src/cower/PKGBUILD "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
+cd ~/.local/src/cower
+mkpkg -sri --skippgpcheck
+cd ~
+cower -d $(cat ~/.cache/aur-backup)
+
+# final reminder
+echo "Finished initial setup, remember to build all packages in ~/.local/src !"
+
+fi
