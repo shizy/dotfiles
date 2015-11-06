@@ -1,13 +1,18 @@
 connman
 figlet
+freerdp
+gnupg
 lynx
 neovim
+offlineimap
 pass
+pinentry
 python2-neovim
 sxhkd
 the-silver-searcher
 ttf-liberation
 unclutter
+weechat
 xautlock
 xdotool
 xorg-server
@@ -15,3 +20,4 @@ xorg-xbacklight
 xorg-xinit
 zathura
 zathura-pdf-mupdf
+zsh
