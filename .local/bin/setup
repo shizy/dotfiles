@@ -25,7 +25,7 @@ sudo pacman -S --noconfirm $(cat ~/.cache/pacman-backup)
 # Install npm packages
 export NPM_CONFIG_CACHE=~/.cache/npm
 export NPM_CONFIG_PREFIX=~/.local/share/node_modules
-npm install -g jshint
+npm install -g $(cat ~/.cache/npm-backup)
 
 # Install cower and download aur backup
 mkdir -p ~/.local/src/cower

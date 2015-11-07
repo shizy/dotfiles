@@ -7,6 +7,7 @@
 /.cache/*
 !/.cache/pacman-backup
 !/.cache/aur-backup
+!/.cache/npm-backup
 
 # LOCAL/BIN
 !/.local
