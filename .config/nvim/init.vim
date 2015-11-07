@@ -61,7 +61,7 @@ Plug 'moll/vim-bbye'
 Plug 'tomasr/molokai'
 
 " Interaction
-Plug 'tpope/vim-sensible'
+"Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 
@@ -139,13 +139,13 @@ nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
-nmap                <A-x>           :ls<CR>:Bdelete!<Space><Tab><C-p>
-nmap                <A-S-x>         :Bdelete!<CR>
+nmap                <A-S-x>         :ls<CR>:Bdelete!<Space><Tab><C-p>
+nmap                <A-x>           :Bdelete!<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <A-w>           :call Save()<CR>
-nmap                <Leader>1       :w !sudo tee % > /dev/null
+nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>t       :Tabularize /
 nmap                <Leader>b       :Gbrowse<CR>

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script to do much of the heavy lifting when getting my home directory setup after cloning the dots from github
+# Script to do much of the heavy lifting when getting my home directory setup after cloning the dots from github. Little odds and ends that I might forget or am too lazy to do myself.
 
 if [ "$SHELL" -eq "/bin/bash" ]; then
 
@@ -20,7 +20,12 @@ mkdir ~/downloads
 mkdir ~/dev
 
 # Install preferred programs in pacman backup
-sudo pacman -S $(cat ~/.cache/pacman-backup)
+sudo pacman -S --noconfirm $(cat ~/.cache/pacman-backup)
+
+# Install npm packages
+export NPM_CONFIG_CACHE=~/.cache/npm
+export NPM_CONFIG_PREFIX=~/.local/share/node_modules
+npm install -g jshint
 
 # Install cower and download aur backup
 mkdir -p ~/.local/src/cower

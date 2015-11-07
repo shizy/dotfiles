@@ -40,8 +40,8 @@ nmap            <C-p>               <S-Insert>
 nmap            u                   :back<CR>
 nmap            r                   :reload<CR>
 nmap            d                   <nop>
-nmap            <A-S-x>             :quit<CR>
-nmap            <A-x>               :bdelete<Space>
+nmap            <A-x>               :quit<CR>
+nmap            <A-S-x>             :bdelete<Space>
 nmap            <A-z>               :wqall<CR>
 nmap            <A-.>               ]]
 nmap            <A-,>               [[
