@@ -68,6 +68,7 @@ unset tilde
 set text_flowed
 set editor        = '/usr/bin/nvim -i $XDG_CACHE_HOME/nvim/nviminfo'
 set meta_key      = yes
+set query_command = "goobook -c $XDG_CONFIG_HOME/goobook/goobookrc query '%s'"
 
 # Headers
 ignore *
@@ -110,7 +111,6 @@ bind index,pager        s               noop
 bind index,pager        d               noop
 bind index,pager        q               noop
 bind index,pager        \ea             group-reply
-#bind index,pager        \ec             mail
 bind index,pager        \ef             forward-message
 bind index,pager        \er             reply
 bind index,pager        \ew             sync-mailbox
@@ -124,6 +124,7 @@ bind pager              u               exit
 bind attach             u               exit
 bind browser            u               exit
 bind compose            u               exit
+bind editor             <Tab>           complete-query
 
 # COLORS
 color sidebar_new       color200        default

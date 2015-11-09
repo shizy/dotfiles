@@ -23,6 +23,7 @@
 !/.config/cower
 !/.config/fontconfig
 !/.config/git
+!/.config/goobook
 !/.config/mozilla
 !/.config/mutt
 !/.config/nvim

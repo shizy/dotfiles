@@ -61,9 +61,8 @@ Plug 'moll/vim-bbye'
 Plug 'tomasr/molokai'
 
 " Interaction
-"Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 
 " Utility
 Plug 'benekastah/neomake'
@@ -147,7 +146,6 @@ nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
-nmap                <Leader>t       :Tabularize /
 nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
@@ -160,6 +158,7 @@ nmap                <A-2>           2gt
 nmap                <A-3>           3gt
 nmap                <A-4>           4gt
 nmap                <A-5>           5gt
+nmap                ga              <Plug>(EasyAlign)
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
@@ -190,6 +189,7 @@ vmap                <A-,>           <gv
 vmap                <A-.>           >gv
 vmap                <Leader>b       <Esc>:'<,'>:Gbrowse<CR>
 
+xmap                ga              <Plug>(EasyAlign)
 
 " ========== AUTOCOMMANDS ==========
 
@@ -229,4 +229,3 @@ au FileType help,man
 
 " Color & theme over-rides
 source $XDG_CONFIG_HOME/nvim/theme-overrides.vim
-
