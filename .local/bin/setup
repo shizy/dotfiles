@@ -2,10 +2,21 @@
 
 # Script to do much of the heavy lifting when getting my home directory setup after cloning the dots from github. Little odds and ends that I might forget or am too lazy to do myself.
 
-if [ "$SHELL" -eq "/bin/bash" ]; then
+if [ "$SHELL" == "/bin/bash" ]; then
+
+# Install preferred programs in pacman backup
+sudo nano /etc/pacman.conf
+sudo pacman -S --noconfirm $(cat ~/.cache/pacman-backup)
 
 # Set default shell
 chsh -s /usr/bin/zsh
+
+# Connman preconfig
+systemctl enable connman
+systemctl start connman
+
+# Gnupg permissions
+chmod 700 ~/.config/gnupg
 
 # Cleanup old bash stuff
 rm -rf ~/.bash*
@@ -19,9 +30,6 @@ mkdir ~/docs
 mkdir ~/downloads
 mkdir ~/dev
 
-# Install preferred programs in pacman backup
-sudo pacman -S --noconfirm $(cat ~/.cache/pacman-backup)
-
 # Install npm packages
 export NPM_CONFIG_CACHE=~/.cache/npm
 export NPM_CONFIG_PREFIX=~/.local/share/node_modules
@@ -31,9 +39,9 @@ npm install -g $(cat ~/.cache/npm-backup)
 mkdir -p ~/.local/src/cower
 wget -O ~/.local/src/cower/PKGBUILD "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
 cd ~/.local/src/cower
-mkpkg -sri --skippgpcheck
+makepkg -sri --skippgpcheck
 cd ~
-cower -d $(cat ~/.cache/aur-backup)
+cower -df $(cat ~/.cache/aur-backup)
 
 # final reminder
 echo "Finished initial setup, remember to build all packages in ~/.local/src !"

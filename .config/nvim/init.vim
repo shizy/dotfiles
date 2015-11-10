@@ -6,7 +6,7 @@ if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall
 endif
 
-if empty(glob('$XDG_DATA_HOME/nvim/site/spell'))
+if empty(glob('$XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl'))
     echo "Downloading and installing Spell Files"
     silent !curl -o $XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl --create-dirs
     \ http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
