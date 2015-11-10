@@ -71,13 +71,11 @@ Plug 'SirVer/ultisnips'
 
 " Syntax & Highlighting
 Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
-Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -103,8 +101,8 @@ let g:neomake_warning_sign = {
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/node_modules/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_tex_pdflatex_maker = {
-    \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
-    \ }
+            \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
+            \ }
 let g:neomake_tex_enabled_makers = ['pdflatex']
 
 " UltiSnips
