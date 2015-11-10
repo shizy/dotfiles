@@ -100,5 +100,5 @@ do
 done
 
 # cheap hack to ensure dipatched windows are created before exit
-scratchpad search hide
+scratchpad scratchsearch hide
 sleep 1

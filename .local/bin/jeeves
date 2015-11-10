@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $(pgrep -c jeeves) -gt 1 ]; then
+if [ $(pgrep -c scratchjeeves) -gt 1 ]; then
     exit
 fi
 
@@ -91,7 +91,7 @@ update () {
     done
 
     if [ "$urgent" != "$last_urgent" ] && [ "$urgent" != "" ]; then
-        scratchpad jeeves show
+        scratchpad scratchjeeves show
     fi
     last_urgent=$urgent
     urgent=""
@@ -113,14 +113,14 @@ update () {
     output=$(sed -e 's/\\n$//g' <<< "$output")
     clear
     echo -en "$output"
-    xdotool search --name jeeves windowsize 400 $(($rows * 14))
+    xdotool search --name scratchjeeves windowsize 400 $(($rows * 14))
 }
 
 tput civis
-xdotool search --name jeeves set_window --overrideredirect 1
+xdotool search --name scratchjeeves set_window --overrideredirect 1
 bspc control --subscribe | while read -r line; do update $line; done &
 while :; do
-    [ "$(xdotool search --onlyvisible --name jeeves)" ] && update
+    [ "$(xdotool search --onlyvisible --name scratchjeeves)" ] && update
     sleep 2;
 done
 wait

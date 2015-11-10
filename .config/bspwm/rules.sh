@@ -25,10 +25,10 @@ if [ "$class" = Termite ]; then
         connman)
             echo "floating=on"
             ;;
-        top|bottom|left|right|search)
+        scratchtop|scratchbottom|scratchleft|scratchright|scratchsearch)
             echo "floating=on border=off"
             ;;
-        jeeves)
+        scratchjeeves)
             echo "floating=on sticky=on locked=on"
             ;;
         dispatch)

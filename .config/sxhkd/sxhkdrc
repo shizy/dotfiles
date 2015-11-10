@@ -1,5 +1,5 @@
 {Super_L,@Super_L}
-    scratchpad jeeves {show,hide} jeeves
+    scratchpad scratchjeeves {show,hide} jeeves
 
 # Navigation
 
@@ -58,10 +58,10 @@ super + shift + x
 # Scratchpads & Search
 
 {ctrl,super,ctrl + super} + grave
-    scratchpad {top,bottom,left}
+    scratchpad scratch{top,bottom,left}
 
 super + slash
-    scratchpad search fuzzysearch
+    scratchpad scratchsearch fuzzysearch
 
 # Peripherals
 
