@@ -13,6 +13,7 @@ nmap
 nodejs
 npm
 offlineimap
+openssh
 pass
 pinentry
 python2-neovim
