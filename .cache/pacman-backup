@@ -18,7 +18,9 @@ pass
 pinentry
 python2-neovim
 sxhkd
+texlive-core
 the_silver_searcher
+ttf-dejavu
 ttf-liberation
 unclutter
 weechat

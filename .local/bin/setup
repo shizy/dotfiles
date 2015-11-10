@@ -26,14 +26,17 @@ mv ~/.gitignore ~/.config/gitignore
 mv ~/.git ~/.local/git
 
 # Create daily dirs
-mkdir ~/docs
-mkdir ~/downloads
-mkdir ~/dev
+mkdir ~/docs > /dev/null
+mkdir ~/downloads > /dev/null
+mkdir ~/dev > /dev/null
 
 # Install npm packages
 export NPM_CONFIG_CACHE=~/.cache/npm
 export NPM_CONFIG_PREFIX=~/.local/share/node_modules
 npm install -g $(cat ~/.cache/npm-backup)
+
+# prep man pages
+sudo mandb
 
 # Install cower and download aur backup
 mkdir -p ~/.local/src/cower
