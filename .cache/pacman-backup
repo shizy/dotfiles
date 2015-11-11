@@ -19,6 +19,7 @@ python2-neovim
 sxhkd
 texlive-core
 the_silver_searcher
+tlp
 ttf-dejavu
 ttf-liberation
 unclutter
@@ -27,6 +28,7 @@ wget
 xautolock
 xdotool
 xf86-input-synaptics
+xf86-video-intel
 xorg-server
 xorg-xbacklight
 xorg-xinit

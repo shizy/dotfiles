@@ -11,9 +11,11 @@ sudo pacman -S --noconfirm $(cat ~/.cache/pacman-backup)
 # Set default shell
 chsh -s /usr/bin/zsh
 
-# Connman preconfig
+# services preconfig
 systemctl enable connman
 systemctl start connman
+systemctl enable tlp.service
+systemctl enable tlp-sleep.service
 
 # Gnupg permissions
 chmod 700 ~/.config/gnupg
