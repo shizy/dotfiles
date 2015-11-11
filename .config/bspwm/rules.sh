@@ -29,7 +29,7 @@ if [ "$class" = Termite ]; then
             echo "floating=on border=off"
             ;;
         scratchjeeves)
-            echo "floating=on sticky=on locked=on"
+            echo "floating=on sticky=on locked=on layer=ABOVE"
             ;;
         dispatch)
             echo "desktop=^1"

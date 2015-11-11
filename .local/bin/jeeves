@@ -113,7 +113,7 @@ update () {
     output=$(sed -e 's/\\n$//g' <<< "$output")
     clear
     echo -en "$output"
-    xdotool search --name scratchjeeves windowsize 400 $(($rows * 14))
+    xdotool search --name scratchjeeves windowsize 400 $(($rows * 14)) > /dev/null
 }
 
 tput civis

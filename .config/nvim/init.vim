@@ -201,8 +201,8 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal nonumber |
     \ setlocal syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap <buffer> jk <Esc>:w<CR> |
-    \ nmap <buffer> <Leader>w :w<CR> |
+    \ imap <buffer> jk      <Esc>:w<CR> |
+    \ nmap <buffer> <A-w>   :w<CR> |
     \ nnoremap <buffer> <A-.>      ]s |
     \ nnoremap <buffer> <A-,>      [s
 au FileType gitcommit
