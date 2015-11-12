@@ -108,6 +108,10 @@ let g:neomake_tex_pdflatex_maker = {
             \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
             \ }
 let g:neomake_tex_enabled_makers = ['pdflatex']
+let g:neomake_rust_rustc_maker = {
+            \ 'cwd': '%:p:h:h',
+            \ 'args': ['-L', 'target/debug/deps'],
+            \ }
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Tab>"
@@ -186,7 +190,6 @@ tmap                <A-C-l>         <C-\><C-n><C-w>l
 
 vnoremap            <Leader><Space> zf
 vmap                <Leader>/       <Esc>:'<,'>s/
-vmap                <Leader>t       :Tabularize /
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
 vmap                <Leader>b       <Esc>:'<,'>:Gbrowse<CR>

@@ -39,7 +39,6 @@ export LESSHISTFILE=$XDG_CACHE_HOME/less/lesshist
 export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
 
 # neovim
-#export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/nvimrc" | source $MYVIMRC'
 export NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/nvim
 
 # npm
