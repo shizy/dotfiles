@@ -15,7 +15,7 @@ export PATH=$HOME/.local/bin:$PATH
 export BZR_LOG=/dev/null
 
 # cargo
-export CARGO_HOME=$XDG_CACHE_HOME/cargo
+export CARGO_HOME=$XDG_DATA_HOME/cargo
 
 #firefox
 export XRE_IMPORT_PROFILES=1

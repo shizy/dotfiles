@@ -76,6 +76,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -97,6 +98,9 @@ let g:neomake_error_sign = {
 let g:neomake_warning_sign = {
             \ 'text': '',
             \ 'texthl': 'WarningMsg',
+            \ }
+let g:neomake_informational_sign = {
+            \ 'texthl': 'Question',
             \ }
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/node_modules/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
@@ -130,8 +134,8 @@ nnoremap            <A-Right>       :vertical resize +10<CR>
 nnoremap            <A-Up>          :resize -10<CR>
 nnoremap            <A-Down>        :resize +10<CR>
 nnoremap            <A-/>           :noh<CR>
-nnoremap            <A-.>           :lnext<CR>
-nnoremap            <A-,>           :lprev<CR>
+nnoremap            <A-.>           :call LocationNext()<CR>
+nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
