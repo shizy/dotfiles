@@ -108,10 +108,11 @@ let g:neomake_tex_pdflatex_maker = {
             \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
             \ }
 let g:neomake_tex_enabled_makers = ['pdflatex']
-let g:neomake_rust_rustc_maker = {
-            \ 'cwd': '%:p:h:h',
-            \ 'args': ['-L', 'target/debug/deps'],
+let g:neomake_rust_cargo_maker = {
+            \ 'args': ['build', '--manifest-path', '**/Cargo.toml'],
+            \ 'append_file': 0,
             \ }
+let g:neomake_rust_enabled_makers = ['cargo']
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Tab>"
