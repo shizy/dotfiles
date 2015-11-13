@@ -181,6 +181,7 @@ cmap                jk              <CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
 tmap                <A-Space>       <C-\><C-n><C-w>:ls<CR>:b<Space><Tab><C-p> "For whatever reason <C-w> aleviates some bug residing here
 tmap                <Esc>           <C-\><C-n>
+tmap                <A-x>           <C-\><C-n>:bdelete!<CR>
 tmap                <A-q>           <C-\><C-n>ZZ
 tmap                <A-b>           <C-\><C-n>:b#<CR>
 tmap                <A-Tab>         <C-\><C-n><C-w>p
@@ -222,6 +223,8 @@ au FileType gitcommit
 au FileType git
     \ setlocal nofoldenable |
     \ nmap  <buffer> q      :lclose<CR>:bw<CR> |
+au FileType javascript nmap <buffer> <A-r> :sp<CR>:te! cd %:p:h; npm start<CR>
+au FileType rust nmap <buffer> <A-r> :sp<CR>:te! cd %:p:h; cargo run<CR>
 au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>

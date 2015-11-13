@@ -71,7 +71,7 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ setlocal syntax=tex |
-    \ nnoremap <buffer> <A-o>     :call LatexTogglePreview()<CR> |
+    \ nnoremap <buffer> <A-r>     :call LatexTogglePreview()<CR> |
     \ nnoremap <buffer> <A-.>      ]s |
     \ nnoremap <buffer> <A-,>      [s |
     \ nnoremap <buffer> <A-q>     :call LatexStopPreview()<CR>
@@ -163,6 +163,8 @@ function! LocationPrevious()
     lprev
   catch /^Vim\%((\a\+)\)\=:E553/
     llast
+  catch /^Vim\%((\a\+)\)\=:E42/
+  catch /^Vim\%((\a\+)\)\=:E776/
   endtry
 endfunction
 
@@ -171,5 +173,7 @@ function! LocationNext()
     lnext
   catch /^Vim\%((\a\+)\)\=:E553/
     lfirst
+  catch /^Vim\%((\a\+)\)\=:E42/
+  catch /^Vim\%((\a\+)\)\=:E776/
   endtry
 endfunction
