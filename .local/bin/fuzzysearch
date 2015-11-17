@@ -4,13 +4,18 @@
 # ag file search
 stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore -fli --hidden -g "" ~ /etc 2>/dev/null | sed -e 's/^/file:\t/')
 # man page search
+stack+=$(echo -e "\r\n ")
 stack+=$(/usr/bin/man -k "" | awk '{print $1,$2}' | sed -e 's/^/man:\t/')
 # pacman listing
+stack+=$(echo -e "\r\n ")
 stack+=$(pacman -Sl | awk '{print $1,$2,$4}' | sed -e 's/^/pkg:\t/' -e 's/\ /\ \/ \ /g')
-stack+=$(pacman -Qqm | sed -e 's/^/pkg:\t\ aur\ \/\ /' -e 's/$/\ \/\ \[installed\]/')
+stack+=$(echo -e "\r\n ")
+stack+=$(pacman -Qqm | sed -e 's/^/pkg:\t\ aur\ \/\ /' -e 's/$/\ \/\ \[installed]/')
 # process search
+stack+=$(echo -e "\r\n ")
 stack+=$(ps -eo "%p : %U %c %a" | sed -e 's/^/proc:\t/')
 # ssh locations
+stack+=$(echo -e "\r\n ")
 stack+=$(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$' | sed -e 's/^/ssh:\t/')
 
 # will probably choke on a file / folder with a space in it!

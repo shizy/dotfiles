@@ -144,7 +144,7 @@ nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
 nmap                <A-S-x>         :ls<CR>:Bdelete!<Space><Tab><C-p>
-nmap                <A-x>           :Bdelete!<CR>
+nmap                <A-x>           :Bdelete!<CR>:bw #<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
