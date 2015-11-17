@@ -17,6 +17,7 @@ set! signon.rememberSignons=false
 set! network.http.pipelining=true
 set! network.http.proxy.pipelining=true
 set! privacy.trackingprotection.enabled=true
+set! browser.cache.disk.parent_directory=/dev/shm/firefox-cache
 
 loadplugins '\.(js|penta)$'
 group user

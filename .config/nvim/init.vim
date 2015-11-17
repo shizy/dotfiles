@@ -76,7 +76,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
-Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -108,18 +107,17 @@ let g:neomake_tex_pdflatex_maker = {
             \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
             \ }
 let g:neomake_tex_enabled_makers = ['pdflatex']
-let g:neomake_rust_cargo_maker = {
-            \ 'args': ['build', '--manifest-path', '**/Cargo.toml'],
-            \ 'append_file': 0,
+let g:neomake_go_go_maker = {
+            \ 'args': ['install', '%:p:h:t'],
+            \ 'append_file': 0
             \ }
-let g:neomake_rust_enabled_makers = ['cargo']
+let g:neomake_go_enabled_makers = ['go']
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsSnippetsDir = $XDG_CONFIG_HOME . "/nvim/snippets"
 
 " ========== MAPPINGS ==========
 
@@ -224,7 +222,7 @@ au FileType git
     \ setlocal nofoldenable |
     \ nmap  <buffer> q      :lclose<CR>:bw<CR> |
 au FileType javascript nmap <buffer> <A-r> :sp<CR>:te! cd %:p:h; npm start<CR>
-au FileType rust nmap <buffer> <A-r> :sp<CR>:te! cd %:p:h; cargo run<CR>
+au FileType go nmap <buffer> <A-r> :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
 au BufWinEnter *.md set syntax=markdown
 au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>

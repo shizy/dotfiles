@@ -17,7 +17,7 @@ export BZR_LOG=/dev/null
 # cargo
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 
-#firefox
+# firefox
 export XRE_IMPORT_PROFILES=1
 
 # git
