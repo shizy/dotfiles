@@ -2,7 +2,6 @@ source "pass web/google > /dev/null; |"
 source "if [ ! -e $XDG_CACHE_HOME/mutt ]; then mkdir $XDG_CACHE_HOME/mutt > /dev/null; fi |"
 source "if [ ! -e $HOME/.local/mail ]; then mkdir $HOME/.local/mail > /dev/null; fi |"
 source "if [ ! -e $HOME/.local/mail/offlineimap ]; then offlineimap -c $XDG_CONFIG_HOME/offlineimap/offlineimaprc -o; fi |"
-#source "if [ ! -e $XDG_CACHE_HOME/goobook/.goobook_cache ]; then mkdir -p $XDG_CACHE_HOME/goobook; goobook -c $XDG_CONFIG_HOME/goobook/goobookrc; fi |"
 
 # Paths
 set folder           = $HOME/.local/mail

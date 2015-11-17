@@ -1,19 +1,28 @@
 snippet #
-	#!/bin/bash
+#!/bin/bash
 
-	${1}
+${1}
+endsnippet
+
 snippet if
-	if [ ${1} ]; then
-		${2}
-	fi
+if [ ${1} ]; then
+	${2}
+fi
+endsnippet
+
 snippet for
-	for ${1} in ${2}
-	do
-		${3}
-	done
+for ${1} in ${2}
+do
+	${3}
+done
+endsnippet
+
 snippet case
-	case ${1} in
-		${2}
-	esac
+case ${1} in
+	${2}
+esac
+endsnippet
+
 snippet $
-	$(${1})
+$(${1})
+endsnippet
