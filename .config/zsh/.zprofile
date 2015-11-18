@@ -43,7 +43,7 @@ export NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/nvim
 
 # npm
 export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
-export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/node_modules
+export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/npm
 
 # pass
 export PASSWORD_STORE_DIR=$PRIVATE/password-store

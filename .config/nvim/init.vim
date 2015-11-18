@@ -55,7 +55,7 @@ source $XDG_CONFIG_HOME/nvim/functions.vim
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Buffer Management
-Plug 'moll/vim-bbye'
+Plug 'qpkorr/vim-bufkill'
 
 " Color Scheme
 Plug 'tomasr/molokai'
@@ -101,7 +101,7 @@ let g:neomake_warning_sign = {
 let g:neomake_informational_sign = {
             \ 'texthl': 'Question',
             \ }
-let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/node_modules/bin/jshint'
+let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_tex_pdflatex_maker = {
             \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
@@ -140,11 +140,11 @@ nnoremap            <A-/>           :noh<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
-nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
-nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
-nmap                <A-S-x>         :ls<CR>:Bdelete!<Space><Tab><C-p>
-nmap                <A-x>           :Bdelete!<CR>:bw #<CR>
+nmap                <A-Space>       :ls!<CR>:b<Space><Tab><C-p>
+nmap                <A-s>           :ls!<CR>:sb<Space><Tab><C-p>
+nmap                <A-v>           :ls!<CR>:vert:sb<Space><Tab><C-p>
+nmap                <A-S-x>         :ls!<CR>:bw!<Space><Tab><C-p>
+nmap                <A-x>           :BW!<CR>
 nmap                <A-q>           ZZ
 nmap                <A-o>           :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
@@ -179,7 +179,7 @@ cmap                jk              <CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
 tmap                <A-Space>       <C-\><C-n><C-w>:ls<CR>:b<Space><Tab><C-p> "For whatever reason <C-w> aleviates some bug residing here
 tmap                <Esc>           <C-\><C-n>
-tmap                <A-x>           <C-\><C-n>:bdelete!<CR>
+tmap                <A-x>           <C-\><C-n>:BW!<CR>ZZ
 tmap                <A-q>           <C-\><C-n>ZZ
 tmap                <A-b>           <C-\><C-n>:b#<CR>
 tmap                <A-Tab>         <C-\><C-n><C-w>p
@@ -208,16 +208,16 @@ au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal nonumber |
     \ setlocal syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap <buffer> jk      <Esc>:w<CR> |
-    \ nmap <buffer> <A-w>   :w<CR> |
-    \ nnoremap <buffer> <A-.>      ]s |
-    \ nnoremap <buffer> <A-,>      [s
+    \ imap <buffer> jk        <Esc>:w<CR> |
+    \ nmap <buffer> <A-w>     :w<CR> |
+    \ nnoremap <buffer> <A-.> ]s |
+    \ nnoremap <buffer> <A-,> [s
 au FileType gitcommit
-    \ nmap <buffer> <A-.>   <C-n> |
-    \ nmap <buffer> <A-,>   <C-p> |
-    \ nmap <buffer> c       <S-c>i |
-    \ nmap <buffer> q       :wq<CR> |
-    \ nmap <buffer> p       :wq<CR>:Gpush<space> |
+    \ nmap <buffer> <A-.>     <C-n> |
+    \ nmap <buffer> <A-,>     <C-p> |
+    \ nmap <buffer> c         <S-c>i |
+    \ nmap <buffer> q         :wq<CR> |
+    \ nmap <buffer> p         :wq<CR>:Gpush<space> |
 au FileType git
     \ setlocal nofoldenable |
     \ nmap  <buffer> q      :lclose<CR>:bw<CR> |
@@ -228,11 +228,13 @@ au BufWinEnter *.toml set filetype=toml
 au FileType netrw nmap <buffer> <Esc> :bd<CR>
 au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
-au FileType snippets nnoremap <buffer> <A-q> :Bdelete!<CR>ZZ
+au FileType snippets nnoremap <buffer> <A-q> :BW!<CR>ZZ
 au FileType help,man
     \ setlocal ro |
-    \ nmap <buffer> <CR> <C-]> |
-    \ nmap <buffer> u    <C-T> |
+    \ nmap <buffer> <CR>  <C-]> |
+    \ nmap <buffer> u     <C-T> |
+    \ nmap <buffer> <A-q> :bw!<CR> |
+    \ nmap <buffer> <A-x> :bw!<CR> |
 
 " Color & theme over-rides
 source $XDG_CONFIG_HOME/nvim/theme-overrides.vim
