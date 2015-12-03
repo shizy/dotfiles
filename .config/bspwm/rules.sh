@@ -22,14 +22,11 @@ if [ "$class" = Termite ]; then
         mutt)
             echo "desktop=^10"
             ;;
-        connman)
-            echo "floating=on"
-            ;;
         scratchtop|scratchbottom|scratchleft|scratchright|scratchsearch)
-            echo "floating=on border=off"
+            echo "state=floating border=off"
             ;;
         scratchjeeves)
-            echo "floating=on sticky=on locked=on layer=ABOVE"
+            echo "state=floating sticky=on locked=on layer=ABOVE"
             ;;
         dispatch)
             echo "desktop=^1"

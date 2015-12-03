@@ -11,8 +11,13 @@ hide () {
 create () {
 
     config=$XDG_CONFIG_HOME/termite/config.light
-    res=$(bspc query -T -m | head -n 1 | awk '{print $2}')
-    res=(${res//[x|\+]/ })
+    #res=$(bspc query -T -m | head -n 1 | awk '{print $2}')
+    w_width=$(bspc query -T -m | grep -oP '(?<="width":).*?(?=,|})' | head -n 1)
+    w_height=$(bspc query -T -m | grep -oP '(?<="height":).*?(?=,|})' | head -n 1)
+    w_x=$(bspc query -T -m | grep -oP '(?<="x":).*?(?=,|})' | head -n 1)
+    w_y=$(bspc query -T -m | grep -oP '(?<="y":).*?(?=,|})' | head -n 1)
+    res=($w_width $w_height $w_x $w_y)
+    #res=(${res//[x|\+]/ })
     w_top=$((1 + ${res[3]}))
     w_left=${res[2]}
 

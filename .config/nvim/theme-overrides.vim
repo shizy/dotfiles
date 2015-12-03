@@ -18,8 +18,8 @@ hi SpellBad                 ctermfg=200 ctermbg=201
 hi IncSearch                ctermfg=201 ctermbg=200
 hi Search                   ctermfg=234 ctermbg=201
 hi WildMenu                 ctermfg=201 ctermbg=232 cterm=bold
-hi TabLine                  ctermfg=203 ctermbg=232 cterm=none
-hi TabLineSel               ctermfg=232 ctermbg=203
+hi TabLine                  ctermfg=203 ctermbg=none cterm=none
+hi TabLineSel               ctermfg=203 ctermbg=232 cterm=none
 hi TabLineFill              cterm=none
 
 hi StatusLineThree          ctermfg=203 ctermbg=201 cterm=bold

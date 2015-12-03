@@ -54,9 +54,6 @@ source $XDG_CONFIG_HOME/nvim/functions.vim
 
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
-" Buffer Management
-Plug 'qpkorr/vim-bufkill'
-
 " Color Scheme
 Plug 'tomasr/molokai'
 
@@ -123,6 +120,8 @@ let g:UltiSnipsEditSplit = "vertical"
 
 noremap             <A-j>           10j
 noremap             <A-k>           10k
+noremap             <A-h>           B
+noremap             <A-l>           E
 map                 <A-C-j>         <C-w>j
 map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
@@ -144,9 +143,9 @@ nmap                <A-Space>       :ls!<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls!<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :ls!<CR>:vert:sb<Space><Tab><C-p>
 nmap                <A-S-x>         :ls!<CR>:bw!<Space><Tab><C-p>
-nmap                <A-x>           :BW!<CR>
+nmap                <A-x>           :bw!<CR>
 nmap                <A-q>           ZZ
-nmap                <A-o>           :call Zoom()<CR>
+nmap                <A-CR>          :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
@@ -168,18 +167,22 @@ nmap                ga              <Plug>(EasyAlign)
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
 
-cmap                <A-l>           <C-n>
-cmap                <A-h>           <C-p>
+cmap                <A-Tab>         <C-n>
+cmap                <A-S-Tab>       <C-p>
+cnoremap            <A-h>           <S-Left> 
+cnoremap            <A-l>           <S-Right>
+cnoremap            <A-x>           <C-E><C-U>
 cmap                <A-j>           <Down>
 cmap                <A-k>           <Up>
 cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>
 
+tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
-tmap                <A-Space>       <C-\><C-n><C-w>:ls<CR>:b<Space><Tab><C-p> "For whatever reason <C-w> aleviates some bug residing here
+tmap                <A-Space>       <C-\><C-n>:ls!<CR>:b<Space><Tab><C-p>
 tmap                <Esc>           <C-\><C-n>
-tmap                <A-x>           <C-\><C-n>:BW!<CR>ZZ
+tmap                <A-x>           <C-\><C-n>:bw!<CR>ZZ
 tmap                <A-q>           <C-\><C-n>ZZ
 tmap                <A-b>           <C-\><C-n>:b#<CR>
 tmap                <A-Tab>         <C-\><C-n><C-w>p
@@ -198,37 +201,38 @@ xmap                ga              <Plug>(EasyAlign)
 
 " ========== AUTOCOMMANDS ==========
 
-au BufWritePost * Neomake
-au BufNewFile,BufRead *.styl set filetype=stylus
-au BufNewFile,BufRead *.ejs  set filetype=js
-au BufNewFile,BufRead *.ejs  set filetype=html
+au FileType javascript           nmap <buffer> <A-r> :sp<CR>:te! cd %:p:h; npm start<CR>
+au FileType go                   nmap <buffer> <A-r> :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
+au FileType sh                   nmap <buffer> <A-r> :sp<CR>:te! %:p<CR>
+
+au BufWritePost *                Neomake
+au BufNewFile,BufRead *.styl     set filetype=stylus
+au BufNewFile,BufRead *.ejs      set filetype=js
+au BufNewFile,BufRead *.ejs      set filetype=html
+au BufWinEnter *.md              set syntax=markdown
+au BufWinEnter *.toml            set filetype=toml
+au WinEnter,BufWinEnter term://* startinsert
+au WinLeave,BufWinLeave term://* stopinsert
 au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nonumber |
     \ setlocal syntax=markdown |
     \ setlocal fo+=aw |
-    \ imap <buffer> jk        <Esc>:w<CR> |
-    \ nmap <buffer> <A-w>     :w<CR> |
+    \ imap     <buffer> jk    <Esc>:w<CR> |
+    \ nmap     <buffer> <A-w> :w<CR> |
     \ nnoremap <buffer> <A-.> ]s |
     \ nnoremap <buffer> <A-,> [s
 au FileType gitcommit
-    \ nmap <buffer> <A-.>     <C-n> |
-    \ nmap <buffer> <A-,>     <C-p> |
-    \ nmap <buffer> c         <S-c>i |
-    \ nmap <buffer> q         :wq<CR> |
-    \ nmap <buffer> p         :wq<CR>:Gpush<space> |
+    \ nmap <buffer> <A-.> <C-n> |
+    \ nmap <buffer> <A-,> <C-p> |
+    \ nmap <buffer> c     <S-c>i |
+    \ nmap <buffer> <A-q> :wq<CR> |
+    \ nmap <buffer> p     :wq<CR>:Gpush<space> |
 au FileType git
     \ setlocal nofoldenable |
-    \ nmap  <buffer> q      :lclose<CR>:bw<CR> |
-au FileType javascript nmap <buffer> <A-r> :sp<CR>:te! cd %:p:h; npm start<CR>
-au FileType go nmap <buffer> <A-r> :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
-au BufWinEnter *.md set syntax=markdown
-au BufWinEnter *.toml set filetype=toml
-au FileType netrw nmap <buffer> <Esc> :bd<CR>
-au WinEnter,BufWinEnter term://* startinsert
-au WinLeave,BufWinLeave term://* stopinsert
-au FileType snippets nnoremap <buffer> <A-q> :BW!<CR>ZZ
+    \ nmap  <buffer> <A-q> :lclose<CR>:bw<CR> |
+au FileType snippets nnoremap <buffer> <A-q> :bw!<CR>ZZ
 au FileType help,man
     \ setlocal ro |
     \ nmap <buffer> <CR>  <C-]> |

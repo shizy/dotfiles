@@ -55,10 +55,6 @@ export PENTADACTYL_INIT='source $XDG_CONFIG_HOME/pentadactyl/pentadactylrc'
 # texlive
 export TEXMFVAR=$XDG_CACHE_HOME/texlive
 
-# urxvt
-export RXVT_SOCKET=$XDG_RUNTIME_DIR/urxvtd-$(hostname)
-
-
 source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
 if [[ $(tty) == "/dev/tty1" ]]; then
     exec mystartx $XDG_CONFIG_HOME/x11/xinitrc
