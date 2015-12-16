@@ -24,7 +24,6 @@
 !/.config/fontconfig
 !/.config/git
 !/.config/goobook
-!/.config/mozilla
 !/.config/mutt
 !/.config/nvim
 !/.config/offlineimap
@@ -48,13 +47,6 @@
 
 !/.config/weechat/weechat.conf
 !/.config/weechat/irc.conf
-
-# PENTADACTYL
-#!/.config/pentadactyl
-#/.config/pentadactyl/*
-
-#!/.config/pentadactyl/pentadactylrc
-#!/.config/pentadactyl/chrome.css
 
 # OTHER
 !/.public
