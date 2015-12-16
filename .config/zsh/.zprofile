@@ -2,7 +2,7 @@
 export PRIVATE=$HOME/.local/private
 export PAGER=less
 export EDITOR=nvim
-export BROWSER=firefox
+export BROWSER=qutebrowser
 
 # XDG
 export XDG_CACHE_HOME=$HOME/.cache

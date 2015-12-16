@@ -28,6 +28,7 @@
 !/.config/mutt
 !/.config/nvim
 !/.config/offlineimap
+!/.config/qutebrowser
 !/.config/sxhkd
 !/.config/termite
 !/.config/user-dirs.dir
@@ -49,11 +50,11 @@
 !/.config/weechat/irc.conf
 
 # PENTADACTYL
-!/.config/pentadactyl
-/.config/pentadactyl/*
+#!/.config/pentadactyl
+#/.config/pentadactyl/*
 
-!/.config/pentadactyl/pentadactylrc
-!/.config/pentadactyl/chrome.css
+#!/.config/pentadactyl/pentadactylrc
+#!/.config/pentadactyl/chrome.css
 
 # OTHER
 !/.public

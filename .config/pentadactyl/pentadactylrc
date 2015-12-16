@@ -65,15 +65,15 @@ source $XDG_CONFIG_HOME/pentadactyl/chrome.css
 
 hi Normal color: #383838; background-color: #080808; font-family: "m+ 1m"; font-size: 10pt;
 hi NonText color: #383838;
-hi StatusLine font-size: 10pt; padding: 2px 5px; font-family: "m+ 1m";
+hi StatusLine font-size: 10pt; padding: 2px 5px; font-family: "M+ 1m";
 hi StatusNormal color: #383838; background-color: #080808;
 hi StatusLineNormal color: #383838; background-color: #080808;
 hi StatusLineSecure color: #457b9d; background-color: #080808;
 hi StatusLineExtended color: #457b9d; background-color: #080808;
 hi StatusLineBroken color: #e63946; background-color: #080808;
-hi CmdLine font-size: 9pt; padding: 2px 5px;
+hi CmdLine font-size: 10pt; padding: 2px 5px;
 hi CmdNormal color: #383838; background-color: #080808;
-hi Hint font-size: 9pt; font-weight: bold; color: #E63946; border: 1px solid #383838; background-color: #080808; padding: 3px;
+hi Hint font-size: 10pt; font-weight: bold; color: #E63946; border: 1px solid #383838; background-color: #080808; padding: 3px;
 hi Hint[active] background-color: #080808;
 hi HintActive background-color: none;
 hi HintElem background-color: none;

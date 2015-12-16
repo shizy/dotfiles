@@ -94,7 +94,8 @@ super + t
 	termite --title=term
 
 super + f
-    firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
+    qutebrowser
+#firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
 
 super + Escape
     i3lock-wrapper

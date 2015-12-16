@@ -12,7 +12,6 @@ scrollback_lines = 10000
 search_wrap = true
 cursor_blink = system
 cursor_shape = block
-browser=firefox
 
 [colors]
 cursor = #313131

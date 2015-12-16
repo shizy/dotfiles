@@ -27,7 +27,8 @@ bspc config external_rules_command  "$XDG_CONFIG_HOME/bspwm/rules.sh"
 # Autostart
 
 compton --opacity-rule '90:class_g = "Zathura"' &
-firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy &
+qutebrowser &
+#firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy &
 lockscreen start &
 nvim &
 xdotool mousemove $(xrandr | grep -oP '(?<=current\ ).*?(?=,)' | awk '{print $1 " " $3}') &
