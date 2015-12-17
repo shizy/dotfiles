@@ -2,7 +2,7 @@
 
 # Rules by Class
 
-#bspc rule -a Firefox desktop=^2
+bspc rule -a xfreerdp desktop=^1
 bspc rule -a qutebrowser desktop=^2
 
 # Rules by Title

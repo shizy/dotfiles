@@ -38,7 +38,6 @@ alias ~="cd ~"
 alias ..="cd .."
 alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
-alias vpn="$PRIVATE/vpn-pls.sh"
 alias help='curl -F "f:1=<-" ix.io'
 alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
