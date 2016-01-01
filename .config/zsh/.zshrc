@@ -80,6 +80,8 @@ backup () {
 
     case $1 in
         *"pri"*)
+            cp -rf $HOME/.local/share/dwarffortress/data/art $HOME/.local/private/df_art
+            cp -rf $HOME/.local/share/dwarffortress/data/init $HOME/.local/private/df
             tar -cvf $HOME/private.tar -C $PRIVATE/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
             # requires gdrive from: https://github.com/prasmussen/gdrive

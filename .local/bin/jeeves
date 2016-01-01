@@ -41,8 +41,8 @@ update () {
 
     vol=$(amixer get -M Master)
     [ "$(grep 'off' <<< $vol)" != "" ] &&
-        vol_level="\t(Mute)" ||
-        vol_level="\t($(amixer get -M Master | grep -oP '(?<=\[).*?(?=\%\])')%)"
+        vol_level="\t(Mute)" ||
+        vol_level="\t($(amixer get -M Master | grep -oP '(?<=\[).*?(?=\%\])')%)"
 
     eth=$(connmanctl services | grep -oP '(?<=R\ ).*?(?=\ *?ethernet)')
     [ "$eth" == "Wired" ] &&

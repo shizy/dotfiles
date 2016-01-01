@@ -143,7 +143,7 @@ nmap                <A-Space>       :ls!<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls!<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :ls!<CR>:vert:sb<Space><Tab><C-p>
 nmap                <A-S-x>         :ls!<CR>:bw!<Space><Tab><C-p>
-nmap                <A-x>           :bw!<CR>
+nmap                <A-x>           :bp<CR>:bw!<Space>#<CR>
 nmap                <A-q>           ZZ
 nmap                <A-CR>          :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
@@ -182,7 +182,7 @@ tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
 tmap                <A-Space>       <C-\><C-n>:ls!<CR>:b<Space><Tab><C-p>
 tmap                <Esc>           <C-\><C-n>
-tmap                <A-x>           <C-\><C-n>:bw!<CR>ZZ
+tmap                <A-x>           <C-\><C-n>:bw!<CR>
 tmap                <A-q>           <C-\><C-n>ZZ
 tmap                <A-b>           <C-\><C-n>:b#<CR>
 tmap                <A-Tab>         <C-\><C-n><C-w>p
