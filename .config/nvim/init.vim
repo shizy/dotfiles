@@ -227,11 +227,11 @@ au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i |
-    \ nmap <buffer> <A-q> :wq<CR> |
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
-au FileType git
+au FileType git,gitcommit
     \ setlocal nofoldenable |
-    \ nmap  <buffer> <A-q> :lclose<CR>:bw<CR> |
+    \ nmap <buffer> <A-q> :bw!<CR> |
+au BufWinLeave *git/index :bw!
 au FileType snippets nnoremap <buffer> <A-q> :bw!<CR>ZZ
 au FileType help,man
     \ setlocal ro |
