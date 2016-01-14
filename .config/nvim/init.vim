@@ -153,7 +153,7 @@ nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
-nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
+"nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
@@ -231,7 +231,6 @@ au FileType gitcommit
 au FileType git,gitcommit
     \ setlocal nofoldenable |
     \ nmap <buffer> <A-q> :bw!<CR> |
-au BufWinLeave *git/index :bw!
 au FileType snippets nnoremap <buffer> <A-q> :bw!<CR>ZZ
 au FileType help,man
     \ setlocal ro |

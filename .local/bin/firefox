@@ -1,3 +1,0 @@
-#!/bin/bash
-
-/usr/bin/firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy -override $XDG_CONFIG_HOME/mozilla/override.ini -new-tab $1
