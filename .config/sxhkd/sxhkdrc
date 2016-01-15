@@ -87,8 +87,8 @@ super + v
 super + m
     termite --title=mutt -e "mutt -F $XDG_CONFIG_HOME/mutt/muttrc"
 
-super + w
-    wallpaper
+#super + w
+#    wallpaper
 
 super + t
 	termite --title=term
