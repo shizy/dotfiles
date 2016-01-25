@@ -4,6 +4,7 @@
 
 bspc rule -a xfreerdp desktop=^1
 bspc rule -a qutebrowser desktop=^2
+bspc rule -a Conky layer=ABOVE
 
 # Rules by Title
 
@@ -25,9 +26,6 @@ if [ "$class" = Termite ]; then
             ;;
         scratchtop|scratchbottom|scratchleft|scratchright|scratchsearch)
             echo "state=floating border=off"
-            ;;
-        scratchjeeves)
-            echo "state=floating sticky=on locked=on layer=ABOVE"
             ;;
         dispatch)
             echo "desktop=^1"

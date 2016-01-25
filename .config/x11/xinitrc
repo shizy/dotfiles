@@ -5,6 +5,5 @@
 [[ -e $XDG_RUNTIME_DIR/nvim ]] && rm $XDG_RUNTIME_DIR/nvim
 
 xrandr --dpi 113
-#exec i3
 sxhkd &
 exec bspwm

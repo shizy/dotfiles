@@ -60,5 +60,5 @@ export VBOX_USER_HOME=$XDG_DATA_HOME/virtualbox
 
 source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
 if [[ $(tty) == "/dev/tty1" ]]; then
-    exec mystartx $XDG_CONFIG_HOME/x11/xinitrc
+     exec mystartx $XDG_CONFIG_HOME/x11/xinitrc
 fi

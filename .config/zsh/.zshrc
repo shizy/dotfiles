@@ -39,11 +39,9 @@ alias ..="cd .."
 alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
 alias help='curl -F "f:1=<-" ix.io'
-alias vnc="vncviewer"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
-alias firefox="firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy"
 
 man () { nvim "Man $1" }
 
@@ -80,8 +78,6 @@ backup () {
 
     case $1 in
         *"pri"*)
-            cp -rf $HOME/.local/share/dwarffortress/data/art $HOME/.local/private/df_art
-            cp -rf $HOME/.local/share/dwarffortress/data/init $HOME/.local/private/df
             tar -cvf $HOME/private.tar -C $PRIVATE/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
             # requires gdrive from: https://github.com/prasmussen/gdrive

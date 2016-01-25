@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir -p ~/.local/share/dwarffortress >/dev/null
-ln -s ~/.local/share/dwarffortress ~/.dwarffortress
-/usr/bin/dwarffortress
-rm ~/.dwarffortress

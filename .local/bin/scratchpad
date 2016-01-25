@@ -56,13 +56,6 @@ create () {
             h=${res[1]}
             w=$((${res[0]} / 2))
             ;;
-        "scratchjeeves")
-            x=100
-            y=100
-            h=400
-            w=400
-            config=$XDG_CONFIG_HOME/termite/config.nav
-            ;;
     esac
 
     termite -c $config --geometry ${w}x${h} --title=$1 $cmd &

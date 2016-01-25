@@ -67,7 +67,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 
 " Syntax & Highlighting
-Plug 'airblade/vim-gitgutter'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'

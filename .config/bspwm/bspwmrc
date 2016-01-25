@@ -27,13 +27,12 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
 compton --opacity-rule '90:class_g = "Zathura"' &
 qutebrowser &
-#firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy &
 lockscreen start &
 nvim &
 xdotool mousemove $(xrandr | grep -oP '(?<=current\ ).*?(?=,)' | awk '{print $1 " " $3}') &
 xbacklight -set 85 &
 unclutter -root &
-scratchpad scratchjeeves show jeeves &
+panel &
 xset r rate 200 25 &
 sh $XDG_CACHE_HOME/fehbg &
 himawari8 &

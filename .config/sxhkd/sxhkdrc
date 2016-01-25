@@ -1,5 +1,10 @@
-{Super_L,@Super_L}
-    scratchpad scratchjeeves {show,hide} jeeves
+Super_L
+    xdotool search --class conky_desktop_status windowmove x 0 && \
+    xdotool search --class conky_pc_status windowmap;
+
+@Super_L
+    xdotool search --class conky_desktop_status windowmove x -100 && \
+    xdotool search --class conky_pc_status windowunmap;
 
 # Navigation
 
@@ -95,7 +100,6 @@ super + t
 
 super + f
     qutebrowser
-#firefox --profile $XDG_CACHE_HOME/mozilla/firefox -P shizy
 
 super + Escape
     i3lock-wrapper
