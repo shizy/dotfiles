@@ -1,4 +1,5 @@
 alsa-utils
+conky
 connman
 curl
 imagemagick
@@ -14,6 +15,7 @@ openssh
 pass
 pinentry
 python2-neovim
+qutebrowser
 sxhkd
 texlive-core
 the_silver_searcher

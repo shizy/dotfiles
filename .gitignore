@@ -20,6 +20,7 @@
 
 !/.config/ag
 !/.config/bspwm
+!/.config/conky
 !/.config/cower
 !/.config/fontconfig
 !/.config/git
