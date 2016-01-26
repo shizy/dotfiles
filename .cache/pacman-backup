@@ -4,6 +4,7 @@ connman
 curl
 imagemagick
 feh
+fzf
 gnupg
 lynx
 neovim
