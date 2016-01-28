@@ -18,7 +18,8 @@ create () {
     w_y=$(bspc query -T -m | grep -oP '(?<="y":).*?(?=,|})' | head -n 1)
     res=($w_width $w_height $w_x $w_y)
     #res=(${res//[x|\+]/ })
-    w_top=$((1 + ${res[3]}))
+    #w_top=$((1 + ${res[3]}))
+    w_top=$((${res[3]} - 1))
     w_left=${res[2]}
 
     if [ $2 ]; then
