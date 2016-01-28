@@ -43,20 +43,16 @@ alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
 
-man () { nvim "Man $1" }
+man () {
+    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
+}
 
 edit () {
     file="$(pwd)/$1"
-
-    if [ ! -e $file ]; then
-        touch $file
-    fi
-
+    [[ ! -e "$file" ]] && touch "$file"
     ftype=$(file $file --mime-type | awk '{print $2}')
-
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
-
-        nvim "hide e $file"
+        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
     fi
 }
 

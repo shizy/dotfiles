@@ -1,19 +1,10 @@
 #!/bin/bash
-#1750x1000
-
-if [ $(pgrep -c himawari) -gt 1 ]; then
-    exit
-fi
 
 mkdir -p $XDG_DATA_HOME/wallpaper/
 
-while :; do
 wget -O /tmp/himawari_temp.gif http://www.ssec.wisc.edu/data/geo/himawari/latest_himawari08_rgb_wp.gif
 [ $? -eq 0 ] &&
     mogrify -crop 1750x970+0+15 /tmp/himawari_temp.gif
     mv -f /tmp/himawari_temp.gif $XDG_DATA_HOME/wallpaper/himawari_current.gif
     feh --bg-fill --no-fehbg "$XDG_DATA_HOME/wallpaper/himawari_current.gif"
     echo -n "feh --bg-fill --no-fehbg '$XDG_DATA_HOME/wallpaper/himawari_current.gif'" > $XDG_CACHE_HOME/fehbg
-    sleep 30m;
-done
-wait

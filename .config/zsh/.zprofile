@@ -17,9 +17,6 @@ export BZR_LOG=/dev/null
 # cargo
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 
-# firefox
-export XRE_IMPORT_PROFILES=1
-
 # git
 export GIT_SSH=$HOME/.local/bin/ssh
 
@@ -48,17 +45,19 @@ export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/npm
 # pass
 export PASSWORD_STORE_DIR=$PRIVATE/password-store
 
-# pentadactyl
-export PENTADACTYL_RUNTIME=$XDG_CONFIG_HOME/pentadactyl
-export PENTADACTYL_INIT='source $XDG_CONFIG_HOME/pentadactyl/pentadactylrc'
-
 # texlive
 export TEXMFVAR=$XDG_CACHE_HOME/texlive
 
 # virtualbox
 export VBOX_USER_HOME=$XDG_DATA_HOME/virtualbox
 
+# x11
+export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
+export XINITRC=$XDG_CONFIG_HOME/x11/xinitrc
+
 source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
-if [[ $(tty) == "/dev/tty1" ]]; then
-     exec mystartx $XDG_CONFIG_HOME/x11/xinitrc
-fi
+
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] &&
+    unset SESSION_MANAGER
+    export DISPLAY=:$XDG_VTNR
+    xinit "$XINITRC" -- "$DISPLAY" vt"$XDG_VTNR" -keeptty -nolisten tcp -auth "$XAUTHORITY"

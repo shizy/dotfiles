@@ -87,7 +87,7 @@ super + i
     termite --title=irc -e "weechat-curses -d $XDG_CONFIG_HOME/weechat"
 
 super + v
-    nvim
+    termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
 
 super + m
     termite --title=mutt -e "mutt -F $XDG_CONFIG_HOME/mutt/muttrc"

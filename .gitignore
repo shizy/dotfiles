@@ -42,6 +42,10 @@
 
 !/.config/gnupg/gpg-agent.conf
 
+# SYSTEMD
+!/.config/systemd/user/*.service
+!/.config/systemd/user/*.timer
+
 # WEECHAT
 !/.config/weechat
 /.config/weechat/*

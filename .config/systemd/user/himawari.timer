@@ -1,0 +1,9 @@
+[Unit]
+Description=Himawari 8 Satellite Photo Wallpaper
+
+[Timer]
+OnBootSec=30sec
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=timers.target

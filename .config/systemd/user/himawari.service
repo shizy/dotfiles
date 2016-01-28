@@ -1,0 +1,12 @@
+[Unit]
+Description=Himawari 8 Satellite Photo Wallpaper
+
+[Service]
+Environment=XDG_DATA_HOME=%h/.local/share
+Environment=XDG_CACHE_HOME=%h/.cache
+Environment=DISPLAY=:1
+Type=oneshot
+ExecStart=/usr/bin/bash %h/.local/bin/himawari8
+
+[Install]
+WantedBy=multi-user.target

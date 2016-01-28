@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # ag file search
 stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore -fli --hidden -g "" ~ /etc 2>/dev/null | sed -e 's/^/file:\t/')
 # man page search
@@ -36,7 +35,8 @@ launch () {
                         i3-msg exec feh $file > /dev/null
                         ;;
                     *"text"* | *"empty"* | *"javascript"*)
-                        nvim "hide e $file"
+                        #nvim "hide e $file"
+                        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
                         ;;
                     *"pdf"*)
                         zathura --fork $file
@@ -54,7 +54,8 @@ launch () {
         "man")
             for man in ${targets[@]}
             do
-                nvim "Man $man"
+                #nvim "Man $man"
+                python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
             done
             ;;
         "proc")
