@@ -45,7 +45,6 @@
 # SYSTEMD
 !/.config/systemd/user/*.service
 !/.config/systemd/user/*.timer
-/.config/systemd/user/*/
 
 # WEECHAT
 !/.config/weechat
