@@ -10,7 +10,7 @@ hide () {
 
 create () {
 
-    config=$XDG_CONFIG_HOME/termite/config.light
+    config=$XDG_CONFIG_HOME/termite/config
     #res=$(bspc query -T -m | head -n 1 | awk '{print $2}')
     w_width=$(bspc query -T -m | grep -oP '(?<="width":).*?(?=,|})' | head -n 1)
     w_height=$(bspc query -T -m | grep -oP '(?<="height":).*?(?=,|})' | head -n 1)
