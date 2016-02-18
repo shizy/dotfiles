@@ -55,7 +55,7 @@ launch () {
             for man in ${targets[@]}
             do
                 #nvim "Man $man"
-                python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
+                python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $man');"
             done
             ;;
         "proc")

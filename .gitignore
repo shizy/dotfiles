@@ -1,6 +1,5 @@
 # EXCLUDE ALL
 /*
-*.pyc
 
 # CACHE
 !/.cache
@@ -24,8 +23,6 @@
 !/.config/cower
 !/.config/fontconfig
 !/.config/git
-!/.config/goobook
-!/.config/mutt
 !/.config/nvim
 !/.config/offlineimap
 !/.config/qutebrowser

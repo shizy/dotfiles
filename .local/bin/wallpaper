@@ -1,16 +1,16 @@
 #!/bin/bash
 
-if [ ! -d "$XDG_DATA_HOME/wallpaper" ]; then
-    mkdir $XDG_DATA_HOME/wallpaper 2>/dev/null
+if [ ! -d "$HOME/.local/wallpaper" ]; then
+    mkdir $HOME/.local/wallpaper 2>/dev/null
 fi
 
 if [ "$1" ]; then
     x=$(basename $1)
-    mv -f $1 "$XDG_DATA_HOME/wallpaper/$x"
+    mv -f $1 "$HOME/.local/wallpaper/$x"
 else
-    x=$(ls -t $XDG_DATA_HOME/wallpaper 2>/dev/null | tail -n 1)
+    x=$(ls -t $HOME/.local/wallpaper 2>/dev/null | tail -n 1)
 fi
 
-touch "$XDG_DATA_HOME/wallpaper/$x"
-feh --bg-fill --no-fehbg "$XDG_DATA_HOME/wallpaper/$x"
-echo -n "feh --bg-fill --no-fehbg '$XDG_DATA_HOME/wallpaper/$x'" > $XDG_CACHE_HOME/fehbg
+touch "$HOME/.local/wallpaper/$x"
+feh --bg-fill --no-fehbg "$HOME/.local/wallpaper/$x"
+echo -n "feh --bg-fill --no-fehbg '$HOME/.local/wallpaper/$x'" > $XDG_CACHE_HOME/fehbg
