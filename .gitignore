@@ -25,6 +25,7 @@
 !/.config/fontconfig
 !/.config/gem
 !/.config/git
+!/.config/notmuch
 !/.config/nvim
 !/.config/offlineimap
 !/.config/qutebrowser
