@@ -1,0 +1,3 @@
+#!/bin/bash
+
+VIMINIT='source ~/.config/notmuch/notmuch.vim' vim -c NotMuch

@@ -9,7 +9,7 @@ CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
 typeset -U path
-path=($NPM_CONFIG_PREFIX/bin $HOME/dev/go/bin $path)
+path=($NPM_CONFIG_PREFIX/bin $HOME/dev/go/bin $GEM_PATH/bin $path)
 
 # default start dir
 cd ~
@@ -42,6 +42,7 @@ alias help='curl -F "f:1=<-" ix.io'
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
+alias gem="gem --config-file $XDG_CONFIG_HOME/gem/gemrc"
 
 man () {
     python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"

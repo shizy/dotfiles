@@ -38,12 +38,21 @@ export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
 # neovim
 export NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/nvim
 
+# notmuch
+export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
+export NMBGIT=$XDG_DATA_HOME/notmuch/nmbug
+
 # npm
 export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/npm
 
 # pass
 export PASSWORD_STORE_DIR=$PRIVATE/password-store
+
+# ruby
+export GEM_HOME=$XDG_DATA_HOME/gems
+export GEM_PATH=$XDG_DATA_HOME/gems
+export GEM_SPEC_CACHE=$XDG_DATA_HOME/gems
 
 # texlive
 export TEXMFVAR=$XDG_CACHE_HOME/texlive

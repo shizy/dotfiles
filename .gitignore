@@ -7,6 +7,7 @@
 !/.cache/pacman-backup
 !/.cache/aur-backup
 !/.cache/npm-backup
+!/.cache/gem-backup
 
 # LOCAL/BIN
 !/.local
@@ -22,10 +23,12 @@
 !/.config/conky
 !/.config/cower
 !/.config/fontconfig
+!/.config/gem
 !/.config/git
 !/.config/nvim
 !/.config/offlineimap
 !/.config/qutebrowser
+!/.config/systemd
 !/.config/sxhkd
 !/.config/termite
 !/.config/user-dirs.dir
@@ -38,10 +41,6 @@
 /.config/gnupg/*
 
 !/.config/gnupg/gpg-agent.conf
-
-# SYSTEMD
-!/.config/systemd/user/*.service
-!/.config/systemd/user/*.timer
 
 # WEECHAT
 !/.config/weechat

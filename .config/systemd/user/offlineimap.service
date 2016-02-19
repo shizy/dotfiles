@@ -1,0 +1,9 @@
+[Unit]
+Description=OfflineIMAP Service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/offlineimap -c %h/.local/private/offlineimap/offlineimaprc
+
+[Install]
+WantedBy=default.target

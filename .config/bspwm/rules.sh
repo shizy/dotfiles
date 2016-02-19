@@ -21,7 +21,7 @@ if [ "$class" = Termite ]; then
         irc)
             echo "desktop=^9"
             ;;
-        mutt)
+        mail)
             echo "desktop=^10"
             ;;
         scratchtop|scratchbottom|scratchleft|scratchright|scratchsearch)

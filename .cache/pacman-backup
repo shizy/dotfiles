@@ -16,6 +16,7 @@ openssh
 pinentry
 python2-neovim
 qutebrowser
+ruby
 sxhkd
 texlive-core
 the_silver_searcher
@@ -23,6 +24,7 @@ tlp
 ttf-dejavu
 ttf-liberation
 unclutter
+vim
 weechat
 wget
 xautolock

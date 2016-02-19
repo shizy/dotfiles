@@ -37,6 +37,12 @@ export NPM_CONFIG_CACHE=~/.cache/npm
 export NPM_CONFIG_PREFIX=~/.local/share/node_modules
 npm install -g $(cat ~/.cache/npm-backup)
 
+# Install gems
+export GEM_HOME=~/.local/share/gems
+export GEM_PATH=~/.local/share/gems
+export GEM_SPEC_CACHE=~/.local/share/gems
+gem --config-file ~/.config/gem/gemrc install $(cat ~/.cache/gem-backup)
+
 # prep man pages
 sudo mandb
 
@@ -49,6 +55,6 @@ cd ~
 cower -df $(cat ~/.cache/aur-backup)
 
 # final reminder
-echo "Finished initial setup, remember to build all packages in ~/.local/src !"
+echo "Finished initial setup, remember to build all packages in ~/.local/src and enable any systemd units!"
 
 fi
