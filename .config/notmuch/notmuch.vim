@@ -21,6 +21,7 @@ set clipboard=unnamedplus
 set textwidth=78
 
 let mapleader = "\<Space>"
+let g:notmuch_date_format = '  %a, %b %e  '
 let g:notmuch_sendmail = 'msmtp -C $PRIVATE/msmtp/msmtprc'
 let g:notmuch_folders = [
             \ ['inbox', 'tag:inbox'],
@@ -43,13 +44,19 @@ noremap <A-l>       E
 nmap    <A-c>       c
 nmap    u           q
 
+au FileType notmuch-show
+            \ nmap <A-w>                        e|
+
 au FileType notmuch-folders,notmuch-search
-            \ nmap -           :call <SNR>14_search_tag("-inbox -unread")<CR>:call <SNR>14_search_refresh()<CR>|
-            \ nmap <A-x>       :call <SNR>14_search_tag("-inbox -unread +deleted")<CR>:call <SNR>14_search_refresh()<CR>|
-            "\ nmap <S-1>       :call <SNR>14_search_tag("+flagged")
+            \ nmap -                            :call <SNR>14_search_tag("-inbox -unread")<CR>:call <SNR>14_search_refresh()<CR>|
+            \ nmap <A-x>                        :call <SNR>14_search_tag("-inbox -unread +deleted")<CR>:call <SNR>14_search_refresh()<CR>|
+            "\ nmap <S-1>                       :call <SNR>14_search_tag("+flagged")
 
 au FileType notmuch-compose
-            \ nmap <Leader>p   ,s|
-            \ nmap <A-x>       ,q|
-            \ imap jj          <Esc><Esc>|
-            \ imap jk          <Esc><Esc>|
+            \ nmap <Leader>p                    ,s|
+            \ nmap <A-x>                        ,q|
+            \ imap jj                           <Esc><Esc>|
+            \ imap jk                           <Esc><Esc>|
+            \ inoremap <expr> <Tab>             pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"|
+            \ inoremap <expr> <S-Tab>           pumvisible() ? "\<Up>"   : "\<C-x>\<C-u>"|
+
