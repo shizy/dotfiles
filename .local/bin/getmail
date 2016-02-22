@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+/usr/bin/offlineimap -c $HOME/.local/private/offlineimap/offlineimaprc
+/usr/bin/notmuch new
+
+if [ -e $XDG_DATA_HOME/vim/plugged/notmuch-abook/pythonx ]; then
+    for file in $(notmuch search --output=files tag:new) ; do
+        cat "$file" | $XDG_DATA_HOME/vim/plugged/notmuch-abook/pythonx/notmuch_abook.py update
+    done
+fi

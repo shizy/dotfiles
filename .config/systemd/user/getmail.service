@@ -1,0 +1,11 @@
+[Unit]
+Description=OfflineIMAP Notmuch and Abook Sync
+
+[Service]
+Type=oneshot
+Environment=NOTMUCH_CONFIG=%h/.config/notmuch/notmuchrc
+Environment=XDG_DATA_HOME=%h/.local/share
+ExecStart=/usr/bin/bash %h/.local/bin/getmail
+
+[Install]
+WantedBy=default.target

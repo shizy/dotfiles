@@ -95,3 +95,7 @@ synchronize_flags=true
 #
 [crypto]
 gpg_path=gpg
+
+[addressbook]
+path=/home/shizy/.local/mail/notmuch-abook.db
+backend=sqlite3
