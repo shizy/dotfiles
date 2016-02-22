@@ -3,7 +3,9 @@ Description=OfflineIMAP Service
 
 [Service]
 Type=oneshot
+Environment=NOTMUCH_CONFIG=%h/.config/notmuch/notmuchrc
 ExecStart=/usr/bin/offlineimap -c %h/.local/private/offlineimap/offlineimaprc
+ExecStartPost=/usr/bin/notmuch new
 
 [Install]
 WantedBy=default.target

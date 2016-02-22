@@ -17,6 +17,9 @@ export BZR_LOG=/dev/null
 # cargo
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 
+# elinks
+export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
+
 # git
 export GIT_SSH=$HOME/.local/bin/ssh
 

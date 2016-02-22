@@ -4,10 +4,10 @@ conky
 connman
 curl
 imagemagick
+elinks
 feh
 fzf
 gnupg
-lynx
 msmtp
 neovim
 nmap
