@@ -4,6 +4,9 @@
 /usr/bin/notmuch new
 
 if [ -e $XDG_DATA_HOME/vim/plugged/notmuch-abook/pythonx ]; then
+    if [ ! -e $HOME/.local/mail/notmuch-abook.db ]; then
+        $XDG_DATA_HOME/vim/plugged/notmuch-abook/pythonx/notmuch_abook.py create
+    fi
     for file in $(notmuch search --output=files tag:new) ; do
         cat "$file" | $XDG_DATA_HOME/vim/plugged/notmuch-abook/pythonx/notmuch_abook.py update
     done

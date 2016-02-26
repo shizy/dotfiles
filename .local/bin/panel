@@ -4,7 +4,7 @@ if [ $(pgrep -c panel) -gt 1 ]; then
     exit
 fi
 
-icons=(" " " " " " " " " " " " " " " " " " " ")
+icons=(" " " " " " " " " " " " " " " " " " " ")
 monitors=$(bspc query -M | wc -l)
 urg='${color #F92672}'
 cur='${color #457B9D}'
@@ -15,7 +15,7 @@ res='${color}'
     mkfifo $XDG_RUNTIME_DIR/desktop_status.fifo
 
 sleep 3
-conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf & 
+conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf &
 conky -c $XDG_CONFIG_HOME/conky/pc_status.conf &
 
 bspc control --subscribe | while read -r line; do

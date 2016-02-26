@@ -28,4 +28,46 @@ ruby << EOF
 			VIM::command("call cursor(#{cur}, 0)")
 		end
 	end
+
+	def open_reply(orig)
+		reply = orig.reply do |m|
+			# fix headers
+			if not m[:reply_to]
+				m.to = [orig[:from].to_s]
+			end
+			m.cc = orig[:cc]
+			m.from = $email
+			m.charset = 'utf-8'
+		end
+
+		lines = []
+
+		body_lines = []
+		if $mail_installed
+			addr = Mail::Address.new(orig[:from].value)
+			name = addr.name
+			name = addr.local + "@" if name.nil? && !addr.local.nil?
+		else
+			name = orig[:from]
+		end
+		name = "somebody" if name.nil?
+
+		body_lines << "%s wrote:" % name
+		part = orig.find_first_text
+		part.convert.each_line do |l|
+			body_lines << "> %s" % l.chomp
+		end
+		body_lines << ""
+		body_lines << ""
+		body_lines << ""
+
+		reply.body = body_lines.join("\n")
+
+		lines += reply.present.lines.map { |e| e.chomp }
+		lines << ""
+
+		cur = lines.count - 1
+
+		open_compose_helper(lines, cur)
+	end
 EOF

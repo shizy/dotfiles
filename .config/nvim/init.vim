@@ -87,14 +87,15 @@ let g:rehash256 = 1
 
 " Neomake
 let g:neomake_error_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'ErrorMsg',
             \ }
 let g:neomake_warning_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'WarningMsg',
             \ }
 let g:neomake_informational_sign = {
+            \ 'text': '',
             \ 'texthl': 'Question',
             \ }
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
@@ -152,7 +153,6 @@ nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :Gpush<space>
-"nmap                <Leader>l       :Gllog --<CR><CR>:lopen<CR><C-w>p
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
@@ -162,6 +162,8 @@ nmap                <A-3>           3gt
 nmap                <A-4>           4gt
 nmap                <A-5>           5gt
 nmap                ga              <Plug>(EasyAlign)
+nmap                <A-=>           <C-a>
+nmap                <A-->           <C-x>
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>

@@ -42,7 +42,14 @@ noremap <A-z>       :qa!<CR>
 noremap <A-h>       B
 noremap <A-l>       E
 nmap    <A-c>       c
-nmap    u           q
+
+" auto tag -unread when entering notmuch-show
+
+au FileType notmuch-folders
+            \ nmap q                            <nop>|
+
+au FileType notmuch-show,notmuch-search
+            \ nmap u                            q|
 
 au FileType notmuch-show
             \ nmap <A-w>                        e|

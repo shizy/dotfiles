@@ -42,7 +42,7 @@ au VimEnter,WinEnter,BufWinEnter *
     \ set statusline+=%#StatusLineTwo# |
     \ set statusline+=\ %{&filetype}\ |
     \ set statusline+=%#StatusLineThree# |
-    \ set statusline+=\ \ %p%%\ |
+    \ set statusline+=\ \ %p%%\ |
 au WinLeave * setlocal statusline=%f
 
 " Just for reference
