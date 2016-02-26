@@ -45,6 +45,14 @@ nmap    <A-c>       c
 
 " auto tag -unread when entering notmuch-show
 
+let g:notmuch_custom_search_maps = {
+            \ 'X':                              'search_tag("-inbox -unread +deleted")'
+            \ }
+
+let g:notmuch_custom_show_maps = {
+            \ 'X':                              'show_tag("-inbox -unread +deleted")'
+            \ }
+
 au FileType notmuch-folders
             \ nmap q                            <nop>|
 
@@ -53,10 +61,12 @@ au FileType notmuch-show,notmuch-search
 
 au FileType notmuch-show
             \ nmap <A-w>                        e|
+            \ nmap <A-x>                        Xu=|
 
 au FileType notmuch-folders,notmuch-search
-            \ nmap -                            :call <SNR>14_search_tag("-inbox -unread")<CR>:call <SNR>14_search_refresh()<CR>|
-            \ nmap <A-x>                        :call <SNR>14_search_tag("-inbox -unread +deleted")<CR>:call <SNR>14_search_refresh()<CR>|
+            \ nmap -                            A=|
+            \ nmap <A-x>                        X=|
+            \ nmap /                            s|
             "\ nmap <S-1>                       :call <SNR>14_search_tag("+flagged")
 
 au FileType notmuch-compose
