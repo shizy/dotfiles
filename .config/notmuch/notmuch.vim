@@ -67,7 +67,6 @@ au FileType notmuch-folders,notmuch-search
             \ nmap -                            A=|
             \ nmap <A-x>                        X=|
             \ nmap /                            s|
-            "\ nmap <S-1>                       :call <SNR>14_search_tag("+flagged")
 
 au FileType notmuch-compose
             \ nmap <Leader>p                    ,s|

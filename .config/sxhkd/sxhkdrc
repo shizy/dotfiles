@@ -101,9 +101,6 @@ super + t
 super + f
     qutebrowser
 
-super + shift + f
-    ssh -D 8888 nhurouter -fN; qutebrowser -s network proxy socks://127.0.0.1:8888 http://10.200.1.90
-
 super + Escape
     i3lock-wrapper
 
