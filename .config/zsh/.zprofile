@@ -11,6 +11,11 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 export PATH=$HOME/.local/bin:$HOME/.local/private/bin:$PATH
 
+# Color
+export COLOR_WARNING="#b1d631"
+export COLOR_HIGHLIGHT="#F1FAEE"
+export COLOR_NOTIFY="#7e8aa2"
+
 # bzr
 export BZR_LOG=/dev/null
 
@@ -69,7 +74,8 @@ export XINITRC=$XDG_CONFIG_HOME/x11/xinitrc
 
 source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] &&
+if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     unset SESSION_MANAGER
     export DISPLAY=":$XDG_VTNR"
     xinit "$XINITRC" -- $DISPLAY vt"$XDG_VTNR" -keeptty -nolisten tcp -br -auth "$XAUTHORITY"
+fi

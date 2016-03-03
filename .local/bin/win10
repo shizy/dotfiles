@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sudo modprobe -a vboxdrv
-vboxmanage startvm win10

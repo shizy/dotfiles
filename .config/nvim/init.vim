@@ -44,8 +44,6 @@ set wildmenu
 set wildmode=full,list
 set wildignorecase
 
-syntax on
-filetype plugin indent on
 let mapleader = "\<Space>"
 :runtime! ftplugin/man.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
@@ -55,7 +53,7 @@ source $XDG_CONFIG_HOME/nvim/functions.vim
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Color Scheme
-Plug 'tomasr/molokai'
+Plug 'croaker/mustang-vim'
 
 " Interaction
 Plug 'tpope/vim-surround'
@@ -80,10 +78,8 @@ call plug#end()
 " LaTeX
 let g:tex_flavor = 'latex'
 
-" Molokai
-color molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
+" Colorscheme
+call Scheme("mustang")
 
 " Neomake
 let g:neomake_error_sign = {
@@ -164,6 +160,7 @@ nmap                <A-5>           5gt
 nmap                ga              <Plug>(EasyAlign)
 nmap                <A-=>           <C-a>
 nmap                <A-->           <C-x>
+nmap                <A-n>           <S-n>
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
@@ -239,6 +236,3 @@ au FileType help,man
     \ nmap <buffer> u     <C-T> |
     \ nmap <buffer> <A-q> :bw!<CR> |
     \ nmap <buffer> <A-x> :bw!<CR> |
-
-" Color & theme over-rides
-source $XDG_CONFIG_HOME/nvim/theme-overrides.vim

@@ -18,7 +18,8 @@ call plug#end()
 set viminfo="NONE"
 set encoding=utf-8
 set clipboard=unnamedplus
-set textwidth=78
+"set textwidth=78
+set foldmethod=syntax
 
 let mapleader = "\<Space>"
 let g:notmuch_date_format = '  %a, %b %e  '
@@ -43,25 +44,27 @@ noremap <A-h>       B
 noremap <A-l>       E
 nmap    <A-c>       c
 
-" auto tag -unread when entering notmuch-show
+" flagged toggle
+" auto refresh on inbox update
 
 let g:notmuch_custom_search_maps = {
-            \ 'X':                              'search_tag("-inbox -unread +deleted")'
+            \ 'X':                              'search_tag("-inbox -unread +deleted")',
+            \ 'u':                              'kill_this_buffer()',
             \ }
 
 let g:notmuch_custom_show_maps = {
-            \ 'X':                              'show_tag("-inbox -unread +deleted")'
+            \ 'X':                              'show_tag("-inbox -unread +deleted")',
+            \ 'T':                              'show_tag("-unread")',
+            \ 'x':                              'kill_this_buffer()',
             \ }
 
 au FileType notmuch-folders
             \ nmap q                            <nop>|
 
-au FileType notmuch-show,notmuch-search
-            \ nmap u                            q|
-
 au FileType notmuch-show
             \ nmap <A-w>                        e|
-            \ nmap <A-x>                        Xu=|
+            \ nmap <A-x>                        Xq=|
+            \ nmap u                            Tx=|
 
 au FileType notmuch-folders,notmuch-search
             \ nmap -                            A=|
@@ -69,6 +72,7 @@ au FileType notmuch-folders,notmuch-search
             \ nmap /                            s|
 
 au FileType notmuch-compose
+            \ setlocal foldmethod=manual |
             \ nmap <Leader>p                    ,s|
             \ nmap <A-x>                        ,q|
             \ imap jj                           <Esc><Esc>|

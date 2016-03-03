@@ -1,0 +1,44 @@
+# vim: ft=dosini cms=#%s
+
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = M+ 1m 10
+scrollback_lines = 10000
+search_wrap = true
+cursor_blink = system
+cursor_shape = block
+
+[colors]
+cursor = #F1FAEE
+foreground = #A8A8A8
+background = rgba(0, 0, 0, 0.90)
+
+# based on base16-grayscale
+color0 = #101010
+color1 = #252525
+color2 = #464646
+color3 = #525252
+color4 = #ababab
+color5 = #b9b9b9
+color6 = #e3e3e3
+color7 = #f7f7f7
+
+color8 = #7c7c7c
+color9 = #999999
+color10 = #a0a0a0
+color11 = #8e8e8e
+color12 = #868686
+color13 = #686868
+color14 = #747474
+color15 = #5e5e5e
+
+#color200 = #F92672
+#color201 = #F1FAEE
+#color202 = #457B9D

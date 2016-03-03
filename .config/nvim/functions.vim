@@ -177,3 +177,8 @@ function! LocationNext()
   catch /^Vim\%((\a\+)\)\=:E776/
   endtry
 endfunction
+
+function! Scheme(name)
+    execute 'colorscheme' a:name
+    source $XDG_CONFIG_HOME/nvim/theme-overrides.vim
+endfunction
