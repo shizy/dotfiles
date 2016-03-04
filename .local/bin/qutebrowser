@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source $XDG_CONFIG_HOME/zsh/.zprofile
+
+/usr/bin/qutebrowser -s colors statusbar.fg.error $COLOR_URGENT -s colors statusbar.fg.warning $COLOR_NORMAL -s colors statusbar.fg.prompt $COLOR_NOTIFY "$@"

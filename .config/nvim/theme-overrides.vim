@@ -23,16 +23,16 @@ hi TabLineSel               ctermfg=237 ctermbg=232 cterm=none
 hi TabLineFill              cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
 
-hi StatusLineThree          ctermfg=237 ctermbg=201 cterm=bold
+hi StatusLineThree          ctermfg=234 ctermbg=201 cterm=bold
 hi StatusLineTwo            ctermfg=232 ctermbg=237 cterm=none
 hi StatusLine               ctermfg=237 ctermbg=232 cterm=none
 hi StatusLineNC             ctermfg=237 ctermbg=232 cterm=none
 
 au InsertEnter *
-            \ hi StatusLineThree ctermfg=232 ctermbg=200 |
+            \ hi StatusLineThree ctermfg=234 ctermbg=200 |
             \ hi CursorLineNr    ctermfg=200 ctermbg=none cterm=bold |
 au InsertLeave *
-            \ hi StatusLineThree ctermfg=237 ctermbg=201 |
+            \ hi StatusLineThree ctermfg=234 ctermbg=201 |
             \ hi CursorLineNr    ctermfg=201 ctermbg=none cterm=bold |
 
 au VimEnter,WinEnter,BufWinEnter *

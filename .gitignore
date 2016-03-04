@@ -49,6 +49,7 @@
 
 !/.config/weechat/weechat.conf
 !/.config/weechat/irc.conf
+!/.config/weechat/buffers.conf
 
 # OTHER
 !/.public

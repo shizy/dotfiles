@@ -12,9 +12,9 @@ export XDG_DATA_HOME=$HOME/.local/share
 export PATH=$HOME/.local/bin:$HOME/.local/private/bin:$PATH
 
 # Color
-export COLOR_WARNING="#b1d631"
-export COLOR_HIGHLIGHT="#F1FAEE"
-export COLOR_NOTIFY="#7e8aa2"
+export COLOR_URGENT="#B1D631"
+export COLOR_NORMAL="#F1FAEE"
+export COLOR_NOTIFY="#7E8AA2"
 
 # bzr
 export BZR_LOG=/dev/null

@@ -9,8 +9,8 @@ fi
 source $XDG_CONFIG_HOME/zsh/.zprofile
 cp -f "$XDG_CONFIG_HOME/termite/base_config" "$tempdir/config"
 
-echo "color200 = $COLOR_WARNING" >> "$tempdir/config"
-echo "color201 = $COLOR_HIGHLIGHT" >> "$tempdir/config"
+echo "color200 = $COLOR_URGENT" >> "$tempdir/config"
+echo "color201 = $COLOR_NORMAL" >> "$tempdir/config"
 echo "color202 = $COLOR_NOTIFY" >> "$tempdir/config"
 
 if [ ! -L "$XDG_CONFIG_HOME/termite/config" ]; then
