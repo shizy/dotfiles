@@ -105,7 +105,7 @@ super + Escape
     i3lock-wrapper
 
 super + semicolon
-    dmenu_run -nb '#F1FAEE' -nf '#383838' -sf '#E63946' -sb '#383838' -b -fn 'M+ 1n-9'
+    dmenu_run -nb '#000000' -nf '#383838' -sf "$COLOR_URGENT" -sb '#000000' -b -fn 'M+ 1n-9'
 
 # Utility
 
