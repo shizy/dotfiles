@@ -6,7 +6,7 @@ fi
 
 icons=(" " " " " " " " " " " " " " " " " " " ")
 monitors=$(bspc query -M | wc -l)
-urg='${color '$COLOR_WARNING'}'
+urg='${color '$COLOR_URGENT'}'
 cur='${color '$COLOR_NOTIFY'}'
 occ='${color #383838}'
 res='${color}'
