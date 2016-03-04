@@ -2,11 +2,11 @@
 
 # Config
 
-bspc config focused_border_color        "#F1FAEE"
+bspc config focused_border_color        "$COLOR_NORMAL"
 bspc config active_corder_color         "#383838"
 bscp config normal_border_color         "#383838"
-bspc config presel_border_color         "#E63946"
-bspc config urgent_border_color         "#E63946"
+bspc config presel_border_color         "$COLOR_NOTIFY"
+bspc config urgent_border_color         "$COLOR_URGENT"
 bspc config focused_locked_border_color "#383838"
 
 bspc config border_width            2
