@@ -18,7 +18,7 @@ sleep 3
 conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf &
 conky -c $XDG_CONFIG_HOME/conky/pc_status.conf &
 
-bspc control --subscribe | while read -r line; do
+bspc subscribe | while read -r line; do
 
     desktops=($(grep -oP '(?<=\:)..(?=\:)' <<< "$line"))
     desktop_status=""
@@ -40,11 +40,12 @@ bspc control --subscribe | while read -r line; do
                 xdotool search --class conky_desktop_status windowmove x 0
                 ;;
             "L"*)
-                desktop_status+="\t"
-                dtop=$(($dtop - 1))
+                [ $monitors -gt 1 ] &&
+                    desktop_status+="\t"
+                    dtop=$(($dtop - 1))
         esac
 
         dtop=$(($dtop + 1))
     done
-    echo "$desktop_status" > $XDG_RUNTIME_DIR/desktop_status.fifo
+    echo -e "$desktop_status" > $XDG_RUNTIME_DIR/desktop_status.fifo
 done

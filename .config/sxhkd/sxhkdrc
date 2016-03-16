@@ -9,7 +9,7 @@ Super_L
 # Navigation
 
 super + ctrl + {h,j,k,l}
-	bspc window -f {left,down,up,right}; \
+	bspc node -f {west,south,north,east}; \
     bspc desktop -c;
 
 super + {h,l}
@@ -17,10 +17,10 @@ super + {h,l}
 
 super + {comma,period}
 	bspc desktop -f {prev,next}.urgent; \
-    bspc window -f {prev,next}.urgent;
+    bspc node -f {prev,next}.urgent;
 
 super + shift + {1-9,0}
-	bspc window -d ^{1-9,10}
+	bspc node -d ^{1-9,10}
 
 super + {1-9,0}
     bspc desktop -f ^{1-9,10}
@@ -31,34 +31,34 @@ super + Tab
 # Window Control
 
 super + ctrl + {1-9}
-	bspc window -r 0.{1-9}
+	bspc node -o 0.{1-9}
 
 super + ctrl + shift + {h,j,k,l}
-	bspc window -p {left,down,up,right}
+	bspc node -p {west,south,north,east}
 
 super + shift + {h,j,k,l}
-	bspc window -s {left,down,up,right}
+	bspc node -s {west,south,north,east}
 
 super + Right
-    bspc window -e right +10 || bspc window -e left +10
+    bspc node @east -r +10 || bspc node @west -r +10
 
 super + Left
-    bspc window -e left -10 || bspc window -e right -10
+    bspc node @west -r -10 || bspc node @east -r -10
 
 super + Up
-    bspc window -e up -10 || bspc window -e down -10
+    bspc node @north -r -10 || bspc node @south -r -10
 
 super + Down
-    bspc window -e down +10 || bspc window -e up +10
+    bspc node @south -r +10 || bspc node @north -r +10
 
 super + space
-    bspc window -t floating;
+    bspc node -t floating;
 
 super + Return
-    bspc window -t fullscreen;
+    bspc node -t fullscreen;
 
 super + shift + x
-    bspc window -k
+    bspc node -k
 
 # Scratchpads & Search
 

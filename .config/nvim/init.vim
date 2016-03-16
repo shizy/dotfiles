@@ -232,6 +232,7 @@ au FileType git,gitcommit
 au FileType snippets nnoremap <buffer> <A-q> :bw!<CR>ZZ
 au FileType help,man
     \ setlocal ro |
+    \ setlocal nobuflisted |
     \ nmap <buffer> <CR>  <C-]> |
     \ nmap <buffer> u     <C-T> |
     \ nmap <buffer> <A-q> :bw!<CR> |
