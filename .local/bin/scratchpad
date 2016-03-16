@@ -71,4 +71,4 @@ case $2 in
     *) hide $1 || show $1 || create $1 $2;;
 esac
 
-bspc window $(printf "0x%x\n" $(xdotool search --name $1) | head -n 1) -d focused -f
+bspc node $(printf "0x%x\n" $(xdotool search --name $1) | head -n 1) -d focused -f

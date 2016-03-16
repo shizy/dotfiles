@@ -1,9 +1,10 @@
 Super_L
-    xdotool search --class conky_desktop_status windowmove x 0 && \
-    xdotool search --class conky_pc_status windowmap;
+    xdotool search --class conky_desktop_status windowmap && \
+    xdotool search --class conky_pc_status windowmap && \
+    bspc desktop -f $(bspc query -D -d)
 
 @Super_L
-    xdotool search --class conky_desktop_status windowmove x -100 && \
+    xdotool search --class conky_desktop_status windowunmap && \
     xdotool search --class conky_pc_status windowunmap;
 
 # Navigation

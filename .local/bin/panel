@@ -37,7 +37,7 @@ bspc subscribe | while read -r line; do
             "O"*|"F"*) desktop_status+=" $cur$icon$res ";;
             "u"*|"U"*)
                 desktop_status+=" $urg$icon$res "
-                xdotool search --class conky_desktop_status windowmove x 0
+                xdotool search --class conky_desktop_status windowmap
                 ;;
             "L"*)
                 [ $monitors -gt 1 ] &&
