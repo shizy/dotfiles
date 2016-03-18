@@ -1,11 +1,9 @@
 Super_L
-    xdotool search --class conky_desktop_status windowmap && \
-    xdotool search --class conky_pc_status windowmap && \
-    bspc desktop -f $(bspc query -D -d)
+    bspc desktop -f $(bspc query -D -d) && \
+    wm show paneltop && wm show panelbottom
 
 @Super_L
-    xdotool search --class conky_desktop_status windowunmap && \
-    xdotool search --class conky_pc_status windowunmap;
+    wm hide paneltop && wm hide panelbottom
 
 # Navigation
 
@@ -27,7 +25,8 @@ super + {1-9,0}
     bspc desktop -f ^{1-9,10}
 
 super + Tab
-	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last
+	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last && \
+    wm show paneltop && wm show panelbottom
 
 # Window Control
 
@@ -64,15 +63,15 @@ super + shift + x
 # Scratchpads & Search
 
 {ctrl,super,ctrl + super} + grave
-    scratchpad scratch{top,bottom,left}
+    wm scratch{top,bottom,left}
 
 super + slash
-    scratchpad scratchsearch fuzzysearch
+    wm scratchsearch fuzzysearch
 
 # Peripherals
 
 super + {F4, F8}
-    {extend_display,lockscreen}
+    {extend_display,lockscreen} && wm update
 
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}

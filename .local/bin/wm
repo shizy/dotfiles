@@ -1,0 +1,162 @@
+#!/bin/bash
+source $XDG_CONFIG_HOME/zsh/.zprofile
+
+DESKTOP_FIFO=$XDG_RUNTIME_DIR/desktop.fifo
+WM_FIFO=$XDG_RUNTIME_DIR/wm.fifo
+declare -A monitor
+primary=''
+icons=(" " " " " " " " " " " " " " " " " " " ")
+urg='${color '$COLOR_URGENT'}'
+cur='${color '$COLOR_NOTIFY'}'
+occ='${color #383838}'
+res='${color}'
+
+get_monitor_info() {
+    monitors=($(bspc query -M))
+    query=$(xrandr | grep \ connected)
+    primary="${monitors[0]}"
+    for name in "${monitors[@]}"
+    do
+        monitor[$name]=$(grep $name <<< "$query" | grep -oP '\w+x\w+\+\w+\+\w+' | sed -e 's/[x|+]/\ /g')
+    done
+}
+
+show () {
+    [ ${#monitor[@]} -eq 1 ] && res=($(get_preset $1 $primary)) || res=($(get_preset $1 $(bspc query -M -m)))
+    xdotool search --any --class --name $1 windowmap windowmove ${res[0]} ${res[1]} windowsize ${res[3]} ${res[2]}
+}
+
+hide () {
+    bspc node $(printf "0x%x\n" $(xdotool search --any --class --name $1) | head -n 1) -d focused -f
+    [ $? -gt 0 ] &&
+        xdotool search --onlyvisible --any --class --name $1 windowunmap %@
+}
+
+create () {
+    [ ${#monitor[@]} -eq 1 ] && res=($(get_preset $1 $primary)) || res=($(get_preset $1 $(bspc query -M -m)))
+    [ $2 ] && cmd=" -e $2 &" || cmd=''
+    exec ${res[@]:4} $cmd &
+    xdotool search --any --class --name $1 windowmap windowmove ${res[0]} ${res[1]} windowsize ${res[3]} ${res[2]}
+}
+
+get_preset() {
+    res=(${monitor[$2]})
+    w_top=$((${res[3]} + 1))
+    w_left=${res[2]}
+    #res [width][height][x offset][y offset]
+
+    case $1 in
+        "scratchtop")
+            x=$w_left
+            y=$w_top
+            h=$((${res[1]} / 2))
+            w=${res[0]}
+            create="termite --geometry ${w}x${h}+${x}+${y} --title=$1"
+            ;;
+        "scratchbottom" | "scratchsearch")
+            x=$w_left
+            y=$(((${res[1]} / 2) + $w_top))
+            h=$((${res[1]} / 2))
+            if [ $1 == "scratchsearch" ]; then
+                y=$((${res[1]} - (${res[1]} / 3) + $w_top))
+                h=$((${res[1]} / 3))
+            fi
+            w=${res[0]}
+            create="termite --geometry ${w}x${h}+${x}+${y} --title=$1"
+            ;;
+        "scratchleft")
+            x=$w_left
+            y=$w_top
+            h=${res[1]}
+            w=$((${res[0]} / 2))
+            create="termite --geometry ${w}x${h}+${x}+${y} --title=$1"
+            ;;
+        "scratchright")
+            x=$((${res[0]} / 2))
+            y=$w_top
+            h=${res[1]}
+            w=$((${res[0]} / 2))
+            create="termite --geometry ${w}x${h}+${x}+${y} --title=$1"
+            ;;
+        "paneltop")
+            geometry=($(xdotool search --any --name --class $1 getwindowgeometry | grep Geometry:\ | grep -oP '\w+x\w+' | sed -e 's/x/\ /g'))
+            x=$((${res[2]} + (${res[0]} / 2) - (${geometry[0]} / 2)))
+            y=${res[3]}
+            h=0
+            w=0
+            create="conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf"
+            ;;
+        "panelbottom")
+            geometry=($(xdotool search --any --name --class $1 getwindowgeometry | grep Geometry:\ | grep -oP '\w+x\w+' | sed -e 's/x/\ /g'))
+            x=$((${res[2]} + (${res[0]} / 2) - (${geometry[0]} / 2)))
+            y=$((${res[3]} + ${res[1]} - ${geometry[1]}))
+            h=0
+            w=0
+            create="conky -c $XDG_CONFIG_HOME/conky/pc_status.conf"
+            ;;
+    esac
+    echo "$x $y $h $w $create"
+}
+
+if [ "$1" == "service" ]; then
+
+    [ -e $DESKTOP_FIFO ] && rm $DESKTOP_FIFO
+    [ -e $WM_FIFO ] && rm $WM_FIFO
+    mkfifo $DESKTOP_FIFO
+    mkfifo $WM_FIFO
+    sleep 3
+    get_monitor_info
+    conky -c $XDG_CONFIG_HOME/conky/pc_status.conf &
+    conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf &
+
+    while true
+    do
+        if read line <$WM_FIFO; then
+            arg=($line)
+            case ${arg[0]} in
+                "show") show ${arg[1]} || create ${arg[@]:1};;
+                "hide") hide ${arg[1]};;
+                "update") get_monitor_info;;
+                *) hide ${arg[0]} || show ${arg[0]} || create ${arg[@]};;
+            esac
+        fi
+        echo $line
+    done &
+
+    bspc subscribe | while read -r line; do
+
+        desktops=($(grep -oP '(?<=\:)..(?=\:)' <<< "$line"))
+        desktop_status=""
+        dtop=1
+        cur_desktop=$(bspc query -D -d)
+
+        for desktop in ${desktops[@]}
+        do
+
+            [ $dtop -eq $cur_desktop ] && [ ${#monitor[@]} -gt 1 ] &&
+                icon="${icons[$(($dtop - 1))]}" ||
+                icon=" ${icons[$(($dtop -1 ))]} "
+
+            case $desktop in
+                "o"*) desktop_status+=" $occ$icon$res ";;
+                "O"*|"F"*) desktop_status+=" $cur$icon$res ";;
+                "u"*|"U"*)
+                    desktop_status+=" $urg$icon$res "
+                    xdotool search --any --class --name paneltop windowmap
+                    ;;
+                "L"*)
+                    [ ${#monitor[@]} -gt 1 ] &&
+                        desktop_status+="\t"
+                        dtop=$(($dtop - 1))
+                        #MOVE PANELS!
+            esac
+
+            dtop=$(($dtop + 1))
+        done
+        echo -e "$desktop_status" > $DESKTOP_FIFO
+    done
+    rm $DESKTOP_FIFO
+    rm $WM_FIFO
+else
+    echo $@ >$WM_FIFO
+fi

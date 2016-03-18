@@ -1,0 +1,11 @@
+[Unit]
+Description=WM, Scratchpad, and Panel Manager
+After=graphical.target
+
+[Service]
+Environment=XDG_CONFIG_HOME=%h/.config
+Environment=DISPLAY=:1
+ExecStart=/bin/bash %h/.local/bin/wm service
+
+[Install]
+WantedBy=default.target

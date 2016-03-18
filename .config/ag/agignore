@@ -6,6 +6,8 @@
 .cache/
 local/share/
 local/src/
+local/mail/
+local/git/
 
 ca-certificates/
 fonts/
