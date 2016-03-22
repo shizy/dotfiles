@@ -5,7 +5,7 @@ DESKTOP_FIFO=$XDG_RUNTIME_DIR/desktop.fifo
 WM_FIFO=$XDG_RUNTIME_DIR/wm.fifo
 declare -A monitor
 primary=''
-icons=(" " " " " " " " " " " " " " " " " " " ")
+icons=(${DESKTOP_ICONS//:/ })
 urg='${color '$COLOR_URGENT'}'
 cur='${color '$COLOR_NOTIFY'}'
 occ='${color #383838}'
