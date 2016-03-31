@@ -78,5 +78,5 @@ source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
 if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     unset SESSION_MANAGER
     export DISPLAY=":$XDG_VTNR"
-    xinit "$XINITRC" -- $DISPLAY vt"$XDG_VTNR" -keeptty -nolisten tcp -br -auth "$XAUTHORITY"
+    xinit "$XINITRC" -- $DISPLAY vt"$XDG_VTNR" -keeptty -br
 fi

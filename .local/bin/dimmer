@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -e /tmp/dimmer-disable ]; then
+    rm /tmp/dimmer-disable
+    kill -s SIGUSR2 $(pgrep gloom)
+else
+    touch /tmp/dimmer-disable
+    kill -s SIGUSR1 $(pgrep gloom)
+fi

@@ -76,6 +76,9 @@ super + {F4, F8}
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
 
+super + F11
+    dimmer
+
 {_, super} + XF86Audio{LowerVolume,RaiseVolume,Mute}
     amixer -q set Master {5-,5-,5+,5+,toggle,toggle}
 
