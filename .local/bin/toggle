@@ -1,0 +1,24 @@
+#!/bin/bash
+
+case $1 in
+    "lock")
+        if [ -e /tmp/toggle-locked ]; then
+            rm /tmp/toggle-locked
+        else
+            touch /tmp/toggle-locked
+        fi
+        kill -s SIGUSR2 $(pgrep gloom);
+        ;;
+    "screen")
+        if [ -e /tmp/toggle-screen ]; then
+            rm /tmp/toggle-screen
+            xset s 600 600
+            xset +dpms
+        else
+            touch /tmp/toggle-screen
+            xset s off
+            xset -dpms
+        fi
+        kill -s SIGUSR1 $(pgrep gloom);
+        ;;
+esac

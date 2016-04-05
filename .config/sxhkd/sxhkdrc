@@ -70,14 +70,14 @@ super + slash
 
 # Peripherals
 
-super + {F4, F8}
-    {extend_display,lockscreen} && wm update
+super + {F4, F11}
+    {extend_display && wm update,toggle screen}
 
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
 
-super + F11
-    dimmer
+super + {shift+Escape, Escape}
+    {kill -s SIGTSTP $(pgrep gloom), toggle lock}
 
 {_, super} + XF86Audio{LowerVolume,RaiseVolume,Mute}
     amixer -q set Master {5-,5-,5+,5+,toggle,toggle}
@@ -103,9 +103,6 @@ super + t
 
 super + f
     qutebrowser
-
-super + Escape
-    i3lock-wrapper
 
 super + semicolon
     dmenu_run -nb '#000000' -nf '#383838' -sf "$COLOR_URGENT" -sb '#000000' -b -fn 'M+ 1m-9'

@@ -92,7 +92,7 @@ backup () {
             ;;
         *"con"*)
             # packages
-            pacman -Qqm > $XDG_CACHE_HOME/aur-backup
+            /usr/bin/ls -1 $HOME/.local/src > $XDG_CACHE_HOME/aur-backup
             mv $XDG_CONFIG_HOME/gitignore $HOME/.gitignore
             git --work-tree=$HOME --git-dir=$HOME/.local/git add -A
             git --work-tree=$HOME --git-dir=$HOME/.local/git commit -m "$(date)"

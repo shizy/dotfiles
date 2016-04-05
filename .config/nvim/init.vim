@@ -116,8 +116,8 @@ let g:UltiSnipsEditSplit = "vertical"
 
 noremap             <A-j>           10j
 noremap             <A-k>           10k
-noremap             <A-h>           B
-noremap             <A-l>           E
+noremap             <A-h>           b
+noremap             <A-l>           e
 map                 <A-C-j>         <C-w>j
 map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
@@ -135,10 +135,10 @@ nnoremap            <A-/>           :noh<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nmap                <A-Space>       :ls!<CR>:b<Space><Tab><C-p>
-nmap                <A-s>           :ls!<CR>:sb<Space><Tab><C-p>
-nmap                <A-v>           :ls!<CR>:vert:sb<Space><Tab><C-p>
-nmap                <A-S-x>         :ls!<CR>:bw!<Space><Tab><C-p>
+nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
+nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
+nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
+nmap                <A-S-x>         :ls<CR>:bw!<Space><Tab><C-p>
 nmap                <A-x>           :bp<CR>:bw!<Space>#<CR>
 nmap                <A-q>           ZZ
 nmap                <A-CR>          :call Zoom()<CR>
@@ -207,20 +207,12 @@ au BufWritePost *                Neomake
 au BufNewFile,BufRead *.styl     set filetype=stylus
 au BufNewFile,BufRead *.ejs      set filetype=js
 au BufNewFile,BufRead *.ejs      set filetype=html
-au BufWinEnter *.md              set syntax=markdown
+au BufWinEnter *.md
+    \ set syntax=markdown |
+    \ setlocal nofoldenable |
 au BufWinEnter *.toml            set filetype=toml
 au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
-au BufNewFile,BufRead,BufWinEnter ~/.cache/mutt/*
-    \ setlocal spell |
-    \ setlocal spelllang=en_us |
-    \ setlocal nonumber |
-    \ setlocal syntax=markdown |
-    \ setlocal fo+=aw |
-    \ imap     <buffer> jk    <Esc>:w<CR> |
-    \ nmap     <buffer> <A-w> :w<CR> |
-    \ nnoremap <buffer> <A-.> ]s |
-    \ nnoremap <buffer> <A-,> [s
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
