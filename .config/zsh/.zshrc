@@ -43,6 +43,7 @@ alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
 alias gem="gem --config-file $XDG_CONFIG_HOME/gem/gemrc"
+alias rclone="rclone --config $PRIVATE/rclone/config"
 
 man () {
     python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
@@ -77,16 +78,16 @@ backup () {
         *"pri"*)
             tar -cvf $HOME/private.tar -C $PRIVATE/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
-            # requires gdrive from: https://github.com/prasmussen/gdrive
-            gdrive -c $PRIVATE/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+            #gdrive -c $PRIVATE/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+            rclone copy $HOME/private.tar.gpg gdrive:Backup
             rm $HOME/private.tar
             rm $HOME/private.tar.gpg
             ;;
         *"doc"*)
             tar -cvf $HOME/docs.tar -C $HOME/docs/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
-            # requires gdrive from: https://github.com/prasmussen/gdrive
-            gdrive -c $PRIVATE/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+            #gdrive -c $PRIVATE/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
+            rclone copy $HOME/docs.tar.gpg gdrive:Backup
             rm $HOME/docs.tar
             rm $HOME/docs.tar.gpg
             ;;

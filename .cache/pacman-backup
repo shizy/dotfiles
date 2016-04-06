@@ -21,6 +21,7 @@ openssh
 pinentry
 python2-neovim
 qutebrowser
+rclone
 ruby
 sxhkd
 texlive-core
@@ -32,7 +33,6 @@ unclutter
 vim
 weechat
 wget
-xautolock
 xclip
 xdotool
 xf86-input-synaptics
