@@ -1,0 +1,4 @@
+#!/bin/bash
+
+url=$(curl -F c=@- https://ptpb.pw --silent | grep -oP '(?<=^url:\ ).*?(?=$)')
+$BROWSER $url 2>/dev/null

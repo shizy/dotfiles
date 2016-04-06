@@ -148,7 +148,7 @@ nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>s       :Gstatus<CR><C-n>
-nmap                <Leader>p       :Gpush<space>
+nmap                <Leader>p       :w !help<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
@@ -176,21 +176,9 @@ cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>
 
-tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
-tmap                <A-z>           <C-\><C-n>:qa<CR>
-tmap                <A-Space>       <C-\><C-n>:ls!<CR>:b<Space><Tab><C-p>
-tmap                <Esc>           <C-\><C-n>
-tmap                <A-x>           <C-\><C-n>:bw!<CR>
-tmap                <A-q>           <C-\><C-n>ZZ
-tmap                <A-b>           <C-\><C-n>:b#<CR>
-tmap                <A-Tab>         <C-\><C-n><C-w>p
-tmap                <A-C-j>         <C-\><C-n><C-w>j
-tmap                <A-C-k>         <C-\><C-n><C-w>k
-tmap                <A-C-h>         <C-\><C-n><C-w>h
-tmap                <A-C-l>         <C-\><C-n><C-w>l
-
 vnoremap            <Leader><Space> zf
 vmap                <Leader>/       <Esc>:'<,'>s/
+vmap                <Leader>p       <Esc>:'<,'>!help<CR>
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
 vmap                <Leader>b       <Esc>:'<,'>:Gbrowse<CR>

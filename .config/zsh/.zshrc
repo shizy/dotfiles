@@ -38,7 +38,6 @@ alias ~="cd ~"
 alias ..="cd .."
 alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
-alias help='curl -F "f:1=<-" ix.io'
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias men="/usr/bin/man -k"
