@@ -77,7 +77,6 @@ backup () {
         *"pri"*)
             tar -cvf $HOME/private.tar -C $PRIVATE/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
-            #gdrive -c $PRIVATE/gdrive upload -f $HOME/private.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
             rclone copy $HOME/private.tar.gpg gdrive:Backup
             rm $HOME/private.tar
             rm $HOME/private.tar.gpg
@@ -85,7 +84,6 @@ backup () {
         *"doc"*)
             tar -cvf $HOME/docs.tar -C $HOME/docs/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar
-            #gdrive -c $PRIVATE/gdrive upload -f $HOME/docs.tar.gpg -p 0B1YL7dapddvyVjdSUVViUGwxRDA
             rclone copy $HOME/docs.tar.gpg gdrive:Backup
             rm $HOME/docs.tar
             rm $HOME/docs.tar.gpg

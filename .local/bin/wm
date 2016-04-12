@@ -120,7 +120,7 @@ if [ "$1" == "service" ]; then
                 *) hide ${arg[0]} || show ${arg[0]} || create ${arg[@]};;
             esac
         fi
-        echo $line
+        #echo $line
     done &
 
     bspc subscribe | while read -r line; do

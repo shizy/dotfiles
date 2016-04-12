@@ -14,14 +14,17 @@ hi VertSplit                cterm=bold ctermfg=232 ctermbg=232
 hi ModeMsg                  ctermfg=237
 hi NonText                  ctermfg=237
 hi WarningMsg               ctermfg=201 ctermbg=none cterm=none
-hi SpellBad                 ctermfg=200 ctermbg=201
-hi IncSearch                ctermfg=201 ctermbg=200
-hi Search                   ctermfg=234 ctermbg=201
+hi SpellBad                 ctermfg=200 cterm=underline
+"hi IncSearch                ctermfg=201 ctermbg=200
+"hi Search                   ctermfg=234 ctermbg=201
+hi link Visual Search
+hi link Visual IncSearch
 hi WildMenu                 ctermfg=201 ctermbg=232 cterm=bold
 hi TabLine                  ctermfg=237 ctermbg=none cterm=none
 hi TabLineSel               ctermfg=237 ctermbg=232 cterm=none
 hi TabLineFill              cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
+hi Folded                   ctermfg=236 ctermbg=none
 
 hi StatusLineThree          ctermfg=234 ctermbg=201 cterm=bold
 hi StatusLineTwo            ctermfg=232 ctermbg=237 cterm=none

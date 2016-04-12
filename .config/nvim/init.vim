@@ -47,6 +47,7 @@ set wildignorecase
 let mapleader = "\<Space>"
 :runtime! ftplugin/man.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
+source $HOME/dev/notmuch-neovim/notmuch-neovim.vim
 
 " ========== PACKAGES ==========
 
@@ -152,6 +153,7 @@ nmap                <Leader>p       :silent w !help<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
+nmap                <Leader>m       :new<CR>:call NotmuchNeovim()<CR>
 nmap                <A-1>           1gt
 nmap                <A-2>           2gt
 nmap                <A-3>           3gt
