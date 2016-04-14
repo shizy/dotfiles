@@ -47,7 +47,7 @@ set wildignorecase
 let mapleader = "\<Space>"
 :runtime! ftplugin/man.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
-source $HOME/dev/notmuch-neovim/notmuch-neovim.vim
+source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
 
 " ========== PACKAGES ==========
 

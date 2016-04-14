@@ -1,4 +1,0 @@
-#!/bin/bash
-
-VIMINIT='source ~/.config/notmuch/notmuch.vim' vim -c NotMuch -c 'source ~/.config/notmuch/composefix.vim'
-rm -f /tmp/*.mail

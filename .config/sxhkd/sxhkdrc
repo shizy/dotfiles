@@ -92,9 +92,6 @@ super + i
 super + v
     termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
 
-super + m
-    termite --title=mail -e "$HOME/.local/bin/mail"
-
 #super + w
 #    wallpaper
 
