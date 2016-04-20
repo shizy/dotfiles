@@ -71,7 +71,7 @@ function s:send()
     let buf = getline(0, '$')
     let recipient = matchlist(buf, 'To:\zs.\{-}\ze\(,\|$\)')[0]
     "check for empty to
-    execute 'w !msmtp -C $PRIVATE/msmtp/msmtprc -t ' . recipient
+    execute 'silent w !msmtp -C $PRIVATE/msmtp/msmtprc -t ' . recipient
 endfunction
 
 function! s:reply()
@@ -87,9 +87,11 @@ endfunction
 
 function! s:compose()
     let from = (len(s:primary_email) > 0) ? s:primary_email[0] : ""
-    let template = "From: " . from . "\nTo: \nCc: \nBcc: \nSubject: \n\n\n"
+    let template = "From: " . from . "\nTo:  \nCc: \nBcc: \nSubject: \n\n\n"
     call s:new_buffer('neovim-notmuch-compose')
     silent put =template
+    call cursor(3, 6)
+    startinsert
     nnoremap <buffer> <Leader>p :call <SID>send()<CR>
 endfunction
 
@@ -115,6 +117,7 @@ function! s:show_message(num, part)
     nnoremap <buffer> <A-.> :call <SID>next_part()<CR>
     nnoremap <buffer> r :call <SID>reply()<CR>
     nnoremap <buffer> u :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>refresh()<CR>
+    nnoremap <buffer> x :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>tag('+deleted')<CR>
     nnoremap <buffer> c :call <SID>compose()<CR>
 endfunction
 
@@ -129,10 +132,10 @@ function! s:select_message(num)
     let s:current_subj = matchlist(message, 'Subject:\ \zs.\{-}\ze\n')
     let text = index(s:current_parts, 'text/plain')
     let html = index(s:current_parts, 'text/html')
-    if (text > -1)
-        call s:show_message(a:num, text)
-    elseif (html > -1)
+    if (html > -1)
         call s:show_message(a:num, html)
+    elseif (text > -1)
+        call s:show_message(a:num, text)
     else
         call s:show_message(a:num, 0)
     endif
@@ -141,7 +144,6 @@ endfunction
 function! s:select_thread()
     let s:current_thread = matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s')
     let s:current_messages = systemlist('notmuch search --output=messages ' . s:current_thread)
-    "call system("notmuch tag -unread " . s:current_thread)
     call s:tag('-unread')
     call s:select_message(0)
 endfunction
