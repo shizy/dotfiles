@@ -95,6 +95,13 @@ function! s:compose()
     nnoremap <buffer> <Leader>p :call <SID>send()<CR>
 endfunction
 
+function! s:save_part()
+    let dest = input('Save to: ', '', 'file')
+    if (dest != "")
+        call system('notmuch show --format=raw --part=' . (s:current_part + 1) . ' ' . s:current_thread . ' and ' . get(s:current_messages, s:current_message) . ' > ' . dest)
+    endif
+endfunction
+
 function! s:show_message(num, part)
     call s:new_buffer('neovim-notmuch-thread')
     let s:current_part = a:part
@@ -115,6 +122,7 @@ function! s:show_message(num, part)
     nnoremap <buffer> <Tab> :call <SID>next_message()<CR>
     nnoremap <buffer> <A-,> :call <SID>prev_part()<CR>
     nnoremap <buffer> <A-.> :call <SID>next_part()<CR>
+    nnoremap <buffer> <A-w> :call <SID>save_part()<CR>
     nnoremap <buffer> r :call <SID>reply()<CR>
     nnoremap <buffer> u :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>refresh()<CR>
     nnoremap <buffer> x :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>tag('+deleted')<CR>
