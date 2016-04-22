@@ -11,6 +11,11 @@ let s:current_cc = []
 let s:current_from = []
 let s:current_subj = []
 
+"TODO
+" sending emails includes headers
+" configure folders
+" add attachments
+
 function! s:new_buffer(name)
     if (bufname(a:name) != "")
         execute 'b! ' . a:name
@@ -48,12 +53,10 @@ endfunction
 
 function! s:tag(...)
     let message = (s:current_thread == "") ? matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s') : s:current_thread
-    if (a:0 == 0)
-        let tag = input('Tag thread: ')
+    let tag = (a:0 == 0) ? input('Tag thread: ') : a:1
+    if (tag[0] != '-' && tag[0] != '+')
         let tags = systemlist('notmuch search --output=tags ' . message)
         let tag = (index(tags, tag) > -1) ? '-' . tag : '+' . tag
-    else
-        let tag = a:1
     endif
     execute system('notmuch tag ' . tag . ' ' . message)
     if (s:current_thread == "")
@@ -69,9 +72,12 @@ endfunction
 
 function s:send()
     let buf = getline(0, '$')
-    let recipient = matchlist(buf, 'To:\zs.\{-}\ze\(,\|$\)')[0]
-    "check for empty to
-    execute 'silent w !msmtp -C $PRIVATE/msmtp/msmtprc -t ' . recipient
+    let recipient = matchlist(buf, '^To\(.\{-}<\|:\s*\)\zs.\{-}\ze\(>\|\s\|,\|$\)')
+    if (len(recipient) < 1 || recipient[0] == "")
+        echo "You must have at least one recipient!"
+    else
+        execute 'w !msmtp -C $PRIVATE/msmtp/msmtprc -t ' . recipient[0]
+    endif
 endfunction
 
 function! s:reply()
@@ -83,6 +89,7 @@ function! s:reply()
     let template = "From: " . from . "\nTo: " . to . "\nCc: " . cc . "\nBcc: \nSubject: " . subject . "\n\n\n\n"
     call s:new_buffer('neovim-notmuch-compose')
     silent put =template
+    nnoremap <buffer> <Leader>p :call <SID>send()<CR>
 endfunction
 
 function! s:compose()
@@ -98,7 +105,7 @@ endfunction
 function! s:save_part()
     let dest = input('Save to: ', '', 'file')
     if (dest != "")
-        call system('notmuch show --format=raw --part=' . (s:current_part + 1) . ' ' . s:current_thread . ' and ' . get(s:current_messages, s:current_message) . ' > ' . dest)
+        call system('notmuch show --format=raw --part=' . (s:current_part + 1) . ' ' . s:current_thread . ' or ' . get(s:current_messages, s:current_message) . ' > ' . dest)
     endif
 endfunction
 
@@ -110,7 +117,7 @@ function! s:show_message(num, part)
     let types = deepcopy(s:current_parts)
     let types[a:part] = "*" . types[a:part] . "*"
     let status = "[" . (a:num + 1) . "/" . len(s:current_messages) . "] [ " . join(types, '  ') . " ] \n\n"
-    execute 'silent r ! notmuch show ' . format . ' --part=' . (a:part + 1) . ' ' . s:current_thread . ' and ' . get(s:current_messages, a:num) . html
+    execute 'silent r ! notmuch show ' . format . ' --part=' . (a:part + 1) . ' ' . s:current_thread . ' or ' . get(s:current_messages, a:num) . html
     silent! %s/.part[{|}].*$//g
     keepjumps 0d
     silent put =status
@@ -126,24 +133,26 @@ function! s:show_message(num, part)
     nnoremap <buffer> r :call <SID>reply()<CR>
     nnoremap <buffer> u :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>refresh()<CR>
     nnoremap <buffer> x :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>tag('+deleted')<CR>
+    nnoremap <buffer> f :call <SID>tag('flagged')<CR>
     nnoremap <buffer> c :call <SID>compose()<CR>
 endfunction
 
 function! s:select_message(num)
     let s:current_message = a:num
     let s:current_parts = []
-    let message = system("notmuch show --format=text " . s:current_thread . " and " . get(s:current_messages, a:num))
-    call substitute(message, 'Content-type: \zs.\{-}\ze\n', '\=add(s:current_parts, submatch(0))', 'g')
+    let messageid = (len(s:current_messages) > 0) ? " or " . get(s:current_messages, a:num) : ""
+    let message = system("notmuch show --format=text " . s:current_thread . messageid)
+    call substitute(message, 'Content-type:\s*\zs.\{-}\ze\(\n\|$\)', '\=add(s:current_parts, submatch(0))', 'g')
     let s:current_to = matchlist(message, 'To:\ \zs.\{-}\ze\n')
     let s:current_cc = matchlist(message, 'Cc:\ \zs.\{-}\ze\n')
     let s:current_from = matchlist(message, 'From:\ \zs.\{-}\ze\n')
     let s:current_subj = matchlist(message, 'Subject:\ \zs.\{-}\ze\n')
     let text = index(s:current_parts, 'text/plain')
     let html = index(s:current_parts, 'text/html')
-    if (html > -1)
-        call s:show_message(a:num, html)
-    elseif (text > -1)
+    if (text > -1)
         call s:show_message(a:num, text)
+    elseif (html > -1)
+        call s:show_message(a:num, html)
     else
         call s:show_message(a:num, 0)
     endif
@@ -172,6 +181,7 @@ function! s:search_threads()
     nnoremap <buffer> r :call <SID>refresh()<CR>
     nnoremap <buffer> t :call <SID>tag()<CR>
     nnoremap <buffer> x :call <SID>tag('+deleted')<CR>
+    nnoremap <buffer> f :call <SID>tag('flagged')<CR>
 endfunction
 
 function! NotmuchNeovim()

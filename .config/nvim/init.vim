@@ -30,7 +30,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set number
-set noswapfile
+"set noswapfile
 set cursorline
 set lazyredraw
 set encoding=utf-8
