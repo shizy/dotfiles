@@ -1,20 +1,14 @@
-let s:primary_email = systemlist("notmuch config get user.primary_email")
+let s:primary_email = system("notmuch config get user.primary_email")[:-2]
 let s:current_search = []
-let s:current_thread = ""
-let s:current_messages = []
-let s:current_message = 0
-let s:current_parts = []
-let s:current_part = 0
-let s:current_header = ""
-let s:current_to = []
-let s:current_cc = []
-let s:current_from = []
-let s:current_subj = []
 
-"TODO
-" sending emails includes headers
-" configure folders
-" add attachments
+let s:message_list = []
+let s:message_num = 0
+let s:message = {}
+
+let s:message_part_content = []
+let s:message_part_list = []
+let s:message_part_id = []
+let s:message_part_num = 0
 
 function! s:new_buffer(name)
     if (bufname(a:name) != "")
@@ -28,30 +22,42 @@ function! s:new_buffer(name)
 endfunction
 
 function! s:next_part()
-    if (s:current_part < (len(s:current_parts) - 1))
-        call s:show_message(s:current_message, s:current_part + 1)
+    if (s:message_part_num < (len(s:message_part_list) - 1))
+        call s:show_message(s:message_part_list, s:message_part_num + 1)
     endif
 endfunction
 
 function! s:prev_part()
-    if (s:current_part > 0)
-        call s:show_message(s:current_message, s:current_part - 1)
+    if (s:message_part_num > 0)
+        call s:show_message(s:message_part_list, s:message_part_num - 1)
     endif
 endfunction
 
 function! s:next_message()
-    if (s:current_message < (len(s:current_messages) - 1))
-        call s:select_message(s:current_message + 1)
+    if (s:message_num < (len(s:message_list) - 1))
+        call s:select_message(s:message_num + 1)
     endif
 endfunction
 
 function! s:prev_message()
-    if (s:current_message > 0)
-        call s:select_message(s:current_message - 1)
+    if (s:message_num > 0)
+        call s:select_message(s:message_num - 1)
     endif
 endfunction
 
-function! s:tag(...)
+" -------------------------------
+
+function s:send()
+    let buf = getline(0, '$')
+    let recipient = matchlist(buf, '^To\(.\{-}<\|:\s*\)\zs.\{-}\ze\(>\|\s\|,\|$\)')
+    if (len(recipient) < 1 || recipient[0] == "")
+        echo "You must have at least one recipient!"
+    else
+        execute 'w !msmtp -C $PRIVATE/msmtp/msmtprc -t ' . recipient[0]
+    endif
+endfunction
+
+function! s:tagFOO(...)
     let message = (s:current_thread == "") ? matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s') : s:current_thread
     let tag = (a:0 == 0) ? input('Tag thread: ') : a:1
     if (tag[0] != '-' && tag[0] != '+')
@@ -64,63 +70,100 @@ function! s:tag(...)
     endif
 endfunction
 
+" ------------------------
+
+function! s:compose(type)
+    call s:new_buffer('neovim-notmuch-compose')
+    call s:build_header(a:type)
+    if a:type == 'compose'
+        call cursor(3, 5)
+    elseif a:type == 'reply' || a:type == 'replyall'
+        call cursor(9, 1)
+    endif
+    let old_undolevels = &undolevels
+    set undolevels=-1
+    execute "normal a \<BS>\<Esc>"
+    let &undolevels = old_undolevels
+    unlet old_undolevels
+    startinsert!
+    "nnoremap <buffer> <Leader>p :call <SID>send()<CR>
+endfunction
+
+function! s:save_part()
+    let type = get(s:message_part_list, s:message_part_num)
+    let dest = (type == 'text/html' || type == 'text/plain') ? input('Save as: ', '', 'file') : type
+    if (dest != "")
+        call system('notmuch show --format=raw --part=' . get(s:message_part_id, s:message_part_num) . ' ' . get(s:message_list, s:message_num) . ' > ' . dest)
+    endif
+endfunction
+
 function! s:refresh()
     let pos = getcurpos()
     call s:search_threads()
     call setpos('.', pos)
 endfunction
 
-function s:send()
-    let buf = getline(0, '$')
-    let recipient = matchlist(buf, '^To\(.\{-}<\|:\s*\)\zs.\{-}\ze\(>\|\s\|,\|$\)')
-    if (len(recipient) < 1 || recipient[0] == "")
-        echo "You must have at least one recipient!"
-    else
-        execute 'w !msmtp -C $PRIVATE/msmtp/msmtprc -t ' . recipient[0]
-    endif
-endfunction
-
-function! s:reply()
-    let from = (len(s:primary_email) > 0) ? s:primary_email[0] : ""
-    let to = (len(s:current_from) > 0) ? s:current_from[0] : ""
-    let cc = (len(s:current_cc) > 0) ? s:current_cc[0] : ""
-    let subject = (len(s:current_subj) > 0) ? s:current_subj[0] : ""
-    let subject = (match(subject, "Re:") > -1) ? subject : "Re: " . subject
-    let template = "From: " . from . "\nTo: " . to . "\nCc: " . cc . "\nBcc: \nSubject: " . subject . "\n\n\n\n"
-    call s:new_buffer('neovim-notmuch-compose')
-    silent put =template
-    nnoremap <buffer> <Leader>p :call <SID>send()<CR>
-endfunction
-
-function! s:compose()
-    let from = (len(s:primary_email) > 0) ? s:primary_email[0] : ""
-    let template = "From: " . from . "\nTo:  \nCc: \nBcc: \nSubject: \n\n\n"
-    call s:new_buffer('neovim-notmuch-compose')
-    silent put =template
-    call cursor(3, 6)
-    startinsert
-    nnoremap <buffer> <Leader>p :call <SID>send()<CR>
-endfunction
-
-function! s:save_part()
-    let dest = input('Save to: ', '', 'file')
-    if (dest != "")
-        call system('notmuch show --format=raw --part=' . (s:current_part + 1) . ' ' . s:current_thread . ' or ' . get(s:current_messages, s:current_message) . ' > ' . dest)
-    endif
-endfunction
-
-function! s:show_message(num, part)
-    call s:new_buffer('neovim-notmuch-thread')
-    let s:current_part = a:part
-    let format = (get(s:current_parts, a:part) == "text/plain") ? "--format=text" : "--format=raw"
-    let html = (get(s:current_parts, a:part) == "text/html") ? " | elinks --dump" : ""
-    let types = deepcopy(s:current_parts)
-    let types[a:part] = "*" . types[a:part] . "*"
-    let status = "[" . (a:num + 1) . "/" . len(s:current_messages) . "] [ " . join(types, '  ') . " ] \n\n"
-    execute 'silent r ! notmuch show ' . format . ' --part=' . (a:part + 1) . ' ' . s:current_thread . ' or ' . get(s:current_messages, a:num) . html
-    silent! %s/.part[{|}].*$//g
-    keepjumps 0d
+function s:build_status()
+    normal! 0
+    let parts = deepcopy(s:message_part_list)
+    let parts[s:message_part_num] = "*" . parts[s:message_part_num] . "*"
+    let status = "[" . (s:message_num + 1) . "/" . len(s:message_list) . "] [ " . join(parts, '  ') . " ] \n\n"
     silent put =status
+endfunction
+
+function s:build_header(type)
+    let from = ''
+    let to = ''
+    let cc = ''
+    let subject = ''
+    normal! 1
+    if a:type == 'show'
+        let from = s:message['headers']['From']
+        let to = s:message['headers']['To']
+        let subject = s:message['headers']['Subject']
+    endif
+    if a:type == 'show' || a:type == 'replyall'
+        let cc = (has_key(s:message['headers'], 'Cc')) ? s:message['headers']['Cc'] : ''
+    endif
+    if a:type == 'compose' || a:type == 'reply' || a:type == 'replyall'
+        let from = s:primary_email
+    endif
+    if a:type == 'reply' || a:type == 'replyall'
+        let to = s:message['headers']['From']
+        let subject = (match(s:message['headers']['Subject'], '^Re:') == -1) ? 'Re: ' . s:message['headers']['Subject'] : s:message['headers']['Subject']
+    endif
+    if a:type == 'replyall'
+        let scc = split(cc, ',')
+        call add(scc, to)
+        call filter(scc, 'v:val !~? "' . s:primary_email . '"')
+        let cc = join(scc, ', ')
+    endif
+    if has_key(s:message, 'headers') && has_key(s:message['headers'], 'Date')
+        silent put ='Date: ' . s:message['headers']['Date']
+    endif
+    silent put ='From: ' . from
+    silent put ='To: ' . to
+    if a:type != 'show' || cc != ''
+        silent put ='Cc: ' . cc
+    endif
+    if a:type != 'show'
+        silent put ='Bcc: '
+    endif
+    silent put ='Subject: ' . subject
+    silent put =''
+    silent put =''
+endfunction
+
+function s:show_message(num, part)
+    let s:message_part_num = a:part
+    call s:new_buffer('neovim-notmuch-thread')
+    call s:build_status()
+    call s:build_header('show')
+    if (get(s:message_part_list, s:message_part_num) == 'text/html')
+        execute "silent r ! elinks -dump <<< " . shellescape(get(s:message_part_content, s:message_part_num), 1)
+    else
+        silent put =get(s:message_part_content, s:message_part_num)
+    endif
     keepjumps 0d
     normal! $
     set foldmethod=expr foldexpr=getline(v:lnum)[0]==\"\>\"
@@ -130,38 +173,57 @@ function! s:show_message(num, part)
     nnoremap <buffer> <A-,> :call <SID>prev_part()<CR>
     nnoremap <buffer> <A-.> :call <SID>next_part()<CR>
     nnoremap <buffer> <A-w> :call <SID>save_part()<CR>
-    nnoremap <buffer> r :call <SID>reply()<CR>
+    nnoremap <buffer> r :call <SID>compose('reply')<CR>
+    nnoremap <buffer> a :call <SID>compose('replyall')<CR>
     nnoremap <buffer> u :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>refresh()<CR>
-    nnoremap <buffer> x :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>tag('+deleted')<CR>
-    nnoremap <buffer> f :call <SID>tag('flagged')<CR>
-    nnoremap <buffer> c :call <SID>compose()<CR>
+    "nnoremap <buffer> x :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>tag('+deleted')<CR>
+    "nnoremap <buffer> f :call <SID>tag('flagged')<CR>
+    nnoremap <buffer> c :call <SID>compose('compose')<CR>
 endfunction
 
-function! s:select_message(num)
-    let s:current_message = a:num
-    let s:current_parts = []
-    let messageid = (len(s:current_messages) > 0) ? " or " . get(s:current_messages, a:num) : ""
-    let message = system("notmuch show --format=text " . s:current_thread . messageid)
-    call substitute(message, 'Content-type:\s*\zs.\{-}\ze\(\n\|$\)', '\=add(s:current_parts, submatch(0))', 'g')
-    let s:current_to = matchlist(message, 'To:\ \zs.\{-}\ze\n')
-    let s:current_cc = matchlist(message, 'Cc:\ \zs.\{-}\ze\n')
-    let s:current_from = matchlist(message, 'From:\ \zs.\{-}\ze\n')
-    let s:current_subj = matchlist(message, 'Subject:\ \zs.\{-}\ze\n')
-    let text = index(s:current_parts, 'text/plain')
-    let html = index(s:current_parts, 'text/html')
-    if (text > -1)
-        call s:show_message(a:num, text)
-    elseif (html > -1)
-        call s:show_message(a:num, html)
-    else
-        call s:show_message(a:num, 0)
+function! s:get_parts(part)
+    " list
+    if type(a:part) == 3
+        for i in a:part
+            call s:get_parts(i)
+        endfor
+    endif
+
+    " dictionary
+    if type(a:part) == 4
+        if has_key(a:part, 'content-type')
+            let basetype = matchstr(a:part['content-type'], '^.\{-}\ze\/')
+            if basetype == 'multipart'
+                call s:get_parts(a:part['content'])
+            else
+                call add(s:message_part_id, a:part['id'])
+                if (has_key(a:part, 'content'))
+                    call add(s:message_part_content, a:part['content'])
+                    call add(s:message_part_list, a:part['content-type'])
+                elseif (has_key(a:part, 'filename'))
+                    call add(s:message_part_content, '** Press Alt+w to save this attachment **')
+                    call add(s:message_part_list, a:part['filename'])
+                endif
+            endif
+        endif
     endif
 endfunction
 
+function! s:select_message(num)
+    let s:message_part_content = []
+    let s:message_part_list = []
+    let s:message_part_id = []
+    " enable/disable html option
+    let s:message_num = a:num
+    let s:message = json_decode(system('notmuch show --format=json --part=0 --include-html=true ' . get(s:message_list, s:message_num)))
+    call s:get_parts(s:message['body'])
+    call s:show_message(s:message_num, 0)
+endfunction
+
 function! s:select_thread()
-    let s:current_thread = matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s')
-    let s:current_messages = systemlist('notmuch search --output=messages ' . s:current_thread)
-    call s:tag('-unread')
+    let thread = matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s')
+    let s:message_list = systemlist('notmuch search --output=messages ' . thread)
+    "call s:tag('-unread')
     call s:select_message(0)
 endfunction
 
@@ -175,13 +237,13 @@ function! s:search_threads()
     setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable readonly
     nnoremap <buffer> <CR> :call <SID>select_thread()<CR>
     nnoremap <buffer> u <nop>
-    nnoremap <buffer> c :call <SID>compose()<CR>
+    nnoremap <buffer> c :call <SID>compose('compose')<CR>
     nnoremap <buffer> <A-x> :bw!<CR>
     nnoremap <buffer> <A-q> :bw!<CR>
     nnoremap <buffer> r :call <SID>refresh()<CR>
-    nnoremap <buffer> t :call <SID>tag()<CR>
-    nnoremap <buffer> x :call <SID>tag('+deleted')<CR>
-    nnoremap <buffer> f :call <SID>tag('flagged')<CR>
+    "nnoremap <buffer> t :call <SID>tag()<CR>
+    "nnoremap <buffer> x :call <SID>tag('+deleted')<CR>
+    "nnoremap <buffer> f :call <SID>tag('flagged')<CR>
 endfunction
 
 function! NotmuchNeovim()
