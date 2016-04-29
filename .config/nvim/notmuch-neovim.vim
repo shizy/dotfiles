@@ -2,13 +2,24 @@ let s:primary_email = system("notmuch config get user.primary_email")[:-2]
 let s:current_search = []
 
 let s:message_list = []
-let s:message_num = 0
+let s:message_num = -1
 let s:message = {}
 
 let s:message_part_content = []
 let s:message_part_list = []
 let s:message_part_id = []
 let s:message_part_num = 0
+
+"todo:
+"default mimetype preference
+"browser preference
+"open in web browser for html
+"send
+"send attachments
+"send cmd preference
+"delete/tag multiple
+"predefined search terms
+"contant list completion
 
 function! s:new_buffer(name)
     if (bufname(a:name) != "")
@@ -45,6 +56,16 @@ function! s:prev_message()
     endif
 endfunction
 
+function! s:delete()
+    if confirm("Really delete?", "&Yes\n&No", 2) == 1
+        if expand('%:t') != 'neovim-notmuch-search'
+            b! neovim-notmuch-search
+            bw! #
+        endif
+        call s:tag('+deleted')
+    endif
+endfunction
+
 " -------------------------------
 
 function s:send()
@@ -57,20 +78,20 @@ function s:send()
     endif
 endfunction
 
-function! s:tagFOO(...)
-    let message = (s:current_thread == "") ? matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s') : s:current_thread
+" ------------------------
+
+function! s:tag(...)
+    let id = (expand('%:t') == 'neovim-notmuch-search') ? matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s') : get(s:message_list, s:message_num)
     let tag = (a:0 == 0) ? input('Tag thread: ') : a:1
     if (tag[0] != '-' && tag[0] != '+')
-        let tags = systemlist('notmuch search --output=tags ' . message)
+        let tags = systemlist('notmuch search --output=tags ' . id)
         let tag = (index(tags, tag) > -1) ? '-' . tag : '+' . tag
     endif
-    execute system('notmuch tag ' . tag . ' ' . message)
-    if (s:current_thread == "")
+    execute system('notmuch tag ' . tag . ' ' . id)
+    if (expand('%:t') == 'neovim-notmuch-search')
         call s:refresh()
     endif
 endfunction
-
-" ------------------------
 
 function! s:compose(type)
     call s:new_buffer('neovim-notmuch-compose')
@@ -176,8 +197,8 @@ function s:show_message(num, part)
     nnoremap <buffer> r :call <SID>compose('reply')<CR>
     nnoremap <buffer> a :call <SID>compose('replyall')<CR>
     nnoremap <buffer> u :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>refresh()<CR>
-    "nnoremap <buffer> x :execute ':b! neovim-notmuch-search'<CR>:bw! #<CR>:call <SID>tag('+deleted')<CR>
-    "nnoremap <buffer> f :call <SID>tag('flagged')<CR>
+    nnoremap <buffer> x :call <SID>delete()<CR>
+    nnoremap <buffer> f :call <SID>tag('flagged')<CR>
     nnoremap <buffer> c :call <SID>compose('compose')<CR>
 endfunction
 
@@ -213,7 +234,6 @@ function! s:select_message(num)
     let s:message_part_content = []
     let s:message_part_list = []
     let s:message_part_id = []
-    " enable/disable html option
     let s:message_num = a:num
     let s:message = json_decode(system('notmuch show --format=json --part=0 --include-html=true ' . get(s:message_list, s:message_num)))
     call s:get_parts(s:message['body'])
@@ -223,13 +243,12 @@ endfunction
 function! s:select_thread()
     let thread = matchstr(get(s:current_search, line('.') - 1), '^.\{-}\s')
     let s:message_list = systemlist('notmuch search --output=messages ' . thread)
-    "call s:tag('-unread')
+    call s:tag('-unread')
     call s:select_message(0)
 endfunction
 
 function! s:search_threads()
     call s:new_buffer('neovim-notmuch-search')
-    let s:current_thread = ""
     let s:current_search = systemlist('notmuch search tag:inbox')
     silent put =s:current_search
     silent! %s/\_^\zs.\{-}\s//g
@@ -241,9 +260,9 @@ function! s:search_threads()
     nnoremap <buffer> <A-x> :bw!<CR>
     nnoremap <buffer> <A-q> :bw!<CR>
     nnoremap <buffer> r :call <SID>refresh()<CR>
-    "nnoremap <buffer> t :call <SID>tag()<CR>
-    "nnoremap <buffer> x :call <SID>tag('+deleted')<CR>
-    "nnoremap <buffer> f :call <SID>tag('flagged')<CR>
+    nnoremap <buffer> t :call <SID>tag()<CR>
+    nnoremap <buffer> x :call <SID>delete()<CR>
+    nnoremap <buffer> f :call <SID>tag('flagged')<CR>
 endfunction
 
 function! NotmuchNeovim()
