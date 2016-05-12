@@ -1,0 +1,12 @@
+*node_modules*
+*google-chrome*
+*wp-*
+
+.git/
+local/cache/
+local/share/
+local/src/
+
+ca-certificates/
+fonts/
+certs/

@@ -1,0 +1,11 @@
+[Unit]
+Description=OfflineIMAP Notmuch
+
+[Service]
+Type=oneshot
+Environment=NOTMUCH_CONFIG=%h/.local/config/notmuch/notmuchrc
+ExecStart=/usr/bin/offlineimap -c %h/.local/private/offlineimap/offlineimaprc
+ExecStartPost=/usr/bin/notmuch new
+
+[Install]
+WantedBy=default.target

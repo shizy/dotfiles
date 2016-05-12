@@ -2,56 +2,50 @@
 /*
 
 # CACHE
-!/.cache
-/.cache/*
-!/.cache/pacman-backup
-!/.cache/aur-backup
-!/.cache/npm-backup
-!/.cache/gem-backup
+!/cache
+/cache/*
+!/cache/pacman-backup
+!/cache/aur-backup
+!/cache/npm-backup
 
-# LOCAL/BIN
-!/.local
-/.local/*
-!/.local/bin
+# BIN
+!/bin
 
 # CONFIG
-!/.config
-/.config/*
+!/config
+/config/*
 
-!/.config/ag
-!/.config/bspwm
-!/.config/conky
-!/.config/cower
-!/.config/fontconfig
-!/.config/gem
-!/.config/git
-!/.config/notmuch
-!/.config/nvim
-!/.config/offlineimap
-!/.config/qutebrowser
-!/.config/systemd
-!/.config/sxhkd
-!/.config/termite
-!/.config/user-dirs.dir
-!/.config/x11
-!/.config/zathura
-!/.config/zsh
+!/config/ag
+!/config/bspwm
+!/config/conky
+!/config/cower
+!/config/fontconfig
+!/config/git
+!/config/notmuch
+!/config/nvim
+!/config/pam
+!/config/qutebrowser
+!/config/systemd
+!/config/sxhkd
+!/config/termite
+!/config/user-dirs.dir
+!/config/x11
+!/config/zathura
+!/config/zsh
 
 # GPG
-!/.config/gnupg
-/.config/gnupg/*
+!/config/gnupg
+/config/gnupg/*
 
-!/.config/gnupg/gpg-agent.conf
+!/config/gnupg/gpg-agent.conf
 
 # WEECHAT
-!/.config/weechat
-/.config/weechat/*
+!/config/weechat
+/config/weechat/*
 
-!/.config/weechat/weechat.conf
-!/.config/weechat/irc.conf
-!/.config/weechat/buffers.conf
+!/config/weechat/weechat.conf
+!/config/weechat/irc.conf
+!/config/weechat/buffers.conf
 
 # OTHER
-!/.public
 !/.gitignore
-!/.zshenv
