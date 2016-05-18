@@ -1,5 +1,6 @@
 let s:search_list = [ 'tag:inbox', 'tag:flagged', 'tag:deleted' ]
 let s:prefer_html = 0
+let s:send_mail = 'msmtp -C $PRIVATE/msmtp/msmtprc -t'
 
 let s:primary_email = system("notmuch config get user.primary_email")[:-2]
 
@@ -16,9 +17,7 @@ let s:message_part_id = []
 let s:message_part_num = 0
 
 "todo:
-"send
 "send attachments
-"send cmd preference
 "delete/tag multiple
 "contact list completion
 
@@ -80,13 +79,9 @@ function! s:delete()
 endfunction
 
 function s:send()
-    let buf = getline(0, '$')
-    let recipient = matchlist(buf, '^To\(.\{-}<\|:\s*\)\zs.\{-}\ze\(>\|\s\|,\|$\)')
-    if (len(recipient) < 1 || recipient[0] == "")
-        echo "You must have at least one recipient!"
-    else
-        execute 'w !msmtp -C $PRIVATE/msmtp/msmtprc -t -- ' . recipient[0]
-    endif
+    " strip empty lines from beggining of message
+    silent! %s/\zs\%^\(\_s\)\+\ze./
+    execute 'silent w ! ' . s:send_mail
 endfunction
 
 function! s:tag(...)
@@ -104,6 +99,7 @@ endfunction
 
 function! s:compose(type)
     call s:new_buffer('neovim-notmuch-compose')
+    setlocal buftype=nofile
     call s:build_header(a:type)
     if a:type == 'compose'
         call cursor(3, 5)
@@ -116,7 +112,7 @@ function! s:compose(type)
     let &undolevels = old_undolevels
     unlet old_undolevels
     startinsert!
-    "nnoremap <buffer> <Leader>p :call <SID>send()<CR>
+    nnoremap <buffer> <Leader>p :call <SID>send()<CR>
 endfunction
 
 function! s:save_part()
