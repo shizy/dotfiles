@@ -154,6 +154,7 @@ if [ "$1" == "service" ]; then
             dtop=$(($dtop + 1))
         done
         echo -e "$desktop_status" > $DESKTOP_FIFO
+        echo -e "$desktop_status" >> ~/wm.log
     done
     rm $DESKTOP_FIFO
     rm $WM_FIFO

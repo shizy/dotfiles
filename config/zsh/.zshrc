@@ -89,16 +89,11 @@ backup () {
             ;;
         *"con"*)
             # packages
-            /usr/bin/ls -1 $HOME/.local/src > $XDG_CACHE_HOME/aur-backup
-            cd ~/.local
+            /usr/bin/ls -1 $HOME/local/src > $XDG_CACHE_HOME/aur-backup
+            cd ~/local
             git add -A
             git commit -m "$(date)"
             git push git@github.com:shizy/dotfiles.git
-            #mv $XDG_CONFIG_HOME/gitignore $HOME/.gitignore
-            #git --work-tree=$HOME --git-dir=$HOME/.local/git add -A
-            #git --work-tree=$HOME --git-dir=$HOME/.local/git commit -m "$(date)"
-            #git --work-tree=$HOME --git-dir=$HOME/.local/git push git@github.com:shizy/dotfiles.git
-            #mv $HOME/.gitignore $XDG_CONFIG_HOME/gitignore
             ;;
     esac
 }

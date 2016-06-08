@@ -4,7 +4,7 @@ After=graphical.target
 
 [Service]
 Environment=DISPLAY=:1
-ExecStart=/bin/bash %h/.local/bin/wm service
+ExecStart=/bin/bash %h/local/bin/wm service
 
 [Install]
 WantedBy=default.target

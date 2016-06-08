@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ag file search
-stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore -fli --hidden -g "" ~ /etc 2>/dev/null | sed -e 's/^/file:\t/')
+stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -fli | sed -e 's/^/file:\t/')
+stack+=$(cd /etc && ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -fli | sed -e 's/^/file:\t/')
 # man page search
 stack+=$(echo -e "\r\n ")
 stack+=$(/usr/bin/man -k "" | awk '{print $1,$2}' | sed -e 's/^/man:\t/')
@@ -18,7 +19,7 @@ stack+=$(echo -e "\r\n ")
 stack+=$(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$' | sed -e 's/^/ssh:\t/')
 
 # will probably choke on a file / folder with a space in it!
-selection=$(fzf --color=dark,hl:200,pointer:200,marker:202,prompt:200 -m --select-1 --exit-0 <<< "$stack" --bind "alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle,alt-x:unix-line-discard" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
+selection=$(fzf --color=dark,hl:200,pointer:200,marker:202,prompt:200 -m --select-1 --exit-0 <<< "$stack" --bind "esc:abort,alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-v:toggle,alt-x:unix-line-discard" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
 selection=(${selection//\r\n/ })
 
 launch () {
@@ -105,7 +106,5 @@ do
     launch $class ${collection[$class]}
 done
 
-# cheap hack to ensure dipatched windows are created before exit
 #scratchpad scratchsearch hide
 wm hide scratchsearch
-sleep 1

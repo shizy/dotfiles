@@ -3,10 +3,10 @@
 *wp-*
 
 .git/
-local/cache/
-local/share/
-local/src/
+cache/
+share/
+src/
 
-ca-certificates/
-fonts/
-certs/
+/ca-certificates/
+/fonts/
+/certs/

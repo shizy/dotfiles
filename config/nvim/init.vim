@@ -148,7 +148,8 @@ nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
-nmap                <Leader>b       :Gbrowse<CR>
+"nmap                <Leader>b       :Gbrowse<CR>
+nmap                <Leader>b       :Git checkout<space>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :silent w !help<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
@@ -203,7 +204,9 @@ xmap                ga              <Plug>(EasyAlign)
 
 " ========== AUTOCOMMANDS ==========
 
-au FileType javascript           nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h; npm start<CR>
+au FileType javascript
+            \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h; npm start<CR> |
+            \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h; npm test<CR>  |
 au FileType go                   nmap <buffer> <Leader>r :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
 au FileType sh                   nmap <buffer> <Leader>r :sp<CR>:te! %:p<CR>
 

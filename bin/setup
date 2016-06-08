@@ -6,11 +6,11 @@ if [ "$SHELL" == "/bin/bash" ]; then
 
 # Install preferred programs in pacman backup
 sudo nano /etc/pacman.conf
-sudo pacman -S --noconfirm $(cat ~/.local/cache/pacman-backup)
+sudo pacman -S --noconfirm $(cat ~/local/cache/pacman-backup)
 
 # Set /etc/security/pam_env.conf (cheap hack)
 sudo mv /etc/security/pam_env.conf /etc/security/pam_env.conf.old
-sudo cp -f ~/.local/config/pam/pam_env.conf /etc/security/pam_env.conf
+sudo cp -f ~/local/config/pam/pam_env.conf /etc/security/pam_env.conf
 
 # Set default shell
 chsh -s /usr/bin/zsh
@@ -23,7 +23,7 @@ systemctl enable tlp-sleep.service
 # himawari?
 
 # Gnupg permissions
-chmod 700 ~/.local/config/gnupg
+chmod 700 ~/local/config/gnupg
 
 # Cleanup old bash stuff
 rm -rf ~/.bash*
@@ -34,22 +34,22 @@ mkdir ~/downloads > /dev/null
 mkdir ~/dev > /dev/null
 
 # Install npm packages
-export NPM_CONFIG_CACHE=~/.local/cache/npm
-export NPM_CONFIG_PREFIX=~/.local/share/node_modules
-npm install -g $(cat ~/.local/cache/npm-backup)
+export NPM_CONFIG_CACHE=~/local/cache/npm
+export NPM_CONFIG_PREFIX=~/local/share/node_modules
+npm install -g $(cat ~/local/cache/npm-backup)
 
 # prep man pages
 sudo mandb
 
 # Install cower and download aur backup
-mkdir -p ~/.local/src/cower
-wget -O ~/.local/src/cower/PKGBUILD "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
-cd ~/.local/src/cower
+mkdir -p ~/local/src/cower
+wget -O ~/local/src/cower/PKGBUILD "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
+cd ~/local/src/cower
 makepkg -sri --skippgpcheck
 cd ~
-cower -df $(cat ~/.local/cache/aur-backup)
+cower -df $(cat ~/local/cache/aur-backup)
 
 # final reminder
-echo "Finished initial setup, remember to build all packages in ~/.local/src and enable any systemd units!"
+echo "Finished initial setup, remember to build all packages in ~/local/src and enable any systemd units!"
 
 fi

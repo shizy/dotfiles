@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p $HOME/.local/share/wallpaper/
+mkdir -p $HOME/local/share/wallpaper/
 
 wget -O /tmp/himawari_temp.gif http://www.ssec.wisc.edu/data/geo/himawari/latest_himawari08_rgb_wp.gif
 [ $? -eq 0 ] &&

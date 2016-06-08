@@ -4,7 +4,7 @@ Description=Himawari 8 Satellite Photo Wallpaper
 [Service]
 Environment=DISPLAY=:1
 Type=oneshot
-ExecStart=/usr/bin/bash %h/.local/bin/himawari8
+ExecStart=/usr/bin/bash %h/local/bin/himawari8
 
 [Install]
 WantedBy=multi-user.target
