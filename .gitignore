@@ -48,4 +48,5 @@
 !/config/weechat/buffers.conf
 
 # OTHER
+!/README.md
 !/.gitignore
