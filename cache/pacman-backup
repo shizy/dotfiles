@@ -2,7 +2,6 @@ alsa-utils
 bspwm
 compton
 conky
-connman
 curl
 imagemagick
 elinks
@@ -25,7 +24,6 @@ rclone
 sxhkd
 texlive-core
 the_silver_searcher
-tlp
 ttf-dejavu
 ttf-liberation
 unclutter
