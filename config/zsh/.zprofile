@@ -5,7 +5,7 @@ export BROWSER=qutebrowser
 export PRIVATE=$LOCALDIR/private
 
 # Path
-export PATH=$LOCALDIR/bin:$PRIVATE/bin:$PATH
+export PATH=$LOCALDIR/bin:$PRIVATE/bin:$PATH:/usr/bin/core_perl
 
 # Color & Look
 export DESKTOP_ICONS=" :   :  :   :   :   :   :   :   :   "

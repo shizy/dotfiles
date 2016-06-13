@@ -17,6 +17,7 @@
 
 !/config/ag
 !/config/bspwm
+!/config/compton
 !/config/conky
 !/config/cower
 !/config/fontconfig

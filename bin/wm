@@ -6,10 +6,10 @@ WM_FIFO=$XDG_RUNTIME_DIR/wm.fifo
 declare -A monitor
 primary=''
 icons=(${DESKTOP_ICONS//:/ })
-urg='${color '$COLOR_URGENT'}'
-cur='${color '$COLOR_NOTIFY'}'
-occ='${color #383838}'
-res='${color}'
+urg='%{F'$COLOR_URGENT'}'
+cur='%{F'$COLOR_NOTIFY'}'
+occ='%{F#383838}'
+res='%{F-}'
 
 get_monitor_info() {
     monitors=($(bspc query -M))
@@ -100,15 +100,12 @@ get_preset() {
 
 if [ "$1" == "service" ]; then
 
-    [ -e $DESKTOP_FIFO ] && rm $DESKTOP_FIFO
     [ -e $WM_FIFO ] && rm $WM_FIFO
-    mkfifo $DESKTOP_FIFO
     mkfifo $WM_FIFO
     sleep 3
     get_monitor_info
-    conky -c $XDG_CONFIG_HOME/conky/pc_status.conf &
-    conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf &
 
+    # WM commands
     while true
     do
         if read line <$WM_FIFO; then
@@ -120,12 +117,13 @@ if [ "$1" == "service" ]; then
                 *) hide ${arg[0]} || show ${arg[0]} || create ${arg[@]};;
             esac
         fi
-        #echo $line
+        echo $line
     done &
 
+    # Desktop status
     bspc subscribe | while read -r line; do
 
-        desktops=($(grep -oP '(?<=\:)..(?=\:)' <<< "$line"))
+        desktops=($(grep -oP '(?<=:)[a-zA-Z][0-9](?=:)' <<< "$line"))
         desktop_status=""
         dtop=1
         cur_desktop=$(bspc query -D -d)
@@ -135,7 +133,7 @@ if [ "$1" == "service" ]; then
 
             [ $dtop -eq $cur_desktop ] && [ ${#monitor[@]} -gt 1 ] &&
                 icon="${icons[$(($dtop - 1))]}" ||
-                icon=" ${icons[$(($dtop -1 ))]} "
+                icon=" ${icons[$(($dtop - 1))]} "
 
             case $desktop in
                 "o"*) desktop_status+=" $occ$icon$res ";;
@@ -153,10 +151,25 @@ if [ "$1" == "service" ]; then
 
             dtop=$(($dtop + 1))
         done
-        echo -e "$desktop_status" > $DESKTOP_FIFO
-        echo -e "$desktop_status" >> ~/wm.log
-    done
-    rm $DESKTOP_FIFO
+        #echo -e "$desktop_status" > $DESKTOP_FIFO
+        echo -e "%{c}%{B$COLOR_NORMAL}$desktop_status%{B-}%{F-} "
+    done | lemonbar -p -f "Icons-10" -n "paneltop" &
+
+    # PC Status
+    while true; do
+        info=""
+        [ $(/usr/bin/ls $XDG_DATA_HOME/mail/new | wc -l) -gt 0 ] && info+="  "
+        [ -e /tmp/toggle-screen ] && info+="  "
+        [ -e /tmp/toggle-locked ] && info+="  "
+        [[ $(cat /sys/class/net/en*/operstate) == "up" ]] && info+="  "
+        [[ $(cat /sys/class/net/wl*/operstate) == "up" ]] && info+="  "
+        info+=" $(date "+%h %d, %I:%M%P") "
+        [ -e /sys/class/power_supply/BAT0/capacity ] &&
+            info+=" $(cat /sys/class/power_supply/BAT0/capacity)% "
+        echo -e "%{c}%{F#000000}%{B$COLOR_NORMAL}$info%{B-}"
+        sleep 2
+    done | lemonbar -pb -f "M+ 1m-8" -f "Icons-10" -n "panelbottom"
+
     rm $WM_FIFO
 else
     echo $@ >$WM_FIFO
