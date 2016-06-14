@@ -1,9 +1,11 @@
 #!/bin/bash
 source $XDG_CONFIG_HOME/zsh/.zprofile
 
-DESKTOP_FIFO=$XDG_RUNTIME_DIR/desktop.fifo
 WM_FIFO=$XDG_RUNTIME_DIR/wm.fifo
+FIFO_TOP=$XDG_RUNTIME_DIR/top.fifo
+FIFO_BOT=$XDG_RUNTIME_DIR/bot.fifo
 declare -A monitor
+cur_monitor=0
 primary=''
 icons=(${DESKTOP_ICONS//:/ })
 urg='%{F'$COLOR_URGENT'}'
@@ -29,7 +31,7 @@ show () {
 hide () {
     bspc node $(printf "0x%x\n" $(xdotool search --any --class --name $1) | head -n 1) -d focused -f
     [ $? -gt 0 ] &&
-        xdotool search --onlyvisible --any --class --name $1 windowunmap %@
+         xdotool search --onlyvisible --any --class --name $1 windowunmap %@
 }
 
 create () {
@@ -78,30 +80,15 @@ get_preset() {
             w=$((${res[0]} / 2))
             create="termite --geometry ${w}x${h}+${x}+${y} --title=$1"
             ;;
-        "paneltop")
-            geometry=($(xdotool search --any --name --class $1 getwindowgeometry | grep Geometry:\ | grep -oP '\w+x\w+' | sed -e 's/x/\ /g'))
-            x=$((${res[2]} + (${res[0]} / 2) - (${geometry[0]} / 2)))
-            y=${res[3]}
-            h=0
-            w=0
-            create="conky -c $XDG_CONFIG_HOME/conky/desktop_status.conf"
-            ;;
-        "panelbottom")
-            geometry=($(xdotool search --any --name --class $1 getwindowgeometry | grep Geometry:\ | grep -oP '\w+x\w+' | sed -e 's/x/\ /g'))
-            x=$((${res[2]} + (${res[0]} / 2) - (${geometry[0]} / 2)))
-            y=$((${res[3]} + ${res[1]} - ${geometry[1]}))
-            h=0
-            w=0
-            create="conky -c $XDG_CONFIG_HOME/conky/pc_status.conf"
-            ;;
     esac
     echo "$x $y $h $w $create"
 }
 
 if [ "$1" == "service" ]; then
 
-    [ -e $WM_FIFO ] && rm $WM_FIFO
-    mkfifo $WM_FIFO
+    [ ! -e $WM_FIFO ] && mkfifo $WM_FIFO
+    [ ! -e $FIFO_TOP ] && mkfifo $FIFO_TOP
+    [ ! -e $FIFO_BOT ] && mkfifo $FIFO_BOT
     sleep 3
     get_monitor_info
 
@@ -117,60 +104,61 @@ if [ "$1" == "service" ]; then
                 *) hide ${arg[0]} || show ${arg[0]} || create ${arg[@]};;
             esac
         fi
-        echo $line
+        #echo $line
     done &
 
-    # Desktop status
-    bspc subscribe | while read -r line; do
+    while read line; do
 
-        desktops=($(grep -oP '(?<=:)[a-zA-Z][0-9](?=:)' <<< "$line"))
-        desktop_status=""
-        dtop=1
-        cur_desktop=$(bspc query -D -d)
+        case $line in
+            # bspc
+            W*)
+                top=""
+                desktops=($(grep -oP '(?<=:)[a-zA-Z][0-9](?=:)' <<< "$line"))
+                dtop=1
+                cur_desktop=$(bspc query -D -d)
+                cur_monitor=$(($(bspc query -M | grep -n $(bspc query -M -m) | cut -c 1) - 1))
+                datetime=$(date "+%h %d, %I:%M%P")
 
-        for desktop in ${desktops[@]}
-        do
+                for desktop in ${desktops[@]}
+                do
 
-            [ $dtop -eq $cur_desktop ] && [ ${#monitor[@]} -gt 1 ] &&
-                icon="${icons[$(($dtop - 1))]}" ||
-                icon=" ${icons[$(($dtop - 1))]} "
+                    [ $dtop -eq $cur_desktop ] && [ ${#monitor[@]} -gt 1 ] &&
+                        icon="${icons[$(($dtop - 1))]}" ||
+                        icon=" ${icons[$(($dtop - 1))]} "
 
-            case $desktop in
-                "o"*) desktop_status+=" $occ$icon$res ";;
-                "O"*|"F"*) desktop_status+=" $cur$icon$res ";;
-                "u"*|"U"*)
-                    desktop_status+=" $urg$icon$res "
-                    xdotool search --any --class --name paneltop windowmap
-                    ;;
-                "L"*)
-                    [ ${#monitor[@]} -gt 1 ] &&
-                        desktop_status+="\t"
-                        dtop=$(($dtop - 1))
-                        #MOVE PANELS!
-            esac
+                    case $desktop in
+                        "o"*) top+=" $occ$icon$res ";;
+                        "O"*|"F"*) top+=" $cur$icon$res ";;
+                        "u"*|"U"*)
+                            top+=" $urg$icon$res "
+                            xdotool search --any --class --name paneltop windowmap
+                            ;;
+                        "L"*)
+                            [ ${#monitor[@]} -gt 1 ] &&
+                                top+="\t"
+                                dtop=$(($dtop - 1))
+                    esac
 
-            dtop=$(($dtop + 1))
-        done
-        #echo -e "$desktop_status" > $DESKTOP_FIFO
-        echo -e "%{c}%{B$COLOR_NORMAL}$desktop_status%{B-}%{F-} "
-    done | lemonbar -p -f "Icons-10" -n "paneltop" &
+                    dtop=$(($dtop + 1))
+                done
+                ;;
+            #conky
+            c*)
+                bot=$(cut -c 2- <<< "$line")
+                # bat check!
+                # email check!
+                ;;
+        esac
 
-    # PC Status
-    while true; do
-        info=""
-        [ $(/usr/bin/ls $XDG_DATA_HOME/mail/new | wc -l) -gt 0 ] && info+="  "
-        [ -e /tmp/toggle-screen ] && info+="  "
-        [ -e /tmp/toggle-locked ] && info+="  "
-        [[ $(cat /sys/class/net/en*/operstate) == "up" ]] && info+="  "
-        [[ $(cat /sys/class/net/wl*/operstate) == "up" ]] && info+="  "
-        info+=" $(date "+%h %d, %I:%M%P") "
-        [ -e /sys/class/power_supply/BAT0/capacity ] &&
-            info+=" $(cat /sys/class/power_supply/BAT0/capacity)% "
-        echo -e "%{c}%{F#000000}%{B$COLOR_NORMAL}$info%{B-}"
-        sleep 2
-    done | lemonbar -pb -f "M+ 1m-8" -f "Icons-10" -n "panelbottom"
+        echo -e "%{S$cur_monitor}%{c}%{B$COLOR_NORMAL} $top %{B-}%{F-}" > "$FIFO_TOP"
+        echo -e "%{S$cur_monitor}%{c}%{B$COLOR_NORMAL}%{F#000000}  $bot  %{B-}%{F-}" > "$FIFO_BOT"
 
-    rm $WM_FIFO
+    done < <(bspc subscribe & conky -c $XDG_CONFIG_HOME/conky/pc_status.conf) &
+
+    tail -f $FIFO_TOP | lemonbar -p -f "Icons-10" -n "paneltop" &
+    tail -f $FIFO_BOT | lemonbar -pb -f "Icons-10" -f "M+ 1m-7" -n "panelbottom" &
+
+    wait
 else
     echo $@ >$WM_FIFO
 fi
