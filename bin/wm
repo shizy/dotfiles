@@ -22,22 +22,6 @@ get_monitor_info() {
     done
 }
 
-set_monitors() {
-    num=1
-    ext=6
-    bspc monitor $primary -d 1 2 3 4 5
-    bspc monitor ^2 -r
-    bspc monitor ^3 -r
-    for mon in ${monitor[@]:1}
-    do
-        echo $mon ${arrangment[$num]} $primary $ext
-        xrandr --output $mon ${arrangement[$num]} $primary
-        bspc monitor $mon -d $ext $(($ext + 1))
-        num=$(($num + 1))
-        ext=$(($ext + 2))
-    done
-}
-
 show () {
     [ ${#monitor[@]} -eq 1 ] && res=($(get_preset $1 $primary)) || res=($(get_preset $1 $(bspc query -M -m)))
     xdotool search --any --class --name $1 windowmap windowmove ${res[0]} ${res[1]} windowsize ${res[3]} ${res[2]}

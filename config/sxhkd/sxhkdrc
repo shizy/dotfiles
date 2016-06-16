@@ -102,7 +102,7 @@ super + f
     qutebrowser
 
 super + semicolon
-    dmenu_run -nb '#000000' -nf '#383838' -sf "$COLOR_URGENT" -sb '#000000' -b -fn 'M+ 1m-9'
+    dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9"
 
 # Utility
 
