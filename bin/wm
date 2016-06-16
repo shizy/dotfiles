@@ -2,10 +2,7 @@
 source $XDG_CONFIG_HOME/zsh/.zprofile
 
 WM_FIFO=$XDG_RUNTIME_DIR/wm.fifo
-FIFO_TOP=$XDG_RUNTIME_DIR/top.fifo
-FIFO_BOT=$XDG_RUNTIME_DIR/bot.fifo
 declare -A monitor
-cur_monitor=0
 primary=''
 icons=(${DESKTOP_ICONS//:/ })
 urg='%{F'$COLOR_URGENT'}'
@@ -13,13 +10,31 @@ cur='%{F'$COLOR_NOTIFY'}'
 occ='%{F#383838}'
 res='%{F-}'
 
+#Overhaul this!
 get_monitor_info() {
+    extend_display
     monitors=($(bspc query -M))
     query=$(xrandr | grep \ connected)
     primary="${monitors[0]}"
     for name in "${monitors[@]}"
     do
         monitor[$name]=$(grep $name <<< "$query" | grep -oP '\w+x\w+\+\w+\+\w+' | sed -e 's/[x|+]/\ /g')
+    done
+}
+
+set_monitors() {
+    num=1
+    ext=6
+    bspc monitor $primary -d 1 2 3 4 5
+    bspc monitor ^2 -r
+    bspc monitor ^3 -r
+    for mon in ${monitor[@]:1}
+    do
+        echo $mon ${arrangment[$num]} $primary $ext
+        xrandr --output $mon ${arrangement[$num]} $primary
+        bspc monitor $mon -d $ext $(($ext + 1))
+        num=$(($num + 1))
+        ext=$(($ext + 2))
     done
 }
 
@@ -80,6 +95,13 @@ get_preset() {
             w=$((${res[0]} / 2))
             create="termite --geometry ${w}x${h}+${x}+${y} --title=$1"
             ;;
+        "panel")
+            x=$(($w_left + ((${res[0]} * 13) / 100)))
+            y=$w_top
+            h=18
+            w=$(((${res[0]} * 74) / 100))
+            create=""
+            ;;
     esac
     echo "$x $y $h $w $create"
 }
@@ -87,8 +109,6 @@ get_preset() {
 if [ "$1" == "service" ]; then
 
     [ ! -e $WM_FIFO ] && mkfifo $WM_FIFO
-    [ ! -e $FIFO_TOP ] && mkfifo $FIFO_TOP
-    [ ! -e $FIFO_BOT ] && mkfifo $FIFO_BOT
     sleep 3
     get_monitor_info
 
@@ -100,62 +120,61 @@ if [ "$1" == "service" ]; then
             case ${arg[0]} in
                 "show") show ${arg[1]} || create ${arg[@]:1};;
                 "hide") hide ${arg[1]};;
+                "update") systemctl --user restart wm;;
                 *) hide ${arg[0]} || show ${arg[0]} || create ${arg[@]};;
             esac
         fi
-        #echo $line
     done &
+
+    dim=($(get_preset panel $primary))
 
     while read line; do
 
         case $line in
             # bspc
             W*)
-                top=""
-                desktops=($(grep -oP '(?<=:)[a-zA-Z](Desktop)?[0-9](?=:)' <<< "$line"))
+                wm=""
                 dtop=1
-                cur_desktop=$(bspc query -D -d)
-                cur_monitor=$(($(bspc query -M | grep -n $(bspc query -M -m) | cut -c 1) - 1))
+                desktops=($(grep -oP '(?<=:)([a-zA-Z](Desktop)?[0-9])|LT(?=:)' <<< "$line"))
                 datetime=$(date "+%h %d, %I:%M%P")
 
                 for desktop in ${desktops[@]}
                 do
-
-                    [[ ${desktop:1} == $cur_desktop ]] && [ ${#monitor[@]} -gt 1 ] &&
-                        icon="${icons[$(($dtop - 1))]}" ||
-                        icon=" ${icons[$(($dtop - 1))]} "
+                    icon=${icons[$(($dtop - 1))]}
 
                     case $desktop in
-                        "o"*) top+=" $occ$icon$res ";;
-                        "O"*|"F"*) top+=" $cur$icon$res ";;
+                        "o"*) wm+="$occ  $icon  $res";;
+                        "O"*|"F"*)
+                            [ ${#monitor[@]} -gt 1 ] && [[ ${desktop:1} == $(bspc query -D -d) ]] &&
+                                wm+="${cur} $icon ${res}" ||
+                                wm+="${cur}  $icon  ${res}"
+                            ;;
                         "u"*|"U"*)
-                            top+=" $urg$icon$res "
-                            xdotool search --any --class --name paneltop windowmap
+                            wm+="$urg  $icon  $res"
+                            wm show panel
                             ;;
                         "L"*)
                             [ ${#monitor[@]} -gt 1 ] &&
-                                top+="\t"
+                                wm+="%{O25}"
                                 dtop=$(($dtop - 1))
                     esac
-
                     dtop=$(($dtop + 1))
                 done
                 ;;
             #conky
             c*)
-                bot=$(cut -c 2- <<< "$line")
-                # bat check!
-                # email check!
+                conky=$(cut -c 2- <<< "$line" | sed -e "s/!!/%{F$COLOR_URGENT}/g" -e "s/!-/%{F-}/g")
                 ;;
         esac
 
-        echo -e "%{S$cur_monitor}%{c}%{B$COLOR_NORMAL} $top %{B-}%{F-}" > "$FIFO_TOP"
-        echo -e "%{S$cur_monitor}%{c}%{B$COLOR_NORMAL}%{F#000000}  $bot  %{B-}%{F-}" > "$FIFO_BOT"
+        l="%{l} $conky"
+        c="%{c} $wm "
+        r="%{r}%{F-}$(date '+%h %d, %I:%M%P')  "
 
-    done < <(bspc subscribe & conky -c $XDG_CONFIG_HOME/conky/pc_status.conf) &
+        printf "%s\n" "$l$c$r"
 
-    tail -f $FIFO_TOP | lemonbar -p -f "Icons-10" -n "paneltop" &
-    tail -f $FIFO_BOT | lemonbar -pb -f "Icons-10" -f "M+ 1m-7" -n "panelbottom" &
+    done < <(bspc subscribe & conky -c $XDG_CONFIG_HOME/conky/pc_status.conf) | \
+        lemonbar -p -d -g ${dim[3]}x${dim[2]}+${dim[0]}+${dim[1]} -f "$FONT_ICON-10" -f "$FONT_MONO-7" -B $COLOR_NORMAL -F "#000" -n "panel" &
 
     wait
 else

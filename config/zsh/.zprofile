@@ -1,17 +1,17 @@
+# Personal Preferences
+export DESKTOP_ICONS="  :   :  :   :   :   :   :   :   :   "
+export COLOR_URGENT="#B1D631"
+export COLOR_NORMAL="#F1FAEE"
+export COLOR_NOTIFY="#7E8AA2"
+export FONT_MONO="M+ 1m"
+export FONT_ICON="Icons"
 export PAGER=less
 export EDITOR=nvim
 export BROWSER=qutebrowser
-
 export PRIVATE=$LOCALDIR/private
 
 # Path
 export PATH=$LOCALDIR/bin:$PRIVATE/bin:$PATH:/usr/bin/core_perl
-
-# Color & Look
-export DESKTOP_ICONS=" :   :  :   :   :   :   :   :   :   "
-export COLOR_URGENT="#B1D631"
-export COLOR_NORMAL="#F1FAEE"
-export COLOR_NOTIFY="#7E8AA2"
 
 # bzr
 export BZR_LOG=/dev/null

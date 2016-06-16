@@ -1,11 +1,9 @@
 Super_L
     bspc desktop -f $(bspc query -D -d) && \
-    xdotool search --any --class --name paneltop windowmap && \
-    xdotool search --any --class --name panelbottom windowmap
+    wm show panel
 
 @Super_L
-    xdotool search --onlyvisible --any --class --name paneltop windowunmap && \
-    xdotool search --onlyvisible --any --class --name panelbottom windowunmap
+    wm hide panel
 
 # Navigation
 
@@ -28,8 +26,7 @@ super + {1-9,0}
 
 super + Tab
 	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last && \
-    xdotool search --any --class --name paneltop windowmap && \
-    xdotool search --any --class --name panelbottom windowmap
+    wm show panel
 
 # Window Control
 
@@ -74,7 +71,7 @@ super + slash
 # Peripherals
 
 super + {F4, F11}
-    {extend_display && systemctl --user restart wm,toggle screen}
+    {extend_display && wm update,toggle screen}
 
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
