@@ -22,9 +22,7 @@ bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 bspc config external_rules_command  "$XDG_CONFIG_HOME/bspwm/rules.sh"
 
-# setup dynamically!
-bspc monitor eDP1 -d 1 2 3 4 5
-bspc monitor VGA1 -d 6 7 8 9 0
+bspc monitor ^1 -d 1 2 3 4 5 6 7 8 9 0
 
 # Autostart
 

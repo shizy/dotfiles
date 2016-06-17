@@ -105,6 +105,7 @@ function! Save()
     endif
     :mks! $XDG_CACHE_HOME/nvim/session.vim
     :w
+    :filetype detect
 endfunction
 
 " Tabline

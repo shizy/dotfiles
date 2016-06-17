@@ -71,7 +71,7 @@ super + slash
 # Peripherals
 
 super + {F4, F11}
-    {extend_display && wm update,toggle screen}
+    {wm restart,toggle screen}
 
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
