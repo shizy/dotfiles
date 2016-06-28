@@ -67,7 +67,7 @@ super + shift + x
                  left:n -p l t -s 50% 100% -c "termite --title=scratchleft"} -t
 
 super + slash
-    flap scratchsearch:n -p c b -s 74% 35% -c "termite --title=scratchsearch -e 'fuzzysearch'"
+    flap scratchsearch:n -p c b -s 900 35% -c "termite --title=scratchsearch -e 'fuzzysearch'"
 
 # Peripherals
 

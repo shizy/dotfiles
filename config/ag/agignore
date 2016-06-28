@@ -7,6 +7,6 @@ local/cache/
 local/share/
 local/src/
 
-/ca-certificates/
-/fonts/
-/certs/
+ca-certificates/
+fonts/
+certs/
