@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ag file search
-stack+=$(cd $HOME && ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -fli | sed -e 's/^/file:\t/')
-stack+=$(cd /etc && ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -fli | sed -e 's/^/file:\t/')
+stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -flig "" /etc | sed -e 's/^/file:\t/')
+stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -flig "" | sed -e 's/^/file:\t/')
 # man page search
 stack+=$(echo -e "\r\n ")
 stack+=$(/usr/bin/man -k "" | awk '{print $1,$2}' | sed -e 's/^/man:\t/')

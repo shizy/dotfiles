@@ -1,9 +1,8 @@
 Super_L
-    bspc desktop -f $(bspc query -D -d) && \
-    wm show panel
+    flap panel:n -m -p c t -s 900 18
 
 @Super_L
-    wm hide panel
+    flap panel:n -u
 
 # Navigation
 
@@ -26,7 +25,7 @@ super + {1-9,0}
 
 super + Tab
 	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last && \
-    wm show panel
+    flap panel:n -p c t -s 900 18
 
 # Window Control
 
@@ -63,10 +62,13 @@ super + shift + x
 # Scratchpads & Search
 
 {ctrl,super,ctrl + super} + grave
-    wm scratch{top,bottom,left}
+    flap scratch{top:n -p l t+1 -s 100% 50% -c "termite --title=scratchtop",\
+                 bottom:n -p l b -s 100% 50% -c "termite --title=scratchbottom",\
+                 left:n -p l t -s 50% 100% -c "termite --title=scratchleft"} -t
 
 super + slash
-    wm scratchsearch fuzzysearch
+    flap scratchsearch:n -p c b -s 74% 33% -c "termite --title=scratchsearch -e 'fuzzysearch'"
+    #wm scratchsearch fuzzysearch
 
 # Peripherals
 

@@ -1,10 +1,10 @@
 [Unit]
-Description=WM, Scratchpad, and Panel Manager
+Description=Panel
 After=graphical.target
 
 [Service]
 Environment=DISPLAY=:1
-ExecStart=/bin/bash %h/local/bin/wm service
+ExecStart=/bin/bash %h/local/config/bspwm/panel
 
 [Install]
 WantedBy=default.target

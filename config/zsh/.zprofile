@@ -10,6 +10,7 @@ export PAGER=less
 export EDITOR=nvim
 export BROWSER=qutebrowser
 export PRIVATE=$LOCALDIR/private
+export PANEL_SIZE="900x18"
 
 # Path
 export PATH=$LOCALDIR/bin:$PRIVATE/bin:$PATH:/usr/bin/core_perl

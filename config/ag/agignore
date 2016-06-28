@@ -3,9 +3,9 @@
 *wp-*
 
 .git/
-cache/
-share/
-src/
+local/cache/
+local/share/
+local/src/
 
 /ca-certificates/
 /fonts/
