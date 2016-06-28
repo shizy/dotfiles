@@ -1,5 +1,5 @@
 Super_L
-    flap panel:n -m -p c t -s 900 18
+    flap panel:n -m -p c t
 
 @Super_L
     flap panel:n -u
@@ -25,7 +25,7 @@ super + {1-9,0}
 
 super + Tab
 	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last && \
-    flap panel:n -p c t -s 900 18
+    flap panel:n -p c t
 
 # Window Control
 
@@ -67,13 +67,12 @@ super + shift + x
                  left:n -p l t -s 50% 100% -c "termite --title=scratchleft"} -t
 
 super + slash
-    flap scratchsearch:n -p c b -s 74% 33% -c "termite --title=scratchsearch -e 'fuzzysearch'"
-    #wm scratchsearch fuzzysearch
+    flap scratchsearch:n -p c b -s 74% 35% -c "termite --title=scratchsearch -e 'fuzzysearch'"
 
 # Peripherals
 
 super + {F4, F11}
-    {wm restart,toggle screen}
+    {multihead,toggle screen}
 
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
@@ -93,9 +92,6 @@ super + i
 
 super + v
     termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
-
-#super + w
-#    wallpaper
 
 super + t
 	termite --title=term

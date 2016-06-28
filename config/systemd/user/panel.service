@@ -1,10 +1,11 @@
 [Unit]
-Description=Panel
+Description=Panel Management
 After=graphical.target
 
 [Service]
+type=simple
 Environment=DISPLAY=:1
-ExecStart=/bin/bash %h/local/config/bspwm/panel
+ExecStart=/bin/bash "%h/local/config/bspwm/panel"
 
 [Install]
 WantedBy=default.target
