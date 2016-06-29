@@ -151,7 +151,7 @@ nmap                <Leader>/       <Esc>:%s/
 "nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>b       :Git checkout<space>
 nmap                <Leader>s       :Gstatus<CR><C-n>
-nmap                <Leader>p       :silent w !help<CR>
+nmap                <Leader>p       :silent w !share<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>e       :UltiSnipsEdit<CR>
 nmap                <Leader>i       zg
@@ -195,7 +195,7 @@ tmap                <A-C-l>         <C-\><C-n><C-w>l
 
 vnoremap            <Leader><Space> zf
 vmap                <Leader>/       <Esc>:'<,'>s/
-vmap                <Leader>p       <Esc>:silent '<,'>w !help<CR>
+vmap                <Leader>p       <Esc>:silent '<,'>w !share<CR>
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
 vmap                <Leader>b       <Esc>:'<,'>:Gbrowse<CR>

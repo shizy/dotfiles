@@ -40,6 +40,7 @@ alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
+alias ssh="$LOCALDIR/bin/ssh"
 alias men="/usr/bin/man -k"
 alias rclone="rclone --config $PRIVATE/rclone/config"
 
