@@ -24,7 +24,7 @@ if [ "$class" = Termite ]; then
             echo "state=floating"
             ;;
         scratchtop|scratchbottom|scratchleft|scratchright)
-            echo "state=floating border=off"
+            echo "state=floating" # border=off"
             ;;
         dispatch)
             echo "desktop=^1"

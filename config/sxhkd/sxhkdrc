@@ -1,8 +1,8 @@
 Super_L
-    flap panel:n -m -p c t
+    xdo show $(flap -s i:panel "%d")
 
 @Super_L
-    flap panel:n -u
+    xdo hide $(flap -s i:panel "%d")
 
 # Navigation
 
@@ -25,7 +25,7 @@ super + {1-9,0}
 
 super + Tab
 	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last && \
-    flap panel:n -p c t
+    sh <<< $(flap -s i:panel -x c -y t "xdo move -x %x -y %y %d")
 
 # Window Control
 
@@ -61,13 +61,20 @@ super + shift + x
 
 # Scratchpads & Search
 
-{ctrl,super,ctrl + super} + grave
-    flap scratch{top:n -p l t+1 -s 100% 50% -c "termite --title=scratchtop",\
-                 bottom:n -p l b -s 100% 50% -c "termite --title=scratchbottom",\
-                 left:n -p l t -s 50% 100% -c "termite --title=scratchleft"} -t
+ctrl + grave
+    sh <<< $(flap -s n:scratchtop -w 90% -h 45% -x c -y t "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
+    sh <<< $(flap -w 90% -h 45% -x c -y t "termite --geometry=%wx%h+%x+%y --title=scratchtop") &&\
+    sh <<< $(flap -s n:scratchtop "bspc node %d -d focused -f || bspc node %d -d 9")
+
+super + grave
+    sh <<< $(flap -s n:scratchbottom -w 90% -h 45% -x c -y b "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
+    sh <<< $(flap -w 90% -h 45% -x c -y b "termite --geometry=%wx%h+%x+%y --title=scratchbottom") &&\
+    sh <<< $(flap -s n:scratchbottom "bspc node %d -d focused -f || bspc node %d -d 9")
 
 super + slash
-    flap scratchsearch:n -p c b -s 900 35% -c "termite --title=scratchsearch -e 'fuzzysearch'"
+    sh <<< $(flap -s n:scratchsearch -w 900 -h 35% -x c -y b "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
+    sh <<< $(flap -w 900 -h 35% -x c -y b "termite --geometry=%wx%h+%x+%y --title=scratchsearch -e 'fuzzysearch'")
+    sh <<< $(flap -s n:scratchsearch "bspc node %d -d focused -f || bspc node %d -d 9")
 
 # Peripherals
 
