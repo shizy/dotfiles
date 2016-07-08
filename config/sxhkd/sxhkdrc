@@ -62,19 +62,19 @@ super + shift + x
 # Scratchpads & Search
 
 ctrl + grave
-    sh <<< $(flap -s n:scratchtop -w 90% -h 45% -x c -y t "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
-    sh <<< $(flap -w 90% -h 45% -x c -y t "termite --geometry=%wx%h+%x+%y --title=scratchtop") &&\
-    sh <<< $(flap -s n:scratchtop "bspc node %d -d focused -f || bspc node %d -d 9")
+    sh <<< $(flap -s n:scratchtop -w 100% -h 50% -x c -y t "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
+    sh <<< $(flap -w 100% -h 50% -x c -y t "termite --geometry=%wx%h+%x+%y --title=scratchtop") &&\
+    sh <<< $(flap -s n:scratchtop "bspc node %d -d focused -f || bspc node %d -d 0")
 
 super + grave
-    sh <<< $(flap -s n:scratchbottom -w 90% -h 45% -x c -y b "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
-    sh <<< $(flap -w 90% -h 45% -x c -y b "termite --geometry=%wx%h+%x+%y --title=scratchbottom") &&\
-    sh <<< $(flap -s n:scratchbottom "bspc node %d -d focused -f || bspc node %d -d 9")
+    sh <<< $(flap -s n:scratchbottom -w 100% -h 50% -x c -y b "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
+    sh <<< $(flap -w 100% -h 50% -x c -y b "termite --geometry=%wx%h+%x+%y --title=scratchbottom") &&\
+    sh <<< $(flap -s n:scratchbottom "bspc node %d -d focused -f || bspc node %d -d 0")
 
 super + slash
     sh <<< $(flap -s n:scratchsearch -w 900 -h 35% -x c -y b "xdo resize -w %w -h %h %d && xdo move -x %x -y %y %d") ||\
     sh <<< $(flap -w 900 -h 35% -x c -y b "termite --geometry=%wx%h+%x+%y --title=scratchsearch -e 'fuzzysearch'")
-    sh <<< $(flap -s n:scratchsearch "bspc node %d -d focused -f || bspc node %d -d 9")
+    sh <<< $(flap -s n:scratchsearch "bspc node %d -d focused -f || bspc node %d -d 0")
 
 # Peripherals
 
