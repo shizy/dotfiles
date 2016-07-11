@@ -20,11 +20,8 @@ if [ "$class" = Termite ]; then
         irc)
             echo "desktop=^4"
             ;;
-        scratchsearch)
-            echo "state=floating"
-            ;;
-        scratchtop|scratchbottom|scratchleft|scratchright)
-            echo "state=floating border=off"
+        scratchtop|scratchbottom|scratchleft|scratchright|scratchsearch)
+            echo "state=floating border=on sticky=on"
             ;;
         dispatch)
             echo "desktop=^1"
