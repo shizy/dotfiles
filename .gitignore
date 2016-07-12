@@ -41,14 +41,6 @@
 
 !/config/gnupg/gpg-agent.conf
 
-# WEECHAT
-!/config/weechat
-/config/weechat/*
-
-!/config/weechat/weechat.conf
-!/config/weechat/irc.conf
-!/config/weechat/buffers.conf
-
 # OTHER
 !/README.md
 !/.gitignore

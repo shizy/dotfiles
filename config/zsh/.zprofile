@@ -62,6 +62,9 @@ export TEXMFVAR=$XDG_CACHE_HOME/texlive
 # virtualbox
 export VBOX_USER_HOME=$XDG_DATA_HOME/virtualbox
 
+# weechat
+export WEECHAT_HOME=$PRIVATE/weechat
+
 # x11
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export XINITRC=$XDG_CONFIG_HOME/x11/xinitrc

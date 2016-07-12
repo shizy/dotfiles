@@ -92,7 +92,7 @@ super + insert
 
 # Shortcuts
 super + i
-    termite --title=irc -e "weechat-curses -d $XDG_CONFIG_HOME/weechat"
+    termite --title=irc -e "weechat-curses"
 
 super + v
     termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
