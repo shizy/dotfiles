@@ -20,8 +20,12 @@ if [ "$class" = Termite ]; then
         irc)
             echo "desktop=^4"
             ;;
-        scratchtop|scratchbottom|scratchleft|scratchright|scratchsearch)
+        scratchbottom|scratchleft|scratchright|scratchsearch)
             echo "state=floating border=on sticky=on"
+            ;;
+        scratchtop)
+            echo "state=floating border=on sticky=on"
+            flap -s n:scratchtop -w 90% -h 45% -x c -y t-2 #hack
             ;;
         dispatch)
             echo "desktop=^1"
