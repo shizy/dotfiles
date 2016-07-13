@@ -83,6 +83,7 @@ launch () {
             if [[ "$cmd" != "" ]]; then
                 cmd+="read REPLY;"
                 setsid termite --title=dispatch -e "zsh -c \"$cmd\"" &
+                sleep 0.5
             fi
             ;;
         "ssh")
@@ -90,6 +91,7 @@ launch () {
             do
                 # get proper dispatch setup!
                 setsid termite --title=dispatch -e "zsh -c \"$LOCALDIR/bin/ssh $loc\"" &
+                sleep 0.5
             done
             ;;
     esac
@@ -106,5 +108,3 @@ for class in ${!collection[@]}
 do
     launch $class ${collection[$class]}
 done
-
-sleep 0.5
