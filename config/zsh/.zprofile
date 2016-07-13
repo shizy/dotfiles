@@ -1,6 +1,6 @@
 # Personal Preferences
 export DESKTOP_ICONS="  :   :   :   : 5 : 6 : 7 : 8 : 9 : 0 "
-export MONITOR_LAYOUTS="--right-of:--left-of"
+export MONITOR_LAYOUTS="--right-of eDP1:--left-of eDP1"
 export COLOR_URGENT="#B1D631"
 export COLOR_NORMAL="#F1FAEE"
 export COLOR_NOTIFY="#7E8AA2"
