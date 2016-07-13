@@ -2,6 +2,7 @@
 
 # ag file search
 stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -flig "" /etc | sed -e 's/^/file:\t/')
+stack+=$(echo -e "\r\n ")
 stack+=$(ag -p $XDG_CONFIG_HOME/ag/agignore --hidden --silent -flig "" | sed -e 's/^/file:\t/')
 # man page search
 stack+=$(echo -e "\r\n ")
@@ -88,7 +89,7 @@ launch () {
             for loc in ${targets[@]}
             do
                 # get proper dispatch setup!
-                setsid termite --title=dispatch -e "zsh -c \"ssh $loc\"" &
+                setsid termite --title=dispatch -e "zsh -c \"$LOCALDIR/bin/ssh $loc\"" &
             done
             ;;
     esac
@@ -106,5 +107,4 @@ do
     launch $class ${collection[$class]}
 done
 
-#scratchpad scratchsearch hide
-wm hide scratchsearch
+sleep 0.5
