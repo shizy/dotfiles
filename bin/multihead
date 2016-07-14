@@ -18,7 +18,7 @@ IFS="$oIFS"
 lid_state=$(cat /proc/acpi/button/lid/LID*/state | grep -oP '\s\K\w+')
 
 # ensure laptop screen works if no other screen is connected
-if [[ "$lid_state" != "closed" ]] && [ $connections -lt 1 ]; then
+if [ $connections -le 1 ]; then
     xrandr --output ${monitor_names[0]} --auto
     bspc monitor ${monitor_names[0]} -d ${desktop[@]}
     exit
