@@ -1,51 +1,61 @@
 #!/bin/bash
 
-# Only supports up to 3 monitors!
-
 source $XDG_CONFIG_HOME/zsh/.zprofile
 
 declare -A monitor
-oIFS="$IFS"; IFS=$':'
+
+output=$(xrandr)
+monitor_stats=($(grep -zoP '([\* |\ ]\+)|(disconnected\ )' <<< "$output" | sed -e 's/[\*|\ ]+/connected\ /g'))
+monitor_names=($(grep -zoP '.*?\ (?=(dis)?connected)' <<< "$output"))
+connections=$(grep -o '\bconnected' <<< "${monitor_stats[@]}" | wc -l)
+l=0
+d=0
+
+oIFS="$IFS"; IFS=':'
 read -r -a layouts <<< "$MONITOR_LAYOUTS"
+read -r -a desktop <<< "$MONITOR_DESKTOP"
 IFS="$oIFS"
 lid_state=$(cat /proc/acpi/button/lid/LID*/state | grep -oP '\s\K\w+')
-output=$(xrandr)
-screen_name=($(grep -oP '.*?(?=\ (dis)?connected)' <<< "$output"))
-connections=($(grep -oP '(dis)?connected' <<< "$output"))
-conns=$(grep -o '[^dis]connected' <<< "${connections[@]}" | wc -l)
-desktops=(5 6 7 8 9 0)
 
-# set primary monitor
-if [[ "$lid_state" == "closed" ]] && [ $conns -gt 1 ]; then
-    first=($(grep -oP '(dis)?connected' <<< "${connections[@]:1}" | grep -nP '^connected$' | cut -c 1))
-    primary=${screen_name[${first[0]}]}
-else
-    primary=${screen_name[0]}
+# ensure laptop screen works if no other screen is connected
+if [[ "$lid_state" != "closed" ]] && [ $connections -lt 1 ]; then
+    xrandr --output ${monitor_names[0]} --auto
+    bspc monitor ${monitor_names[0]} -d ${desktop[@]}
+    exit
 fi
 
-# set default desktops for the primary monitor
-xrandr --output $primary --auto
-bspc monitor $primary -d 1 2 3 4
+# skip first layout if the laptop screen is closed
+if [[ "$lid_state" == "closed" ]]; then
+    monitor_stats[0]="disconnected"
+    l=1
+fi
 
-connected=1
-for ((i=1; i < ${#screen_name[@]}; i++))
+last_connected=""
+for ((i=0; i < ${#monitor_names[@]}; i++))
 do
-    if [[ "${connections[$i]}" == "connected" ]]; then
-        if [[ "${screen_name[$i]}" != "$primary" ]]; then
-            xrandr --output ${screen_name[$i]} ${layouts[$((connected-1))]} --auto
-            echo "xrandr --output ${screen_name[$i]} ${layouts[$((connected-1))]} $primary --auto"
-            bspc monitor ${screen_name[$i]} -d ${desktops[@]:$(((connected-1)*3)):${#desktops[@]}}
-            echo "bspc monitor ${screen_name[$i]} -d ${desktops[@]:$(((connected-1)*3)):${#desktops[@]}}"
-            ((connected++))
+    if [[ "${monitor_stats[$i]}" == "connected" ]]; then
+        xrandr --output ${monitor_names[$i]} --auto
+        echo "xrandr --output ${monitor_names[$i]} --auto"
+        if [ $l -lt ${#layouts[@]} ]; then
+            xrandr --output ${monitor_names[$i]} ${layouts[$l]}
+            echo "xrandr --output ${monitor_names[$i]} ${layouts[$l]}"
+            ((l++))
+        fi
+        if [ $d -lt ${#desktop[@]} ]; then
+            bspc monitor ${monitor_names[$i]} -d ${desktop[@]:$d}
+            echo "bspc monitor ${monitor_names[$i]} -d ${desktop[@]:$d}"
+            if [ $d -gt 0 ]; then
+                bspc monitor $last_connected -d ${desktop[$((d-1))]}
+                echo "bspc monitor $last_connected -d ${desktop[$((d-1))]}"
+            fi
+            last_connected=${monitor_names[$i]}
+            ((d++))
         fi
     else
-        xrandr --output ${screen_name[$i]} --off
-        echo "xrandr --output ${screen_name[$i]} --off"
+        xrandr --output ${monitor_names[$i]} --off
+        echo "xrandr --output ${monitor_names[$i]} --off"
     fi
 done
-
-[[ $con -eq 1 ]] &&
-    bspc monitor $primary -d 1 2 3 4 ${desktops[@]}
 
 sleep 2
 systemctl --user restart panel

@@ -17,7 +17,7 @@ while read line; do
         W*)
             wm=""
             dtop=1
-            desktops=($(grep -oP '(?<=:)([a-zA-Z](Desktop)?[0-9])|LT(?=:)' <<< "$line"))
+            desktops=($(grep -oP '(?<=:)([a-zA-Z][0-9]|L[T|M])(?=:)' <<< "$line"))
             datetime=$(date "+%h %d, %I:%M%P")
 
             for desktop in ${desktops[@]}
@@ -27,7 +27,8 @@ while read line; do
                 case $desktop in
                     "o"*) wm+="$occ  $icon  $res";;
                     "O"*|"F"*)
-                        [[ $monitors -gt 1 ]] && [[ ${desktop:1} == $(bspc query -D -d) ]] &&
+                        current_desktop=$(bspc query -D | grep -n "$(bspc query -D -d)" | cut -c1)
+                        [ $monitors -gt 1 ] && [ ${desktop:1} -eq $current_desktop ] &&
                             wm+="${cur} $icon ${res}" ||
                             wm+="${cur}  $icon  ${res}"
                         ;;
