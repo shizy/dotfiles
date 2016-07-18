@@ -3,7 +3,7 @@ Description=Panel Management
 After=graphical.target
 
 [Service]
-type=simple
+type=oneshot
 Environment=DISPLAY=:1
 ExecStart=/bin/bash "%h/local/config/bspwm/panel"
 

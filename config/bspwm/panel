@@ -34,7 +34,7 @@ while read line; do
                         ;;
                     "u"*|"U"*)
                         wm+="$urg  $icon  $res"
-                        wm show panel
+                        flap -s i:panel -x c -y t -v
                         ;;
                     "L"*)
                         [[ $monitors -gt 1 ]] &&
