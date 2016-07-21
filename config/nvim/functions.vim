@@ -7,74 +7,59 @@ function! LatexResetFocus()
 endfunction
 
 function! LatexTogglePreview()
-    if !exists('t:latex_preview')
+    if !exists('b:latex_preview')
         call LatexShowPreview()
+        "call ZoomIn()
+        silent ! sleep 0.5
+        call LatexResetFocus()
     else
         call LatexHidePreview()
+        "call ZoomOut()
     endif
 endfunction
 
 function! LatexShowPreview()
-    call LatexStartPreview()
-    call ZoomIn()
+    let b:latex_preview = 1
+    call LatexUpdatePreview()
     call system("xdotool search --name " . expand('%:t:r') . " windowmap")
-    let t:latex_preview = 1
-    call LatexResetFocus()
+    "call ZoomIn()
 endfunction
 
 function! LatexHidePreview()
+    if exists('b:latex_preview')
+        unlet b:latex_preview
+    endif
     call system("xdotool search --onlyvisible --name " . expand('%:t:r') . " windowunmap")
-    if exists('t:latex_preview')
-        unlet t:latex_preview
-    endif
-    call ZoomOut()
-    " windows dont equalize!
-endfunction
-
-function! LatexFindPreview(file)
-    return system("pgrep -f " . a:file)
-endfunction
-
-function! LatexStartPreview()
-    if !LatexFindPreview(expand('%:r') . ".pdf")
-        call ZoomIn()
-        let t:latex_preview = 1
-        call system("zathura " . expand("%:r") . ".pdf &")
-        silent ! sleep 1
-        call LatexResetFocus()
-    endif
 endfunction
 
 function! LatexStopPreview()
-    if exists('t:latex_preview')
-        let x = LatexFindPreview(expand('%:t:r'))
+    if exists('b:latex_preview')
+        let x = system("pgrep -f " . expand('%:t:r') . ".pdf")
+        echo x
         execute "silent ! kill " . x
-        unlet t:latex_preview
-    else
-        exe "norm! 5\ZZ"
+        unlet b:latex_preview
     endif
 endfunction
 
 function! LatexUpdatePreview()
-    if exists('t:latex_preview')
+    if exists('b:latex_preview')
         if line(".") != s:latex_preview_line
             let s:latex_preview_line = line(".")
-            call system("zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . expand("%:p") . " " . expand("%:p:r") . ".pdf")
+            call system("zathura --synctex-forward=" . line('.') . ":" . col('.') . ":" . expand("%:p") . " " . expand("%:p:r") . ".pdf &")
         endif
     endif
 endfunction
 
-au BufWinLeave *.tex :call LatexHidePreview()
-au CursorMoved *.tex :call LatexUpdatePreview()
+au BufWinLeave                    *.tex :call LatexHidePreview()
+au CursorMoved                    *.tex :call LatexUpdatePreview()
+au BufWipeout,BufDelete           *.tex :call LatexStopPreview()
 au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ setlocal syntax=tex |
     \ nnoremap <buffer> <A-r>     :call LatexTogglePreview()<CR> |
-    \ nnoremap <buffer> <A-.>      ]s |
-    \ nnoremap <buffer> <A-,>      [s |
-    \ nnoremap <buffer> <A-q>     :call LatexStopPreview()<CR>
+    \ call LatexShowPreview()
 
 " Zoom
 function! Zoom()

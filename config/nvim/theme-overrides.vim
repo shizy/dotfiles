@@ -14,9 +14,10 @@ hi VertSplit                cterm=bold ctermfg=232 ctermbg=232
 hi ModeMsg                  ctermfg=237
 hi NonText                  ctermfg=237
 hi WarningMsg               ctermfg=201 ctermbg=none cterm=none
-hi SpellBad                 ctermfg=200 cterm=underline
+hi SpellBad                 ctermfg=200 ctermbg=none cterm=underline
 "hi IncSearch                ctermfg=201 ctermbg=200
 "hi Search                   ctermfg=234 ctermbg=201
+hi Todo                     ctermbg=none
 hi link Visual Search
 hi link Visual IncSearch
 hi WildMenu                 ctermfg=201 ctermbg=232 cterm=bold

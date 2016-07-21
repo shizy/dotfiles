@@ -4,6 +4,7 @@
 
 bspc rule -a xfreerdp desktop=^1
 bspc rule -a qutebrowser desktop=^2
+bspc rule -a Zathura state=tiled
 
 # Rules by Title
 

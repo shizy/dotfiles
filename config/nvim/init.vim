@@ -97,10 +97,10 @@ let g:neomake_informational_sign = {
             \ }
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
-let g:neomake_tex_pdflatex_maker = {
-            \ 'args': ['-synctex=1', '-output-directory=$HOME/docs'],
+let g:neomake_tex_rubber_maker = {
+            \ 'args': ['--synctex', '--inplace', '-d'],
             \ }
-let g:neomake_tex_enabled_makers = ['pdflatex']
+let g:neomake_tex_enabled_makers = ['rubber']
 let g:neomake_go_go_maker = {
             \ 'args': ['install', '%:p:h:t'],
             \ 'append_file': 0
@@ -136,6 +136,7 @@ nnoremap            <A-Down>        :resize +10<CR>
 nnoremap            <A-/>           :noh<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
+nnoremap            <A->>           ]s
 nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
