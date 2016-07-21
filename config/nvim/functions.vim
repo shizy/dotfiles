@@ -33,8 +33,7 @@ function! LatexHidePreview()
 endfunction
 
 function! LatexStopPreview()
-    let x = system("pgrep -f " . expand('%:t:r') . ".pdf")
-    execute "silent ! kill " . x
+    call system("pkill -f " . expand('<afile>:r'))
 endfunction
 
 function! LatexUpdatePreview()
