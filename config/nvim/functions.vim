@@ -33,12 +33,8 @@ function! LatexHidePreview()
 endfunction
 
 function! LatexStopPreview()
-    if exists('b:latex_preview')
-        let x = system("pgrep -f " . expand('%:t:r') . ".pdf")
-        echo x
-        execute "silent ! kill " . x
-        unlet b:latex_preview
-    endif
+    let x = system("pgrep -f " . expand('%:t:r') . ".pdf")
+    execute "silent ! kill " . x
 endfunction
 
 function! LatexUpdatePreview()
