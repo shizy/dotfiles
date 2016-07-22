@@ -64,6 +64,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-repeat'
 
 " Syntax & Highlighting
 Plug 'jelera/vim-javascript-syntax'
@@ -229,7 +230,6 @@ au FileType gitcommit
 au FileType git,gitcommit
     \ setlocal nofoldenable |
     \ nmap <buffer> <A-q> :bw!<CR> |
-au FileType snippets nnoremap <buffer> <A-q> :bw!<CR>ZZ
 au FileType help,man
     \ setlocal ro |
     \ setlocal nobuflisted |

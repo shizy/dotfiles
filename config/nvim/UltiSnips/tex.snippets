@@ -1,63 +1,79 @@
-snippet \begin
+snippet \document
 \documentclass{article}
-\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[a4paper${1}, margin=1in]{geometry}
+\title{}
+\author{Robert Winterstein}
 \begin{document}
 
-${1}
+${2}
 
 \end{document}
 endsnippet
 
-snippet	\i
+snippet \begin "Environment"
+\begin{${1}}
+	${2}
+\end{$1}
+endsnippet
+
+snippet \i "Italics"
 \textit{${1}}${2}
 endsnippet
 
-snippet \b
+snippet \b "Bold"
 \textbf{${1}}${2}
 endsnippet
 
-snippet \und
+snippet \u "Underline"
 \underline{${1}}${2}
 endsnippet
 
-snippet \o
+snippet \ol "Ordered List"
 \begin{enumerate}
 	\item ${1}
 \end{enumerate}
 endsnippet
 
-snippet \u
+snippet \ul "Unordered List"
 \begin{itemize}
 	\item ${1}
 \end{itemize}
 endsnippet
 
-snippet \it
-\item 
+snippet \os "Ordered Section"
+\section{${1}}
 endsnippet
 
-snippet \s
+snippet \us "Unordered Section"
 \section*{${1}}
 endsnippet
 
-snippet \ss
+snippet \oss "Ordered Subsection"
+\subsection{${1}}
+endsnippet
+
+snippet \uss "Unordered Subsection"
 \subsection*{${1}}
 endsnippet
 
-snippet \sss
+snippet \osss "Ordered Subsubsection"
+\subsubsection{${1}}
+endsnippet
+
+snippet \usss "Unordered Subsubsection"
 \subsubsection*{${1}}
 endsnippet
 
-snippet \hf
+snippet \hf "Horizontal Fill"
 \hfill\\\\
 ${1}
 endsnippet
 
-snippet \\
+snippet \\ "End Line"
 \textbackslash ${1}
 endsnippet
 
-snippet \t
+snippet \t "Table"
 \begin{center}
 	\begin{tabular}{ ${1} }
 		${2}
@@ -65,16 +81,25 @@ snippet \t
 \end{center}
 endsnippet
 
-snippet \hl
+snippet \hl "Horizontal Line"
 \hline\\\\
 ${1}
 endsnippet
 
-snippet `
+snippet ` "Quote"
 `${1}'${2}
 endsnippet
 
-snippet ...
+snippet ... "Elipse"
 \ldots
 endsnippet
 
+snippet \v "Verbatim"
+\verb ${1}
+endsnippet
+
+snippet \ve "Verbatim Environment"
+\begin{verbatim}
+${1}
+\end{verbatim}
+endsnippet
