@@ -45,7 +45,7 @@ alias men="/usr/bin/man -k"
 alias rclone="rclone --config $PRIVATE/rclone/config"
 
 man () {
-    python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
+    python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
 }
 
 edit () {
@@ -53,7 +53,7 @@ edit () {
     [[ ! -e "$file" ]] && touch "$file"
     ftype=$(file $file --mime-type | awk '{print $2}')
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
-        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
+        python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
     fi
 }
 

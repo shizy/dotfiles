@@ -1,8 +1,8 @@
 set recolor true
 set recolor-darkcolor "#FFFFFF"
 set recolor-lightcolor "#000000"
-set highlight-color "#B1D631"
-set highlight-active-color "#B1D631"
+set highlight-color "#666666"
+set highlight-active-color "#666666"
 set adjust-open width
 
 map <A-j> navigate next

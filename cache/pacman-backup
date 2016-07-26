@@ -17,7 +17,7 @@ npm
 offlineimap
 openssh
 pinentry
-python2-neovim
+python-neovim
 qutebrowser
 rclone
 rubber

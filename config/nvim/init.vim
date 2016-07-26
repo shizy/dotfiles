@@ -50,6 +50,9 @@ source $XDG_CONFIG_HOME/nvim/functions.vim
 source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
 
 " ========== PACKAGES ==========
+function! DoRemote(arg)
+    UpdateRemotePlugins
+endfunction
 
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
@@ -65,6 +68,7 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-repeat'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 " Syntax & Highlighting
 Plug 'jelera/vim-javascript-syntax'
@@ -76,6 +80,9 @@ Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 " ========== SETTINGS ==========
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 " LaTeX
 let g:tex_flavor = 'latex'
@@ -170,14 +177,14 @@ nmap                <A-n>           <S-n>
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
+imap                <A-j>           <C-n>
+imap                <A-k>           <C-p>
 
-cmap                <A-Tab>         <C-n>
-cmap                <A-S-Tab>       <C-p>
+cmap                <A-j>           <C-n>
+cmap                <A-k>           <C-p>
 cnoremap            <A-h>           <S-Left> 
 cnoremap            <A-l>           <S-Right>
 cnoremap            <A-x>           <C-E><C-U>
-cmap                <A-j>           <Down>
-cmap                <A-k>           <Up>
 cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>

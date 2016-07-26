@@ -38,7 +38,7 @@ launch () {
                         ;;
                     *"text"* | *"empty"* | *"javascript"*)
                         #nvim "hide e $file"
-                        python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
+                        python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
                         ;;
                     *"pdf"*)
                         zathura --fork $file
@@ -57,7 +57,7 @@ launch () {
             for man in ${targets[@]}
             do
                 #nvim "Man $man"
-                python2 -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $man');"
+                python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $man');"
             done
             ;;
         "proc")
