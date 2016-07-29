@@ -14,7 +14,7 @@
     safecrlf = true
 
 [format]
-    pretty = "format:%an  |  &h  &ar  |  %s%d"
+    pretty = "format:%an  |  %h  %ar  |  %s%d"
 
 [color]
     diff = auto
