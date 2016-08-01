@@ -22,22 +22,22 @@ background = rgba(0, 0, 0, 0.90)
 
 # based on base16-grayscale
 color0 = #101010
-color1 = #252525
-color2 = #464646
-color3 = #525252
-color4 = #ababab
-color5 = #b9b9b9
-color6 = #e3e3e3
-color7 = #f7f7f7
+color1 = #7c7c7c
+color2 = #8e8e8e
+color3 = #a0a0a0
+color4 = #686868
+color5 = #747474
+color6 = #868686
+color7 = #b9b9b9
 
-color8 = #7c7c7c
+color8 = #525252
 color9 = #999999
-color10 = #a0a0a0
-color11 = #8e8e8e
-color12 = #868686
-color13 = #686868
-color14 = #747474
-color15 = #5e5e5e
+color10 = #252525
+color11 = #464646
+color12 = #ababab
+color13 = #e3e3e3
+color14 = #5e5e5e
+color15 = #f7f7f7
 
 color200 = #B1D631
 color201 = #F1FAEE
