@@ -119,7 +119,8 @@ function! FugitiveStatus()
     if x==""
         return ""
     endif
-    return "  " . x . " "
+    let y = GitGutterGetHunkSummary()
+    return " +" . y[0] . " ~" . y[1] . " -" . y[2] . "  " . x . " "
 endfunction
 
 function! FileFlags()
