@@ -44,6 +44,9 @@ alias ssh="$LOCALDIR/bin/ssh"
 alias men="/usr/bin/man -k"
 alias rclone="rclone --config $PRIVATE/rclone/config"
 
+#TEMP
+alias nhu="sudo docker run --rm -it --user shizy -v $(pwd)/dev/transfer:/home/shizy/transfer -w /home/shizy/transfer shizy/nhu"
+
 man () {
     python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
 }

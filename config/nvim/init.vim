@@ -76,6 +76,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -89,6 +90,13 @@ let g:tex_flavor = 'latex'
 
 " Colorscheme
 call Scheme("mustang")
+
+" Gitgutter
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '~'
 
 " Neomake
 let g:neomake_error_sign = {
