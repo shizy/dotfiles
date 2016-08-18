@@ -1,4 +1,4 @@
-snippet \document
+snippet \document "Document Template"
 \documentclass{article}
 \usepackage[a4paper${1}, margin=1in]{geometry}
 \usepackage{hyperref}
@@ -82,9 +82,13 @@ snippet \t "Table"
 \end{center}
 endsnippet
 
-snippet \hl "Horizontal Line"
-\hline\\\\
+snippet \row "Table Row"
+\hline\\
 ${1}
+endsnippet
+
+snippet \line "Horizontal Line"
+\rule{\textwidth}{1pt}\\\\
 endsnippet
 
 snippet ` "Quote"

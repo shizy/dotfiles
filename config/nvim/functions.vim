@@ -119,7 +119,7 @@ function! FugitiveStatus()
     if x==""
         return ""
     endif
-    let y = GitGutterGetHunkSummary()
+    let y = sy#repo#get_stats()
     return " +" . y[0] . " ~" . y[1] . " -" . y[2] . "  " . x . " "
 endfunction
 

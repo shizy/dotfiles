@@ -78,6 +78,9 @@ super + slash
 super + {F4, F11}
     {multihead,toggle screen}
 
+F12
+    toggle hive
+
 super + {F9, F10}
     {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
 

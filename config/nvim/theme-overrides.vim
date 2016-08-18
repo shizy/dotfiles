@@ -32,10 +32,10 @@ hi StatusLineTwo            ctermfg=232 ctermbg=237 cterm=none
 hi StatusLine               ctermfg=237 ctermbg=232 cterm=none
 hi StatusLineNC             ctermfg=237 ctermbg=232 cterm=none
 
-hi GitGutterAdd             ctermfg=40  ctermbg=none cterm=none
-hi GitGutterChange          ctermfg=220 ctermbg=none cterm=bold
-hi GitGutterDelete          ctermfg=196 ctermbg=none cterm=bold
-hi GitGutterChangeDelete    ctermfg=130 ctermbg=none cterm=bold
+hi SignifySignAdd           ctermfg=40  ctermbg=none cterm=none
+hi SignifySignChange        ctermfg=220 ctermbg=none cterm=bold
+hi SignifySignDelete        ctermfg=196 ctermbg=none cterm=bold
+hi SignifySignChangeDelete  ctermfg=130 ctermbg=none cterm=bold
 
 au InsertEnter *
             \ hi StatusLineThree ctermfg=234 ctermbg=200 |

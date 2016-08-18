@@ -21,4 +21,14 @@ case $1 in
         fi
         kill -s SIGUSR1 $(pgrep gloom);
         ;;
+    "hive")
+        if [ -e /tmp/toggle-hive ]; then
+            rm /tmp/toggle-hive
+            pkill synergyc
+            rm -rf ~/.synergyc
+        else
+            touch /tmp/toggle-hive
+            synergyc 192.168.2.169
+        fi
+        ;;
 esac

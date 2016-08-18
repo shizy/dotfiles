@@ -76,7 +76,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 
@@ -90,13 +90,6 @@ let g:tex_flavor = 'latex'
 
 " Colorscheme
 call Scheme("mustang")
-
-" Gitgutter
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = '~'
 
 " Neomake
 let g:neomake_error_sign = {
@@ -122,6 +115,12 @@ let g:neomake_go_go_maker = {
             \ 'append_file': 0
             \ }
 let g:neomake_go_enabled_makers = ['go']
+
+" Signify
+let g:signify_vcs_list = [ 'git' ]
+let g:signify_skip_filetype = { 'tex': 1 }
+let g:signify_sign_change = '~'
+let g:signify_sign_delete_first_line = '^'
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Tab>"
