@@ -138,6 +138,7 @@ map                 <A-C-j>         <C-w>j
 map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
+nmap                <A-;>           :
 
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <A-Tab>         <C-w>p

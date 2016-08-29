@@ -34,17 +34,16 @@ launch () {
 
                 case $ftype in
                     *"image"*)
-                        i3-msg exec feh $file > /dev/null
+                        feh $file > /dev/null
                         ;;
                     *"text"* | *"empty"* | *"javascript"*)
-                        #nvim "hide e $file"
                         python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
                         ;;
                     *"pdf"*)
                         zathura --fork $file
                         ;;
                     *"video"*)
-                        i3-msg exec mplayer $file > /dev/null
+                        mplayer $file > /dev/null
                         ;;
                     *"symlink"*)
                         target=$(readlink $file)
@@ -74,24 +73,20 @@ launch () {
             toinstall=($(grep -oP '\/([^|\/|;]+)\/(?!\[installed\])' <<< $2 | sed -e 's/\///g'))
             cmd=""
             if [[ ${#toremove[@]} -gt 0 ]]; then
-                cmd+="sudo pacman -Rns ${toremove[@]};"
+                cmd+="sudo pacman -Rns ${toremove[@]} --noconfirm;"
                 # pacman -Ql to ensure proper removal?
             fi
             if [[ ${#toinstall[@]} -gt 0 ]]; then
-                cmd+="sudo pacman -S ${toinstall[@]};"
+                cmd+="sudo pacman -S ${toinstall[@]} --noconfirm;"
             fi
             if [[ "$cmd" != "" ]]; then
-                cmd+="read REPLY;"
-                setsid termite --title=dispatch -e "zsh -c \"$cmd\"" &
-                sleep 0.5
+                tmux new-session -d -s "pacman" $cmd
             fi
             ;;
         "ssh")
             for loc in ${targets[@]}
             do
-                # get proper dispatch setup!
-                setsid termite --title=dispatch -e "zsh -c \"$LOCALDIR/bin/ssh $loc\"" &
-                sleep 0.5
+                tmux new-session -d -s "ssh-$loc" "$LOCALDIR/bin/ssh $loc"
             done
             ;;
     esac

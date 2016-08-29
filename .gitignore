@@ -29,6 +29,7 @@
 !/config/systemd
 !/config/sxhkd
 !/config/termite
+!/config/tmux
 !/config/user-dirs.dir
 !/config/x11
 !/config/zathura

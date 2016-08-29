@@ -43,6 +43,7 @@ alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias ssh="$LOCALDIR/bin/ssh"
 alias men="/usr/bin/man -k"
 alias rclone="rclone --config $PRIVATE/rclone/config"
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 #TEMP
 alias nhu="sudo docker run --rm -it --user shizy -v $(pwd)/dev/transfer:/home/shizy/transfer -w /home/shizy/transfer shizy/nhu"

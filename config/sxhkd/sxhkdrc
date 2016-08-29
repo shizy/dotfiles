@@ -11,7 +11,8 @@ super + ctrl + {h,j,k,l}
     bspc desktop -c;
 
 super + {h,l}
-	bspc desktop -f {prev,next}.occupied
+	bspc desktop -f {prev,next}.occupied && \
+    flap -s i:panel -x c -y t
 
 super + {comma,period}
 	bspc desktop -f {prev,next}.urgent; \
@@ -63,11 +64,11 @@ super + shift + x
 
 ctrl + grave
     flap -s n:scratchtop -w 90% -h 45% -x c -y t-2 -t ||\
-    termite --title=scratchtop --geometry=$(flap -w 90% -h 45% -x c -y t -f "%wx%h+%x+%y")
+    termite --title=scratchtop --geometry=$(flap -w 90% -h 45% -x c -y t -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s top"
 
 super + grave
     flap -s n:scratchbottom -w 90% -h 45% -x c -y b -t ||\
-    termite --title=scratchbottom --geometry=$(flap -w 90% -h 45% -x c -y b -f "%wx%h+%x+%y")
+    termite --title=scratchbottom --geometry=$(flap -w 90% -h 45% -x c -y b -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s bottom"
 
 super + slash
     flap -s n:scratchsearch -w 900 -h 35% -x c -y b -t ||\
@@ -101,7 +102,7 @@ super + v
     termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
 
 super + t
-	termite --title=term
+	termite --title=term -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session"
 
 super + f
     qutebrowser
