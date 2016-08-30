@@ -1,0 +1,22 @@
+diff --git a/termite.cc b/termite.cc
+index 85f2da1..96bdd4b 100644
+--- a/termite.cc
++++ b/termite.cc
+@@ -914,6 +914,17 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+         }
+         return TRUE;
+     }
++    if (modifiers == GDK_MOD1_MASK) {
++        switch (event->keyval) {
++            case GDK_KEY_f:
++                enter_command_mode(vte, &info->select);
++                find_urls(vte, &info->panel);
++                gtk_widget_show(info->panel.da);
++                overlay_show(&info->panel, overlay_mode::urlselect, nullptr);
++                exit_command_mode(vte, &info->select);
++                return TRUE;
++        }
++    }
+     if (modifiers == (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) {
+         switch (gdk_keyval_to_lower(event->keyval)) {
+             case GDK_KEY_plus:
