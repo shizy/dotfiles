@@ -108,7 +108,9 @@ let g:neomake_informational_sign = {
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_context_context_maker = {
-            \ 'args': ['--jit', '--nonstopmode'],
+            \ 'cwd': '%:p:h',
+            \ 'args': ['--jit', '--nonstopmode', '%:t'],
+            \ 'append_file': 0,
             \ 'errorformat': '%.%# on line %l in file %f:%m,'.
             \                '%E%.%# on line %l in file %f:,%C,%Z%m'
             \ }
@@ -129,6 +131,7 @@ let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
 
 " UltiSnips
+let g:UltiSnipsSnippetsDir = "$XDG_CONFIG_HOME/nvim/UltiSnips"
 let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
