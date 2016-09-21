@@ -45,6 +45,7 @@ set wildmode=full,list
 set wildignorecase
 
 let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 :runtime! ftplugin/man.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
 source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
@@ -86,7 +87,7 @@ call plug#end()
 let g:deoplete#enable_at_startup = 1
 
 " LaTeX
-let g:tex_flavor = 'latex'
+let g:tex_flavor = 'context'
 
 " Colorscheme
 call Scheme("mustang")
@@ -106,10 +107,16 @@ let g:neomake_informational_sign = {
             \ }
 let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
-let g:neomake_tex_rubber_maker = {
-            \ 'args': ['--synctex', '--inplace', '-d'],
+let g:neomake_context_context_maker = {
+            \ 'args': ['--jit', '--nonstopmode'],
+            \ 'errorformat': '%.%# on line %l in file %f:%m,'.
+            \                '%E%.%# on line %l in file %f:,%C,%Z%m'
             \ }
-let g:neomake_tex_enabled_makers = ['rubber']
+let g:neomake_context_enabled_makers = ['context']
+"let g:neomake_tex_rubber_maker = {
+"            \ 'args': ['--synctex', '--inplace', '-d'],
+"            \ }
+"let g:neomake_tex_enabled_makers = ['rubber']
 let g:neomake_go_go_maker = {
             \ 'args': ['install', '%:p:h:t'],
             \ 'append_file': 0
@@ -118,7 +125,6 @@ let g:neomake_go_enabled_makers = ['go']
 
 " Signify
 let g:signify_vcs_list = [ 'git' ]
-let g:signify_skip_filetype = { 'tex': 1 }
 let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
 
@@ -188,10 +194,10 @@ imap                jk              <Esc>:call Save()<CR>
 imap                <A-j>           <C-n>
 imap                <A-k>           <C-p>
 
-cmap                <A-j>           <C-n>
-cmap                <A-k>           <C-p>
-cnoremap            <A-h>           <S-Left> 
-cnoremap            <A-l>           <S-Right>
+cmap                <A-l>           <C-n>
+cmap                <A-h>           <C-p>
+"cnoremap            <A-h>           <S-Left> 
+"cnoremap            <A-l>           <S-Right>
 cnoremap            <A-x>           <C-E><C-U>
 cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>

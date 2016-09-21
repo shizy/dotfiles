@@ -41,12 +41,9 @@ alias grep="grep --color=auto"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias scp="scp -F $PRIVATE/ssh/ssh_config"
 alias ssh="$LOCALDIR/bin/ssh"
-alias men="/usr/bin/man -k"
 alias rclone="rclone --config $PRIVATE/rclone/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-
-#TEMP
-alias nhu="sudo docker run --rm -it --user shizy -v $(pwd)/dev/transfer:/home/shizy/transfer -w /home/shizy/transfer shizy/nhu"
+alias du="du --time -had 1 | sort -t '/' -k 2,2"
 
 man () {
     python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"

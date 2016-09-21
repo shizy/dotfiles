@@ -54,7 +54,6 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal nocin inde= |
     \ setlocal syntax=tex |
     \ nnoremap <buffer> <A-r>     :call LatexTogglePreview()<CR> |
-    \ call LatexShowPreview()
 
 " Zoom
 function! Zoom()
