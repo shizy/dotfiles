@@ -109,7 +109,7 @@ let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_context_context_maker = {
             \ 'cwd': '%:p:h',
-            \ 'args': ['--jit', '--nonstopmode', '%:t'],
+            \ 'args': ['--jit', '--synctex', '--nonstopmode', '%:t'],
             \ 'append_file': 0,
             \ 'errorformat': '%.%# on line %l in file %f:%m,'.
             \                '%E%.%# on line %l in file %f:,%C,%Z%m'
@@ -252,12 +252,11 @@ au FileType gitcommit
     \ nmap <buffer> c     <S-c>i |
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
 au FileType git,gitcommit
+    \ setlocal nobuflisted |
     \ setlocal nofoldenable |
-    \ nmap <buffer> <A-q> :bw!<CR> |
+au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
     \ setlocal nobuflisted |
     \ nmap <buffer> <CR>  <C-]> |
     \ nmap <buffer> u     <C-T> |
-    \ nmap <buffer> <A-q> :bw!<CR> |
-    \ nmap <buffer> <A-x> :bw!<CR> |

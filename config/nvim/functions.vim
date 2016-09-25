@@ -52,7 +52,7 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
-    \ setlocal syntax=tex |
+    \ setlocal syntax=context |
     \ nnoremap <buffer> <A-r>     :call LatexTogglePreview()<CR> |
 
 " Zoom
