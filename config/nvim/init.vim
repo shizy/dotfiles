@@ -131,7 +131,7 @@ let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
 
 " UltiSnips
-let g:UltiSnipsSnippetsDir = "$XDG_CONFIG_HOME/nvim/UltiSnips"
+let g:UltiSnipsSnippetsDir = $XDG_CONFIG_HOME . '/nvim/UltiSnips'
 let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"

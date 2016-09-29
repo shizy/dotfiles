@@ -33,4 +33,5 @@ termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim" & dis
 gloom -s -c -k "i3lock-fancy -pf M+-1m-regular" &
 xbacklight -set 85 &
 xset r rate 200 25 &
+redshift &
 multihead &
