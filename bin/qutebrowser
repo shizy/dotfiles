@@ -1,5 +1,7 @@
 #!/bin/bash
 
-source $XDG_CONFIG_HOME/zsh/.zprofile
-
-/usr/bin/qutebrowser -s colors statusbar.fg.error $COLOR_URGENT -s colors statusbar.fg.warning $COLOR_NORMAL -s colors statusbar.fg.prompt $COLOR_NOTIFY "$@"
+/usr/bin/qutebrowser --backend webengine "$@" &
+sleep 2
+rm -rf .pki
+rm -rf .QtWebEngineProcess
+rm -rf .qutebrowser

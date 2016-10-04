@@ -205,6 +205,7 @@ function s:show_message(num, part)
     nnoremap <buffer> x :call <SID>delete()<CR>
     nnoremap <buffer> f :call <SID>tag('flagged')<CR>
     nnoremap <buffer> c :call <SID>compose('compose')<CR>
+    nnoremap <buffer> <Leader>p <nop>
 endfunction
 
 function! s:get_parts(part)
@@ -277,6 +278,7 @@ function! s:search_threads(num)
     nnoremap <buffer> t :call <SID>tag()<CR>
     nnoremap <buffer> x :call <SID>delete()<CR>
     nnoremap <buffer> f :call <SID>tag('flagged')<CR>
+    nnoremap <buffer> <Leader>p <nop>
 endfunction
 
 function! NotmuchNeovim()
