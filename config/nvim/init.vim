@@ -105,7 +105,7 @@ let g:neomake_informational_sign = {
             \ 'text': '',
             \ 'texthl': 'Question',
             \ }
-let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
+"let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_context_context_maker = {
             \ 'cwd': '%:p:h',
