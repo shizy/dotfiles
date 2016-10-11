@@ -91,7 +91,6 @@ backup () {
             ;;
         *"con"*)
             # packages
-            /usr/bin/ls -1 $HOME/local/src > $XDG_CACHE_HOME/aur-backup
             cd ~/local
             git add -A
             git commit -m "$(date)"
