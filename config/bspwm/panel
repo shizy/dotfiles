@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source $XDG_CONFIG_HOME/zsh/.zprofile
-sleep 2
+sleep 4
 
 monitors=$(bspc query -M | wc -l)
 icons=(${DESKTOP_ICONS//:/ })

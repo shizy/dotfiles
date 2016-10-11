@@ -24,7 +24,6 @@
 !/config/gtk-3.0
 !/config/notmuch
 !/config/nvim
-!/config/pam
 !/config/qutebrowser
 !/config/systemd
 !/config/sxhkd

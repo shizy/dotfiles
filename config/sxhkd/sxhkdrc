@@ -105,7 +105,7 @@ super + t
 	termite --title=term -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session"
 
 super + f
-    qutebrowser
+    $HOME/local/bin/qutebrowser
 
 super + semicolon
     dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9"

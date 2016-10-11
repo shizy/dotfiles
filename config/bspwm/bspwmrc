@@ -28,7 +28,7 @@ bspc monitor ^1 -d 1 2 3 4 5 6 7 8 9 0
 
 compton --fade-exclude 'name = "panel"' --opacity-rule '90:class_g = "Zathura"' &
 sh $XDG_CACHE_HOME/fehbg &
-qutebrowser &
+$HOME/local/bin/qutebrowser &
 termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim" & disown
 gloom -s -c -k "i3lock-fancy -pf M+-1m-regular" &
 xbacklight -set 85 &
