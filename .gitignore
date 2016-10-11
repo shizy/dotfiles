@@ -1,13 +1,6 @@
 # EXCLUDE ALL
 /*
 
-# CACHE
-!/cache
-/cache/*
-!/cache/pacman-backup
-!/cache/aur-backup
-!/cache/npm-backup
-
 # BIN
 !/bin
 
@@ -42,4 +35,7 @@
 
 # OTHER
 !/README.md
+!/pacman-backup
+!/aur-backup
+!/npm-backup
 !/.gitignore
