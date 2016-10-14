@@ -1,5 +1,5 @@
 diff --git a/termite.cc b/termite.cc
-index 85f2da1..96bdd4b 100644
+index e7e55ac..73acd7f 100644
 --- a/termite.cc
 +++ b/termite.cc
 @@ -914,6 +914,17 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
@@ -19,4 +19,4 @@ index 85f2da1..96bdd4b 100644
 +    }
      if (modifiers == (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) {
          switch (gdk_keyval_to_lower(event->keyval)) {
-             case GDK_KEY_plus:
+             case GDK_KEY_t:
