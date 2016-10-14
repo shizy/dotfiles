@@ -22,5 +22,27 @@
     branch = auto
     interactive = auto
 
+[difftool]
+    prompt = false
+
+[diff]
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [alias]
     hist = log --graph --all
+    pop = stash pop
+
+# Enforce SSH
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[url "ssh://git@gitlab.com/"]
+  insteadOf = https://gitlab.com/
+[url "ssh://git@bitbucket.org/"]
+  insteadOf = https://bitbucket.org/
+[url "ssh://aur@aur.archlinux.org/"]
+	insteadOf = https://aur.archlinux.org/
+	insteadOf = http://aur.archlinux.org/
+	insteadOf = git://aur.archlinux.org/

@@ -1,10 +1,12 @@
 # autoload
 autoload -U compinit promptinit colors
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump
+setopt transient_rprompt
 promptinit
 colors
 
 # prompt
+source /usr/share/git/completion/git-prompt.sh
 CMD_PROMPT="%~ %{$reset_color%}%{$(echo "\a")%}"
 
 # path
@@ -17,8 +19,9 @@ cd ~
 # vim-mode
 bindkey -v
 function zle-line-init zle-keymap-select {
-    NORMAL="%B%F{200}  $CMD_PROMPT%f%b  "
-    INSERT="%B%F{200}  $CMD_PROMPT%f%b: "
+    NORMAL=" $(__git_ps1 " %s ")%B%F{200}$CMD_PROMPT%f%b  "
+    INSERT=" $(__git_ps1 " %s ")%B%F{200}$CMD_PROMPT%f%b: "
+    [[ -z "$SSH_CLIENT" ]] && RPROMPT="" || RPROMPT="%{$reset_color%}%M"
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
     zle reset-prompt
 }

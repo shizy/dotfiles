@@ -26,6 +26,8 @@ export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
 
 # git
 export GIT_SSH=$LOCALDIR/bin/ssh
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
 
 # gnupg
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
