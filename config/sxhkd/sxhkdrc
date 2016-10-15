@@ -62,11 +62,11 @@ super + shift + x
 
 # Scratchpads & Search
 
-ctrl + grave
+super + k
     flap -s n:scratchtop -w 90% -h 45% -x c -y t-2 -t ||\
     termite --title=scratchtop --geometry=$(flap -w 90% -h 45% -x c -y t -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s top"
 
-super + grave
+super + j
     flap -s n:scratchbottom -w 90% -h 45% -x c -y b -t ||\
     termite --title=scratchbottom --geometry=$(flap -w 90% -h 45% -x c -y b -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s bottom"
 
