@@ -105,7 +105,6 @@ let g:neomake_informational_sign = {
             \ 'text': '',
             \ 'texthl': 'Question',
             \ }
-"let g:neomake_javascript_jshint_exe = $XDG_DATA_HOME . '/npm/bin/jshint'
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_context_context_maker = {
             \ 'cwd': '%:p:h',
@@ -115,10 +114,6 @@ let g:neomake_context_context_maker = {
             \                '%E%.%# on line %l in file %f:,%C,%Z%m'
             \ }
 let g:neomake_context_enabled_makers = ['context']
-"let g:neomake_tex_rubber_maker = {
-"            \ 'args': ['--synctex', '--inplace', '-d'],
-"            \ }
-"let g:neomake_tex_enabled_makers = ['rubber']
 let g:neomake_go_go_maker = {
             \ 'args': ['install', '%:p:h:t'],
             \ 'append_file': 0
@@ -138,6 +133,13 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsEditSplit = "vertical"
 
 " ========== MAPPINGS ==========
+" ;m        Neomake
+" ;gs       Git Status
+" ;gh       Git Hist
+" ;gb       Git Browse
+" ;gp       Git Push
+" ;gc       Git Branch/Checkout
+" ;gf       Git Fetch/Pull
 
 noremap             <A-j>           10j
 noremap             <A-k>           10k
@@ -174,7 +176,6 @@ nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
-"nmap                <Leader>b       :Gbrowse<CR>
 nmap                <Leader>b       :Git checkout<space>
 nmap                <Leader>s       :Gstatus<CR><C-n>
 nmap                <Leader>p       :silent w !share<CR>
@@ -199,8 +200,6 @@ imap                <A-k>           <C-p>
 
 cmap                <A-l>           <C-n>
 cmap                <A-h>           <C-p>
-"cnoremap            <A-h>           <S-Left> 
-"cnoremap            <A-l>           <S-Right>
 cnoremap            <A-x>           <C-E><C-U>
 cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
