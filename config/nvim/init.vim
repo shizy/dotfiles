@@ -44,8 +44,8 @@ set wildmenu
 set wildmode=full,list
 set wildignorecase
 
-let mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
+let mapleader = ";"
+let maplocalleader = ";"
 :runtime! ftplugin/man.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
 source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
@@ -133,13 +133,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsEditSplit = "vertical"
 
 " ========== MAPPINGS ==========
-" ;m        Neomake
-" ;gs       Git Status
-" ;gh       Git Hist
-" ;gb       Git Browse
-" ;gp       Git Push
-" ;gc       Git Branch/Checkout
-" ;gf       Git Fetch/Pull
 
 noremap             <A-j>           10j
 noremap             <A-k>           10k
@@ -164,7 +157,7 @@ nnoremap            <A-/>           :noh<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-nnoremap <silent>   <Leader><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent>   <Space><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
@@ -176,12 +169,14 @@ nmap                <A-t>           :sp<CR>:term<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
-nmap                <Leader>b       :Git checkout<space>
-nmap                <Leader>s       :Gstatus<CR><C-n>
-nmap                <Leader>p       :silent w !share<CR>
+nmap                <Leader>gc      :Git checkout<space>
+nmap                <Leader>gs      :Gstatus<CR><C-n>
+nmap                <Leader>gp      :Git push<space>
+nmap                <Leader>gd      :Gdiff<CR>
+nmap                <Leader>gb      :Gbrowse<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
-nmap                <Leader>e       :UltiSnipsEdit<CR>
-nmap                <Leader>i       zg
+nmap                <Leader>sh      :silent w !share<CR>
+nmap                <Leader>sn      :UltiSnipsEdit<CR>
 nmap                <Leader>m       :new<CR>:call NotmuchNeovim()<CR>
 nmap                <A-1>           1gt
 nmap                <A-2>           2gt
@@ -218,14 +213,14 @@ tmap                <A-C-k>         <C-\><C-n><C-w>k
 tmap                <A-C-h>         <C-\><C-n><C-w>h
 tmap                <A-C-l>         <C-\><C-n><C-w>l
 
-vnoremap            <Leader><Space> zf
+vnoremap            <Space><Space> zf
 vmap                <Leader>/       <Esc>:'<,'>s/
-vmap                <Leader>p       <Esc>:silent '<,'>w !share<CR>
+vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
-vmap                <Leader>b       <Esc>:'<,'>:Gbrowse<CR>
+vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
 
-xmap                ga              <Plug>(EasyAlign)
+xmap                <Leader>a       <Plug>(EasyAlign)
 
 " ========== AUTOCOMMANDS ==========
 
@@ -248,7 +243,7 @@ au WinLeave,BufWinLeave term://* stopinsert
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
-    \ nmap <buffer> c     <S-c>i |
+    \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
 au FileType git,gitcommit
     \ setlocal nobuflisted |
