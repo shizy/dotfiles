@@ -75,8 +75,8 @@ super + slash
     termite --title=scratchsearch --geometry=$(flap -w 900 -h 35% -x c -y b -f "%wx%h+%x+%y") -e fuzzysearch
 
 super + m
-    flap -s i:scratchmusic -w 51% -h 51% -x r-5% -y b-5% -t ||\
-    termite --title=scratchmusic --geometry=$(flap -w 51% -h 51% -x r-5% -y b-5% -f "%wx%h+%x+%y") -e "ncmpcpp -b $XDG_CONFIG_HOME/ncmpcpp/bindings"
+    flap -s n:scratchsomethingotherthanmusic -w 50% -h 40% -x r-5% -y b-5% -t ||\
+    termite --title=scratchsomethingotherthanmusic --geometry=$(flap -w 50% -h 40% -x r-5% -y b-5% -f "%wx%h+%x+%y") -e "ncmpcpp -b $XDG_CONFIG_HOME/ncmpcpp/bindings"
 
 # Peripherals
 

@@ -38,4 +38,5 @@
 !/pacman-backup
 !/aur-backup
 !/npm-backup
+!/pip2-backup
 !/.gitignore
