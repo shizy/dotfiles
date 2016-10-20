@@ -71,12 +71,12 @@ super + j
     termite --title=scratchbottom --geometry=$(flap -w 90% -h 45% -x c -y b -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s bottom"
 
 super + slash
-    flap -s n:scratchsearch -w 900 -h 35% -x c -y b -t ||\
-    termite --title=scratchsearch --geometry=$(flap -w 900 -h 35% -x c -y b -f "%wx%h+%x+%y") -e fuzzysearch
+    flap -s n:scratchsearch -w 900 -h 40% -x c -y t-2 -t ||\
+    termite --title=scratchsearch --geometry=$(flap -w 900 -h 40% -x c -y t -f "%wx%h+%x+%y") -e fuzzysearch
 
 super + m
-    flap -s n:scratchsomethingotherthanmusic -w 50% -h 40% -x r-5% -y b-5% -t ||\
-    termite --title=scratchsomethingotherthanmusic --geometry=$(flap -w 50% -h 40% -x r-5% -y b-5% -f "%wx%h+%x+%y") -e "ncmpcpp -b $XDG_CONFIG_HOME/ncmpcpp/bindings"
+    flap -s n:scratchsomethingotherthanmusic -w 900 -h 40% -x c -y b -t ||\
+    termite --title=scratchsomethingotherthanmusic --geometry=$(flap -w 900 -h 40% -x c -y b -f "%wx%h+%x+%y") -e "ncmpcpp -b $XDG_CONFIG_HOME/ncmpcpp/bindings"
 
 # Peripherals
 
