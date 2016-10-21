@@ -38,6 +38,9 @@ export GOPATH=$HOME/dev/go
 # gimp
 export GIMP2_DIRECTORY=$XDG_CONFIG_HOME/gimp
 
+# ipfs
+export IPFS_PATH=$XDG_DATA_HOME/ipfs
+
 # less
 export LESSHISTFILE=$XDG_CACHE_HOME/less/lesshist
 
