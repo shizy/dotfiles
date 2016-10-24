@@ -17,6 +17,7 @@
 !/config/gtk-3.0
 !/config/notmuch
 !/config/nvim
+!/config/ncmpcpp
 !/config/qutebrowser
 !/config/systemd
 !/config/sxhkd

@@ -1,0 +1,12 @@
+ncmpcpp_directory = ~/local/cache/ncmpcpp
+lyrics_directory = ~/local/cache/lyrics
+progressbar_look = =>
+progressbar_boldness = yes
+default_place_to_search_in = database
+user_interface = alternative
+screen_switcher_mode = playlist, browser
+startup_screen = playlist
+startup_slave_screen = browser
+search_engine_default_search_mode = 2
+external_editor = nvim
+use_console_editor = yes
