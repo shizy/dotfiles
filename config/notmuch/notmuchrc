@@ -11,7 +11,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=/home/shizy/local/share/mail
+path=/home/shizy/local/data/mail
 
 # User configuration
 #

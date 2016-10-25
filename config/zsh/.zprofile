@@ -64,9 +64,6 @@ export PASSWORD_STORE_DIR=$PRIVATE/password-store
 # texlive
 export TEXMFVAR=$XDG_CACHE_HOME/texlive
 
-# virtualbox
-export VBOX_USER_HOME=$XDG_DATA_HOME/virtualbox
-
 # weechat
 export WEECHAT_HOME=$PRIVATE/weechat
 
