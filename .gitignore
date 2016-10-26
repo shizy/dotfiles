@@ -34,10 +34,12 @@
 
 !/config/gnupg/gpg-agent.conf
 
+# PKGBUILDS
+!/pkgbuilds
+
 # OTHER
 !/README.md
 !/pacman-backup
-!/aur-backup
-!/npm-backup
 !/pip2-backup
 !/.gitignore
+!/.gitmodules

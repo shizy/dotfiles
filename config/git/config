@@ -22,6 +22,9 @@
     branch = auto
     interactive = auto
 
+[status]
+    submodulesummary = 1
+
 [difftool]
     prompt = false
 

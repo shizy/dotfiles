@@ -1,0 +1,40 @@
+# Maintainer: shizy <shizukesa4 at gmail dot com>
+pkgname=hp-elitebook-2540p
+pkgver=1
+pkgrel=1
+pkgdesc='system dependencies and configs'
+arch=('any')
+url=https://github.com/shizy/dotfiles
+license=('ISC')
+depends=(
+    'alsa-utils'
+    'dialog'
+    'intel-ucode'
+    'iw'
+    'tlp'
+    'wpa_supplicant'
+    'xf86-input-synaptics'
+    'xf86-video-intel'
+    'xorg-xbacklight'
+)
+source=(
+    logind.conf
+    pam_env.conf
+    mkinitcpio.conf
+    pacman.conf
+    locale.conf
+)
+install=hooks.install
+
+package() {
+    install -Dm 644 $srcdir/logind.conf $pkgdir/etc/systemd/logind.conf
+    install -Dm 644 $srcdir/pam_env.conf $pkgdir/etc/security/pam_env.conf
+    install -Dm 644 $srcdir/mkinitcpio.conf $pkgdir/etc/mkinitcpio.conf
+    install -Dm 644 $srcdir/pacman.conf $pkgdir/etc/pacman.conf
+}
+
+md5sums=('3c07e478f8b655e01cdc1c305ffa170d'
+         '1a8ca032ccb0a20462fb526fcd71ee70'
+         '2b8916085b4377bce66981a8dfb49f19'
+         '25a08bdfc8cfbe7f9bd30b766169aec2'
+         'e24819fd5acc025b5b307b77bb871f65')
