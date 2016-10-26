@@ -1,0 +1,42 @@
+[submodule "pkgbuilds/bspwm-git"]
+	path = pkgbuilds/bspwm-git
+	url = http://aur.archlinux.org/bspwm-git.git
+[submodule "pkgbuilds/conky-cli"]
+	path = pkgbuilds/conky-cli
+	url = http://aur.archlinux.org/conky-cli.git
+[submodule "pkgbuilds/dmenu2"]
+	path = pkgbuilds/dmenu2
+	url = http://aur.archlinux.org/dmenu2.git
+[submodule "pkgbuilds/flap"]
+	path = pkgbuilds/flap
+	url = http://aur.archlinux.org/flap.git
+[submodule "pkgbuilds/gloom"]
+	path = pkgbuilds/gloom
+	url = http://aur.archlinux.org/gloom.git
+[submodule "pkgbuilds/i3lock-fancy-git"]
+	path = pkgbuilds/i3lock-fancy-git
+	url = http://aur.archlinux.org/i3lock-fancy-git.git
+[submodule "pkgbuilds/lemonbar-xft-git"]
+	path = pkgbuilds/lemonbar-xft-git
+	url = http://aur.archlinux.org/lemonbar-xft-git.git
+[submodule "pkgbuilds/nodejs-jshint"]
+	path = pkgbuilds/nodejs-jshint
+	url = http://aur.archlinux.org/nodejs-jshint.git
+[submodule "pkgbuilds/qutebrowser-git"]
+	path = pkgbuilds/qutebrowser-git
+	url = http://aur.archlinux.org/qutebrowser-git.git
+[submodule "pkgbuilds/termite-git"]
+	path = pkgbuilds/termite-git
+	url = http://aur.archlinux.org/termite-git.git
+[submodule "pkgbuilds/ttf-font-icons"]
+	path = pkgbuilds/ttf-font-icons
+	url = http://aur.archlinux.org/ttf-font-icons.git
+[submodule "pkgbuilds/ttf-mplus"]
+	path = pkgbuilds/ttf-mplus
+	url = http://aur.archlinux.org/ttf-mplus.git
+[submodule "pkgbuilds/ttf-ms-fonts"]
+	path = pkgbuilds/ttf-ms-fonts
+	url = http://aur.archlinux.org/ttf-ms-fonts.git
+[submodule "pkgbuilds/xtitle-git"]
+	path = pkgbuilds/xtitle-git
+	url = http://aur.archlinux.org/xtitle-git.git
