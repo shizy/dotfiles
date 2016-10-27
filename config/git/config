@@ -37,6 +37,13 @@
 [alias]
     hist = log --graph --all
     pop = stash pop
+    sub = submodule
+    rem = remote
+    each = submodule foreach
+    ch = checkout
+    br = branch
+    st = status
+    co = commit
 
 [url "ssh://aur@aur.archlinux.org/"]
 	insteadOf = https://aur.archlinux.org/
