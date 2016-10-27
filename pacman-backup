@@ -1,13 +1,10 @@
-alsa-utils
 compton
-curl
 imagemagick
 elinks
 feh
 freerdp
 fzf
 gnupg
-mopidy
 msmtp
 ncmpcpp
 neovim
@@ -31,10 +28,7 @@ ttf-liberation
 weechat
 wget
 xclip
-xf86-input-synaptics
-xf86-video-intel
 xorg-server
-xorg-xbacklight
 xorg-xinit
 xorg-xrandr
 zathura
