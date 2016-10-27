@@ -47,6 +47,7 @@
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [alias]
+    comp = difftool
     hist = log --graph --all
     undo = reset --hard
     off = clean -fd
