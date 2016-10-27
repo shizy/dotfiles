@@ -25,9 +25,6 @@
 [submodule "pkgbuilds/qutebrowser-git"]
 	path = pkgbuilds/qutebrowser-git
 	url = http://aur.archlinux.org/qutebrowser-git.git
-[submodule "pkgbuilds/termite-git"]
-	path = pkgbuilds/termite-git
-	url = http://aur.archlinux.org/termite-git.git
 [submodule "pkgbuilds/ttf-font-icons"]
 	path = pkgbuilds/ttf-font-icons
 	url = http://aur.archlinux.org/ttf-font-icons.git
