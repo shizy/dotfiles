@@ -36,6 +36,13 @@
 
 # PKGBUILDS
 !/pkgbuilds
+/pkgbuilds/**/*
+
+!/pkgbuilds/termite
+!/pkgbuilds/hp-elitebook-2540p
+
+!/pkgbuilds/**/PKGBUILD
+!/pkgbuilds/**/*.patch
 
 # OTHER
 !/README.md

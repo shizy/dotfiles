@@ -39,6 +39,7 @@ bindkey -M viins 'jk' accept-line
 # aliases
 alias ~="cd ~"
 alias ..="cd .."
+alias rm="rm -rf"
 alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
