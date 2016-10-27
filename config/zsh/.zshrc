@@ -93,12 +93,5 @@ backup () {
             rm $HOME/docs.tar
             rm $HOME/docs.tar.gpg
             ;;
-        *"con"*)
-            # packages
-            cd ~/local
-            git add -A
-            git commit -m "$(date)"
-            git push git@github.com:shizy/dotfiles.git
-            ;;
     esac
 }
