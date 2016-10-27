@@ -22,6 +22,18 @@
     branch = auto
     interactive = auto
 
+[color "status"]
+    added = 202
+    changed = 201
+
+[color "branch"]
+    current = 201
+    local = 202
+
+[color "diff"]
+    old = 205
+    new = 202
+
 [status]
     submodulesummary = 1
 
