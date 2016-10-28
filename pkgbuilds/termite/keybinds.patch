@@ -1,8 +1,49 @@
 diff --git a/termite.cc b/termite.cc
-index aeb28cd..ac69925 100644
+index aeb28cd..c7bcdea 100644
 --- a/termite.cc
 +++ b/termite.cc
-@@ -914,6 +914,20 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+@@ -804,6 +804,16 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+             }
+             return TRUE;
+         }
++        if (modifiers == GDK_MOD1_MASK) {
++            switch (gdk_keyval_to_lower(event->keyval)) {
++                case GDK_KEY_k:
++                    move(vte, &info->select, 0, -(vte_terminal_get_row_count(vte) / 2));
++                    break;
++                case GDK_KEY_j:
++                    move(vte, &info->select, 0, vte_terminal_get_row_count(vte) / 2);
++                    break;
++            }
++        }
+         if (modifiers == GDK_SHIFT_MASK) {
+             switch (event->keyval) {
+                 case GDK_KEY_Left:
+@@ -815,8 +825,11 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+             }
+         }
+         switch (event->keyval) {
++            case GDK_KEY_i:
++            case GDK_KEY_a:
+             case GDK_KEY_Escape:
+             case GDK_KEY_q:
++                move_to_row_start(vte, &info->select, last_row(vte));
+                 exit_command_mode(vte, &info->select);
+                 gtk_widget_hide(info->panel.da);
+                 gtk_widget_hide(info->panel.entry);
+@@ -876,6 +889,11 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+                 break;
+             case GDK_KEY_y:
+                 vte_terminal_copy_clipboard(vte);
++                move_to_row_start(vte, &info->select, last_row(vte));
++                exit_command_mode(vte, &info->select);
++                gtk_widget_hide(info->panel.da);
++                gtk_widget_hide(info->panel.entry);
++                info->panel.url_list.clear();
+                 break;
+             case GDK_KEY_slash:
+                 overlay_show(&info->panel, overlay_mode::search, vte);
+@@ -914,6 +932,23 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
          }
          return TRUE;
      }
@@ -17,6 +58,9 @@ index aeb28cd..ac69925 100644
 +                return TRUE;
 +            case GDK_KEY_p:
 +                vte_terminal_paste_clipboard(vte);
++                return TRUE;
++            case GDK_KEY_y:
++                enter_command_mode(vte, &info->select);
 +                return TRUE;
 +        }
 +    }
