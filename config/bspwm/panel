@@ -18,7 +18,6 @@ while read line; do
             wm=""
             dtop=1
             desktops=($(grep -oP '(?<=:)([a-zA-Z][0-9]|L[T|M])(?=:)' <<< "$line"))
-            datetime=$(date "+%h %d, %I:%M%P")
 
             for desktop in ${desktops[@]}
             do
