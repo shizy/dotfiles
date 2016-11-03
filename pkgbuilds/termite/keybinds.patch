@@ -1,8 +1,8 @@
 diff --git a/termite.cc b/termite.cc
-index aeb28cd..c7bcdea 100644
+index aeb28cd..0eb6976 100644
 --- a/termite.cc
 +++ b/termite.cc
-@@ -804,6 +804,16 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+@@ -804,6 +804,22 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
              }
              return TRUE;
          }
@@ -14,12 +14,18 @@ index aeb28cd..c7bcdea 100644
 +                case GDK_KEY_j:
 +                    move(vte, &info->select, 0, vte_terminal_get_row_count(vte) / 2);
 +                    break;
++                case GDK_KEY_h:
++                    move_backward_word(vte, &info->select);
++                    break;
++                case GDK_KEY_l:
++                    move_forward_word(vte, &info->select);
++                    break;
 +            }
 +        }
          if (modifiers == GDK_SHIFT_MASK) {
              switch (event->keyval) {
                  case GDK_KEY_Left:
-@@ -815,8 +825,11 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+@@ -815,8 +831,11 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
              }
          }
          switch (event->keyval) {
@@ -31,7 +37,7 @@ index aeb28cd..c7bcdea 100644
                  exit_command_mode(vte, &info->select);
                  gtk_widget_hide(info->panel.da);
                  gtk_widget_hide(info->panel.entry);
-@@ -876,6 +889,11 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+@@ -876,6 +895,11 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
                  break;
              case GDK_KEY_y:
                  vte_terminal_copy_clipboard(vte);
@@ -43,7 +49,7 @@ index aeb28cd..c7bcdea 100644
                  break;
              case GDK_KEY_slash:
                  overlay_show(&info->panel, overlay_mode::search, vte);
-@@ -914,6 +932,23 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+@@ -914,6 +938,23 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
          }
          return TRUE;
      }
