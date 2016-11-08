@@ -41,10 +41,15 @@
 
 !/pkgbuilds/termite
 !/pkgbuilds/shizy-baseline
+!/pkgbuilds/shizy-baseline/*
 !/pkgbuilds/shizy-hp-elitebook-2540p
+!/pkgbuilds/shizy-hp-elitebook-2540p/*
 
 !/pkgbuilds/**/PKGBUILD
 !/pkgbuilds/**/*.patch
+/pkgbuilds/**/src
+/pkgbuilds/**/pkg
+/pkgbuilds/**/*.tar.xz
 
 # OTHER
 !/README.md
