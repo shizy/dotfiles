@@ -39,7 +39,8 @@
 /pkgbuilds/**/*
 
 !/pkgbuilds/termite
-!/pkgbuilds/hp-elitebook-2540p
+!/pkgbuilds/shizy-baseline
+!/pkgbuilds/shizy-hp-elitebook-2540p
 
 !/pkgbuilds/**/PKGBUILD
 !/pkgbuilds/**/*.patch
