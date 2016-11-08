@@ -20,6 +20,7 @@
 !/config/ncmpcpp
 !/config/qutebrowser
 !/config/systemd
+/config/systemd/user/**
 !/config/sxhkd
 !/config/termite
 !/config/tmux
@@ -48,6 +49,5 @@
 # OTHER
 !/README.md
 !/pacman-backup
-!/pip2-backup
 !/.gitignore
 !/.gitmodules
