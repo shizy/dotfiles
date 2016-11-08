@@ -1,5 +1,5 @@
 # Maintainer: shizy <shizukesa4 at gmail dot com>
-pkgname=hp-elitebook-2540p
+pkgname=shizy-hp-elitebook-2540p
 pkgver=1
 pkgrel=1
 pkgdesc='system dependencies and configs'
@@ -19,22 +19,11 @@ depends=(
 )
 source=(
     logind.conf
-    pam_env.conf
     mkinitcpio.conf
-    pacman.conf
-    locale.conf
 )
 install=hooks.install
 
 package() {
     install -Dm 644 $srcdir/logind.conf $pkgdir/etc/systemd/logind.conf
-    install -Dm 644 $srcdir/pam_env.conf $pkgdir/etc/security/pam_env.conf
     install -Dm 644 $srcdir/mkinitcpio.conf $pkgdir/etc/mkinitcpio.conf
-    install -Dm 644 $srcdir/pacman.conf $pkgdir/etc/pacman.conf
 }
-
-md5sums=('3c07e478f8b655e01cdc1c305ffa170d'
-         '1a8ca032ccb0a20462fb526fcd71ee70'
-         '2b8916085b4377bce66981a8dfb49f19'
-         '233fe2877995ee3d66d6d249a429e859'
-         'e24819fd5acc025b5b307b77bb871f65')

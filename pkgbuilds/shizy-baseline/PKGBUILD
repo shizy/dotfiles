@@ -1,0 +1,27 @@
+# Maintainer: shizy <shizukesa4 at gmail dot com>
+pkgname=shizy-baseline
+pkgver=1
+pkgrel=1
+pkgdesc='system baseline config'
+arch=('any')
+url=https://github.com/shizy/dotfiles
+license=('ISC')
+depends=(
+    'alsa-utils'
+    'git'
+    'zsh'
+)
+source=(
+    01_wheel
+    pam_env.conf
+)
+install=hooks.install
+
+package() {
+    install -Dm 644 $srcdir/pam_env.conf $pkgdir/etc/security/pam_env.conf.baseline
+    install -dm 750 $pkgdir/etc/sudoers.d
+    install -Dm 750 $srcdir/01_wheel $pkgdir/etc/sudoers.d/01_wheel
+}
+
+md5sums=('a28ba1709db9a9c1e54f3de1bc0952d5'
+         'dad18a66c42bb568397930b4d560ce9d')
