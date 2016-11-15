@@ -70,6 +70,6 @@
     pushInsteadOf = git://github.com/
 
 [url "ssh://aur@aur.archlinux.org/"]
-	insteadOf = https://aur.archlinux.org/
-	insteadOf = http://aur.archlinux.org/
-	insteadOf = git://aur.archlinux.org/
+	pushInsteadOf = https://aur.archlinux.org/
+	pushInsteadOf = http://aur.archlinux.org/
+	pushInsteadOf = git://aur.archlinux.org/
