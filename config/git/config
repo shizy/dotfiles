@@ -65,8 +65,8 @@
     am = commit --amend -m
 
 [url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
-    insteadOf = http://github.com/
+    #insteadOf = https://github.com/
+    #insteadOf = http://github.com/
     insteadOf = git://github.com/
 
 [url "ssh://aur@aur.archlinux.org/"]
