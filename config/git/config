@@ -62,7 +62,7 @@
     br = branch
     st = status
     co = commit -m
-    am = commit --amend -m
+    ca = commit --amend -m
 
 [url "ssh://git@github.com/"]
     pushInsteadOf = https://github.com/
