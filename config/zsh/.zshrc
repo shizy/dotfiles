@@ -48,6 +48,7 @@ alias ssh="$LOCALDIR/bin/ssh"
 alias rclone="rclone --config $PRIVATE/rclone/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias du="du --time -had 1 | sort -t '/' -k 2,2"
+alias userctl="systemctl --user"
 
 man () {
     python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
