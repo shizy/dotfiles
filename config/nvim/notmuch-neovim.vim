@@ -261,7 +261,7 @@ endfunction
 function! s:search_threads(num)
     call s:new_buffer('neovim-notmuch-search')
     let s:search_num = a:num
-    execute 'set filetype=' . get(s:search_list, s:search_num)
+    execute 'set filetype=' . substitute(get(s:search_list, s:search_num), ':', '-', 'g')
     let s:search_content = systemlist('notmuch search ' . get(s:search_list, s:search_num))
     silent put =s:search_content
     silent! %s/\_^\zs.\{-}\s//g
