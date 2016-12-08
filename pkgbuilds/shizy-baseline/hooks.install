@@ -14,13 +14,14 @@ post_install() {
         passwd shizy
     fi
     cat /etc/security/pam_env.conf.baseline > /etc/security/pam_env.conf
+    cp -f /etc/pam.d/systemd-user.baseline /etc/pam.d/systemd-user
 }
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
-#pre_upgrade() {
-	# do something here
-#}
+pre_upgrade() {
+    return;
+}
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
