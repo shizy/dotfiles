@@ -61,4 +61,4 @@ done < <(\
     bspc subscribe & \
     conky -c $XDG_CONFIG_HOME/conky/status.conf & \
     conky -c $XDG_CONFIG_HOME/conky/time.conf \
-) | lemonbar -g $(flap -w 900 -h 18 -x c -y t -f '%wx%h+%x+%y') -p -f "$FONT_ICON-10" -f "$FONT_MONO-7" -B $COLOR_NORMAL -F "#000" -n "panel"
+) | lemonbar -g $(flap -w 900 -h 18 -x c -y t -f '%wx%h+%x+%y') -d -p -f "$FONT_ICON-10" -f "$FONT_MONO-7" -B $COLOR_NORMAL -F "#000" -n "panel"
