@@ -3,5 +3,5 @@
 /usr/bin/qutebrowser --backend webengine "$@" &
 sleep 2
 rm -rf .pki
-rm -rf .QtWebEngineProcess
-rm -rf .qutebrowser
+#rm -rf .QtWebEngineProcess
+#rm -rf .qutebrowser
