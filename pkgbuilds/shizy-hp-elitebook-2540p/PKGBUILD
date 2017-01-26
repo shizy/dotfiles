@@ -20,10 +20,12 @@ depends=(
 source=(
     logind.conf
     mkinitcpio.conf
+    iwlwifi.conf
 )
 install=hooks.install
 
 package() {
     install -Dm 644 $srcdir/logind.conf $pkgdir/etc/systemd/logind.conf
     install -Dm 644 $srcdir/mkinitcpio.conf $pkgdir/etc/mkinitcpio.conf
+    install -Dm 644 $srcdir/iwlwifi.conf $pkgdir/etc/modprobe.d/iwlwifi.conf
 }
