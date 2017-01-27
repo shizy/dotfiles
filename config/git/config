@@ -63,6 +63,7 @@
     st = status
     co = commit -m
     ca = commit --amend
+    remote = remote -v
 
 [url "ssh://git@github.com/"]
     pushInsteadOf = https://github.com/
