@@ -134,6 +134,8 @@ let g:UltiSnipsEditSplit = "vertical"
 
 " ========== MAPPINGS ==========
 
+noremap             j               gj
+noremap             k               gk
 noremap             <A-j>           10j
 noremap             <A-k>           10k
 noremap             <A-h>           b
