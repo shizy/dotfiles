@@ -114,12 +114,14 @@ endfunction
 " Statusline
 
 function! FugitiveStatus()
-    let x = fugitive#head()
-    if x==""
-        return ""
+    if exists("*fugitive#head")
+        let x = fugitive#head()
+        if x==""
+            return ""
+        endif
+        let y = sy#repo#get_stats()
+        return " +" . y[0] . " ~" . y[1] . " -" . y[2] . "  " . x . " "
     endif
-    let y = sy#repo#get_stats()
-    return " +" . y[0] . " ~" . y[1] . " -" . y[2] . "  " . x . " "
 endfunction
 
 function! FileFlags()
