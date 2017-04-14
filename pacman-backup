@@ -16,7 +16,7 @@ offlineimap
 openssh
 pinentry
 python-neovim
-qutebrowser
+qt5-webengine
 redshift
 rclone
 sxhkd
