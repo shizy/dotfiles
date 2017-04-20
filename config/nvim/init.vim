@@ -46,7 +46,6 @@ set wildignorecase
 
 let mapleader = ";"
 let maplocalleader = ";"
-:runtime! ftplugin/man.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
 source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
 
