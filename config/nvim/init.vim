@@ -77,6 +77,7 @@ Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-signify'
+Plug 'justinmk/vim-syntax-extra'
 
 call plug#end()
 
@@ -158,7 +159,7 @@ nnoremap            <A-/>           :noh<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-nnoremap <silent>   <Space><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+"nnoremap <silent>   <Space><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
@@ -188,6 +189,8 @@ nmap                ga              <Plug>(EasyAlign)
 nmap                <A-=>           <C-a>
 nmap                <A-->           <C-x>
 nmap                <A-n>           <S-n>
+nmap                <Space>         <C-T>
+nmap                <CR>            <C-]>
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
@@ -253,5 +256,3 @@ au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
     \ setlocal nobuflisted |
-    \ nmap <buffer> <CR>  <C-]> |
-    \ nmap <buffer> u     <C-T> |
