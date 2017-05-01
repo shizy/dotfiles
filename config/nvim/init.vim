@@ -150,7 +150,7 @@ map                 <A-C-l>         <C-w>l
 nmap                <A-;>           :
 
 nnoremap            <A-b>           :b#<CR>
-nnoremap            <A-Tab>         <C-w>p
+nnoremap            <A-Tab>         <C-w>w
 nnoremap            <A-z>           :call Save()<CR>:qa<CR>
 nnoremap            <A-u>           <C-r>
 nnoremap            <A-r>           :e#<CR>
