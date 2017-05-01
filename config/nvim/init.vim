@@ -253,9 +253,6 @@ au FileType gitcommit
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
-au FileType git,gitcommit
-    \ setlocal nobuflisted |
-    \ setlocal nofoldenable |
 au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
