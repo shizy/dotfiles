@@ -46,8 +46,11 @@ set wildignorecase
 
 let mapleader = ";"
 let maplocalleader = ";"
-source $XDG_CONFIG_HOME/nvim/functions.vim
-source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
+if !exists("g:source_once")
+    source $XDG_CONFIG_HOME/nvim/functions.vim
+    source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
+    let g:source_once=1
+endif
 
 " ========== PACKAGES ==========
 function! DoRemote(arg)
@@ -235,6 +238,7 @@ au FileType go                   nmap <buffer> <Leader>r :sp<CR>:te! $GOPATH/bin
 au FileType sh                   nmap <buffer> <Leader>r :sp<CR>:te! %:p<CR>
 
 au BufWritePost *                Neomake
+au BufWritePost *.vim            :so %
 au BufNewFile,BufRead *.styl     set filetype=stylus
 au BufNewFile,BufRead *.ejs      set filetype=js
 au BufNewFile,BufRead *.ejs      set filetype=html
