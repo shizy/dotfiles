@@ -1,17 +1,3 @@
-" Auto install Plug & Spell Files
-if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
-    echo "Downloading and installing Plug"
-    silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall
-endif
-
-if empty(glob('$XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl'))
-    echo "Downloading and installing Spell Files"
-    silent !curl -o $XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl --create-dirs
-    \ http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
-endif
-
 " If GUI Version
 if has('gui_running')
     set guioptions-=m
@@ -49,6 +35,21 @@ let maplocalleader = ";"
 if !exists("g:source_once")
     source $XDG_CONFIG_HOME/nvim/functions.vim
     source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
+
+    " Auto install Plug & Spell Files
+    if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
+        echo "Downloading and installing Plug"
+        silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall
+    endif
+
+    if empty(glob('$XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl'))
+        echo "Downloading and installing Spell Files"
+        silent !curl -o $XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl --create-dirs
+        \ http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+    endif
+
     let g:source_once=1
 endif
 
@@ -150,7 +151,7 @@ map                 <A-C-l>         <C-w>l
 nmap                <A-;>           :
 
 nnoremap            <A-b>           :b#<CR>
-nnoremap            <A-Tab>         <C-w>p
+nnoremap            <A-Tab>         <C-w>W
 nnoremap            <A-z>           :call Save()<CR>:qa<CR>
 nnoremap            <A-u>           <C-r>
 nnoremap            <A-r>           :e#<CR>
@@ -179,6 +180,7 @@ nmap                <Leader>gs      :Gstatus<CR><C-n>
 nmap                <Leader>gp      :Git push<space>
 nmap                <Leader>gd      :Gdiff<CR>
 nmap                <Leader>gb      :Gbrowse<CR>
+nmap                <Leader>gl      :Gpull<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>sh      :silent w !share<CR>
 nmap                <Leader>sn      :UltiSnipsEdit<CR>
@@ -253,6 +255,7 @@ au FileType gitcommit
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
+    \ nmap <buffer> A     :Gcommit --amend --reuse-message=HEAD<CR> |
 au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
