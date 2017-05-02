@@ -64,11 +64,11 @@ super + shift + x
 
 super + k
     flap -s n:scratchtop -w 90% -h 45% -x c -y t-2 -t ||\
-    termite --title=scratchtop --geometry=$(flap -w 90% -h 45% -x c -y t -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s top"
+    termite --title=scratchtop --geometry=$(flap -w 90% -h 45% -x c -y t -f "%wx%h+%x+%y")
 
 super + j
     flap -s n:scratchbottom -w 90% -h 45% -x c -y b -t ||\
-    termite --title=scratchbottom --geometry=$(flap -w 90% -h 45% -x c -y b -f "%wx%h+%x+%y") -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -AD -s bottom"
+    termite --title=scratchbottom --geometry=$(flap -w 90% -h 45% -x c -y b -f "%wx%h+%x+%y")
 
 super + slash
     flap -s n:scratchsearch -w 900 -h 40% -x c -y t-2 -t ||\
@@ -107,7 +107,7 @@ super + v
     termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
 
 super + t
-	termite --title=term -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session"
+	termite --title=term
 
 super + f
     $HOME/local/bin/qutebrowser
