@@ -12,7 +12,7 @@ clickable_url = true
 font = M+ 1m 10
 scrollback_lines = 10000
 search_wrap = true
-cursor_blink = system
+cursor_blink = off
 cursor_shape = block
 
 [colors]
