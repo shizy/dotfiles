@@ -125,6 +125,7 @@ let g:neomake_go_go_maker = {
 let g:neomake_go_enabled_makers = ['go']
 
 " Signify
+let g:signify_realtime = 0
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
@@ -151,6 +152,7 @@ map                 <A-C-l>         <C-w>l
 nmap                <A-;>           :
 
 nnoremap            <A-b>           :b#<CR>
+nnoremap            <Tab>           <C-w>w
 nnoremap            <A-Tab>         <C-w>W
 nnoremap            <A-z>           :call Save()<CR>:qa<CR>
 nnoremap            <A-u>           <C-r>
