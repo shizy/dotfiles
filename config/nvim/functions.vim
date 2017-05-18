@@ -111,7 +111,7 @@ function! Save()
     if empty(glob('$XDG_CACHE_HOME/nvim'))
         silent ! mkdir $XDG_CACHE_HOME/nvim > /dev/null
     endif
-    ":mks! $XDG_CACHE_HOME/nvim/session.vim
+    :mks! $XDG_CACHE_HOME/nvim/session.vim
     :w
     :filetype detect
 endfunction
