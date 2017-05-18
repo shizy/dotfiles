@@ -25,6 +25,8 @@ set breakindent
 set linebreak
 set nobackup
 set nowritebackup
+set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
+"set shada=!,%,'100,<50,s10,h
 set wildcharm=<Tab>
 set wildmenu
 set wildmode=full,list
@@ -125,7 +127,7 @@ let g:neomake_go_go_maker = {
 let g:neomake_go_enabled_makers = ['go']
 
 " Signify
-let g:signify_realtime = 0
+let g:signify_realtime = 1
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
@@ -150,6 +152,8 @@ map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 nmap                <A-;>           :
+nmap                <A-S-h>         :tabp<CR>
+nmap                <A-S-l>         :tabn<CR>
 
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <Tab>           <C-w>w
@@ -161,19 +165,20 @@ nnoremap            <A-Left>        :vertical resize -10<CR>
 nnoremap            <A-Right>       :vertical resize +10<CR>
 nnoremap            <A-Up>          :resize -10<CR>
 nnoremap            <A-Down>        :resize +10<CR>
-nnoremap            <A-/>           :noh<CR>
+"nnoremap            <A-C-/>         :noh<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-"nnoremap <silent>   <Space><Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nmap                <A-Space>       :ls<CR>:b<Space><Tab><C-p>
-nmap                <A-s>           :ls<CR>:sb<Space><Tab><C-p>
-nmap                <A-v>           :ls<CR>:vert:sb<Space><Tab><C-p>
-nmap                <A-S-x>         :ls<CR>:bd!<Space><Tab><C-p>
+nmap                <A-/>           :call Set_Buffer_Filter()<CR>
+nmap                <A-Space>       :call Filter_Buffers()<CR>:b<Space><Tab><C-p>
+nmap                <A-s>           :call Filter_Buffers()<CR>:sb<Space><Tab><C-p>
+nmap                <A-v>           :call Filter_Buffers()<CR>:vert:sb<Space><Tab><C-p>
+nmap                <A-S-x>         :call Filter_Buffers()<CR>:bd!<Space><Tab><C-p>
 nmap                <A-x>           :bp<CR>:bd!<Space>#<CR>
 nmap                <A-q>           ZZ
 nmap                <A-CR>          :call Zoom()<CR>
 nmap                <A-t>           :sp<CR>:term<CR>
+nmap                <A-S-t>         :tabnew<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
@@ -213,7 +218,7 @@ cmap                jk              <CR>
 
 tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
-tmap                <A-Space>       <C-\><C-n>:ls!<CR>:b<Space><Tab><C-p>
+tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>:b<Space><Tab><C-p>
 tmap                <Esc>           <C-\><C-n>
 tmap                <A-x>           <C-\><C-n>:bd!<CR>
 tmap                <A-q>           <C-\><C-n>ZZ
@@ -242,7 +247,7 @@ au FileType go                   nmap <buffer> <Leader>r :sp<CR>:te! $GOPATH/bin
 au FileType sh                   nmap <buffer> <Leader>r :sp<CR>:te! %:p<CR>
 
 au BufWritePost *                Neomake
-au BufWritePost *.vim            :so %
+"au BufWritePost *.vim            :so %
 au BufNewFile,BufRead *.styl     set filetype=stylus
 au BufNewFile,BufRead *.ejs      set filetype=js
 au BufNewFile,BufRead *.ejs      set filetype=html

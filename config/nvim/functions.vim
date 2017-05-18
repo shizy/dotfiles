@@ -55,6 +55,35 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal syntax=context |
     \ nnoremap <buffer> <A-r>     :call LatexTogglePreview()<CR> |
 
+function! Set_Buffer_Filter()
+    let n = tabpagenr()
+    call inputsave()
+    let bfilt = input('buffer filter: ')
+    call inputrestore()
+    if bfilt == ""
+        if exists("g:FILTER_" . n)
+            execute "let g:FILTER_" . n . " = ''"
+        endif
+    else
+        execute "let g:FILTER_" . n . " = '" . bfilt . "'"
+    endif
+    set tabline=%!TabLine()
+endfunction
+
+function! Filter_Buffers()
+    let n = tabpagenr()
+    if exists("g:FILTER_" . n)
+        execute "let b = g:FILTER_" . n
+        if b != ""
+            echo "filter: " . b
+            execute "filter " . b . " ls"
+            return
+        endif
+    endif
+    echo ""
+    ls
+endfunction
+
 " Zoom
 function! Zoom()
     if exists('t:zoomed_window')
@@ -82,37 +111,46 @@ function! Save()
     if empty(glob('$XDG_CACHE_HOME/nvim'))
         silent ! mkdir $XDG_CACHE_HOME/nvim > /dev/null
     endif
-    :mks! $XDG_CACHE_HOME/nvim/session.vim
+    ":mks! $XDG_CACHE_HOME/nvim/session.vim
     :w
     :filetype detect
 endfunction
 
 " Tabline
+set tabline=%!TabLine()
 function TabLine()
-    " gettabvar({tabnr}, {varname sans t:})
     let s = ''
     for i in range(tabpagenr('$'))
+        let buflist = tabpagebuflist(i + 1)
+        let winnr = tabpagewinnr(i + 1)
         if i + 1 == tabpagenr()
             let s .= '%#TabLineSel#'
         else
             let s .= '%#TabLine#'
         endif
-        let s .= ' %{TabLabel(' . (i + 1) . ')} '
+        let s .= "  "
+        let bufnr = buflist[winnr - 1]
+        let file = bufname(bufnr)
+        "let btype = getbufvar(bufnr, 'buftype')
+        if file == ""
+            let s .= "[new]" . "  "
+        else
+            let bfilt = ""
+            if exists("g:FILTER_" . (i + 1))
+                execute "let bfilt = g:FILTER_" . (i + 1)
+            endif
+            if bfilt == ""
+                let s .= fnamemodify(file, ":p:t") . "  "
+            else
+                let s .= "'" . bfilt . "'  "
+            endif
+        endif
     endfor
     let s .= '%#TabLineFill#%T'
     return s
 endfunction
-function TabLabel(n)
-    if gettabvar(a:n, 'label') == ''
-        let buflist = tabpagebuflist(a:n)
-        let winnr = tabpagewinnr(a:n)
-        return bufname(buflist[winnr - 1])
-    else
-        return gettabvar(a:n, 'label')
-endfunction
 
 " Statusline
-
 function! FugitiveStatus()
     if exists("*fugitive#head")
         let x = fugitive#head()
