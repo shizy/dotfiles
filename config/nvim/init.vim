@@ -155,6 +155,7 @@ nmap                <A-;>           :
 nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
 
+nnoremap            <Esc>           :noh<CR><Esc>
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <Tab>           <C-w>w
 nnoremap            <A-Tab>         <C-w>W
