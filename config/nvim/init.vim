@@ -25,6 +25,7 @@ set breakindent
 set linebreak
 set nobackup
 set nowritebackup
+set relativenumber
 set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 "set shada=!,%,'100,<50,s10,h
 set wildcharm=<Tab>
