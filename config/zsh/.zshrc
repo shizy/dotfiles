@@ -59,7 +59,7 @@ edit () {
     [[ ! -e "$file" ]] && touch "$file"
     ftype=$(file $file --mime-type | awk '{print $2}')
     if [[ $ftype == *"text"* ]] || [[ $ftype == *"empty"* ]]; then
-        python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('hide e $file');"
+        python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('bad $file');"
     fi
 }
 
