@@ -171,7 +171,7 @@ nnoremap            <A-Down>        :resize +10<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-nmap                <A-/>           :call Set_Buffer_Filter()<CR>
+nmap                <A-/>           :noh<CR>
 nmap                <A-Space>       :call Filter_Buffers()<CR>:b<Space><Tab><C-p>
 nmap                <A-s>           :call Filter_Buffers()<CR>:sb<Space><Tab><C-p>
 nmap                <A-v>           :call Filter_Buffers()<CR>:vert:sb<Space><Tab><C-p>
@@ -184,12 +184,6 @@ nmap                <A-S-t>         :tabnew<CR>
 nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
-nmap                <Leader>gc      :Git checkout<space>
-nmap                <Leader>gs      :Gstatus<CR><C-n>
-nmap                <Leader>gp      :Git push<space>
-nmap                <Leader>gd      :Gdiff<CR>
-nmap                <Leader>gb      :Gbrowse<CR>
-nmap                <Leader>gl      :Gpull<CR>
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                <Leader>sh      :silent w !share<CR>
 nmap                <Leader>sn      :UltiSnipsEdit<CR>
@@ -239,6 +233,16 @@ vmap                <A-.>           >gv
 vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
 
 xmap                <Leader>a       <Plug>(EasyAlign)
+
+" CHORDS
+nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
+nmap                <Leader>vu      :PlugUpdate<CR>
+nmap                <Leader>gc      :Git checkout<space>
+nmap                <Leader>gs      :Gstatus<CR><C-n>
+nmap                <Leader>gp      :Git push<space>
+nmap                <Leader>gd      :Gdiff<CR>
+nmap                <Leader>gb      :Gbrowse<CR>
+nmap                <Leader>gl      :Gpull<CR>
 
 " ========== AUTOCOMMANDS ==========
 
