@@ -24,11 +24,14 @@ super + shift + {1-9,0}
 super + {1-9,0}
     bspc desktop -f ^{1-9,10}
 
-super + Tab
+super + shift + Tab
 	(bspc monitor -f last || bspc monitor -f next) ||  bspc desktop -f last && \
     flap -s i:panel -x c -y t
 
 # Window Control
+
+super + Tab
+    bspc node -f last.local
 
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
@@ -105,6 +108,9 @@ super + i
 
 super + v
     termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
+
+super + c
+    chromium --proxy-server=socks://127.0.0.1:8888 --disable-xss-auditor
 
 super + t
 	termite --title=term
