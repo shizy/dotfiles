@@ -5,4 +5,4 @@ if [[ -z "$(pgrep ssh-agent)" ]]; then
     ssh-agent -a $SSH_AUTH_SOCK -t 1800 > /dev/null
 fi
 
-TERM=xterm-color /usr/bin/ssh -F $PRIVATE/ssh/ssh_config "$@"
+TERM=xterm-color /usr/bin/ssh -q -F $PRIVATE/ssh/ssh_config "$@"
