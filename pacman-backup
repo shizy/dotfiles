@@ -15,6 +15,7 @@ npm
 offlineimap
 openssh
 pinentry
+proxychains-ng
 python-neovim
 qt5-webengine
 redshift

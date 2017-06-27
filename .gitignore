@@ -18,6 +18,7 @@
 !/config/notmuch
 !/config/nvim
 !/config/ncmpcpp
+!/config/proxychains
 !/config/qutebrowser
 !/config/systemd
 /config/systemd/user/**
