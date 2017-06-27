@@ -49,6 +49,7 @@ alias rclone="rclone --config $PRIVATE/rclone/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias du="du --time -had 1 | sort -t '/' -k 2,2"
 alias userctl="systemctl --user"
+alias prox="proxychains -f $XDG_CONFIG_HOME/proxychains/proxychains.conf -q"
 
 man () {
     python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
