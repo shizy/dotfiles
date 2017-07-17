@@ -64,6 +64,7 @@
     co = commit -m
     ca = commit --amend
     remote = remote -v
+    pick = add -p
 
 [url "ssh://git@github.com/"]
     pushInsteadOf = https://github.com/
