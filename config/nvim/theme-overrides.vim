@@ -23,7 +23,7 @@ hi link Visual IncSearch
 hi WildMenu                 ctermfg=201 ctermbg=232 cterm=bold
 hi TabLineFill              ctermfg=237 ctermbg=232 cterm=none
 hi TabLineSel               ctermfg=232 ctermbg=237 cterm=none
-hi TabLine                  ctermfg=234 ctermbg=232 cterm=none
+hi TabLine                  ctermfg=237 ctermbg=232 cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
 hi Folded                   ctermfg=236 ctermbg=none
 
