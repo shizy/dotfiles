@@ -12,9 +12,6 @@ export EDITOR=nvim
 export BROWSER=qutebrowser
 export PRIVATE=$LOCALDIR/private
 
-# Path
-export PATH=$LOCALDIR/bin:$PRIVATE/bin:$PATH:/usr/bin/core_perl
-
 # bzr
 export BZR_LOG=/dev/null
 
@@ -59,6 +56,12 @@ export NMBGIT=$XDG_DATA_HOME/notmuch/nmbug
 export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/npm
 
+# ruby
+export GEM_PATH=$XDG_DATA_HOME/ruby/bin
+export GEM_HOME=$XDG_DATA_HOME/ruby
+export GEM_SPEC_CACHE=$XDG_CACHE_HOME/ruby
+export GEMRC=$XDG_CONFIG_HOME/ruby/gemrc
+
 # ssh
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
@@ -72,6 +75,8 @@ export WEECHAT_HOME=$PRIVATE/weechat
 export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export XINITRC=$XDG_CONFIG_HOME/x11/xinitrc
 
+# Path
+export PATH=$LOCALDIR/bin:$PRIVATE/bin:$PATH:/usr/bin/core_perl:$GEM_PATH
 
 source <(dircolors $XDG_CONFIG_HOME/termite/dircolors)
 
