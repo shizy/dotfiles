@@ -29,9 +29,9 @@ set relativenumber
 set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 "set shada=!,%,'100,<50,s10,h
 set wildcharm=<Tab>
+set wildchar=<Tab>
 set wildmenu
-set wildmode=full,list
-set wildignorecase
+"set wildmode=full,list
 
 let mapleader = ";"
 let maplocalleader = ";"
@@ -172,10 +172,10 @@ nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
 nmap                <A-/>           :noh<CR>
-nmap                <A-Space>       :call Filter_Buffers()<CR>:b<Space><Tab><C-p>
-nmap                <A-s>           :call Filter_Buffers()<CR>:sb<Space><Tab><C-p>
-nmap                <A-v>           :call Filter_Buffers()<CR>:vert:sb<Space><Tab><C-p>
-nmap                <A-S-x>         :call Filter_Buffers()<CR>:bd!<Space><Tab><C-p>
+nmap                <A-Space>       :call Filter_Buffers()<CR>:B<Space><Tab><C-p>
+nmap                <A-s>           :call Filter_Buffers()<CR>:SB<Space><Tab><C-p>
+nmap                <A-v>           :call Filter_Buffers()<CR>:VB<Space><Tab><C-p>
+nmap                <A-S-x>         :call Filter_Buffers()<CR>:BD<Space><Tab><C-p>
 nmap                <A-x>           :bp<CR>:bd!<Space>#<CR>
 nmap                <A-q>           ZZ
 nmap                <A-CR>          :call Zoom()<CR>
@@ -214,7 +214,7 @@ cmap                jk              <CR>
 
 tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
-tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>:b<Space><Tab><C-p>
+tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>:B<Space><Tab><C-p>
 tmap                <Esc>           <C-\><C-n>
 tmap                <A-x>           <C-\><C-n>:bd!<CR>
 tmap                <A-q>           <C-\><C-n>ZZ
@@ -262,7 +262,7 @@ au BufWinEnter *.md
     \ setlocal nofoldenable |
 au BufWinEnter *.toml            set filetype=toml
 au WinEnter,BufWinEnter term://* startinsert
-au WinLeave,BufWinLeave term://* stopinsert
+au WinLeave,BufWinLeave term://* stop/insert
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |

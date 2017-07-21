@@ -55,6 +55,18 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal syntax=context |
     \ nnoremap <buffer> <A-r>     :call LatexTogglePreview()<CR> |
 
+command -complete=customlist,Completion_Filter -nargs=1 B b <args>
+command -complete=customlist,Completion_Filter -nargs=1 SB sb <args>
+command -complete=customlist,Completion_Filter -nargs=1 VB :vert:sb <args>
+command -complete=customlist,Completion_Filter -nargs=1 BD bd! <args>
+
+function Completion_Filter(A,L,P)
+    execute "let a = getcompletion(g:FILTER_" . tabpagenr() . ", 'buffer')"
+    let a = filter(a, 'v:val =~ "' . a:A . '"')
+    call add(a, '')
+    return a
+endfunction
+
 function! Set_Buffer_Filter()
     let n = tabpagenr()
     call inputsave()
