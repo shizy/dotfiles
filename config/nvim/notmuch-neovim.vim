@@ -193,7 +193,7 @@ function s:show_message(num, part)
     keepjumps 0d
     normal! $
     set foldmethod=expr foldexpr=getline(v:lnum)[0]==\"\>\"
-    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable readonly
+    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable readonly nobuflisted
     nnoremap <buffer> <A-,> :call <SID>prev_message()<CR>
     nnoremap <buffer> <A-.> :call <SID>next_message()<CR>
     nnoremap <buffer> <A-h> :call <SID>prev_part()<CR>
@@ -266,7 +266,7 @@ function! s:search_threads(num)
     silent put =s:search_content
     silent! %s/\_^\zs.\{-}\s//g
     keepjumps 0d
-    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable readonly
+    setlocal buftype=nofile bufhidden=hide noswapfile nomodifiable readonly nobuflisted
     nnoremap <buffer> <CR> :call <SID>select_thread()<CR>
     nnoremap <buffer> u <nop>
     nnoremap <buffer> c :call <SID>compose('compose')<CR>

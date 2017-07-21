@@ -61,10 +61,13 @@ command -complete=customlist,Completion_Filter -nargs=1 VB :vert:sb <args>
 command -complete=customlist,Completion_Filter -nargs=1 BD bd! <args>
 
 function Completion_Filter(A,L,P)
-    execute "let a = getcompletion(g:FILTER_" . tabpagenr() . ", 'buffer')"
-    let a = filter(a, 'v:val =~ "' . a:A . '"')
-    call add(a, '')
-    return a
+    let n = tabpagenr()
+    if exists("g:FILTER_" . n)
+        execute "let a = getcompletion(g:FILTER_" . tabpagenr() . ", 'buffer')"
+        let a = filter(a, 'v:val =~ "' . a:A . '"')
+        call add(a, '')
+        return a
+    endif
 endfunction
 
 function! Set_Buffer_Filter()

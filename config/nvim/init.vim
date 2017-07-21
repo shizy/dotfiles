@@ -31,7 +31,7 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 set wildcharm=<Tab>
 set wildchar=<Tab>
 set wildmenu
-"set wildmode=full,list
+set wildmode=full,list
 
 let mapleader = ";"
 let maplocalleader = ";"
@@ -273,3 +273,4 @@ au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
     \ setlocal nobuflisted |
+    \ nmap u <C-T> |
