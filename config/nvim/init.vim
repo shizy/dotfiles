@@ -155,8 +155,8 @@ map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
-nmap                '               `
-nmap                <Leader>;       z.
+nmap                ''              :call Context_Mark_Jump()<CR>
+nmap                <A-'>           :call Clear_Context_Mark()<CR>
 
 nnoremap            <Esc>           :noh<CR><Esc>
 nnoremap            <A-b>           :b#<CR>
@@ -251,26 +251,20 @@ au FileType javascript           nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; n
 au FileType go                   nmap <buffer> <Leader>; :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
 au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
 au FileType c                    nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR>
-
 au BufWritePost *                Neomake
-"au BufWritePost *.vim            :so %
-au BufNewFile,BufRead *.styl     set filetype=stylus
-au BufNewFile,BufRead *.ejs      set filetype=js
-au BufNewFile,BufRead *.ejs      set filetype=html
+au WinEnter,BufWinEnter term://* startinsert
+au WinLeave,BufWinLeave term://* stopinsert
+au FileType snippets,help,man    setlocal nobuflisted
+
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
-au BufWinEnter *.toml            set filetype=toml
-au WinEnter,BufWinEnter term://* startinsert
-au WinLeave,BufWinLeave term://* stopinsert
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
     \ nmap <buffer> A     :Gcommit --amend --reuse-message=HEAD<CR> |
-au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
-    \ setlocal nobuflisted |
     \ nmap <buffer> u <C-T> |

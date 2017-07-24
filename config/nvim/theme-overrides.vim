@@ -27,6 +27,8 @@ hi TabLine                  ctermfg=237 ctermbg=232 cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
 hi Folded                   ctermfg=236 ctermbg=none
 
+hi ContextLine              ctermbg=233 cterm=none
+
 hi StatusLineThree          ctermfg=234 ctermbg=201 cterm=bold
 hi StatusLineTwo            ctermfg=232 ctermbg=237 cterm=none
 hi StatusLine               ctermfg=237 ctermbg=232 cterm=none

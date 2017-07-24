@@ -99,6 +99,20 @@ function! Filter_Buffers()
     ls
 endfunction
 
+" Context Mark and Jump
+sign define ctxt linehl=ContextLine
+
+function! Clear_Context_Mark()
+    execute "sign unplace 484848 file=" . expand("%:p")
+endfunction
+
+function! Context_Mark_Jump()
+    call Clear_Context_Mark()
+    let b:alt_context = line('.')
+    execute "sign place 484848 line=" . b:alt_context . " name=ctxt file=" . expand("%:p")
+    norm ``
+endfunction
+
 " Zoom
 function! Zoom()
     if exists('t:zoomed_window')
