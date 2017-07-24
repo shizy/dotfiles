@@ -26,6 +26,7 @@ set linebreak
 set nobackup
 set nowritebackup
 set relativenumber
+set scrolloff=12
 set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 "set shada=!,%,'100,<50,s10,h
 set wildcharm=<Tab>
@@ -152,9 +153,10 @@ map                 <A-C-j>         <C-w>j
 map                 <A-C-k>         <C-w>k
 map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
-nmap                <A-;>           :
 nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
+nmap                '               `
+nmap                <Leader>;       z.
 
 nnoremap            <Esc>           :noh<CR><Esc>
 nnoremap            <A-b>           :b#<CR>
@@ -185,9 +187,6 @@ nmap                <A-w>           :call Save()<CR>
 nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
 nmap                <Leader>/       <Esc>:%s/
 nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
-nmap                <Leader>sh      :silent w !share<CR>
-nmap                <Leader>sn      :UltiSnipsEdit<CR>
-nmap                <Leader>m       :new<CR>:call NotmuchNeovim()<CR>
 nmap                <A-1>           1gt
 nmap                <A-2>           2gt
 nmap                <A-3>           3gt
@@ -227,30 +226,31 @@ tmap                <A-C-l>         <C-\><C-n><C-w>l
 
 vnoremap            <Space><Space> zf
 vmap                <Leader>/       <Esc>:'<,'>s/
-vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
-vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
-
-xmap                <Leader>a       <Plug>(EasyAlign)
 
 " CHORDS
+vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
+nmap                <Leader>sh      :silent w !share<CR>
+nmap                <Leader>vm      :new<CR>:call NotmuchNeovim()<CR>
 nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
+nmap                <Leader>vs      :UltiSnipsEdit<CR>
+xmap                <Leader>va      <Plug>(EasyAlign)
 nmap                <Leader>vu      :PlugUpdate<CR>
 nmap                <Leader>gc      :Git checkout<space>
 nmap                <Leader>gs      :Gstatus<CR><C-n>
 nmap                <Leader>gp      :Git push<space>
 nmap                <Leader>gd      :Gdiff<CR>
 nmap                <Leader>gb      :Gbrowse<CR>
+vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
 nmap                <Leader>gl      :Gpull<CR>
 
 " ========== AUTOCOMMANDS ==========
 
-au FileType javascript
-            \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h; npm start<CR> |
-            \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h; npm test<CR>  |
-au FileType go                   nmap <buffer> <Leader>r :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
-au FileType sh                   nmap <buffer> <Leader>r :sp<CR>:te! %:p<CR>
+au FileType javascript           nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
+au FileType go                   nmap <buffer> <Leader>; :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
+au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
+au FileType c                    nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR>
 
 au BufWritePost *                Neomake
 "au BufWritePost *.vim            :so %
@@ -262,7 +262,7 @@ au BufWinEnter *.md
     \ setlocal nofoldenable |
 au BufWinEnter *.toml            set filetype=toml
 au WinEnter,BufWinEnter term://* startinsert
-au WinLeave,BufWinLeave term://* stop/insert
+au WinLeave,BufWinLeave term://* stopinsert
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
@@ -273,4 +273,4 @@ au FileType snippets setlocal nobuflisted
 au FileType help,man
     \ setlocal ro |
     \ setlocal nobuflisted |
-    \ nmap u <C-T> |
+    \ nmap <buffer> u <C-T> |
