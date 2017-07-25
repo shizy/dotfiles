@@ -155,8 +155,9 @@ map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
+nmap                '               `
 nmap                ''              :call Context_Mark_Jump()<CR>
-nmap                <A-'>           :call Clear_Context_Mark()<CR>:unlet b:alt_context<CR>
+nmap                <A-'>           :marks<CR>:norm<Space>`
 
 nnoremap            <Esc>           :noh<CR><Esc>
 nnoremap            <A-b>           :b#<CR>
@@ -173,7 +174,7 @@ nnoremap            <A-Down>        :resize +10<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-nmap                <A-/>           :noh<CR>
+nmap                <A-/>           :noh<CR>:call Clear_Context_Mark()<CR>:unlet b:alt_context<CR>
 nmap                <A-Space>       :call Filter_Buffers()<CR>:B<Space><Tab><C-p>
 nmap                <A-s>           :call Filter_Buffers()<CR>:SB<Space><Tab><C-p>
 nmap                <A-v>           :call Filter_Buffers()<CR>:VB<Space><Tab><C-p>
