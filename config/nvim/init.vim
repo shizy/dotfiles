@@ -265,7 +265,7 @@ au FileType gitcommit
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
-    \ nmap <buffer> A     :Gcommit --amend --reuse-message=HEAD<CR> |
+    "\ nmap <buffer> A     :Gcommit --amend --reuse-message=HEAD<CR> |
 au FileType help,man
     \ setlocal ro |
     \ nmap <buffer> u <C-T> |

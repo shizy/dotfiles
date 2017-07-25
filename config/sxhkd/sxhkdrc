@@ -10,7 +10,7 @@ super + ctrl + {h,j,k,l}
 	bspc node -f {west,south,north,east}; \
     bspc desktop -c;
 
-super + {h,l}
+super + shift + {h,l}
 	bspc desktop -f {prev,next}.occupied && \
     flap -s i:panel -x c -y t
 
@@ -39,8 +39,8 @@ super + ctrl + {1-9}
 super + ctrl + shift + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-super + shift + {h,j,k,l}
-	bspc node -s {west,south,north,east}
+#super + shift + {h,j,k,l}
+	#bspc node -s {west,south,north,east}
 
 super + Right
     bspc node @east -r +10 || bspc node @west -r +10
