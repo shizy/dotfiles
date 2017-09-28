@@ -116,7 +116,7 @@ super + t
 	termite --title=term
 
 super + f
-    $HOME/local/bin/qutebrowser
+    qutebrowser
 
 super + semicolon
     dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9"
