@@ -98,6 +98,7 @@ let g:deoplete#enable_at_startup = 1
 let g:tex_flavor = 'context'
 
 " Colorscheme
+set background=dark
 call Scheme("mustang")
 
 " Neomake
@@ -265,7 +266,7 @@ au FileType gitcommit
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
-    "\ nmap <buffer> A     :Gcommit --amend --reuse-message=HEAD<CR> |
+    \ nmap <buffer> A     :Git commit --amend --no-edit<CR> |
 au FileType help,man
     \ setlocal ro |
     \ nmap <buffer> u <C-T> |
