@@ -6,6 +6,7 @@ c.completion.shrink = True
 c.force_software_rendering = True
 c.hints.border = "1px solid " + os.environ["COLOR_DARK"]
 c.hints.uppercase = True
+c.input.spatial_navigation = True
 c.tabs.favicons.show = False
 c.tabs.last_close = "startpage"
 c.tabs.show = "multiple"
@@ -16,6 +17,8 @@ c.window.hide_wayland_decoration = True
 
 c.fonts.monospace = os.environ["FONT_MONO"]
 
+config.bind("<Alt-p>", "insert-text {primary}")
+config.bind("<Alt-p>", "insert-text {primary}", mode="insert")
 config.bind("<Alt-f>", "hint all tab-bg")
 config.bind("<Alt-Shift-h>", "tab-prev")
 config.bind("<Alt-Shift-l>", "tab-next")
@@ -26,7 +29,8 @@ config.bind("<Alt-j>", "scroll-page 0 0.5", force=True)
 config.bind("<Alt-k>", "scroll-page 0 -0.5", force=True)
 config.bind("<Alt-u>", "forward")
 config.bind("u", "back", force=True)
-config.bind("<Alt-r>", "undo")
+config.bind("<Alt-Shift-r>", "undo")
+config.bind("<Alt-r>", "reload")
 config.bind("<Alt-.>", "navigate next")
 config.bind("<Alt-,>", "navigate prev")
 
