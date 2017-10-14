@@ -3,7 +3,10 @@ import os
 c.completion.height = "33%"
 c.completion.scrollbar.width = 0
 c.completion.shrink = True
-c.force_software_rendering = True
+c.downloads.location.directory = "~/downloads/"
+c.downloads.location.prompt = False
+c.downloads.remove_finished = 5000
+c.qt.force_software_rendering = True
 c.hints.border = "1px solid " + os.environ["COLOR_DARK"]
 c.hints.uppercase = True
 c.input.spatial_navigation = False
@@ -20,15 +23,16 @@ c.fonts.monospace = os.environ["FONT_MONO"]
 config.bind("<Alt-p>", "insert-text {primary}")
 config.bind("<Alt-p>", "insert-text {primary}", mode="insert")
 config.bind("<Alt-f>", "hint all tab-bg")
+config.bind("<Alt-n>", "search-prev")
 config.bind("<Alt-Shift-h>", "tab-prev")
 config.bind("<Alt-Shift-l>", "tab-next")
 config.bind("<Alt-x>", "tab-close")
 config.bind("<Alt-o>", "set-cmd-text -s :open -t")
 config.bind("<Alt-Shift-o>", "set-cmd-text -s :open -t {url}")
-config.bind("<Alt-j>", "scroll-page 0 0.5", force=True)
-config.bind("<Alt-k>", "scroll-page 0 -0.5", force=True)
+config.bind("<Alt-j>", "scroll-page 0 0.5")
+config.bind("<Alt-k>", "scroll-page 0 -0.5")
 config.bind("<Alt-u>", "forward")
-config.bind("u", "back", force=True)
+config.bind("u", "back")
 config.bind("<Alt-Shift-r>", "undo")
 config.bind("<Alt-r>", "reload")
 config.bind("<Alt-.>", "navigate next")
