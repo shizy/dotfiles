@@ -6,8 +6,8 @@ Super_L
 
 # Navigation
 
-super + ctrl + {h,j,k,l}
-	bspc node -f {west,south,north,east}; \
+super + {h,l}
+	bspc node -f {prev,next}; \
     bspc desktop -c;
 
 super + shift + {h,l}
@@ -60,7 +60,7 @@ super + space
 super + Return
     bspc node -t fullscreen;
 
-super + shift + x
+super + x
     bspc node -k
 
 # Scratchpads & Search
@@ -83,17 +83,16 @@ super + m
 
 # Peripherals
 
-super + {F4, F11}
-    {multihead,toggle screen}
-
-F12
-    toggle hive
-
-super + {F9, F10}
-    {xbacklight -dec 10 -steps 1,xbacklight -inc 10 -steps 1}
-
-super + {shift+Escape, Escape}
-    {kill -s SIGTSTP $(pgrep gloom), toggle lock}
+{F2, F3, F4, F9, F10, F11, F12}
+	{ \
+        pkill -USR1 -x sxhkd, \
+        toggle lock, \
+        xbacklight -dec 10 -steps 1, \
+        xbacklight -inc 10 -steps 1, \
+        multihead, \
+        toggle screen, \
+        toggle hive, \
+    }
 
 {_, super} + XF86Audio{LowerVolume,RaiseVolume,Mute}
     amixer -q set Master {5-,5-,5+,5+,toggle,toggle}
@@ -103,28 +102,18 @@ super + insert
 
 # Shortcuts
 
-super + i
-    termite --title=irc -e "weechat-curses"
-
-super + v
-    termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"
-
-super + c
-    chromium --proxy-server=socks://127.0.0.1:8888 --disable-xss-auditor
-
-super + t
-	termite --title=term
-
-super + f
-    qutebrowser
-
-super + semicolon
-    dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9"
+super + semicolon; {semicolon,t,f,v,i,l}
+    flap -s i:panel -x c -y t -i && \
+    {\
+        dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9", \
+        termite --title=term, \
+        qutebrowser, \
+        termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim", \
+        termite --title=irc -e "weechat-curses", \
+        pkill -SIGTSTP -x gloom
+    }
 
 # Utility
-
-ctrl + shift + r
-	pkill -USR1 -x sxhkd
 
 super + shift + q
 	bspc quit
