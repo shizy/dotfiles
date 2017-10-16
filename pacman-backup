@@ -17,7 +17,7 @@ openssh
 pinentry
 proxychains-ng
 python-neovim
-qt5-webengine
+qutebrowser
 redshift
 rclone
 sxhkd
