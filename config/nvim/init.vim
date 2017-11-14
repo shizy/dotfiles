@@ -256,7 +256,7 @@ au FileType c                    nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h;
 au BufWritePost *                Neomake
 au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
-au FileType snippets,help,man,gitcommit setlocal nobuflisted
+au FileType snippets,help,man setlocal nobuflisted
 
 au BufWinEnter *.md
     \ set syntax=markdown |
