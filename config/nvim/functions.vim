@@ -67,6 +67,10 @@ function Completion_Filter(A,L,P)
         let a = filter(a, 'v:val =~ "' . a:A . '"')
         call add(a, '')
         return a
+    else
+        execute "let a = getcompletion('', 'buffer')"
+        call add(a, '')
+        return a
     endif
 endfunction
 
