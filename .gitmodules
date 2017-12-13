@@ -37,3 +37,6 @@
 [submodule "pkgbuilds/xtitle-git"]
 	path = pkgbuilds/xtitle-git
 	url = https://aur.archlinux.org/xtitle-git.git
+[submodule "pkgbuilds/synergy-git"]
+	path = pkgbuilds/synergy-git
+	url = https://aur.archlinux.org/synergy-git

@@ -24,11 +24,11 @@ case $1 in
     "hive")
         if [ -e /tmp/toggle-hive ]; then
             rm /tmp/toggle-hive
-            pkill synergyc
+            pkill synergy-core
             rm -rf ~/.synergyc
         else
             touch /tmp/toggle-hive
-            synergyc 192.168.2.169
+            synergy-core --server
         fi
         ;;
 esac
