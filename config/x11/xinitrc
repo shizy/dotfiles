@@ -1,5 +1,4 @@
 #!/bin/bash
 
-xrandr --dpi 113
 sxhkd &
 exec bspwm
