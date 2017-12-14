@@ -83,15 +83,12 @@ super + m
 
 # Peripherals
 
-{F2, F3, F4, F9, F10, F11, F12}
+{F7, F8, F9, F10}
 	{ \
         pkill -USR1 -x sxhkd, \
-        toggle lock, \
-        xbacklight -dec 10 -steps 1, \
-        xbacklight -inc 10 -steps 1, \
         multihead, \
-        toggle screen, \
         toggle hive, \
+        toggle screen
     }
 
 {_, super} + XF86Audio{LowerVolume,RaiseVolume,Mute}
@@ -102,7 +99,7 @@ super + insert
 
 # Shortcuts
 
-super + semicolon; {semicolon,t,f,v,i,l}
+super + semicolon; {semicolon,t,f,v,i,l,shift + l}
     flap -s i:panel -x c -y t -i && \
     {\
         dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9", \
@@ -110,7 +107,8 @@ super + semicolon; {semicolon,t,f,v,i,l}
         qutebrowser, \
         termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim", \
         termite --title=irc -e "weechat-curses", \
-        pkill -SIGTSTP -x gloom
+        pkill -SIGTSTP -x gloom, \
+        toggle lock, \
     }
 
 # Utility

@@ -65,13 +65,11 @@ function Completion_Filter(A,L,P)
     if exists("g:FILTER_" . n)
         execute "let a = getcompletion(g:FILTER_" . tabpagenr() . ", 'buffer')"
         let a = filter(a, 'v:val =~ "' . a:A . '"')
-        call add(a, '')
-        return a
     else
         execute "let a = getcompletion('', 'buffer')"
-        call add(a, '')
-        return a
     endif
+    call add(a, '')
+    return a
 endfunction
 
 function! Set_Buffer_Filter()
