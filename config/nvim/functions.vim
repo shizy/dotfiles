@@ -96,6 +96,8 @@ function! Filter_Buffers()
             execute "filter " . b . " ls"
             return
         endif
+    else
+        execute "let g:FILTER_" . tabpagenr() . " = ''"
     endif
     echo ""
     ls
