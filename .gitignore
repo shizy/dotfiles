@@ -45,6 +45,8 @@
 !/pkgbuilds/shizy-baseline/*
 !/pkgbuilds/shizy-hp-elitebook-2540p
 !/pkgbuilds/shizy-hp-elitebook-2540p/*
+!/pkgbuilds/shizy-xps-13
+!/pkgbuilds/shizy-xps-13/*
 
 !/pkgbuilds/**/PKGBUILD
 !/pkgbuilds/**/*.patch
