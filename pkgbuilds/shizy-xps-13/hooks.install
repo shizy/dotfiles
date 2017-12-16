@@ -3,27 +3,29 @@
 # you don't need (and this header).
 
 ## arg 1:  the new package version
-#pre_install() {
-	# do something here
-#}
+pre_install() {
+    mv /lib/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174_old
+}
 
 ## arg 1:  the new package version
 post_install() {
     systemctl enable --now netctl-auto@wlp58s0
+    mv /tmp/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174
+    mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin* /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
     #systemctl enable --now tlp.service
 }
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
-pre_upgrade() {
-    return;
-}
+#pre_upgrade() {
+    #return;
+#}
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
-post_upgrade() {
-    post_install
-}
+#post_upgrade() {
+    #return;
+#}
 
 ## arg 1:  the old package version
 #pre_remove() {
@@ -33,5 +35,6 @@ post_upgrade() {
 ## arg 1:  the old package version
 post_remove() {
     systemctl disable --now netctl-auto@wlp58s0
+    mv /lib/firmware/ath10k/QCA6174_old /lib/firmware/ath10k/QCA6174
     #systemctl disable --now tlp.service
 }
