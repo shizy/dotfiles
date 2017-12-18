@@ -239,6 +239,7 @@ nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
 nmap                <Leader>vs      :UltiSnipsEdit<CR>
 xmap                <Leader>va      <Plug>(EasyAlign)
 nmap                <Leader>vu      :PlugUpdate<CR>
+nmap                <Leader>vt      :tabe %<CR>
 nmap                <Leader>gc      :Git checkout<space>
 nmap                <Leader>gs      :Gstatus<CR><C-n>
 nmap                <Leader>gp      :Git push<space>
