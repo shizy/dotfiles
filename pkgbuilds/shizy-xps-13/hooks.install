@@ -10,6 +10,10 @@ pre_install() {
 ## arg 1:  the new package version
 post_install() {
     systemctl enable --now netctl-auto@wlp58s0
+    systemctl enable --now tlp.service
+    systemctl enable --now tlp-sleep.service
+    systemctl mask --now systemd-rfkill.service
+    systemctl mask --now systemd-rfkill.socket
     mv /tmp/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174
     mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin* /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
     #systemctl enable --now tlp.service

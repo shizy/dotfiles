@@ -12,8 +12,9 @@ depends=(
     'dialog'
     'intel-ucode'
     'iw'
-    'wpa_supplicant'
+    'tlp'
     'wpa_actiond'
+    'wpa_supplicant'
 )
 md5sums=('SKIP' 'SKIP')
 install=hooks.install
