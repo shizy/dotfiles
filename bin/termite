@@ -13,6 +13,9 @@ echo "color200 = $COLOR_URGENT" >> "$tempdir/config"
 echo "color201 = $COLOR_NORMAL" >> "$tempdir/config"
 echo "color202 = $COLOR_NOTIFY" >> "$tempdir/config"
 
+font="/\[options\]/a font=$FONT_MONO $FONT_SIZE"
+sed -i "$font" $tempdir/config
+
 if [ ! -L "$XDG_CONFIG_HOME/termite/config" ]; then
     ln -s "$XDG_RUNTIME_DIR/termite/config" "$XDG_CONFIG_HOME/termite/config"
 fi

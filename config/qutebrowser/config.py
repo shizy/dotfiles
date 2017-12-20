@@ -19,6 +19,18 @@ c.tabs.width.indicator = 0
 c.window.hide_wayland_decoration = True
 
 c.fonts.monospace = os.environ["FONT_MONO"]
+c.fonts.completion.category = "bold " + os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.completion.entry = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.debug_console = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.downloads = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.hints = "bold " + os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.keyhint = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.messages.error = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.messages.info = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.messages.warning = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.prompts = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.statusbar = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.tabs = os.environ["FONT_SIZE"] + "pt monospace"
 
 config.bind("<Alt-p>", "insert-text {primary}")
 config.bind("<Alt-p>", "insert-text {primary}", mode="insert")
