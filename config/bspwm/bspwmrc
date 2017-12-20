@@ -30,6 +30,6 @@ compton --fade-exclude 'name = "panel"' --opacity-rule '85:class_g = "Zathura"' 
 sh $XDG_CACHE_HOME/fehbg &
 termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim" & disown
 gloom -c -k "i3lock-fancy -pf M+-1m-regular" &
-xset r rate 200 25 &
+xset r rate 150 50 &
 redshift &
 multihead &
