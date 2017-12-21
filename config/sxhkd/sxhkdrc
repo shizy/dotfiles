@@ -102,7 +102,7 @@ super + insert
 super + semicolon; {semicolon,t,f,v,i,l,shift + l}
     flap -s i:panel -x c -y t -i && \
     {\
-        dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-9", \
+        dmenu_run -nb "#000000" -nf "#383838" -sf "$COLOR_URGENT" -sb "#000000" -b -fn "$FONT_MONO-$FONT_SIZE", \
         termite --title=term, \
         qutebrowser, \
         termite --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim", \

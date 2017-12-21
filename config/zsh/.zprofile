@@ -10,6 +10,7 @@ export COLOR_NOTIFY="#7E8AA2"
 export FONT_MONO="M\+ 1m"
 export FONT_SIZE=11
 export FONT_ICON="Icons"
+export ICON_SIZE=14
 export PAGER=less
 export EDITOR=nvim
 export BROWSER=qutebrowser
