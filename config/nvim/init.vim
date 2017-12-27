@@ -66,6 +66,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Color Scheme
 Plug 'croaker/mustang-vim'
+Plug 'morhetz/gruvbox'
 
 " Interaction
 Plug 'tpope/vim-surround'
@@ -99,7 +100,9 @@ let g:tex_flavor = 'context'
 
 " Colorscheme
 set background=dark
-call Scheme("mustang")
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_italic = 1
+call Scheme("gruvbox")
 
 " Neomake
 let g:neomake_error_sign = {
