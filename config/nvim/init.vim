@@ -33,6 +33,8 @@ set wildcharm=<Tab>
 set wildchar=<Tab>
 set wildmenu
 set wildmode=full,list
+set grepprg=rg\ --vimgrep\ $*
+set grepformat=%f:%l:%m
 
 let mapleader = ";"
 let maplocalleader = ";"
@@ -132,6 +134,13 @@ let g:neomake_go_go_maker = {
             \ }
 let g:neomake_go_enabled_makers = ['go']
 
+" netrw
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 15
+let g:netrw_scp_cmd = 'scp -F $PRIVATE/ssh/ssh_config'
+
 " Signify
 let g:signify_realtime = 1
 let g:signify_vcs_list = [ 'git' ]
@@ -201,8 +210,8 @@ nmap                ga              <Plug>(EasyAlign)
 nmap                <A-=>           <C-a>
 nmap                <A-->           <C-x>
 nmap                <A-n>           <S-n>
-nmap                <Space>         <C-T>
-nmap                <CR>            <C-]>
+nnoremap            <Space>         :Lexplore<CR>
+nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . '/j ' . expand("%:p:h") . '/*'<CR>
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
@@ -273,4 +282,5 @@ au FileType gitcommit
     \ nmap <buffer> A     :Git commit --amend --no-edit<CR> |
 au FileType help,man
     \ setlocal ro |
-    \ nmap <buffer> u <C-T> |
+    \ nnoremap <buffer> u <C-T> |
+    \ nnoremap <buffer> <CR> <C-]> |
