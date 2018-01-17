@@ -15,7 +15,7 @@ c.tabs.last_close = "startpage"
 c.tabs.show = "multiple"
 c.tabs.title.format = "{title}"
 c.tabs.title.format_pinned = "'{title}'"
-c.tabs.width.indicator = 0
+c.tabs.indicator.width = 0
 c.window.hide_wayland_decoration = True
 
 c.fonts.monospace = os.environ["FONT_MONO"]
