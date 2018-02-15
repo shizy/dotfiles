@@ -40,7 +40,6 @@ let mapleader = ";"
 let maplocalleader = ";"
 if !exists("g:source_once")
     source $XDG_CONFIG_HOME/nvim/functions.vim
-    source $XDG_CONFIG_HOME/nvim/notmuch-neovim.vim
 
     " Auto install Plug & Spell Files
     if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
@@ -67,7 +66,6 @@ endfunction
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Color Scheme
-Plug 'croaker/mustang-vim'
 Plug 'morhetz/gruvbox'
 
 " Interaction
@@ -247,7 +245,6 @@ vmap                <A-.>           >gv
 " CHORDS
 vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 nmap                <Leader>sh      :silent w !share<CR>
-nmap                <Leader>vm      :new<CR>:call NotmuchNeovim()<CR>
 nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
 nmap                <Leader>vs      :UltiSnipsEdit<CR>
 xmap                <Leader>va      <Plug>(EasyAlign)
@@ -280,7 +277,7 @@ au FileType gitcommit
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
     \ nmap <buffer> p     :wq<CR>:Gpush<space> |
-    \ nmap <buffer> A     :Git commit --amend --no-edit<CR> |
+    \ nmap <buffer> A     :Git commit --amend<CR> |
 au FileType help,man
     \ setlocal ro |
     \ nnoremap <buffer> u <C-T> |
