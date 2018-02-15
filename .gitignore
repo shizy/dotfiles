@@ -15,11 +15,11 @@
 !/config/fontconfig
 !/config/git
 !/config/gtk-3.0
-!/config/notmuch
 !/config/nvim
 !/config/ncmpcpp
 !/config/proxychains
 !/config/qutebrowser
+!/config/sway
 !/config/systemd
 /config/systemd/user/**
 !/config/sxhkd
