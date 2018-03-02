@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # rg file search
-stack+=$(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME | sed -e 's/^/file:\t/')
+stack+=$(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE | sed -e 's/^/file:\t/')
 stack+=$(echo -e "\r\n ")
 # man page search
 stack+=$(echo -e "\r\n ")
