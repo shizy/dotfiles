@@ -23,11 +23,11 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
             x=$w_left
             y=$((($w_height / 2) + $w_top))
             h=$(($w_height / 2))
-            if [ $1 == "search" ]; then
+            w=$w_width
+            if [ $1 == "scratchsearch" ]; then
                 y=$(($w_height - ($w_height / 3) + $w_top))
                 h=$(($w_height / 3))
             fi
-            w=$w_width
             ;;
     esac
 
@@ -38,7 +38,7 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
     fi
 
     termite -c $XDG_CONFIG_HOME/termite/config --geometry ${w}x${h} --title=$1 $cmd & disown
-    sleep 0.2
+    sleep 0.30
     i3-msg "[class=\"Termite\" title=\"$1\"] move scratchpad, move position ${x}px ${y}px"
 else
     i3-msg "[class=\"Termite\" title=\"$1\"] scratchpad show"

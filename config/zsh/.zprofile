@@ -1,6 +1,6 @@
 # Personal Preferences
 export COLOR_DARK="#080808"
-export COLOR_DARK_OFFSET="#383838"
+export COLOR_DARK_OFFSET="#585858"
 export COLOR_URGENT="#B1D631"
 export COLOR_NORMAL="#F1FAEE"
 export COLOR_NOTIFY="#7E8AA2"
