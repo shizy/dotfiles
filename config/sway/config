@@ -9,10 +9,10 @@ set $term termite
 set $bkg #080808
 set $med #383838
 
-set $ws1 1:
-set $ws2 2:
-set $ws3 3:
-set $ws4 4:
+set $ws1 1:   
+set $ws2 2:   
+set $ws3 3:   
+set $ws4 4:   
 
 ### Exec
 exec xset r rate 200 50 &
@@ -85,6 +85,7 @@ bindsym $mod+x kill
 # Scratchpads
 bindsym $mod+k exec scratchpad scratchtop
 bindsym $mod+j exec scratchpad scratchbottom
+bindsym $mod+slash exec scratchpad scratchsearch fuzzysearch
 
 # Window control
 bindsym $mod+Control+$left focus left
@@ -120,6 +121,7 @@ bindsym $mod+Shift+h workspace prev
 bindsym $mod+Shift+l workspace next
 bindsym $mod+h workspace prev
 bindsym $mod+l workspace next
+bindsym $mod+period [urgent=latest] focus
 
 ### Colors
 
@@ -130,7 +132,7 @@ bar {
     status_command i3status --config ~/local/config/i3/status.conf
     strip_workspace_numbers yes
     mode dock
-    separator_symbol " "
+    separator_symbol "   "
     hidden_state hide
     modifier Mod4
     position top
@@ -138,8 +140,8 @@ bar {
         statusline $med
         background $bkg
 
-        focused_workspace  $bkg $bkg #F1FAEE
-        active_workspace   $bkg $bkg #7E8AA2
+        focused_workspace  $bkg $bkg #F1FAEEFF
+        active_workspace   $bkg $bkg #F1FAEE99
         inactive_workspace $bkg $bkg $med
         urgent_workspace   $bkg $bkg #B1D631
     }
