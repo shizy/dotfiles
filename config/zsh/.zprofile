@@ -1,7 +1,4 @@
 # Personal Preferences
-export DESKTOP_ICONS="  :   :   :   : 5 : 6 : 7 : 8 : 9 : 0 "
-export MONITOR_LAYOUTS=":--right-of eDP1:--left-of eDP1"
-export MONITOR_DESKTOP="1 2 3 4:5 6 7:8 9 0"
 export COLOR_DARK="#080808"
 export COLOR_DARK_OFFSET="#383838"
 export COLOR_URGENT="#B1D631"

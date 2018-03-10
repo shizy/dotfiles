@@ -9,22 +9,16 @@
 /config/*
 
 !/config/ag
-!/config/bspwm
-!/config/conky
-!/config/cower
 !/config/fontconfig
 !/config/git
 !/config/gtk-3.0
 !/config/nvim
-!/config/ncmpcpp
 !/config/proxychains
 !/config/qutebrowser
 !/config/sway
 !/config/systemd
 /config/systemd/user/**
-!/config/sxhkd
 !/config/termite
-!/config/tmux
 !/config/user-dirs.dir
 !/config/x11
 !/config/zathura

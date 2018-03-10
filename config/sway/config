@@ -6,10 +6,20 @@ set $up k
 set $right l
 set $term termite
 
+set $bkg #080808
+set $med #383838
+
+set $ws1 1:
+set $ws2 2:
+set $ws3 3:
+set $ws4 4:
+
 ### Exec
-exec xset r rate 150 50 &
+exec xset r rate 200 50 &
 exec synergy-core --server
 exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default"
+exec compton --fade-exclude 'name = "panel"' --opacity-rule '85:class_g = "Zathura"' &
+exec sh "$XDG_CACHE_HOME/fehbg"
 
 ### Settings
 floating_modifier $mod
@@ -20,17 +30,16 @@ new_window pixel 1
 new_float pixel 1
 hide_edge_borders smart
 font pango:M+ 1m, Icons 11
-font pango:$font_mono, Icons 11
 
 ### Window handling
-for_window [class="xfreerdp"] move container to workspace 1
-for_window [class="qutebrowser"] move container to workspace 2
-for_window [title="vim"] move container to workspace 3
-for_window [title="irc"] move container to workspace 4
+for_window [class="xfreerdp"] floating disable, fullscreen enable, move container to workspace $ws1
+for_window [class="qutebrowser"] move container to workspace $ws2
+for_window [title="vim"] move container to workspace $ws3
+for_window [title="irc"] move container to workspace $ws4
 
-for_window [class="Termite" title="^scratchtop$"] floating enable
-for_window [class="Termite" title="^scratchbottom$"] floating enable
-for_window [class="Termite" title="^scratchsearch$"] floating enable
+for_window [class="Termite" title="^scratchtop$"] border none, floating enable
+for_window [class="Termite" title="^scratchbottom$"] border none, floating enable
+for_window [class="Termite" title="^scratchsearch$"] border none, floating enable
 
 ### Modes
 set $mode_launch [:]dmenu, [b]rowser, [i]rc, [t]erm, [v]im
@@ -67,7 +76,7 @@ mode "mode_resize" {
 
 ### Binds
 bindsym $mod+semicolon mode "$mode_launch"
-bindsym $mod+l mode "$mode_layout"
+bindsym $mod+m mode "$mode_layout"
 bindsym $mod+r mode "mode_resize"
 bindsym $mod+Shift+c restart
 bindsym $mod+Shift+q exit
@@ -87,20 +96,20 @@ bindsym $mod+space floating toggle
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspace control
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -109,20 +118,29 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+h workspace prev
 bindsym $mod+Shift+l workspace next
+bindsym $mod+h workspace prev
+bindsym $mod+l workspace next
 
 ### Colors
 
 ### Status Bar(s)
 bar {
     id bar-1
-    status_command i3status
-    mode hide
+    font pango:M+ 1m, Icons 11
+    status_command i3status --config ~/local/config/i3/status.conf
+    strip_workspace_numbers yes
+    mode dock
+    separator_symbol " "
     hidden_state hide
     modifier Mod4
     position top
     colors {
-        statusline #383838
-        background #080808
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $med
+        background $bkg
+
+        focused_workspace  $bkg $bkg #F1FAEE
+        active_workspace   $bkg $bkg #7E8AA2
+        inactive_workspace $bkg $bkg $med
+        urgent_workspace   $bkg $bkg #B1D631
     }
 }

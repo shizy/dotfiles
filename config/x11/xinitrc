@@ -1,4 +1,6 @@
 #!/bin/bash
 
-sxhkd &
-exec bspwm
+#sxhkd &
+#exec bspwm
+
+exec i3
