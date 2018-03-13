@@ -9,14 +9,13 @@ set $term termite
 set $bkg #080808
 set $med #585858
 
-set $ws1 1:   
-set $ws2 2:   
-set $ws3 3:   
-set $ws4 4:   
+set $ws1 1:    
+set $ws2 2:    
+set $ws3 3:    
+set $ws4 4:    
 
 ### Exec
 exec xset r rate 200 50 &
-#exec synergy-core --server
 exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default"
 exec compton --fade-exclude 'name = "panel"' --opacity-rule '85:class_g = "Zathura"' &
 exec sh "$XDG_CACHE_HOME/fehbg"
@@ -34,21 +33,23 @@ font pango:M+ 1m, Icons 11
 ### Window handling
 for_window [class="xfreerdp"] floating disable, fullscreen enable, move container to workspace $ws1
 for_window [class="qutebrowser"] move container to workspace $ws2
-for_window [title="vim"] move container to workspace $ws3
-for_window [title="irc"] move container to workspace $ws4
+
+for_window [class="Termite" title="^vim$"] move container to workspace $ws3
+for_window [class="Termite" title="^irc$"] move container to workspace $ws4
 
 for_window [class="Termite" title="^scratchtop$"] border none, floating enable
 for_window [class="Termite" title="^scratchbottom$"] border none, floating enable
 for_window [class="Termite" title="^scratchsearch$"] border none, floating enable
 
 ### Modes
-set $mode_launch [:]dmenu, [b]rowser, [i]rc, [t]erm, [v]im
+set $mode_launch [:]dmenu, [b]rowser, [i]rc, [t]erm, [v]im, [z]athura
 mode "$mode_launch" {
     bindsym semicolon exec dmenu_run -nb "$COLOR_DARK" -nf "$COLOR_DARK_OFFSET" -sf "$COLOR_URGENT" -sb "$COLOR_DARK" -b -fn "$FONT_MONO-$FONT_SIZE"; mode "default"
     bindsym b exec "$BROWSER"; mode "default"
     bindsym i exec $term --title=irc -e "weechat-curses"; mode "default"
     bindsym t exec $term --title=term; mode "default"
     bindsym v exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default"
+    bindsym z exec zathura
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
@@ -148,7 +149,7 @@ bar {
         statusline $med
         background $bkg
 
-        focused_workspace  $bkg $bkg #F1FAEEFF
+        focused_workspace  $bkg $med $bkg
         active_workspace   $bkg $bkg #F1FAEE99
         inactive_workspace $bkg $bkg $med
         urgent_workspace   $bkg $bkg #B1D631

@@ -11,8 +11,8 @@ hi Error                    ctermfg=200
 hi MatchParen               ctermfg=201 ctermbg=200 cterm=bold
 hi TermCursor               cterm=reverse
 hi VertSplit                cterm=bold ctermfg=232 ctermbg=232
-hi ModeMsg                  ctermfg=237
-hi NonText                  ctermfg=237
+hi ModeMsg                  ctermfg=239
+hi NonText                  ctermfg=239
 hi WarningMsg               ctermfg=201 ctermbg=none cterm=none
 hi SpellBad                 ctermfg=200 ctermbg=none cterm=underline
 "hi IncSearch                ctermfg=201 ctermbg=200
@@ -21,18 +21,18 @@ hi Todo                     ctermbg=none
 hi link Visual Search
 hi link Visual IncSearch
 hi WildMenu                 ctermfg=201 ctermbg=232 cterm=bold
-hi TabLineFill              ctermfg=237 ctermbg=232 cterm=none
-hi TabLineSel               ctermfg=232 ctermbg=237 cterm=none
-hi TabLine                  ctermfg=237 ctermbg=232 cterm=none
+hi TabLineFill              ctermfg=239 ctermbg=232 cterm=none
+hi TabLineSel               ctermfg=232 ctermbg=239 cterm=none
+hi TabLine                  ctermfg=239 ctermbg=232 cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
 hi Folded                   ctermfg=236 ctermbg=none
 
 hi ContextLine              ctermbg=233 cterm=none
 
 hi StatusLineThree          ctermfg=234 ctermbg=201 cterm=bold
-hi StatusLineTwo            ctermfg=232 ctermbg=237 cterm=none
-hi StatusLine               ctermfg=237 ctermbg=232 cterm=none
-hi StatusLineNC             ctermfg=237 ctermbg=232 cterm=none
+hi StatusLineTwo            ctermfg=232 ctermbg=239 cterm=none
+hi StatusLine               ctermfg=239 ctermbg=232 cterm=none
+hi StatusLineNC             ctermfg=239 ctermbg=232 cterm=none
 
 hi SignifySignAdd           ctermfg=40  ctermbg=none cterm=none
 hi SignifySignChange        ctermfg=220 ctermbg=none cterm=bold
