@@ -16,9 +16,10 @@ set $ws4 4:  
 
 ### Exec
 exec xset r rate 200 50 &
-exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default"
+exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default" &
 exec compton --fade-exclude 'name = "panel"' --opacity-rule '85:class_g = "Zathura"' &
-exec sh "$XDG_CACHE_HOME/fehbg"
+exec sh "$XDG_CACHE_HOME/fehbg" &
+exec unclutter -grab &
 
 ### Settings
 floating_modifier $mod
@@ -31,7 +32,7 @@ hide_edge_borders smart
 font pango:M+ 1m, Icons 11
 
 ### Window handling
-for_window [class="xfreerdp"] floating disable, fullscreen enable, move container to workspace $ws1
+for_window [class="xfreerdp"] floating disable, move container to workspace $ws1
 for_window [class="qutebrowser"] move container to workspace $ws2
 
 for_window [class="Termite" title="^vim$"] move container to workspace $ws3
@@ -149,7 +150,7 @@ bar {
         statusline $med
         background $bkg
 
-        focused_workspace  $bkg $med $bkg
+        focused_workspace  $med $med $bkg
         active_workspace   $bkg $bkg #F1FAEE99
         inactive_workspace $bkg $bkg $med
         urgent_workspace   $bkg $bkg #B1D631
