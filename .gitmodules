@@ -40,3 +40,9 @@
 [submodule "pkgbuilds/synergy-git"]
 	path = pkgbuilds/synergy-git
 	url = https://aur.archlinux.org/synergy-git
+[submodule "pkgbuilds/freerdp-git"]
+	path = pkgbuilds/freerdp-git
+	url = https://aur.archlinux.org/freerdp-git.git
+[submodule "pkgbuilds/openh264"]
+	path = pkgbuilds/openh264
+	url = https://aur.archlinux.org/openh264.git
