@@ -209,7 +209,7 @@ nmap                ga              <Plug>(EasyAlign)
 nmap                <A-=>           <C-a>
 nmap                <A-->           <C-x>
 nmap                <A-n>           <S-n>
-nnoremap            <Space>         :Lexplore<CR>
+"nnoremap            <Space>         :Lexplore<CR>
 nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . '/j ' . expand("%:p:h") . '/*'<CR>
 
 imap                jj              <Esc>
@@ -253,10 +253,11 @@ nmap                <Leader>vt      :tabe %<CR>
 nmap                <Leader>gc      :Git checkout<space>
 nmap                <Leader>gs      :Gstatus<CR><C-n>
 nmap                <Leader>gp      :Git push<space>
-nmap                <Leader>gd      :Gdiff<CR>
+nmap                <Leader>gd      :Gdiff<space>
 nmap                <Leader>gb      :Gbrowse<CR>
 vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
 nmap                <Leader>gl      :Gpull<CR>
+nmap                <Leader>gm      :Gmerge<space>
 
 " ========== AUTOCOMMANDS ==========
 
