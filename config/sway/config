@@ -32,15 +32,15 @@ hide_edge_borders smart
 font pango:M+ 1m, Icons 11
 
 ### Window handling
-for_window [class="xfreerdp"] floating disable, move container to workspace $ws1
-for_window [class="qutebrowser"] move container to workspace $ws2
+for_window [class="xfreerdp"] floating disable
+for_window [class="Termite" title="^scratch"] border none, floating enable
 
-for_window [class="Termite" title="^vim$"] move container to workspace $ws3
-for_window [class="Termite" title="^irc$"] move container to workspace $ws4
+## Window Assignment
 
-for_window [class="Termite" title="^scratchtop$"] border none, floating enable
-for_window [class="Termite" title="^scratchbottom$"] border none, floating enable
-for_window [class="Termite" title="^scratchsearch$"] border none, floating enable
+assign [class="xfreerdp"] $ws1
+assign [class="qutebrowser"] $ws2
+assign [class="Termite" title="^vim$"] $ws3
+assign [class="Termite" title="^irc$"] $ws4
 
 ### Modes
 set $mode_launch [:]dmenu, [b]rowser, [i]rc, [t]erm, [v]im, [z]athura
