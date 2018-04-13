@@ -237,7 +237,8 @@ tmap                <A-C-k>         <C-\><C-n><C-w>k
 tmap                <A-C-h>         <C-\><C-n><C-w>h
 tmap                <A-C-l>         <C-\><C-n><C-w>l
 
-vnoremap            <Space><Space> zf
+vnoremap            <Space><Space>  zf
+vnoremap            p               "_dP
 vmap                <Leader>/       <Esc>:'<,'>s/
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
@@ -277,7 +278,7 @@ au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
     \ nmap <buffer> c     <S-c>i<Left>|
-    \ nmap <buffer> p     :wq<CR>:Gpush<space> |
+    \ nmap <buffer> p     :wq<CR>:Gpush |
     \ nmap <buffer> A     :Git commit --amend<CR> |
 au FileType help,man
     \ setlocal ro |
