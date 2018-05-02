@@ -14,7 +14,7 @@
     safecrlf = true
 
 [format]
-    pretty = "format:%an  |  %h  %ar  |  %s%d"
+    pretty = "format: %C(201)%h%C(reset) | %an | %C(202)%cr%C(reset) %C(200)%d%C(reset)%n%w(150,11,11)%s%n"
 
 [color]
     diff = auto
@@ -27,7 +27,7 @@
     changed = 201
 
 [color "branch"]
-    current = 201
+    current = 200
     local = 202
 
 [color "diff"]
