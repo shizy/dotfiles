@@ -52,6 +52,10 @@ alias userctl="systemctl --user"
 alias prox="proxychains -f $XDG_CONFIG_HOME/proxychains/proxychains.conf -q"
 alias netctl="sudo netctl-auto"
 
+colors () {
+    (x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)
+}
+
 man () {
     python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $1');"
 }
