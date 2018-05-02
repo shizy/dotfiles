@@ -35,6 +35,7 @@ set wildmenu
 set wildmode=full,list
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%m
+set tags=./tags;/
 
 let mapleader = ";"
 let maplocalleader = ";"
@@ -167,10 +168,10 @@ map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
-nmap                '               `
-nmap                ''              :call Context_Mark_Jump()<CR>
-nmap                <A-'>           :marks<CR>:norm<Space>`
+"nmap                <A-'>           :marks<CR>:norm<Space>`
 
+nnoremap            ''              <C-]>
+nnoremap            <A-'>           <C-T>
 nnoremap            <Esc>           :noh<CR><Esc>
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <Tab>           <C-w>w
@@ -186,7 +187,6 @@ nnoremap            <A-Down>        :resize +10<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-nmap                <A-/>           :noh<CR>:call Clear_Context_Mark()<CR>:unlet b:alt_context<CR>
 nmap                <A-Space>       :call Filter_Buffers()<CR>:B<Space><Tab><C-p>
 nmap                <A-s>           :call Filter_Buffers()<CR>:SB<Space><Tab><C-p>
 nmap                <A-v>           :call Filter_Buffers()<CR>:VB<Space><Tab><C-p>
