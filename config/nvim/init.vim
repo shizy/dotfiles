@@ -7,8 +7,7 @@ if has('gui_running')
     au GUIEnter * simalt ~x
 endif
 
-" ========== OPTIONS ==========
-
+" ========== OPTIONS =========={{{
 set hidden
 set noshowmode
 set tabstop=4
@@ -22,6 +21,7 @@ set lazyredraw
 set encoding=utf-8
 set clipboard=unnamedplus
 set breakindent
+set foldmethod=marker
 set linebreak
 set nobackup
 set nowritebackup
@@ -39,6 +39,9 @@ set tags=./tags;/
 
 let mapleader = ";"
 let maplocalleader = ";"
+"}}}
+
+" ========== RUNONCE =========={{{
 if !exists("g:source_once")
     source $XDG_CONFIG_HOME/nvim/functions.vim
 
@@ -58,8 +61,9 @@ if !exists("g:source_once")
 
     let g:source_once=1
 endif
+"}}}
 
-" ========== PACKAGES ==========
+" ========== PACKAGES =========={{{
 function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
@@ -90,9 +94,9 @@ Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-syntax-extra'
 
 call plug#end()
+"}}}
 
-" ========== SETTINGS ==========
-
+" ========== SETTINGS =========={{{
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
@@ -153,9 +157,9 @@ let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsEditSplit = "vertical"
+"}}}
 
-" ========== MAPPINGS ==========
-
+" ========== MAPPINGS =========={{{
 noremap             j               gj
 noremap             k               gk
 noremap             <A-j>           10j
@@ -209,6 +213,9 @@ nmap                ga              <Plug>(EasyAlign)
 nmap                <A-=>           <C-a>
 nmap                <A-->           <C-x>
 nmap                <A-n>           <S-n>
+nmap                zz              za
+nmap                zC              zM
+nmap                zO              zR
 "nnoremap            <Space>         :Lexplore<CR>
 nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . '/j ' . expand("%:p:h") . '/*'<CR>
 
@@ -259,13 +266,12 @@ nmap                <Leader>gb      :Gbrowse<CR>
 vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
 nmap                <Leader>gl      :Gpull<CR>
 nmap                <Leader>gm      :Gmerge<space>
+"}}}
 
-" ========== AUTOCOMMANDS ==========
-
+" ========== AUTOCOMMANDS =========={{{
 au FileType javascript           nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
 au FileType go                   nmap <buffer> <Leader>; :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
 au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
-au FileType c                    nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR>
 au BufWritePost *                Neomake
 au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
@@ -274,6 +280,9 @@ au FileType snippets,help,man setlocal nobuflisted
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
+au FileType c,cpp,vim
+    \ set foldmethod=marker |
+    \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
@@ -284,3 +293,4 @@ au FileType help,man
     \ setlocal ro |
     \ nnoremap <buffer> u <C-T> |
     \ nnoremap <buffer> <CR> <C-]> |
+"}}}

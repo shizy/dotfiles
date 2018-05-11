@@ -25,7 +25,7 @@ hi TabLineFill              ctermfg=239 ctermbg=232 cterm=none
 hi TabLineSel               ctermfg=232 ctermbg=239 cterm=none
 hi TabLine                  ctermfg=239 ctermbg=232 cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
-hi Folded                   ctermfg=236 ctermbg=none
+hi Folded                   ctermfg=239 ctermbg=none cterm=bold
 
 hi ContextLine              ctermbg=233 cterm=none
 
