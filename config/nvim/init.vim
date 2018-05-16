@@ -100,7 +100,7 @@ call plug#end()
 " ========== SETTINGS =========={{{
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 1
+let g:deoplete#disable_auto_complete = 0
 
 " LaTeX
 let g:tex_flavor = 'context'
@@ -291,6 +291,7 @@ au FileType c,cpp
     \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |
     \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
     \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
+    \ call deoplete#custom#buffer_option('auto_complete', v:false)
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
