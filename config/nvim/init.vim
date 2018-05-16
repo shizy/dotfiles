@@ -1,3 +1,4 @@
+" ========== OPTIONS =========={{{
 " If GUI Version
 if has('gui_running')
     set guioptions-=m
@@ -7,7 +8,6 @@ if has('gui_running')
     au GUIEnter * simalt ~x
 endif
 
-" ========== OPTIONS =========={{{
 set hidden
 set noshowmode
 set tabstop=4
@@ -35,6 +35,7 @@ set wildmenu
 set wildmode=full,list
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%m
+set completeopt-=preview
 set tags=./tags;/
 
 let mapleader = ";"
@@ -99,6 +100,7 @@ call plug#end()
 " ========== SETTINGS =========={{{
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
 
 " LaTeX
 let g:tex_flavor = 'context'
@@ -221,7 +223,8 @@ nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . 
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
-imap                <A-j>           <C-n>
+"imap                <A-j>           <C-n>
+inoremap <silent><expr> <A-j>       pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
 imap                <A-k>           <C-p>
 
 cmap                <A-l>           <C-n>
@@ -280,9 +283,14 @@ au FileType snippets,help,man setlocal nobuflisted
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
-au FileType c,cpp,vim
+au FileType c,cpp
     \ set foldmethod=marker |
+    \ syn match cTodo "\<\w\+_ptr\>" |
+    \ syn match cTodo "\<\w\+_cb\>" |
     \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
+    \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |
+    \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
+    \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
 au FileType gitcommit
     \ nmap <buffer> <A-.> <C-n> |
     \ nmap <buffer> <A-,> <C-p> |
