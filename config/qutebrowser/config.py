@@ -50,6 +50,11 @@ config.bind("<Alt-Shift-r>", "undo")
 config.bind("<Alt-r>", "reload")
 config.bind("<Alt-.>", "navigate next")
 config.bind("<Alt-,>", "navigate prev")
+config.bind("<Alt-j>", "completion-item-focus next", mode="command")
+config.bind("<Alt-k>", "completion-item-focus prev", mode="command")
+config.bind("<Alt-h>", "rl-backward-word", mode="command")
+config.bind("<Alt-l>", "rl-forward-word", mode="command")
+config.bind("<Alt-x>", "rl-kill-word", mode="command")
 
 c.colors.completion.fg = os.environ["COLOR_DARK_OFFSET"]
 c.colors.completion.match.fg = os.environ["COLOR_NORMAL"]
