@@ -280,11 +280,12 @@ au WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
 au FileType snippets,help,man setlocal nobuflisted
 
+au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
+
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
 au FileType c,cpp
-    \ set foldmethod=marker |
     \ syn match cTodo "\<\w\+_ptr\>" |
     \ syn match cTodo "\<\w\+_cb\>" |
     \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
