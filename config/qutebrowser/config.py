@@ -3,6 +3,7 @@ import os
 c.completion.height = "33%"
 c.completion.scrollbar.width = 0
 c.completion.shrink = True
+c.completion.web_history_max_items = 100
 c.downloads.location.directory = "~/downloads/"
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 5000
@@ -10,6 +11,7 @@ c.qt.force_software_rendering = True
 c.hints.border = "1px solid " + os.environ["COLOR_DARK"]
 c.hints.uppercase = True
 c.input.spatial_navigation = False
+c.input.insert_mode.auto_load = True
 c.tabs.favicons.show = False
 c.tabs.last_close = "startpage"
 c.tabs.show = "multiple"
@@ -55,6 +57,8 @@ config.bind("<Alt-k>", "completion-item-focus prev", mode="command")
 config.bind("<Alt-h>", "rl-backward-word", mode="command")
 config.bind("<Alt-l>", "rl-forward-word", mode="command")
 config.bind("<Alt-x>", "rl-kill-word", mode="command")
+config.bind("<Alt-Shift-Ctrl-h>", "tab-mode -");
+config.bind("<Alt-Shift-Ctrl-l>", "tab-mode +");
 
 c.colors.completion.fg = os.environ["COLOR_DARK_OFFSET"]
 c.colors.completion.match.fg = os.environ["COLOR_NORMAL"]
