@@ -93,6 +93,7 @@ Plug 'digitaltoad/vim-jade'
 Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-syntax-extra'
+Plug 'fatih/vim-go'
 
 call plug#end()
 "}}}
@@ -133,11 +134,6 @@ let g:neomake_context_context_maker = {
             \                '%E%.%# on line %l in file %f:,%C,%Z%m'
             \ }
 let g:neomake_context_enabled_makers = ['context']
-let g:neomake_go_go_maker = {
-            \ 'args': ['install', '%:p:h:t'],
-            \ 'append_file': 0
-            \ }
-let g:neomake_go_enabled_makers = ['go']
 
 " netrw
 let g:netrw_dirhistmax = 0
@@ -159,6 +155,11 @@ let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsEditSplit = "vertical"
+
+" Vim-Go
+let g:go_list_height = 0
+let g:go_list_type = "locationlist"
+let g:go_fmt_fail_silently = 1
 "}}}
 
 " ========== MAPPINGS =========={{{
@@ -273,7 +274,6 @@ nmap                <Leader>gm      :Gmerge<space>
 
 " ========== AUTOCOMMANDS =========={{{
 au FileType javascript           nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
-au FileType go                   nmap <buffer> <Leader>; :sp<CR>:te! $GOPATH/bin/%:p:h:t<CR>
 au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
 au BufWritePost *                Neomake
 au WinEnter,BufWinEnter term://* startinsert
@@ -286,6 +286,7 @@ au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
 au FileType c,cpp
+    \ let b:surround_47 = "/*\r*/" |
     \ syn match cTodo "\<\w\+_ptr\>" |
     \ syn match cTodo "\<\w\+_cb\>" |
     \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |

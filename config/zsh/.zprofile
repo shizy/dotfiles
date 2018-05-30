@@ -32,7 +32,7 @@ export GIT_PS1_SHOWUPSTREAM="verbose"
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 
 # go
-export GOPATH=$HOME/dev/go
+export GOPATH=$XDG_DATA_HOME/go:$HOME/dev
 
 # gimp
 export GIMP2_DIRECTORY=$XDG_CONFIG_HOME/gimp
