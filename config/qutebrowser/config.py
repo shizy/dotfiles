@@ -12,13 +12,15 @@ c.hints.border = "1px solid " + os.environ["COLOR_DARK"]
 c.hints.uppercase = True
 c.input.spatial_navigation = False
 c.input.insert_mode.auto_load = True
-c.tabs.favicons.show = False
+c.tabs.favicons.show = "pinned"
 c.tabs.last_close = "startpage"
 c.tabs.show = "multiple"
 c.tabs.title.format = "{title}"
-c.tabs.title.format_pinned = "'{title}'"
+c.tabs.title.format_pinned = ""
 c.tabs.indicator.width = 0
-c.window.hide_wayland_decoration = True
+c.tabs.new_position.related = "last"
+c.tabs.new_position.unrelated = "last"
+c.window.hide_decoration = True
 
 c.fonts.monospace = os.environ["FONT_MONO"]
 c.fonts.completion.category = "bold " + os.environ["FONT_SIZE"] + "pt monospace"
@@ -57,8 +59,8 @@ config.bind("<Alt-k>", "completion-item-focus prev", mode="command")
 config.bind("<Alt-h>", "rl-backward-word", mode="command")
 config.bind("<Alt-l>", "rl-forward-word", mode="command")
 config.bind("<Alt-x>", "rl-kill-word", mode="command")
-config.bind("<Alt-Shift-Ctrl-h>", "tab-mode -");
-config.bind("<Alt-Shift-Ctrl-l>", "tab-mode +");
+config.bind("<Alt-Shift-Ctrl-h>", "tab-move -");
+config.bind("<Alt-Shift-Ctrl-l>", "tab-move +");
 
 c.colors.completion.fg = os.environ["COLOR_DARK_OFFSET"]
 c.colors.completion.match.fg = os.environ["COLOR_NORMAL"]
@@ -77,9 +79,9 @@ c.colors.hints.bg = os.environ["COLOR_DARK"]
 c.colors.hints.fg = os.environ["COLOR_URGENT"]
 c.colors.hints.match.fg = os.environ["COLOR_NORMAL"]
 
-c.colors.prompts.bg = os.environ["COLOR_DARK"]
-c.colors.prompts.fg = os.environ["COLOR_DARK_OFFSET"]
-c.colors.prompts.border = os.environ["COLOR_URGENT"]
+c.colors.prompts.bg = os.environ["COLOR_URGENT"]
+c.colors.prompts.fg = os.environ["COLOR_DARK"]
+c.colors.prompts.border = os.environ["COLOR_DARK"]
 
 c.colors.statusbar.command.bg = os.environ["COLOR_DARK"]
 c.colors.statusbar.caret.bg = os.environ["COLOR_NOTIFY"]
