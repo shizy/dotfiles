@@ -4,7 +4,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term termite
+set $term alacritty
 
 set $bkg #080808
 set $med #585858
@@ -16,7 +16,7 @@ set $ws4 4:  
 
 ### Exec
 exec xset r rate 200 50 &
-exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default" &
+exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default" &
 exec compton --fade-exclude 'name = "panel"' --opacity-rule '85:class_g = "Zathura"' &
 exec sh "$XDG_CACHE_HOME/fehbg" &
 exec unclutter -grab &
@@ -33,23 +33,23 @@ font pango:M+ 1m, Icons 11
 
 ### Window handling
 for_window [class="xfreerdp"] floating disable
-for_window [class="Termite" title="^scratch"] border none, floating enable
+for_window [class="Alacritty" title="^scratch"] border none, floating enable
 
 ## Window Assignment
 
 assign [class="xfreerdp"] $ws1
 assign [class="qutebrowser"] $ws2
-assign [class="Termite" title="^vim$"] $ws3
-assign [class="Termite" title="^irc$"] $ws4
+assign [class="Alacritty" title="^vim$"] $ws3
+assign [class="Alacritty" title="^irc$"] $ws4
 
 ### Modes
 set $mode_launch [:]dmenu, [b]rowser, [i]rc, [t]erm, [v]im, [z]athura
 mode "$mode_launch" {
     bindsym semicolon exec dmenu_run -nb "$COLOR_DARK" -nf "$COLOR_DARK_OFFSET" -sf "$COLOR_URGENT" -sb "$COLOR_DARK" -b -fn "$FONT_MONO-$FONT_SIZE"; mode "default"
     bindsym b exec "$BROWSER"; mode "default"
-    bindsym i exec $term --title=irc -e "weechat-curses"; mode "default"
-    bindsym t exec $term --title=term; mode "default"
-    bindsym v exec $term --title=vim -e "/usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim"; mode "default"
+    bindsym i exec $term --title=irc -e weechat-curses; mode "default"
+    bindsym t exec $term --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
+    bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default"
     bindsym z exec zathura
 
     bindsym Escape mode "default"
@@ -84,6 +84,10 @@ bindsym $mod+Shift+c restart
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
 bindsym $mod+Escape exec i3lock-fancy -pf M+-1m-reular
+
+### Custom workarounds
+#bindsym --release Mod1+y exec --no-startup-id xdotool key --clearmodifiers ctrl+shift+space
+bindsym --release Mod1+p exec --no-startup-id xdotool key --clearmodifiers shift+Insert
 
 ### Device control
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-

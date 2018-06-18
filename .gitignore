@@ -9,6 +9,7 @@
 /config/*
 
 !/config/ag
+!/config/alacritty
 !/config/fontconfig
 !/config/i3
 !/config/git
@@ -19,7 +20,7 @@
 !/config/sway
 !/config/systemd
 /config/systemd/user/**
-!/config/termite
+!/config/tmux
 !/config/user-dirs.dir
 !/config/x11
 !/config/zathura
@@ -35,7 +36,6 @@
 !/pkgbuilds
 /pkgbuilds/**/*
 
-!/pkgbuilds/termite
 !/pkgbuilds/shizy-baseline
 !/pkgbuilds/shizy-baseline/*
 !/pkgbuilds/shizy-hp-elitebook-2540p

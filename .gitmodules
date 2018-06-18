@@ -46,3 +46,6 @@
 [submodule "pkgbuilds/openh264"]
 	path = pkgbuilds/openh264
 	url = https://aur.archlinux.org/openh264.git
+[submodule "pkgbuilds/alacritty-git"]
+	path = pkgbuilds/alacritty-git
+	url = https://aur.archlinux.org/alacritty-git
