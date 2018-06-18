@@ -14,7 +14,7 @@
     safecrlf = true
 
 [format]
-    pretty = "format: %C(201)%h%C(reset) | %an | %C(202)%cr%C(reset) %C(200)%d%C(reset)%n%w(150,11,11)%s%n"
+    pretty = "format: %C(14)%h%C(reset) | %an | %C(15)%cr%C(reset) %C(13)%d%C(reset)%n%w(150,11,11)%s%n"
 
 [color]
     diff = auto
@@ -23,16 +23,16 @@
     interactive = auto
 
 [color "status"]
-    added = 202
-    changed = 201
+    added = 15
+    changed = 14
 
 [color "branch"]
-    current = 200
-    local = 202
+    current = 13
+    local = 15
 
 [color "diff"]
     old = 205
-    new = 202
+    new = 15
 
 [status]
     submodulesummary = 0
