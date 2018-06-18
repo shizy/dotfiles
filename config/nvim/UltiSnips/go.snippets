@@ -1,12 +1,24 @@
 snippet me
-func ($1 *$2) $3($4) $5 {
-	$6
+func ($1) $2($3) $4 {
+	$0
 }
 endsnippet
 
 snippet fn
 func $1($2) $3 {
-	$4
+	$0
+}
+endsnippet
+
+snippet test
+func Test$1(t *testing.T) {
+	$0
+}
+endsnippet
+
+snippet ife
+if err != nil {
+	log.Fatal(err)
 }
 endsnippet
 
@@ -14,4 +26,20 @@ snippet ( ""
 (
 	${1}
 )
+endsnippet
+
+snippet {
+{
+	$0
+}
+endsnippet
+
+snippet }
+{$0}
+endsnippet
+
+snippet {)
+{
+	$0
+})
 endsnippet

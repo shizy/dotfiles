@@ -84,6 +84,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'zchee/deoplete-go', { 'do': 'make' }
 
 " Syntax & Highlighting
 Plug 'jelera/vim-javascript-syntax'
@@ -94,6 +95,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'fatih/vim-go'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/local/data/nvim/site/plugged/gocode/vim/symlink.sh' }
 
 call plug#end()
 "}}}
@@ -160,6 +162,9 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:go_list_height = 0
 let g:go_list_type = "locationlist"
 let g:go_fmt_fail_silently = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_arguments = 1
+let g:go_term_mode = "split"
 "}}}
 
 " ========== MAPPINGS =========={{{
@@ -227,6 +232,8 @@ imap                jk              <Esc>:call Save()<CR>
 "imap                <A-j>           <C-n>
 inoremap <silent><expr> <A-j>       pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
 imap                <A-k>           <C-p>
+imap                <A-S-h>         <Esc>:tabp<CR>
+imap                <A-S-l>         <Esc>:tabn<CR>
 
 cmap                <A-l>           <C-n>
 cmap                <A-h>           <C-p>
@@ -285,6 +292,12 @@ au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags 
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
+au FileType go
+    \ nmap <buffer> <Leader>; :GoBuild<CR> |
+    \ nmap <buffer> <Leader>r :GoRun<CR> |
+    \ nmap <buffer> <Leader>i :GoInfo<CR> |
+    \ nmap <buffer> <Leader>t :GoTest<CR> |
+    \ map <buffer> <Leader>c :GoCoverageToggle<CR> |
 au FileType c,cpp
     \ let b:surround_47 = "/*\r*/" |
     \ syn match cTodo "\<\w\+_ptr\>" |
@@ -294,12 +307,6 @@ au FileType c,cpp
     \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
     \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
     \ call deoplete#custom#buffer_option('auto_complete', v:false)
-au FileType gitcommit
-    \ nmap <buffer> <A-.> <C-n> |
-    \ nmap <buffer> <A-,> <C-p> |
-    \ nmap <buffer> c     <S-c>i<Left>|
-    \ nmap <buffer> p     :wq<CR>:Gpush |
-    \ nmap <buffer> A     :Git commit --amend<CR> |
 au FileType help,man
     \ setlocal ro |
     \ nnoremap <buffer> u <C-T> |
