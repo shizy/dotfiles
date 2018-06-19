@@ -14,19 +14,19 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
 
     case $1 in
         "scratchtop")
-            x=$w_left
+            x=$(($w_left + (($w_width / 100) * 3)))
             y=$w_top
-            h=$(($w_height / 2))
-            w=$w_width
+            h=$((($w_height / 2) - ($w_top * 2)))
+            w=$((($w_width / 100) * 90))
             ;;
         "scratchbottom" | "scratchsearch")
-            x=$w_left
-            y=$((($w_height / 2) )) #+ $w_top))
-            h=$(($w_height / 2))
-            w=$w_width
+            x=$(($w_left + (($w_width / 100) * 3)))
+            y=$((($w_height / 2) + $w_top))
+            h=$((($w_height / 2) - $w_top))
+            w=$((($w_width / 100) * 90))
             if [ $1 == "scratchsearch" ]; then
-                y=$(($w_height - ($w_height / 2) - $w_top))
-                h=$(($w_height / 2))
+                y=$(($w_height - ($w_height / 3) - $w_top))
+                h=$(($w_height / 3))
             fi
             ;;
     esac
@@ -37,7 +37,7 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
        cmd="$2 &"
     fi
 
-    alacritty --title=$1 -e $cmd & disown
+    alacritty --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=$1 -e $cmd & disown
     #echo "${w} ${h}"
     sleep 0.25
     i3-msg "[class=\"Alacritty\" title=\"$1\"] move scratchpad, move position ${x}px ${y}px, resize shrink width 10000px; resize grow width ${w}px; resize shrink height 10000px; resize grow height ${h}"

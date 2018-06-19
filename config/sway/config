@@ -48,7 +48,7 @@ mode "$mode_launch" {
     bindsym semicolon exec dmenu_run -nb "$COLOR_DARK" -nf "$COLOR_DARK_OFFSET" -sf "$COLOR_URGENT" -sb "$COLOR_DARK" -b -fn "$FONT_MONO-$FONT_SIZE"; mode "default"
     bindsym b exec "$BROWSER"; mode "default"
     bindsym i exec $term --title=irc -e weechat-curses; mode "default"
-    bindsym t exec $term --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
+    bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
     bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default"
     bindsym z exec zathura
 
@@ -157,6 +157,6 @@ bar {
         focused_workspace  $med $med $bkg
         active_workspace   $bkg $bkg #F1FAEE99
         inactive_workspace $bkg $bkg $med
-        urgent_workspace   $bkg $bkg #B1D631
+        urgent_workspace   $bkg $bkg #2ec6c6
     }
 }
