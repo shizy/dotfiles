@@ -19,8 +19,10 @@ cd ~
 # vim-mode
 bindkey -v
 function zle-line-init zle-keymap-select {
-    NORMAL=" $(__git_ps1 " %s ")%B%F{15}$CMD_PROMPT%f%b  "
-    INSERT=" $(__git_ps1 " %s ")%B%F{13}$CMD_PROMPT%f%b: "
+    NORMAL=" $(__git_ps1 "  %s ")%B%F{15}$CMD_PROMPT%f%b  "
+    INSERT=" $(__git_ps1 "  %s ")%B%F{13}$CMD_PROMPT%f%b: "
+    NORMAL=${${${${${${NORMAL//\*/  }//\+/  }//\<\>/   }/\</  }//\>/  }/\=/}
+    INSERT=${${${${${${INSERT//\*/  }//\+/  }//\<\>/   }/\</  }//\>/  }/\=/}
     [[ -z "$SSH_CLIENT" ]] && RPROMPT="" || RPROMPT="%{$reset_color%}%M"
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}"
     zle reset-prompt

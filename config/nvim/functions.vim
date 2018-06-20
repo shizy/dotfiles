@@ -184,14 +184,14 @@ endfunction
 function! FileFlags()
     let output = ""
     if &ro == 1
-        let output .= "   "
+        let output .= "   "
     endif
     if &modified == 1
         let output .= "   "
     endif
     let ws = search('\s\+$', 'nw')
     if ws != 0
-        let output .= "   " . ws . " "
+        let output .= "   " . ws . " "
     endif
     return output
 endfunction
