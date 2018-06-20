@@ -116,15 +116,15 @@ call Scheme("gruvbox")
 
 " Neomake
 let g:neomake_error_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'ErrorMsg',
             \ }
 let g:neomake_warning_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'WarningMsg',
             \ }
 let g:neomake_informational_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'Question',
             \ }
 let g:neomake_javascript_enabled_makers = ['jshint']
@@ -146,7 +146,7 @@ let g:netrw_winsize = 15
 let g:netrw_scp_cmd = 'scp -F $PRIVATE/ssh/ssh_config'
 
 " Signify
-let g:signify_realtime = 1
+let g:signify_realtime = 0
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'

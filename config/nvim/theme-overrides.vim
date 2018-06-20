@@ -58,5 +58,5 @@ au VimEnter,WinEnter,BufWinEnter *
     \ set statusline+=%#StatusLineTwo# |
     \ set statusline+=\ %{&filetype}\ |
     \ set statusline+=%#StatusLineThree# |
-    \ set statusline+=\ \ %p%%\ %{ContextTrack()} |
+    \ set statusline+=\ \ %p%%\ %{ContextTrack()} |
 au WinLeave * setlocal statusline=%f

@@ -177,21 +177,21 @@ function! FugitiveStatus()
             return ""
         endif
         let y = sy#repo#get_stats()
-        return " +" . y[0] . " ~" . y[1] . " -" . y[2] . "  " . x . " "
+        return "  +" . y[0] . " ~" . y[1] . " -" . y[2] . "    " . x . " "
     endif
 endfunction
 
 function! FileFlags()
     let output = ""
     if &ro == 1
-        let output .= "  "
+        let output .= "   "
     endif
     if &modified == 1
-        let output .= "   "
+        let output .= "   "
     endif
     let ws = search('\s\+$', 'nw')
     if ws != 0
-        let output .= "   " . ws . " "
+        let output .= "   " . ws . " "
     endif
     return output
 endfunction
@@ -199,9 +199,9 @@ endfunction
 function! ContextTrack()
     if exists("b:alt_context")
         if b:alt_context > line(".")
-            return " "
+            return ""
         else
-            return " "
+            return ""
         endif
     endif
     return ""

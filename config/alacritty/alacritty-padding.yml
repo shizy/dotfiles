@@ -17,17 +17,17 @@ font:
   normal:
     family: M+ 1m
   bold:
-    family: monospace
+    family: M+ 1m
   italic:
-    family: monospace
-  size: 7
+    family: M+ 1m
+  size: 13
   offset:
     x: 0
     y: 0
   glyph_offset:
     x: 0
     y: 0
-  scale_with_dpi: true
+  scale_with_dpi: false
   use_thin_strokes: true
 
 render_timer: false
@@ -144,7 +144,7 @@ key_bindings:
   - { key: Copy,                    action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
-    #- { key: Insert,   mods: Shift,   action: PasteSelection               }
+  - { key: Insert,   mods: Shift,   action: Paste                        }
   - { key: Key0,     mods: Control, action: ResetFontSize                }
   - { key: Equals,   mods: Control, action: IncreaseFontSize             }
   - { key: Subtract, mods: Control, action: DecreaseFontSize             }

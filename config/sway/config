@@ -9,10 +9,10 @@ set $term alacritty
 set $bkg #080808
 set $med #585858
 
-set $ws1 1:    
-set $ws2 2:    
-set $ws3 3:    
-set $ws4 4:    
+set $ws1 1:  
+set $ws2 2:  
+set $ws3 3:  
+set $ws4 4:  
 
 ### Exec
 exec xset r rate 200 50 &
@@ -29,7 +29,7 @@ workspace_layout default
 new_window pixel 1
 new_float pixel 1
 hide_edge_borders smart
-font pango:M+ 1m, Icons 11
+font pango:M+ 1m, Font Awesome 5 Free 11
 
 ### Window handling
 for_window [class="xfreerdp"] floating disable
@@ -142,7 +142,7 @@ bindsym $mod+period [urgent=latest] focus
 ### Status Bar(s)
 bar {
     id bar-1
-    font pango:M+ 1m, Icons 11
+    font pango:M+ 1m, Font Awesome 5 Free 11
     status_command i3status --config ~/local/config/i3/status.conf
     strip_workspace_numbers yes
     mode dock

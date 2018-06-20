@@ -1,45 +1,18 @@
-[submodule "pkgbuilds/bspwm-git"]
-	path = pkgbuilds/bspwm-git
-	url = https://aur.archlinux.org/bspwm-git.git
-[submodule "pkgbuilds/conky-cli"]
-	path = pkgbuilds/conky-cli
-	url = https://aur.archlinux.org/conky-cli.git
 [submodule "pkgbuilds/dmenu2"]
 	path = pkgbuilds/dmenu2
 	url = https://aur.archlinux.org/dmenu2.git
-[submodule "pkgbuilds/flap"]
-	path = pkgbuilds/flap
-	url = https://aur.archlinux.org/flap.git
-[submodule "pkgbuilds/gloom"]
-	path = pkgbuilds/gloom
-	url = https://aur.archlinux.org/gloom.git
 [submodule "pkgbuilds/i3lock-fancy-git"]
 	path = pkgbuilds/i3lock-fancy-git
 	url = https://aur.archlinux.org/i3lock-fancy-git.git
-[submodule "pkgbuilds/lemonbar-xft-git"]
-	path = pkgbuilds/lemonbar-xft-git
-	url = https://aur.archlinux.org/lemonbar-xft-git.git
 [submodule "pkgbuilds/nodejs-jshint"]
 	path = pkgbuilds/nodejs-jshint
 	url = https://aur.archlinux.org/nodejs-jshint.git
 [submodule "pkgbuilds/qutebrowser-git"]
 	path = pkgbuilds/qutebrowser-git
 	url = https://aur.archlinux.org/qutebrowser-git.git
-[submodule "pkgbuilds/ttf-font-icons"]
-	path = pkgbuilds/ttf-font-icons
-	url = https://aur.archlinux.org/ttf-font-icons.git
 [submodule "pkgbuilds/ttf-mplus"]
 	path = pkgbuilds/ttf-mplus
 	url = https://aur.archlinux.org/ttf-mplus.git
-[submodule "pkgbuilds/ttf-ms-fonts"]
-	path = pkgbuilds/ttf-ms-fonts
-	url = https://aur.archlinux.org/ttf-ms-fonts.git
-[submodule "pkgbuilds/xtitle-git"]
-	path = pkgbuilds/xtitle-git
-	url = https://aur.archlinux.org/xtitle-git.git
-[submodule "pkgbuilds/synergy-git"]
-	path = pkgbuilds/synergy-git
-	url = https://aur.archlinux.org/synergy-git
 [submodule "pkgbuilds/freerdp-git"]
 	path = pkgbuilds/freerdp-git
 	url = https://aur.archlinux.org/freerdp-git.git
