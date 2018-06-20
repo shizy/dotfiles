@@ -15,17 +15,18 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
     case $1 in
         "scratchtop")
             x=$(($w_left + (($w_width / 100) * 3)))
-            y=$w_top
+            #y=$w_top
+            y=-1
             h=$((($w_height / 2) - ($w_top * 2)))
             w=$((($w_width / 100) * 90))
             ;;
         "scratchbottom" | "scratchsearch")
             x=$(($w_left + (($w_width / 100) * 3)))
-            y=$((($w_height / 2) + $w_top))
-            h=$((($w_height / 2) - $w_top))
+            y=$((($w_height / 2) + ($w_top * 2) + 1))
+            h=$((($w_height / 2) - ($w_top * 2)))
             w=$((($w_width / 100) * 90))
             if [ $1 == "scratchsearch" ]; then
-                y=$(($w_height - ($w_height / 3) - $w_top))
+                y=$(($w_height - ($w_height / 3) + ($w_top / 2)))
                 h=$(($w_height / 3))
             fi
             ;;

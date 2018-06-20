@@ -9,7 +9,7 @@ set $term alacritty
 set $bkg #080808
 set $med #585858
 
-set $ws1 1:  
+set $ws1 1:   
 set $ws2 2:  
 set $ws3 3:  
 set $ws4 4:  
@@ -33,7 +33,7 @@ font pango:M+ 1m, Font Awesome 5 Free 11
 
 ### Window handling
 for_window [class="xfreerdp"] floating disable
-for_window [class="Alacritty" title="^scratch"] border none, floating enable
+for_window [class="Alacritty" title="^scratch"] floating enable
 
 ## Window Assignment
 
@@ -138,6 +138,9 @@ bindsym $mod+l workspace next
 bindsym $mod+period [urgent=latest] focus
 
 ### Colors
+client.focused      #F1FAEE $bkg $bkg $bkg #F1FAEE
+client.unfocused    $med $bkg $bkg $bkg $med
+client.urgent       #2ec6c6 $bkg $bkg $bkg $2ec6c6
 
 ### Status Bar(s)
 bar {
