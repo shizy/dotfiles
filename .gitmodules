@@ -13,12 +13,6 @@
 [submodule "pkgbuilds/ttf-mplus"]
 	path = pkgbuilds/ttf-mplus
 	url = https://aur.archlinux.org/ttf-mplus.git
-[submodule "pkgbuilds/freerdp-git"]
-	path = pkgbuilds/freerdp-git
-	url = https://aur.archlinux.org/freerdp-git.git
-[submodule "pkgbuilds/openh264"]
-	path = pkgbuilds/openh264
-	url = https://aur.archlinux.org/openh264.git
 [submodule "pkgbuilds/alacritty-git"]
 	path = pkgbuilds/alacritty-git
 	url = https://aur.archlinux.org/alacritty-git
