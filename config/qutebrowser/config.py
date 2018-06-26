@@ -52,8 +52,8 @@ config.bind("<Alt-v>", "tab-pin")
 config.bind("u", "back")
 config.bind("<Alt-Shift-r>", "undo")
 config.bind("<Alt-r>", "reload")
-config.bind("<Alt-.>", "navigate next")
-config.bind("<Alt-,>", "navigate prev")
+config.bind("<Alt-l>", "navigate next")
+config.bind("<Alt-h>", "navigate prev")
 config.bind("<Alt-j>", "completion-item-focus next", mode="command")
 config.bind("<Alt-k>", "completion-item-focus prev", mode="command")
 config.bind("<Alt-h>", "rl-backward-word", mode="command")
@@ -61,6 +61,8 @@ config.bind("<Alt-l>", "rl-forward-word", mode="command")
 config.bind("<Alt-x>", "rl-kill-word", mode="command")
 config.bind("<Alt-Shift-Ctrl-h>", "tab-move -");
 config.bind("<Alt-Shift-Ctrl-l>", "tab-move +");
+config.bind("<Alt-Tab>", "tab-focus last");
+config.bind("<Alt-Space>", "set-cmd-text -s :buffer ");
 
 c.colors.completion.fg = os.environ["COLOR_DARK_OFFSET"]
 c.colors.completion.match.fg = os.environ["COLOR_NORMAL"]
