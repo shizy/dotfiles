@@ -9,7 +9,7 @@ set $term alacritty
 set $bkg #080808
 set $med #585858
 
-set $ws1 1:   
+set $ws1 1:  
 set $ws2 2:  
 set $ws3 3:  
 set $ws4 4:  
@@ -66,6 +66,17 @@ mode "$mode_layout" {
     bindsym Return mode "default"
 }
 
+set $mode_search [f]ile, [k]ill, [m]an, [s]sh
+mode "$mode_search" {
+    bindsym f exec scratchpad scratchsearch fuzzysearch file; mode "default"
+    bindsym k exec scratchpad scratchsearch fuzzysearch kill; mode "default"
+    bindsym m exec scratchpad scratchsearch fuzzysearch man; mode "default"
+    bindsym s exec scratchpad scratchsearch fuzzysearch ssh; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 mode "mode_resize" {
     bindsym $left resize shrink width 10 px or 10 ppt
     bindsym $down resize grow height 10 px or 10 ppt
@@ -80,6 +91,7 @@ mode "mode_resize" {
 bindsym $mod+semicolon mode "$mode_launch"
 bindsym $mod+m mode "$mode_layout"
 bindsym $mod+r mode "mode_resize"
+bindsym $mod+slash mode "$mode_search"
 bindsym $mod+Shift+c restart
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
@@ -99,7 +111,7 @@ bindsym XF86BrightnessDown exec xbacklight -dec 10%
 # Scratchpads
 bindsym $mod+k exec scratchpad scratchtop
 bindsym $mod+j exec scratchpad scratchbottom
-bindsym $mod+slash exec scratchpad scratchsearch fuzzysearch
+#bindsym $mod+slash exec scratchpad scratchsearch fuzzysearch
 
 # Window control
 bindsym $mod+Control+$left focus left

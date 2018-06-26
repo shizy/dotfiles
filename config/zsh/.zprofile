@@ -22,6 +22,9 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 # elinks
 export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
 
+# fzf
+export FZF_DEFAULT_OPTS="--color=dark,hl:13,pointer:13,marker:15,prompt:13 -m --select-1 --exit-0 --bind 'esc:abort,alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-enter:toggle,alt-x:unix-line-discard'"
+
 # git
 export GIT_SSH=$LOCALDIR/bin/ssh
 export GIT_PS1_SHOWDIRTYSTATE=1

@@ -1,104 +1,56 @@
 #!/bin/bash
 
-# rg file search
-stack+=$(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE | sed -e 's/^/file:\t/')
-stack+=$(echo -e "\r\n ")
-# man page search
-stack+=$(echo -e "\r\n ")
-stack+=$(/usr/bin/man -k "" | awk '{print $1,$2}' | sed -e 's/^/man:\t/')
-# pacman listing
-stack+=$(echo -e "\r\n ")
-stack+=$(pacman -Sl | awk '{print $1,$2,$4}' | sed -e 's/^/pkg:\t/' -e 's/\ /\ \/ \ /g')
-stack+=$(echo -e "\r\n ")
-stack+=$(pacman -Qqm | sed -e 's/^/pkg:\t\ aur\ \/\ /' -e 's/$/\ \/\ \[installed]/')
-# process search
-stack+=$(echo -e "\r\n ")
-stack+=$(ps -eo "%p : %U %c %a" | sed -e 's/^/proc:\t/')
-# ssh locations
-stack+=$(echo -e "\r\n ")
-stack+=$(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$' | sed -e 's/^/ssh:\t/')
+# fzf default options defined in .zprofile
 
-# will probably choke on a file / folder with a space in it!
-selection=$(fzf --color=dark,hl:13,pointer:13,marker:15,prompt:13 -m --select-1 --exit-0 <<< "$stack" --bind "esc:abort,alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-enter:toggle,alt-x:unix-line-discard" | sed -e 's/[\t|\ |)]//g' -e 's/(/:/g')
-selection=(${selection//\r\n/ })
+case $1 in
+    "file")
+        sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
+        for file in ${sel[@]}
+        do
+            ftype=$(file $file --mime-type | awk '{print $file}')
 
-launch () {
-    targets=(${2//;/ })
-
-    case $1 in
-        "file")
-            for file in ${targets[@]}
-            do
-                ftype=$(file $file --mime-type | awk '{print $file}')
-
-                case $ftype in
-                    *"image"*)
-                        feh $file > /dev/null
-                        ;;
-                    *"text"* | *"empty"* | *"javascript"*)
-                        python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('bad $file');"
-                        ;;
-                    *"pdf"*)
-                        zathura --fork $file
-                        ;;
-                    *"video"*)
-                        mplayer $file > /dev/null
-                        ;;
-                    *"symlink"*)
-                        target=$(readlink $file)
-                        launch $1 $target
-                        ;;
-                esac
-            done
-            ;;
-        "man")
-            for man in ${targets[@]}
-            do
-                #nvim "Man $man"
-                python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $man');"
-            done
-            ;;
-        "proc")
-            for proc in ${targets[@]}
-            do
-                if [ "x$proc" != "x" ]
-                then
-                    kill $proc
-                fi
-            done
-            ;;
-        "pkg")
-            toremove=($(grep -oP '([^|;|\/]*?)+.(?=\/\[installed\];)' <<< $2))
-            toinstall=($(grep -oP '\/([^|\/|;]+)\/(?!\[installed\])' <<< $2 | sed -e 's/\///g'))
-            cmd=""
-            if [[ ${#toremove[@]} -gt 0 ]]; then
-                cmd+="sudo pacman -Rns ${toremove[@]} --noconfirm;"
-                # pacman -Ql to ensure proper removal?
+            case $ftype in
+                *"image"*)
+                    feh $file > /dev/null
+                    ;;
+                *"text"* | *"empty"* | *"javascript"*)
+                    python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('bad $file');"
+                    ;;
+                *"pdf"*)
+                    zathura --fork $file
+                    ;;
+                *"video"*)
+                    mplayer $file > /dev/null
+                    ;;
+                *"symlink"*)
+                    target=$(readlink $file)
+                    launch $1 $target
+                    ;;
+            esac
+        done
+        ;;
+    "man")
+        sel=$(fzf --prompt="$1 > " <<< $(/usr/bin/man -k "" | awk '{print $1,$2}'))
+        for man in ${sel[@]}
+        do
+            python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $man');"
+        done
+        ;;
+    "kill")
+        sel=$(fzf --prompt="$1 > " <<< $(ps -eo "%p : %U %c %a" | tail -n +2))
+        for proc in ${sel[@]}
+        do
+            if [ "x$proc" != "x" ]
+            then
+                kill -9 $proc
             fi
-            if [[ ${#toinstall[@]} -gt 0 ]]; then
-                cmd+="sudo pacman -S ${toinstall[@]} --noconfirm;"
-            fi
-            if [[ "$cmd" != "" ]]; then
-                tmux new-session -d -s "pacman" $cmd
-            fi
-            ;;
-        "ssh")
-            for loc in ${targets[@]}
-            do
-                tmux new-session -d -s "ssh-$loc" "$LOCALDIR/bin/ssh $loc"
-            done
-            ;;
-    esac
-}
-
-declare -A collection
-for sel in "${selection[@]}"
-do
-    sel=(${sel//:/ })
-    collection[${sel[0]}]+="${sel[1]};"
-done
-
-for class in ${!collection[@]}
-do
-    launch $class ${collection[$class]}
-done
+        done
+        ;;
+    "ssh")
+        sel=$(fzf --prompt="$1 > " <<< $(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$'))
+        for loc in ${sel[@]}
+        do
+            tmux new-session -d -s "ssh-$loc" "$LOCALDIR/bin/ssh $loc"
+        done
+        ;;
+esac
