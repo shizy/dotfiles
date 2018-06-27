@@ -50,7 +50,7 @@ case $1 in
         sel=$(fzf --prompt="$1 > " <<< $(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$'))
         for loc in ${sel[@]}
         do
-            tmux new-session -d -s "ssh-$loc" "$LOCALDIR/bin/ssh $loc"
+            tmux new-window -n "ssh-$loc" -t "scratchbottom" "$LOCALDIR/bin/ssh $loc"
         done
         ;;
 esac
