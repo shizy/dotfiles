@@ -178,6 +178,8 @@ function! FugitiveStatus()
         endif
         let y = sy#repo#get_stats()
         return "  +" . y[0] . " ~" . y[1] . " -" . y[2] . "    " . x . " "
+    else
+        return ""
     endif
 endfunction
 

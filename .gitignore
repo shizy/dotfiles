@@ -17,6 +17,7 @@
 !/config/nvim
 !/config/proxychains
 !/config/qutebrowser
+/config/qutebrowser/qsettings
 !/config/sway
 !/config/systemd
 /config/systemd/user/**
