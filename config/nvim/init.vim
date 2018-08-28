@@ -299,7 +299,6 @@ au FileType go
     \ nmap <buffer> <Leader>t :GoTest<CR> |
     \ map <buffer> <Leader>c :GoCoverageToggle<CR> |
 au FileType c,cpp
-    \ let b:surround_47 = "/*\r*/" |
     \ syn match cTodo "\<\w\+_ptr\>" |
     \ syn match cTodo "\<\w\+_cb\>" |
     \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
@@ -307,6 +306,8 @@ au FileType c,cpp
     \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
     \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
     \ call deoplete#custom#buffer_option('auto_complete', v:false)
+au FileType go,c,cpp
+    \ let b:surround_47 = "/*\r*/" |
 au FileType help,man
     \ setlocal ro |
     \ nnoremap <buffer> u <C-T> |

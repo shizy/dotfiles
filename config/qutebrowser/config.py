@@ -7,7 +7,7 @@ c.completion.web_history_max_items = 100
 c.downloads.location.directory = "~/downloads/"
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 5000
-c.qt.force_software_rendering = 'qt-quick'
+c.qt.force_software_rendering = 'none'
 c.hints.border = "1px solid " + os.environ["COLOR_DARK"]
 c.hints.uppercase = True
 c.input.spatial_navigation = False
@@ -21,6 +21,7 @@ c.tabs.indicator.width = 0
 c.tabs.new_position.related = "last"
 c.tabs.new_position.unrelated = "last"
 c.window.hide_decoration = True
+c.input.insert_mode.auto_load = False
 
 c.fonts.monospace = os.environ["FONT_MONO"]
 c.fonts.completion.category = "bold " + os.environ["FONT_SIZE"] + "pt monospace"

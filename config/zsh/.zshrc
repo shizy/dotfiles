@@ -38,9 +38,13 @@ bindkey -M vicmd "\el" forward-word
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins 'jk' accept-line
 
+bindkey -s '\eL' 'popd\n'
+bindkey -s '\eH' '..\n'
+bindkey -s '\eb' 'cd -\n'
+
 # aliases
-alias ~="cd ~"
-alias ..="cd .."
+alias ~="pushd ~"
+alias ..="pushd .."
 alias rm="rm -rf"
 alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
@@ -53,6 +57,9 @@ alias du="du --time -had 1 | sort -t '/' -k 2,2"
 alias userctl="systemctl --user"
 alias prox="proxychains -f $XDG_CONFIG_HOME/proxychains/proxychains.conf -q"
 alias netctl="sudo netctl-auto"
+
+pushd() { builtin pushd "$@" > /dev/null }
+popd() { builtin popd "$@" > /dev/null }
 
 colors () {
     (x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)
