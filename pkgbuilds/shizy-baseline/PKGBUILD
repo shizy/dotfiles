@@ -9,6 +9,7 @@ license=('ISC')
 depends=(
     'alsa-utils'
     'git'
+    'ntp'
     'zsh'
 )
 source=(

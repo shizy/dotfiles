@@ -15,6 +15,7 @@ post_install() {
     fi
     cat /etc/security/pam_env.conf.baseline > /etc/security/pam_env.conf
     cp -f /etc/pam.d/systemd-user.baseline /etc/pam.d/systemd-user
+    systemctl enable --now ntpd.service
 }
 
 ## arg 1:  the new package version
