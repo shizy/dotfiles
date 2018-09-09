@@ -37,6 +37,8 @@ c.fonts.prompts = os.environ["FONT_SIZE"] + "pt monospace"
 c.fonts.statusbar = os.environ["FONT_SIZE"] + "pt monospace"
 c.fonts.tabs = os.environ["FONT_SIZE"] + "pt monospace"
 
+config.unbind("d", mode='normal')
+
 config.bind("<Alt-p>", "insert-text {primary}")
 config.bind("<Alt-p>", "insert-text {primary}", mode="insert")
 config.bind("<Alt-f>", "hint all tab-bg")
