@@ -85,7 +85,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'zchee/deoplete-go', { 'do': 'make' }
+Plug 'zchee/deoplete-go', { 'do': 'make' } "go get -u github.com/mdempsky/gocode
 Plug 'mhinz/neovim-remote'
 
 " Syntax & Highlighting
@@ -97,7 +97,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'fatih/vim-go'
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/local/data/nvim/site/plugged/gocode/vim/symlink.sh' }
 
 call plug#end()
 "}}}
