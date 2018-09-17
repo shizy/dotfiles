@@ -1,6 +1,7 @@
 #!/bin/bash
 
 running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
+conf="--config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml"
 
 # if not running, spawn scratchpad based on direction and workspace size
 if [ $running == 0 ] || [ $1 === "search" ]; then
@@ -28,6 +29,7 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
             if [ $1 == "scratchsearch" ]; then
                 y=$(($w_height - ($w_height / 3) - ($w_top / 2)))
                 h=$(($w_height / 3))
+                conf=""
             fi
             ;;
     esac
@@ -38,7 +40,7 @@ if [ $running == 0 ] || [ $1 === "search" ]; then
        cmd="${@:2}"
     fi
 
-    alacritty --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=$1 -e $cmd & disown
+    alacritty $conf --title=$1 -e $cmd & disown
     #echo "${w} ${h}"
     sleep 0.5
     i3-msg "[class=\"Alacritty\" title=\"$1\"] move scratchpad, move position ${x}px ${y}px, resize shrink width 10000px; resize grow width ${w}px; resize shrink height 10000px; resize grow height ${h}"

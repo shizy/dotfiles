@@ -3,6 +3,10 @@
 # fzf default options defined in .zprofile
 
 case $1 in
+    "diff")
+        sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
+        i3-msg exec "alacritty --title=dispatch -e /usr/bin/nvim -dR $sel"
+        ;;
     "file")
         sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
         for file in ${sel[@]}
@@ -50,7 +54,8 @@ case $1 in
         sel=$(fzf --prompt="$1 > " <<< $(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$'))
         for loc in ${sel[@]}
         do
-            tmux new-window -n "ssh-$loc" -t "scratchbottom" "$LOCALDIR/bin/ssh $loc"
+            #tmux new-window -n "ssh-$loc" -t "scratchbottom" "$LOCALDIR/bin/ssh $loc"
+            i3-msg exec "alacritty --title=dispatch -e $LOCALDIR/bin/ssh $loc"
         done
         ;;
 esac
