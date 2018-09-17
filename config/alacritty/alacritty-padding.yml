@@ -33,6 +33,11 @@ font:
 render_timer: false
 custom_cursor_colors: false
 
+scrolling:
+    history: 10000
+    multiplier: 10
+    autoscroll: false
+
 # Base16 Grayscale Dark 256 - alacritty color config
 # Alexandre Gavioli (https://github.com/Alexx2/)
 colors:
@@ -138,6 +143,8 @@ live_config_reload: true
 # (e.g. "\x1b[5~") is? Open another terminal (like xterm) without tmux,
 # then run `showkey -a` to get the sequence associated to a key combination.
 key_bindings:
+  - { key: K,        mods: Alt,              action: ScrollPageUp        }
+  - { key: J,        mods: Alt,              action: ScrollPageDown      }
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
   - { key: Paste,                   action: Paste                        }
