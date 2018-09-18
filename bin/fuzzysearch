@@ -3,9 +3,18 @@
 # fzf default options defined in .zprofile
 
 case $1 in
+    "bin")
+        sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /usr/bin $HOME/local/bin $PRIVATE/bin))
+        for file in ${sel[@]}
+        do
+            i3-msg exec $file
+        done
+        ;;
     "diff")
         sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
-        i3-msg exec "alacritty --title=dispatch -e /usr/bin/nvim -dR $sel"
+        if [[ -n $sel ]]; then
+            i3-msg exec "alacritty --title=dispatch -e /usr/bin/nvim -dZR $(echo ${sel[@]})"
+        fi
         ;;
     "file")
         sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))

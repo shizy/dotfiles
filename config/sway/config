@@ -47,9 +47,8 @@ assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 
 ### Modes
-set $mode_launch [:]dmenu, [b]rowser, [i]rc, [s]team, [t]erm, [v]im, [z]athura
+set $mode_launch [b]rowser, [i]rc, [s]team, [t]erm, [v]im, [z]athura
 mode "$mode_launch" {
-    bindsym semicolon exec dmenu_run -nb "$COLOR_DARK" -nf "$COLOR_DARK_OFFSET" -sf "$COLOR_URGENT" -sb "$COLOR_DARK" -b -fn "$FONT_MONO-$FONT_SIZE"; mode "default"
     bindsym b exec "$BROWSER"; mode "default"
     bindsym i exec $term --title=irc -e weechat-curses; mode "default"
     bindsym s exec steam; mode "default"
@@ -71,8 +70,9 @@ mode "$mode_layout" {
     bindsym Return mode "default"
 }
 
-set $mode_search [d]iff, [f]ile, [k]ill, [m]an, [s]sh
+set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [s]sh
 mode "$mode_search" {
+    bindsym b exec scratchpad scratchsearch fuzzysearch bin; mode "default"
     bindsym d exec scratchpad scratchsearch fuzzysearch diff; mode "default"
     bindsym f exec scratchpad scratchsearch fuzzysearch file; mode "default"
     bindsym k exec scratchpad scratchsearch fuzzysearch kill; mode "default"
