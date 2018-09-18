@@ -13,7 +13,7 @@ case $1 in
     "diff")
         sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
         if [[ -n $sel ]]; then
-            i3-msg exec "alacritty --title=dispatch -e /usr/bin/nvim -dZR $(echo ${sel[@]})"
+            i3-msg exec "alacritty --title=dispatch -e /usr/bin/nvim -dR $(echo ${sel[@]})"
         fi
         ;;
     "file")
@@ -43,6 +43,7 @@ case $1 in
         done
         ;;
     "man")
+        sleep 0.5
         sel=$(fzf --prompt="$1 > " <<< $(/usr/bin/man -k "" | awk '{print $1,$2}'))
         for man in ${sel[@]}
         do
