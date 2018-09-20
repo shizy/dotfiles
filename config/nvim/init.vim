@@ -95,6 +95,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'fatih/vim-go'
+Plug 'lervag/vimtex' "only for completion and highlighting
 
 call plug#end()
 "}}}
@@ -106,7 +107,6 @@ let g:deoplete#disable_auto_complete = 0
 
 " LaTeX
 let g:tex_flavor = 'latex'
-"let g:context_synctex = 1
 
 " Colorscheme
 set background=dark
@@ -161,6 +161,12 @@ let g:go_fmt_fail_silently = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_arguments = 1
 let g:go_term_mode = "split"
+
+" vimtex
+if !exists('g:deoplete#omni#input_patterns')
+      let g:deoplete#omni#input_patterns = {}
+  endif
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 "}}}
 
@@ -286,6 +292,7 @@ au FileType snippets,help,man setlocal nobuflisted
 
 au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
 
+" note: synctex-forward breaks on ConTeXt documents!
 au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ setlocal spelllang=en_us |
