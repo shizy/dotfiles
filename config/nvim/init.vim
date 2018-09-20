@@ -77,7 +77,6 @@ Plug 'morhetz/gruvbox'
 " Interaction
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
-Plug 'lervag/vimtex'
 
 " Utility
 Plug 'benekastah/neomake'
@@ -86,7 +85,6 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'do': 'make' } "go get -u github.com/mdempsky/gocode
-Plug 'mhinz/neovim-remote'
 
 " Syntax & Highlighting
 Plug 'jelera/vim-javascript-syntax'
@@ -108,6 +106,7 @@ let g:deoplete#disable_auto_complete = 0
 
 " LaTeX
 let g:tex_flavor = 'latex'
+"let g:context_synctex = 1
 
 " Colorscheme
 set background=dark
@@ -129,14 +128,10 @@ let g:neomake_informational_sign = {
             \ 'texthl': 'Question',
             \ }
 let g:neomake_javascript_enabled_makers = ['jshint']
-"let g:neomake_context_context_maker = {
-"            \ 'cwd': '%:p:h',
-"            \ 'args': ['--jit', '--synctex', '--nonstopmode', '%:t'],
-"            \ 'append_file': 0,
-"            \ 'errorformat': '%.%# on line %l in file %f:%m,'.
-"            \                '%E%.%# on line %l in file %f:,%C,%Z%m'
-"            \ }
-"let g:neomake_context_enabled_makers = ['context']
+let g:neomake_tex_rubber_maker = {
+            \ 'args': ['--synctex', '--inplace', '-d'],
+            \ }
+let g:neomake_tex_enabled_makers = ['rubber']
 
 " netrw
 let g:netrw_dirhistmax = 0
@@ -167,24 +162,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_arguments = 1
 let g:go_term_mode = "split"
 
-" vimtex
-let g:vimtex_compiler_progname = '$XDG_DATA_HOME/nvim/site/plugged/neovim-remote/nvr'
-let g:vimtex_view_method = 'zathura'
-if !exists('g:deoplete#omni#input_patterns')
-      let g:deoplete#omni#input_patterns = {}
-  endif
-let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
-let g:vimtex_compiler_latexmk = {
-    \ 'callback' : 1,
-    \ 'continuous' : 1,
-    \ 'executable' : 'latexmk',
-    \ 'options' : [
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
 "}}}
 
 " ========== MAPPINGS =========={{{
@@ -313,8 +290,8 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
-    \ setlocal syntax=latex |
-    \ nmap <buffer> <Leader>; :VimtexView<CR> |
+    \ setlocal syntax=tex |
+    \ nmap <silent><buffer> <Leader>; :call system("zathura --synctex-forward=" . line('.') . ":" . col('.') . ":" . expand("%:p") . " " . expand("%:p:r") . ".pdf &")<CR>
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |

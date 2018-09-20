@@ -1,9 +1,11 @@
-set recolor true
-set recolor-darkcolor "#FFFFFF"
-set recolor-lightcolor "#000000"
-set highlight-color "#666666"
-set highlight-active-color "#666666"
+#set recolor true
+#set recolor-darkcolor "#FFFFFF"
+#set recolor-lightcolor "#000000"
+#set highlight-color "#F1FAEE"
+#set highlight-active-color "#2ec6c600"
+
 set adjust-open width
+set font "monospace normal 12"
 
 map <A-j> navigate next
 map <A-k> navigate previous

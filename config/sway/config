@@ -19,7 +19,7 @@ set $ws6 6: 
 ### Exec
 exec xset r rate 200 50 &
 exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default" &
-exec compton --fade-exclude 'name = "panel"' --opacity-rule '85:class_g = "Zathura"' &
+exec compton &
 exec sh "$XDG_CACHE_HOME/fehbg" &
 
 exec unclutter -grab &
