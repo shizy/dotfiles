@@ -18,6 +18,7 @@
 !/config/proxychains
 !/config/qutebrowser
 /config/qutebrowser/qsettings
+/config/qutebrowser/autoconfig.yml
 !/config/sway
 !/config/systemd
 /config/systemd/user/**
