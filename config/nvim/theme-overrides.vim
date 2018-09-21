@@ -27,6 +27,9 @@ hi TabLine                  ctermfg=239 ctermbg=232 cterm=none
 hi EndOfBuffer              ctermfg=234 ctermbg=none
 hi Folded                   ctermfg=239 ctermbg=none cterm=bold
 
+hi Pmenu                    ctermfg=14 ctermbg=232 cterm=none
+hi PmenuSel                 ctermfg=232 ctermbg=13 cterm=bold
+
 hi ContextLine              ctermbg=233 cterm=none
 
 hi StatusLineThree          ctermfg=234 ctermbg=14 cterm=bold

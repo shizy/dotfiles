@@ -74,17 +74,16 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 " Color Scheme
 Plug 'morhetz/gruvbox'
 
-" Interaction
+" Utility
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
-
-" Utility
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
-Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'do': 'make' } "go get -u github.com/mdempsky/gocode
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 " Syntax & Highlighting
 Plug 'jelera/vim-javascript-syntax'
@@ -101,9 +100,13 @@ call plug#end()
 "}}}
 
 " ========== SETTINGS =========={{{
-" Deoplete
+
+" Deoplete / Neosnippet
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 0
+let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#enable_optional_arguments = 0
+let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME . '/nvim/snippets'
 
 " LaTeX
 let g:tex_flavor = 'latex'
@@ -116,11 +119,11 @@ call Scheme("gruvbox")
 
 " Neomake
 let g:neomake_error_sign = {
-            \ 'text': '',
+            \ 'text': ' ',
             \ 'texthl': 'ErrorMsg',
             \ }
 let g:neomake_warning_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'WarningMsg',
             \ }
 let g:neomake_informational_sign = {
@@ -146,13 +149,6 @@ let g:signify_realtime = 0
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
-
-" UltiSnips
-let g:UltiSnipsSnippetsDir = $XDG_CONFIG_HOME . '/nvim/UltiSnips'
-let g:UltiSnipsExpandTrigger = "<Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
-let g:UltiSnipsEditSplit = "vertical"
 
 " Vim-Go
 let g:go_list_height = 0
@@ -232,11 +228,13 @@ nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . 
 
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
-"imap                <A-j>           <C-n>
-inoremap <silent><expr> <A-j>       pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
+inoremap <expr>     <A-j>           pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 imap                <A-k>           <C-p>
 imap                <A-S-h>         <Esc>:tabp<CR>
 imap                <A-S-l>         <Esc>:tabn<CR>
+smap    <expr>      <Tab>           neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap    <expr>      <Tab>           neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+xmap                <Tab>           <Plug>(neosnippet_expand_target)
 
 cmap                <A-l>           <C-n>
 cmap                <A-h>           <C-p>
@@ -268,7 +266,7 @@ vmap                <A-.>           >gv
 vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 nmap                <Leader>sh      :silent w !share<CR>
 nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
-nmap                <Leader>vs      :UltiSnipsEdit<CR>
+nmap                <Leader>vs      :NeoSnippetEdit -split -vertical<CR>
 xmap                <Leader>va      <Plug>(EasyAlign)
 nmap                <Leader>vu      :PlugUpdate<CR>
 nmap                <Leader>vt      :tabe %<CR>
@@ -286,9 +284,9 @@ nmap                <Leader>gm      :Gmerge<space>
 au FileType javascript           nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
 au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
 au BufWritePost *                Neomake
-au WinEnter,BufWinEnter term://* startinsert
+au TermOpen,WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
-au FileType snippets,help,man setlocal nobuflisted
+au FileType neosnippet,help,man,gitcommit setlocal nobuflisted
 
 au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
 
@@ -303,7 +301,6 @@ au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
 au FileType go
-    \ nmap <buffer> <Leader>; :GoBuild<CR> |
     \ nmap <buffer> <Leader>r :GoRun<CR> |
     \ nmap <buffer> <Leader>i :GoInfo<CR> |
     \ nmap <buffer> <Leader>t :GoTest<CR> |
