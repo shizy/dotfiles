@@ -286,7 +286,7 @@ au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
 au BufWritePost *                Neomake
 au TermOpen,WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
-au FileType neosnippet,help,man,gitcommit setlocal nobuflisted
+au FileType neosnippet,help,man setlocal nobuflisted
 
 au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
 
