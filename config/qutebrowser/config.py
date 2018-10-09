@@ -3,7 +3,7 @@ import os
 c.completion.height = "33%"
 c.completion.scrollbar.width = 0
 c.completion.shrink = True
-c.completion.web_history_max_items = 100
+c.completion.web_history.max_items = 100
 c.downloads.location.directory = "/home/" + os.environ["USER"] + "/downloads/"
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 5000
