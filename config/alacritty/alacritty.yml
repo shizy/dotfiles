@@ -1,5 +1,5 @@
 env:
-  TERM: xterm-256color
+  TERM: alacritty
 
 window:
   dimensions:
@@ -8,7 +8,7 @@ window:
   padding:
     x: 0
     y: 0
-  decorations: true
+  decorations: full
 
 tabspaces: 4
 draw_bold_text_with_bright_colors: true
@@ -63,14 +63,14 @@ colors:
     green:   '0x8e8e8e'
     yellow:  '0xa0a0a0'
     blue:    '0x686868'
-    #magenta: '0x747474'
-    #cyan:    '0x868686'
-    #white:   '0xb9b9b9'
+    magenta: '0x747474'
+    cyan:    '0x868686'
+    white:   '0xb9b9b9'
 
-  # Custom Over-ride colors
-    magenta: '0x2ec6c6' # 200 -> 13
-    cyan:    '0xF1FAEE' # 201 -> 14
-    white:   '0x7E8AA2' # 202 -> 15
+  indexed_colors:
+    - { index: 200, color: '0x2ec6c6' }
+    - { index: 201, color: '0xF1FAEE' }
+    - { index: 202, color: '0x7E8AA2' }
 
 visual_bell:
   animation: EaseOutExpo
@@ -88,6 +88,7 @@ mouse:
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  save_to_clipboard: true
 
 dynamic_title: true
 
