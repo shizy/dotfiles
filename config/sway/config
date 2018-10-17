@@ -15,6 +15,7 @@ set $ws3 3: 
 set $ws4 4:  
 set $ws5 5:  
 set $ws6 6:  
+set $ws10 10:  
 
 ### Exec
 exec xset r rate 200 50 &
@@ -45,15 +46,17 @@ assign [class="Alacritty" title="^vim$"] $ws3
 assign [class="Alacritty" title="^irc$"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
+assign [class="uhk-agent"] $ws10
 
 ### Modes
-set $mode_launch [b]rowser, [i]rc, [s]team, [t]erm, [v]im, [z]athura
+set $mode_launch [b]rowser, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]athura
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
     bindsym i exec $term --title=irc -e weechat-curses; mode "default"
     bindsym s exec steam; mode "default"
     bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
     bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default"
+    bindsym u exec uhk-agent; mode "default"
     bindsym z exec zathura
 
     bindsym Escape mode "default"
@@ -138,7 +141,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace $ws10
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -148,7 +151,7 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+h workspace prev
 bindsym $mod+Shift+l workspace next
 bindsym $mod+h workspace prev

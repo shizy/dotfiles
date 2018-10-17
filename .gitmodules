@@ -16,3 +16,6 @@
 [submodule "pkgbuilds/alacritty-git"]
 	path = pkgbuilds/alacritty-git
 	url = https://aur.archlinux.org/alacritty-git
+[submodule "pkgbuilds/uhk-agent-appimage"]
+	path = pkgbuilds/uhk-agent-appimage
+	url = https://aur.archlinux.org/uhk-agent-appimage.git
