@@ -1,5 +1,6 @@
 import os
 
+c.content.pdfjs = True
 c.completion.height = "33%"
 c.completion.scrollbar.width = 0
 c.completion.shrink = True
