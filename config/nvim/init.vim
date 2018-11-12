@@ -75,6 +75,8 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 Plug 'morhetz/gruvbox'
 
 " Utility
+Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'benekastah/neomake'
@@ -107,6 +109,34 @@ let g:deoplete#disable_auto_complete = 0
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_optional_arguments = 0
 let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME . '/nvim/snippets'
+
+" Fzf
+let g:fzf_action = {
+            \ 'alt-x': 'bdelete',
+            \ 'alt-t': '$tab sbuffer',
+            \ 'alt-s': 'sbuffer',
+            \ 'alt-v': 'vert sbuffer',
+            \ }
+function! s:parse_fzf_buffer_results(e)
+    if len(a:e) < 2
+        return
+    endif
+    let action = get(g:fzf_action, a:e[0])
+    let buffer = matchstr(a:e[1], '\[\zs[0-9]*\ze\]')
+    if action == "0" "default action
+        execute 'b ' buffer
+    else
+        execute action ' ' buffer
+        if action == 'bdelete'
+            execute 'MyBuffers'
+            call feedkeys('i')
+        endif
+    endif
+endfunction
+command! -bang -nargs=* MyBuffers call fzf#vim#buffers(fzf#wrap({
+            \ 'options': ['--prompt=Buffers > '],
+            \ 'sink*'  : function('s:parse_fzf_buffer_results'),
+            \ }))
 
 " LaTeX
 let g:tex_flavor = 'latex'
@@ -198,10 +228,9 @@ nnoremap            <A-Down>        :resize +10<CR>
 nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
-nmap                <A-Space>       :call Filter_Buffers()<CR>:B<Space><Tab><C-p>
-nmap                <A-s>           :call Filter_Buffers()<CR>:SB<Space><Tab><C-p>
-nmap                <A-v>           :call Filter_Buffers()<CR>:VB<Space><Tab><C-p>
-nmap                <A-S-x>         :call Filter_Buffers()<CR>:BD<Space><Tab><C-p>
+nmap                <A-Space>       :call Filter_Buffers()<CR>
+nmap                <A-/>           :Lines<CR>
+nmap                <A-e>           :Files<CR>
 nmap                <A-x>           :bp<CR>:bd!<Space>#<CR>
 nmap                <A-q>           ZZ
 nmap                <A-CR>          :call Zoom()<CR>
@@ -245,7 +274,7 @@ cmap                jk              <CR>
 
 tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
-tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>:B<Space><Tab><C-p>
+tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>
 tmap                <Esc>           <C-\><C-n>
 tmap                <A-x>           <C-\><C-n>:bd!<CR>
 tmap                <A-q>           <C-\><C-n>ZZ
@@ -263,6 +292,7 @@ vmap                <A-,>           <gv
 vmap                <A-.>           >gv
 
 " CHORDS
+nmap                <Leader>sb      :Buffers<CR>
 vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 nmap                <Leader>sh      :silent w !share<CR>
 nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
@@ -290,6 +320,15 @@ au FileType neosnippet,help,man setlocal nobuflisted
 
 au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
 
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \|  autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+au FileType fzf
+    \ setlocal nonu nornu |
+    \ tmap <buffer> <A-Space> <A-q> |
+    \ tmap <buffer> <Esc> <A-q> |
+    \ tmap <buffer> <A-CR> <A-CR> |
+    \ tmap <buffer> <A-x> <A-x> |
 " note: synctex-forward breaks on ConTeXt documents!
 au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spell |

@@ -1,20 +1,3 @@
-command -complete=customlist,Completion_Filter -nargs=1 B b <args>
-command -complete=customlist,Completion_Filter -nargs=1 SB sb <args>
-command -complete=customlist,Completion_Filter -nargs=1 VB :vert:sb <args>
-command -complete=customlist,Completion_Filter -nargs=1 BD bd! <args>
-
-function Completion_Filter(A,L,P)
-    let n = tabpagenr()
-    if exists("g:FILTER_" . n)
-        execute "let a = getcompletion(g:FILTER_" . tabpagenr() . ", 'buffer')"
-        let a = filter(a, 'v:val =~ "' . a:A . '"')
-    else
-        execute "let a = getcompletion('', 'buffer')"
-    endif
-    call add(a, '')
-    return a
-endfunction
-
 function! Set_Buffer_Filter()
     let n = tabpagenr()
     call inputsave()
@@ -31,19 +14,15 @@ function! Set_Buffer_Filter()
 endfunction
 
 function! Filter_Buffers()
+    execute 'MyBuffers'
     let n = tabpagenr()
+    let b = ''
     if exists("g:FILTER_" . n)
         execute "let b = g:FILTER_" . n
-        if b != ""
-            echo "filter: " . b
-            execute "filter " . b . " ls"
-            return
-        endif
-    else
-        execute "let g:FILTER_" . tabpagenr() . " = ''"
+    "else
+        "execute "let g:FILTER_" . tabpagenr() . " = ''"
     endif
-    echo ""
-    ls
+    call feedkeys(''.b.' ')
 endfunction
 
 " Zoom
