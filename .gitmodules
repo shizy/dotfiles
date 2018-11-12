@@ -1,21 +1,12 @@
-[submodule "pkgbuilds/dmenu2"]
-	path = pkgbuilds/dmenu2
-	url = https://aur.archlinux.org/dmenu2.git
 [submodule "pkgbuilds/i3lock-fancy-git"]
 	path = pkgbuilds/i3lock-fancy-git
 	url = https://aur.archlinux.org/i3lock-fancy-git.git
 [submodule "pkgbuilds/nodejs-jshint"]
 	path = pkgbuilds/nodejs-jshint
 	url = https://aur.archlinux.org/nodejs-jshint.git
-[submodule "pkgbuilds/qutebrowser-git"]
-	path = pkgbuilds/qutebrowser-git
-	url = https://aur.archlinux.org/qutebrowser-git.git
 [submodule "pkgbuilds/ttf-mplus"]
 	path = pkgbuilds/ttf-mplus
 	url = https://aur.archlinux.org/ttf-mplus.git
-[submodule "pkgbuilds/alacritty-git"]
-	path = pkgbuilds/alacritty-git
-	url = https://aur.archlinux.org/alacritty-git
 [submodule "pkgbuilds/uhk-agent-appimage"]
 	path = pkgbuilds/uhk-agent-appimage
 	url = https://aur.archlinux.org/uhk-agent-appimage.git
