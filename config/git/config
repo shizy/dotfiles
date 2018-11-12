@@ -14,7 +14,7 @@
     safecrlf = true
 
 [format]
-    pretty = "format: %C(14)%h%C(reset) | %an | %C(15)%cr%C(reset) %C(13)%d%C(reset)%n%w(150,11,11)%s%n"
+    pretty = "format: %C(201)%h%C(reset) | %an | %C(202)%cr%C(reset) %C(200)%d%C(reset)%n%w(150,11,11)%s%n"
 
 [color]
     diff = auto
@@ -48,7 +48,7 @@
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [alias]
-    comp = difftool
+    d = difftool
     hist = log --graph --all
     undo = reset --hard
     off = clean -fd
