@@ -22,8 +22,8 @@ exec xset r rate 200 50 &
 exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default" &
 exec compton &
 exec sh "$XDG_CACHE_HOME/fehbg" &
-
 exec unclutter -grab &
+
 ### Settings
 floating_modifier $mod
 default_orientation auto
@@ -39,11 +39,10 @@ for_window [class="xfreerdp"] floating disable
 for_window [class="Alacritty" title="^scratch"] floating enable
 
 ## Window Assignment
-
 assign [class="Alacritty" title="dispatch"] $ws1
 assign [class="qutebrowser"] $ws2
-assign [class="Alacritty" title="^vim$"] $ws3
-assign [class="Alacritty" title="^irc$"] $ws4
+assign [class="Alacritty" title="^vim"] $ws3 # TODO: follow this! window titles are adding an additional ascii character at the end of the title which is breaking explicit window assignment's using regex $
+assign [class="Alacritty" title="^irc"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
@@ -114,8 +113,8 @@ bindsym --release Mod1+p exec --no-startup-id xdotool key --clearmodifiers shift
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86BrightnessUp exec xbacklight -inc 10%
-bindsym XF86BrightnessDown exec xbacklight -dec 10%
+#bindsym XF86BrightnessUp exec xbacklight -inc 10%
+#bindsym XF86BrightnessDown exec xbacklight -dec 10%
 
 # Scratchpads
 bindsym $mod+k exec scratchpad scratchtop
@@ -161,7 +160,7 @@ bindsym $mod+period [urgent=latest] focus
 ### Colors
 client.focused      #F1FAEE $bkg $bkg $bkg #F1FAEE
 client.unfocused    $med $bkg $bkg $bkg $med
-client.urgent       #2ec6c6 $bkg $bkg $bkg $2ec6c6
+client.urgent       #2ec6c6 $bkg $bkg $bkg #2ec6c6
 
 ### Status Bar(s)
 bar {
