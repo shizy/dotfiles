@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
-running=$(i3-msg -t get_tree | grep -c $1)
+running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
 conf="--config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml"
 
 # if not running, spawn scratchpad based on direction and workspace size

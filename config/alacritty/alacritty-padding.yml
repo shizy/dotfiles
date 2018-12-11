@@ -6,9 +6,10 @@ window:
     columns: 1
     lines: 1
   padding:
-    x: 20
-    y: 20
+    x: 10
+    y: 10
   decorations: full
+  dynamic_padding: false
 
 tabspaces: 4
 draw_bold_text_with_bright_colors: true
@@ -20,18 +21,16 @@ font:
     family: M+ 1m
   italic:
     family: M+ 1m
-  size: 13
+  size: 7
   offset:
     x: 0
     y: 0
   glyph_offset:
     x: 0
     y: 0
-  scale_with_dpi: false
   use_thin_strokes: true
 
 render_timer: false
-custom_cursor_colors: false
 
 scrolling:
     history: 10000
@@ -101,9 +100,8 @@ selection:
 
 dynamic_title: true
 
-hide_cursor_when_typing: false
-
-cursor_style: Block
+cursor:
+  style: Block
 
 live_config_reload: true
 

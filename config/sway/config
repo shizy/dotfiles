@@ -41,8 +41,8 @@ for_window [class="Alacritty" title="^scratch"] floating enable
 ## Window Assignment
 assign [class="Alacritty" title="dispatch"] $ws1
 assign [class="qutebrowser"] $ws2
-assign [class="Alacritty" title="^vim"] $ws3 # TODO: follow this! window titles are adding an additional ascii character at the end of the title which is breaking explicit window assignment's using regex $
-assign [class="Alacritty" title="^irc"] $ws4
+assign [class="Alacritty" title="^vim$"] $ws3
+assign [class="Alacritty" title="^irc$"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
