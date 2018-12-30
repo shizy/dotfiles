@@ -10,6 +10,9 @@
 
 !/config/ag
 !/config/alacritty
+!/config/fish
+/config/fish/fishd.*
+!/config/fish/conf.d
 !/config/fontconfig
 !/config/i3
 !/config/git
@@ -26,7 +29,6 @@
 !/config/user-dirs.dir
 !/config/x11
 !/config/zathura
-!/config/zsh
 
 # GPG
 !/config/gnupg
