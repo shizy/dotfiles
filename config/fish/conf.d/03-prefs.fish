@@ -76,6 +76,8 @@ function fish_user_key_bindings
     bind -M insert \eH 'pushd ..; commandline -f repaint'
     bind -M default \eL 'popd > /dev/null ^ /dev/null; commandline -f repaint'
     bind -M insert \eL 'popd > /dev/null ^ /dev/null; commandline -f repaint'
+    bind -M insert \e/ complete-and-search
+    bind -M default \e/ complete-and-search
 end
 #}}}
 
