@@ -37,7 +37,6 @@ set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%m
 set completeopt-=preview
 set tags=./tags;/
-
 let mapleader = ";"
 let maplocalleader = ";"
 "}}}

@@ -32,10 +32,15 @@ set __fish_git_prompt_color_upstream_behind red
 set __fish_git_prompt_char_untrackedfiles ''
 set __fish_git_prompt_char_dirtystate '  '
 set __fish_git_prompt_char_stagedstate '  '
-set __fish_git_prompt_char_stashstate '  '
+set __fish_git_prompt_char_stashstate ' '
 set __fish_git_prompt_char_upstream_behind ' '
 set __fish_git_prompt_char_upstream_ahead ' '
+set __fish_git_prompt_char_upstream_equal ''
+
 set fish_prompt_pwd_dir_length 4
+set fish_cursor_default block
+set fish_cursor_insert underscore
+set fish_cursor_visual block
 
 function fish_mode_prompt
 end
@@ -43,16 +48,19 @@ function fish_prompt
     set mode ">"
     switch $fish_bind_mode
         case 'default'
-            set mode " "
+            set mode ":"
     end
-    set_color -o (echo $COLOR_URGENT | sed -e 's/#//g') 
-    echo -n (prompt_pwd)
-    set_color normal
     set git (__fish_git_prompt)
     if test ! -z "$git"
-        set git (echo $git | sed -e 's/(/\ \ /;s/)//g')
+        set git (echo $git | sed -e 's/(/\ \ /;s/[()…]//g')
+        set git " $git "
     end
-    echo -n " $git $mode "
+    echo -n "$git"
+    set_color -o (echo $COLOR_URGENT | sed -e 's/#//g') 
+    echo -n " " (prompt_pwd)
+    set_color -o (echo $COLOR_DARK_OFFSET | sed -e 's/#//g')
+    echo -n "  $mode  "
+    set_color normal
 end
 #}}}
 
