@@ -1,9 +1,15 @@
 # vim: ft=sh:
 
+set color_normal (echo $COLOR_NORMAL | sed -e 's/#//g')
+set color_urgent (echo $COLOR_URGENT | sed -e 's/#//g')
+set color_dark_offset (echo $COLOR_DARK_OFFSET | sed -e 's/#//g')
+
 set -U fish_greeting
-set fish_color_command (echo $COLOR_NORMAL | sed -e 's/#//g')
-set fish_color_redirection (echo $COLOR_URGENT | sed -e 's/#//g')
-set fish_color_end (echo $COLOR_URGENT | sed -e 's/#//g')
+set fish_color_command $color_normal
+set fish_color_redirection $color_urgent
+set fish_color_end $color_urgent
+set fish_pager_color_prefix $color_urgent
+set fish_pager_color_description $color_dark_offset
 
 # Alias{{{
 alias ..="pushd .."
@@ -56,9 +62,9 @@ function fish_prompt
         set git " $git "
     end
     echo -n "$git"
-    set_color -o (echo $COLOR_URGENT | sed -e 's/#//g') 
+    set_color -o $color_urgent
     echo -n " " (prompt_pwd)
-    set_color -o (echo $COLOR_DARK_OFFSET | sed -e 's/#//g')
+    set_color -o $color_dark_offset
     echo -n "  $mode  "
     set_color normal
 end
