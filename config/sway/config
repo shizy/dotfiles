@@ -128,7 +128,7 @@ bindsym $mod+Control+$up focus up
 bindsym $mod+Control+$down focus down
 bindsym $mod+Return fullscreen
 bindsym $mod+space floating toggle
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab exec $HOME/local/bin/flexible_focus.sh
 
 # Workspace control
 bindsym $mod+1 workspace $ws1
