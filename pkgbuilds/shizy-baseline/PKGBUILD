@@ -8,12 +8,10 @@ url=https://github.com/shizy/dotfiles
 license=('ISC')
 depends=(
     'alsa-utils'
-    'git'
     'ntp'
-    'zsh'
+    'fish'
 )
 source=(
-    01_wheel
     pam_env.conf
     systemd-user
 )
@@ -21,11 +19,8 @@ install=hooks.install
 
 package() {
     install -Dm 644 $srcdir/pam_env.conf $pkgdir/etc/security/pam_env.conf.baseline
-    install -dm 750 $pkgdir/etc/sudoers.d
-    install -Dm 750 $srcdir/01_wheel $pkgdir/etc/sudoers.d/01_wheel
     install -Dm 644 $srcdir/systemd-user $pkgdir/etc/pam.d/systemd-user.baseline
 }
 
-md5sums=('a28ba1709db9a9c1e54f3de1bc0952d5'
-         'e312da26b04864d4bcd8f6975ee8af82'
+md5sums=('e312da26b04864d4bcd8f6975ee8af82'
          '7dc43af266305387414beb87dcd6d3fc')

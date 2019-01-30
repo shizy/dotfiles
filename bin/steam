@@ -1,3 +1,11 @@
 #! /bin/sh
+
+if [ $(pacman -Qs steam | wc -l) -eq 0 ]; then
+
+    mkdir $XDG_DATA_HOME/steam_junk > /dev/null
+    # requires multi-lib!
+    sudo pacman -S --noconfirm steam
+fi
+
 HOME=$XDG_DATA_HOME/steam_junk
 exec /usr/bin/steam

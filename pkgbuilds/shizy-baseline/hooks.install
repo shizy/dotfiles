@@ -9,10 +9,6 @@ pre_install() {
 
 ## arg 1:  the new package version
 post_install() {
-    if [ $(cat /etc/passwd | grep shizy | wc -l) -lt 1 ]; then
-        useradd -m -G wheel -s /bin/zsh shizy
-        passwd shizy
-    fi
     cat /etc/security/pam_env.conf.baseline > /etc/security/pam_env.conf
     cp -f /etc/pam.d/systemd-user.baseline /etc/pam.d/systemd-user
     systemctl enable --now ntpd.service
