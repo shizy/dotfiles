@@ -22,5 +22,5 @@ package() {
     install -Dm 644 $srcdir/systemd-user $pkgdir/etc/pam.d/systemd-user.baseline
 }
 
-md5sums=('e312da26b04864d4bcd8f6975ee8af82'
+md5sums=('c05ab3107888aaaff9fd32c51a7c522d'
          '7dc43af266305387414beb87dcd6d3fc')
