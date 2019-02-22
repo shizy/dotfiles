@@ -43,20 +43,22 @@ assign [class="Alacritty" title="dispatch"] $ws1
 assign [class="qutebrowser"] $ws2
 assign [class="Alacritty" title="^vim$"] $ws3
 assign [class="Alacritty" title="^irc$"] $ws4
+#assign [class="qutebrowser" title="^discord$"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
 
 ### Modes
-set $mode_launch [b]rowser, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]athura
+set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]athura
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
+    bindsym d exec /usr/bin/qutebrowser --target window https://discordapp.com/channels/@me; mode "default"
     bindsym i exec $term --title=irc -e weechat-curses; mode "default"
     bindsym s exec steam; mode "default"
     bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
     bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default"
     bindsym u exec uhk-agent; mode "default"
-    bindsym z exec zathura
+    bindsym z exec zathura; mode "default"
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
