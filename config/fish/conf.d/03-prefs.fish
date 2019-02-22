@@ -25,6 +25,7 @@ alias du="du --time -had 1 | sort -t '/' -k 2,2"
 alias userctl="systemctl --user"
 alias prox="proxychains -f $XDG_CONFIG_HOME/proxychains/proxychains.conf -q"
 alias netctl="sudo netctl-auto"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 #}}}
 
 # Prompt {{{

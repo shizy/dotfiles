@@ -80,6 +80,16 @@ set -x TEXMFVAR $XDG_CACHE_HOME/texlive
 # weechat
 set -x WEECHAT_HOME $PRIVATE/weechat
 
+# wine
+set -x WINEPREFIX $XDG_DATA_HOME/wine
+set -x WINEARCH win64
+set -x __GL_THREADED_OPTIMIZATIONS 0
+set -x PROTON_NO_ESYNC 0
+set -x PROTON_NO_D3D11 0
+set -x PROTON_USE_WINED3D 1
+set -x __GL_SYNC_TO_VBLANK 0
+set -x __GL_YIELD "NOTHING"
+
 # x11
 set -x XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -x XINITRC $XDG_CONFIG_HOME/x11/xinitrc
