@@ -42,6 +42,8 @@
 
 !/pkgbuilds/shizy-baseline
 !/pkgbuilds/shizy-baseline/*
+!/pkgbuilds/shizy-b450m-pro-m2
+!/pkgbuilds/shizy-b450m-pro-m2/*
 !/pkgbuilds/shizy-hp-elitebook-2540p
 !/pkgbuilds/shizy-hp-elitebook-2540p/*
 !/pkgbuilds/shizy-xps-13
