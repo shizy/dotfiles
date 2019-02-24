@@ -1,0 +1,34 @@
+# Maintainer: shizy <shizukesa4 at gmail dot com>
+pkgname=shizy-b450-pro-m2
+pkgver=1
+pkgrel=1
+pkgdesc='system b450m pro m2 config'
+arch=('any')
+url=https://github.com/shizy/dotfiles
+license=('ISC')
+depends=(
+    'pulseaudio'
+    'pulsemixer'
+    'xf86-video-amdgpu'
+    'mesa'
+    'lib32-mesa'
+    'vulkan-radeon'
+    'lib32-vulkan-radeon'
+    'libva-mesa-driver'
+    'lib32-libva-mesa-driver'
+    'mesa-vdpau'
+    'lib32-mesa-vdpau'
+)
+source=(
+    asound.conf
+    default.pa
+)
+install=hooks.install
+
+package() {
+    install -Dm 644 $srcdir/asound.conf $pkgdir/etc/asound.conf
+    install -Dm 644 $srcdir/default.pa $pkgdir/etc/pulse/default.pa.pkg
+}
+
+md5sums=('10f879abc41012056b914019909bcd16'
+         '27678fed9f8e34dd94db16ae10969b42')

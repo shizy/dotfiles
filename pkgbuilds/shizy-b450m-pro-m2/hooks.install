@@ -1,0 +1,38 @@
+# This is a default template for a post-install scriptlet.
+# Uncomment only required functions and remove any functions
+# you don't need (and this header).
+
+## arg 1:  the new package version
+pre_install() {
+    echo "[multilib]" >> /etc/pacman.conf
+    echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+    return;
+}
+
+## arg 1:  the new package version
+post_install() {
+    cp -f /etc/pulse/default.pa.pkg /etc/pulse/default.pa
+    return;
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+pre_upgrade() {
+    return;
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+post_upgrade() {
+    post_install
+}
+
+## arg 1:  the old package version
+#pre_remove() {
+	# do something here
+#}
+
+## arg 1:  the old package version
+post_remove() {
+    echo "" > /etc/asound.conf
+}
