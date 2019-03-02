@@ -74,13 +74,14 @@ mode "$mode_layout" {
     bindsym Return mode "default"
 }
 
-set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [s]sh
+set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [p]ass, [s]sh
 mode "$mode_search" {
     bindsym b exec scratchpad scratchsearch fuzzysearch bin; mode "default"
     bindsym d exec scratchpad scratchsearch fuzzysearch diff; mode "default"
     bindsym f exec scratchpad scratchsearch fuzzysearch file; mode "default"
     bindsym k exec scratchpad scratchsearch fuzzysearch kill; mode "default"
     bindsym m exec scratchpad scratchsearch fuzzysearch man; mode "default"
+    bindsym p exec scratchpad scratchsearch fuzzysearch pwd; mode "default"
     bindsym s exec scratchpad scratchsearch fuzzysearch ssh; mode "default"
 
     bindsym Return mode "default"

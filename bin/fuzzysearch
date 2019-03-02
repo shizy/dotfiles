@@ -68,4 +68,17 @@ case $1 in
             i3-msg exec "alacritty --title=dispatch -e $LOCALDIR/bin/ssh $loc"
         done
         ;;
+    "pwd")
+        if [ ! -f $XDG_RUNTIME_DIR/bitwarden ]; then
+            bw unlock --raw > $XDG_RUNTIME_DIR/bitwarden
+        fi
+        session=$(cat $XDG_RUNTIME_DIR/bitwarden)
+        bw sync --session=$session > /dev/null
+        sel=$(fzf --prompt="$1 > " <<< $(bw list items --session=$session | jq '.[]? | "\(.name)_{\(.id)}"' | sed -e 's/"//g'))
+        for p in ${sel[@]}
+        do
+            id=$(echo $p | grep -oP '(?<={).*?(?=})')
+            bw get password $id --session=$session | xclip -in -selection clipboard
+        done
+        ;;
 esac
