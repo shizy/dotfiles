@@ -95,7 +95,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'fatih/vim-go'
-Plug 'lervag/vimtex' "only for completion and highlighting
+Plug 'lervag/vimtex'
 
 call plug#end()
 "}}}
@@ -160,10 +160,6 @@ let g:neomake_informational_sign = {
             \ 'texthl': 'Question',
             \ }
 let g:neomake_javascript_enabled_makers = ['jshint']
-let g:neomake_tex_rubber_maker = {
-            \ 'args': ['--synctex', '--inplace', '-d'],
-            \ }
-let g:neomake_tex_enabled_makers = ['rubber']
 
 " netrw
 let g:netrw_dirhistmax = 0
@@ -188,6 +184,8 @@ let g:go_highlight_function_arguments = 1
 let g:go_term_mode = "split"
 
 " vimtex
+let g:vimtex_quickfix_enabled = 0
+let g:vimtex_view_method = 'zathura'
 if !exists('g:deoplete#omni#input_patterns')
       let g:deoplete#omni#input_patterns = {}
   endif
@@ -334,7 +332,7 @@ au BufNewFile,BufRead,BufWinEnter *.tex
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ setlocal syntax=tex |
-    \ nmap <silent><buffer> <Leader>; :call system("zathura --synctex-forward=" . line('.') . ":" . col('.') . ":" . expand("%:p") . " " . expand("%:p:r") . ".pdf &")<CR>
+    \ nmap <silent><buffer> <Leader>; :VimtexCompileSS<CR> \| :VimtexView<CR>
 au BufWinEnter *.md
     \ set syntax=markdown |
     \ setlocal nofoldenable |
