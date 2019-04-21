@@ -68,14 +68,17 @@ colors:
     green:   '0x8e8e8e'
     yellow:  '0xa0a0a0'
     blue:    '0x686868'
-    #magenta: '0x747474'
-    magenta: '0x000000'
-    #cyan:    '0x868686'
-    cyan:    '0x000000'
-    #white:   '0xb9b9b9'
-    white:   '0x000000'
+    magenta: '0x747474'
+    cyan:    '0x868686'
+    white:   '0xb9b9b9'
 
   indexed_colors:
+    - { index: 16, color: '0x999999' }
+    - { index: 17, color: '0x5e5e5e' }
+    - { index: 18, color: '0x252525' }
+    - { index: 19, color: '0x464646' }
+    - { index: 20, color: '0xababab' }
+    - { index: 21, color: '0xe3e3e3' }
     - { index: 200, color: '0x2ec6c6' }
     - { index: 201, color: '0xF1FAEE' }
     - { index: 202, color: '0x7E8AA2' }
