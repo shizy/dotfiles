@@ -10,6 +10,3 @@
 [submodule "pkgbuilds/uhk-agent-appimage"]
 	path = pkgbuilds/uhk-agent-appimage
 	url = https://aur.archlinux.org/uhk-agent-appimage.git
-[submodule "pkgbuilds/bitwarden-cli"]
-	path = pkgbuilds/bitwarden-cli
-	url = https://aur.archlinux.org/bitwarden-cli.git
