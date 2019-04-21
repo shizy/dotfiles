@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # fzf default options defined in .zprofile
+clear
 
 case $1 in
     "bin")
@@ -69,16 +70,27 @@ case $1 in
         done
         ;;
     "pwd")
+        if [ ! -f $XDG_DATA_HOME/npm/bin/bw ]; then
+            npm install -g @bitwarden/cli
+        fi
+        if [ "$($XDG_DATA_HOME/npm/bin/bw login --check)" == "You are not logged in." ]; then
+            $XDG_DATA_HOME/npm/bin/bw login --raw > $XDG_RUNTIME_DIR/bitwarden
+        fi
+        #if [[ ! -f $XDG_RUNTIME_DIR/bitwarden || "$($XDG_DATA_HOME/npm/bin/bw list items --session=$(cat $XDG_RUNTIME_DIR/bitwarden))" == "Vault is locked." ]]; then
         if [ ! -f $XDG_RUNTIME_DIR/bitwarden ]; then
-            bw unlock --raw > $XDG_RUNTIME_DIR/bitwarden
+            $XDG_DATA_HOME/npm/bin/bw unlock --raw > $XDG_RUNTIME_DIR/bitwarden
         fi
         session=$(cat $XDG_RUNTIME_DIR/bitwarden)
-        bw sync --session=$session > /dev/null
-        sel=$(fzf --prompt="$1 > " <<< $(bw list items --session=$session | jq '.[]? | "\(.name)_{\(.id)}"' | sed -e 's/"//g'))
-        for p in ${sel[@]}
-        do
-            id=$(echo $p | grep -oP '(?<={).*?(?=})')
-            bw get password $id --session=$session | xclip -in -selection clipboard
-        done
+        sel=$(fzf -1 --prompt="$1 > " <<< $($XDG_DATA_HOME/npm/bin/bw list items --session=$session | jq '.[].name') | sed -e s/\"//g)
+        p=$($XDG_DATA_HOME/npm/bin/bw get password $sel --session=$session)
+        if [ ! -z "${QUTE_FIFO+x}" ]; then
+            # called by qutebrowser
+            u=$($XDG_DATA_HOME/npm/bin/bw get username $sel --session=$session)
+            echo "insert-text $u ;; later 50 fake-key <Tab> ;; later 50 insert-text $p ;; enter-mode insert" >> "$QUTE_FIFO"
+            exit
+        else
+            # copy pass to clipboard
+            echo $p | xsel -b -i -z
+        fi
         ;;
 esac

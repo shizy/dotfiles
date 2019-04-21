@@ -28,7 +28,7 @@ ttf-dejavu
 ttf-liberation
 weechat
 wget
-xclip
+xsel
 xorg-server
 xorg-xinit
 xorg-xrandr

@@ -1,49 +1,40 @@
 #!/bin/bash
 
 running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
+scratchpad=", move scratchpad, scratchpad show"
 conf="--config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml"
+window_height_percentage=46
+window_width_percentage=80
+yadjust=0
+direction="up"
 
 # if not running, spawn scratchpad based on direction and workspace size
-if [ $running == 0 ] || [ $1 === "search" ]; then
-    # needle may not be static, specifically "focused"
-    res="$(i3-msg -t get_workspaces | grep -oP '(?<="focused":true,"rect":).*?(?=})'),"
-
-    w_top=$(grep -oP '(?<="y":).*?(?=,)' <<< "$res")
-    w_left=$(grep -oP '(?<="x":).*?(?=,)' <<< "$res")
-    w_width=$(grep -oP '(?<="width":).*?(?=,)' <<< "$res")
-    w_height=$(grep -oP '(?<="height":).*?(?=,)' <<< "$res")
+if [ $running == 0 ] || [ $1 == "search" ]; then
+    # primary?
+    workspace_height=$(i3-msg -t get_outputs | jq '. | map(select(.active == true) | .rect) | .[].height')
+    workspace_half_height=$((workspace_height / 2))
+    window_half_height=$(($workspace_height * $window_height_percentage / 100 / 2))
+    yadjust=$((workspace_half_height - window_half_height))
+    echo $workspace_half_height
 
     case $1 in
-        "scratchtop")
-            x=$(($w_left + (($w_width / 100) * 3)))
-            #y=$w_top
-            y=-1
-            h=$((($w_height / 2) - ($w_top * 2)))
-            w=$((($w_width / 100) * 90))
-            ;;
         "scratchbottom" | "scratchsearch")
-            x=$(($w_left + (($w_width / 100) * 3)))
-            y=$((($w_height / 2) + ($w_top * 2) + 1))
-            h=$((($w_height / 2) - ($w_top * 2)))
-            w=$((($w_width / 100) * 90))
+            direction="down"
             if [ $1 == "scratchsearch" ]; then
-                y=$(($w_height - ($w_height / 3) - ($w_top / 2)))
-                h=$(($w_height / 3))
                 conf=""
+                scratchpad=""
             fi
             ;;
     esac
 
     cmd="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -s $1"
+    positioning="i3-msg floating enable, resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px $scratchpad"
 
     if [ $2 ]; then
        cmd="${@:2}"
     fi
 
-    alacritty $conf --title="$1" -e $cmd & disown
-    #echo "${w} ${h}"
-    sleep 0.5
-    i3-msg "[class=\"Alacritty\" title=\"$1\"] move scratchpad, move position ${x}px ${y}px, resize shrink width 10000px; resize grow width ${w}px; resize shrink height 10000px; resize grow height ${h}"
+    alacritty $conf --title=$1 -e fish -c "$positioning" -c "$cmd"
 else
     i3-msg "[class=\"Alacritty\" title=\"$1\"] scratchpad show"
 fi
