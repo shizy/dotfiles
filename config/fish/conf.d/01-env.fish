@@ -25,7 +25,7 @@ set -x CARGO_HOME $XDG_DATA_HOME/cargo
 set -x ELINKS_CONFDIR $XDG_CONFIG_HOME/elinks
 
 # fzf
-set -x FZF_DEFAULT_OPTS "--color dark,hl:200,pointer:200,marker:202,prompt:200 -m --select-1 --exit-0 --bind 'esc:abort,alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-enter:toggle,alt-x:unix-line-discard'"
+set -x FZF_DEFAULT_OPTS "--margin=2,5 --color dark,hl:200,pointer:200,marker:202,prompt:200 -m --select-1 --exit-0 --bind 'esc:abort,alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-enter:toggle,alt-x:unix-line-discard'"
 
 # git
 set -x GIT_SSH $LOCALDIR/bin/ssh

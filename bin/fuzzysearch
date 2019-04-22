@@ -18,7 +18,7 @@ case $1 in
         fi
         ;;
     "file")
-        sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
+        sel=$(fzf --preview="cat {}" --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
         for file in ${sel[@]}
         do
             ftype=$(file $file --mime-type | awk '{print $file}')
