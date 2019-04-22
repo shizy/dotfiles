@@ -15,12 +15,12 @@ tabspaces: 4
 draw_bold_text_with_bright_colors: true
 font:
   normal:
-    family: M+ 1m
+    family: Iosevka SS08
   bold:
-    family: M+ 1m
+    family: Iosevka SS08
   italic:
-    family: M+ 1m
-  size: 7
+    family: Iosevka SS08
+  size: 11
   offset:
     x: 0
     y: 0
