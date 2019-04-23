@@ -10,3 +10,6 @@
 [submodule "pkgbuilds/uhk-agent-appimage"]
 	path = pkgbuilds/uhk-agent-appimage
 	url = https://aur.archlinux.org/uhk-agent-appimage.git
+[submodule "pkgbuilds/ttf-iosevka-ss08"]
+	path = pkgbuilds/ttf-iosevka-ss08
+	url = https://aur.archlinux.org/ttf-iosevka-ss08
