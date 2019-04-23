@@ -83,6 +83,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'do': 'make' } "go get -u github.com/mdempsky/gocode
+Plug 'zchee/deoplete-clang'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
@@ -102,12 +103,21 @@ call plug#end()
 
 " ========== SETTINGS =========={{{
 
+" Colorscheme
+set background=dark
+set termguicolors
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_italic = 1
+call Scheme("gruvbox")
+
 " Deoplete / Neosnippet
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 0
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_optional_arguments = 0
 let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME . '/nvim/snippets'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
 
 " Fzf
 let g:fzf_action = {
@@ -139,12 +149,6 @@ command! -bang -nargs=* MyBuffers call fzf#vim#buffers(fzf#wrap({
 
 " LaTeX
 let g:tex_flavor = 'latex'
-
-" Colorscheme
-set background=dark
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_italic = 1
-call Scheme("gruvbox")
 
 " Neomake
 let g:neomake_error_sign = {
@@ -348,7 +352,7 @@ au FileType c,cpp
     \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |
     \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
     \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
-    \ call deoplete#custom#buffer_option('auto_complete', v:false)
+    "\ call deoplete#custom#buffer_option('auto_complete', v:false)
 au FileType go,c,cpp
     \ let b:surround_47 = "/*\r*/" |
 au FileType help,man

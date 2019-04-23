@@ -6,8 +6,8 @@ window:
     columns: 1
     lines: 1
   padding:
-    x: 10
-    y: 10
+    x: 20
+    y: 20
   decorations: full
   dynamic_padding: false
 
@@ -16,11 +16,11 @@ draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: M+ 1m
+    family: Iosevka SS08
   bold:
-    family: M+ 1m
+    family: Iosevka SS08
   italic:
-    family: M+ 1m
+    family: Iosevka SS08
   size: 7
   offset:
     x: 0

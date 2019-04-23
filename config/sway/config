@@ -32,9 +32,10 @@ workspace_layout default
 new_window pixel 1
 new_float pixel 1
 hide_edge_borders smart
-font pango:M+ 1m, Font Awesome 5 Free 11
+font pango:Iosevka SS08, Font Awesome 5 Free 11
 
 ### Window handling
+for_window [class="ascii3d"] floating enable
 for_window [class="xfreerdp"] floating disable
 for_window [class="Alacritty" title="^scratch"] floating enable
 
@@ -168,7 +169,7 @@ client.urgent       #2ec6c6 $bkg $bkg $bkg #2ec6c6
 ### Status Bar(s)
 bar {
     id bar-1
-    font pango:M+ 1m, Font Awesome 5 Free 11
+    font pango:Iosevka SS08, Font Awesome 5 Free 11
     status_command i3status --config ~/local/config/i3/status.conf
     strip_workspace_numbers yes
     mode dock
