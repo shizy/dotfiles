@@ -120,6 +120,14 @@ let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
 
 " Fzf
+let g:fzf_colors = {
+            \ 'fg':         ['fg', 'Comment'],
+            \ 'bg':         ['bg', 'Normal'],
+            \ 'hl':         ['fg', 'CursorLine'],
+            \ 'info':       ['fg', 'CursorLine'],
+            \ 'prompt':     ['fg', 'MoreMsg'],
+            \ 'pointer':    ['fg', 'MoreMsg'],
+            \ }
 let g:fzf_action = {
             \ 'alt-x': 'bdelete',
             \ 'alt-t': '$tab sbuffer',
