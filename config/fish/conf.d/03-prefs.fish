@@ -1,8 +1,8 @@
 # vim: ft=sh:
 
-set color_normal (echo $COLOR_NORMAL | sed -e 's/#//g')
-set color_urgent (echo $COLOR_URGENT | sed -e 's/#//g')
-set color_dark_offset (echo $COLOR_DARK_OFFSET | sed -e 's/#//g')
+set color_normal (echo $COLOR_LIGHT | sed -e 's/#//g')
+set color_urgent (echo $COLOR_ACCENT | sed -e 's/#//g')
+set color_dark_offset (echo $COLOR_MEDIUM | sed -e 's/#//g')
 
 set -U fish_greeting
 set fish_color_command $color_normal

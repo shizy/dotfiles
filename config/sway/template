@@ -159,9 +159,9 @@ bindsym $mod+l workspace next
 bindsym $mod+period [urgent=latest] focus
 
 ### Colors
-client.focused      #F1FAEE #101010 #101010 #101010 #F1FAEE
-client.unfocused    #928374 #101010 #101010 #101010 #928374
-client.urgent       #2EC6C6 #101010 #101010 #101010 #2EC6C6
+client.focused      #FFFFFF #000000 #000000 #000000 #FFFFFF
+client.unfocused    #888888 #000000 #000000 #000000 #888888
+client.urgent       #FF0000 #000000 #000000 #000000 #FF0000
 
 ### Status Bar(s)
 bar {
@@ -175,12 +175,12 @@ bar {
     modifier Mod4
     position top
     colors {
-        statusline #928374
-        background #101010
+        statusline #888888
+        background #000000
 
-        focused_workspace  #928374 #928374 #101010
-        active_workspace   #101010 #101010 #F1FAEE99
-        inactive_workspace #101010 #101010 #928374
-        urgent_workspace   #101010 #101010 #2EC6C6
+        focused_workspace  #888888 #888888 #000000
+        active_workspace   #000000 #000000 #FFFFFF99
+        inactive_workspace #000000 #000000 #888888
+        urgent_workspace   #000000 #000000 #FF0000
     }
 }

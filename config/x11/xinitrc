@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sxhkd &
-#exec bspwm
+# ugly but works
+cat $XDG_CONFIG_HOME/sway/template | sed 's/#000000/'"$COLOR_DARK"'/g; s/#888888/'"$COLOR_MEDIUM"'/g; s/#FFFFFF/'"$COLOR_LIGHT"'/g; s/#FF0000/'"$COLOR_ACCENT"'/g;' > $XDG_CONFIG_HOME/sway/config
 
 exec i3

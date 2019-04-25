@@ -1,11 +1,10 @@
 # vim: ft=sh:
 
 # Personal Preferences
-set -x COLOR_DARK "#080808"
-set -x COLOR_DARK_OFFSET "#585858"
-set -x COLOR_URGENT "#2EC6C6"
-set -x COLOR_NORMAL "#F1FAEE"
-set -x COLOR_NOTIFY "#7E8AA2"
+set -x COLOR_DARK   "#101010"
+set -x COLOR_MEDIUM "#928374"
+set -x COLOR_LIGHT  "#F1FAEE"
+set -x COLOR_ACCENT "#2EC6C6"
 set -x FONT_MONO "Iosevka SS08"
 set -x FONT_SIZE 11
 set -x FONT_ICON "Icons"
