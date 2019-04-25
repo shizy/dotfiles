@@ -123,8 +123,11 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
 let g:fzf_colors = {
             \ 'fg':         ['fg', 'Comment'],
             \ 'bg':         ['bg', 'Normal'],
-            \ 'hl':         ['fg', 'CursorLine'],
+            \ 'hl':         ['fg', 'MoreMsg'],
             \ 'info':       ['fg', 'CursorLine'],
+            \ 'fg+':        ['fg', 'CursorLine'],
+            \ 'bg+':        ['bg', 'CursorLine', 'CursorLine'],
+            \ 'hl+':        ['fg', 'MoreMsg'],
             \ 'prompt':     ['fg', 'MoreMsg'],
             \ 'pointer':    ['fg', 'MoreMsg'],
             \ }
