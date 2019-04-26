@@ -53,9 +53,12 @@ au InsertLeave *
             \ exec "hi StatusLineThree ctermfg=234 ctermbg=201 guifg=" . d . " guibg=" . l |
             \ exec "hi CursorLineNr    ctermfg=201 ctermbg=none cterm=bold guifg=" . l . " guibg=none gui=none" |
 
+    "\ set statusline=%#StatusLineThree# |
+    "\ set statusline+=\ \ %{toupper(mode())}\ \ |
+    "\ set statusline+=%#StatusLineTwo# |
 au VimEnter,WinEnter,BufWinEnter *
     \ set statusline=%#StatusLineThree# |
-    \ set statusline+=\ \ %{toupper(mode())}\ \ |
+    \ set statusline+=\ \ %{ShowMode()}\ \ |
     \ set statusline+=%#StatusLineTwo# |
     \ set statusline+=%{FugitiveStatus()} |
     \ set statusline+=%{FileFlags()} |

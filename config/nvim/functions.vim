@@ -105,6 +105,19 @@ function! FugitiveStatus()
     endif
 endfunction
 
+function! ShowMode()
+    let mode=toupper(mode())
+    if mode == 'N'
+        return ' '
+    endif
+    if mode == 'I'
+        return ' '
+    endif
+    if mode == 'V'
+        return ' '
+    endif
+endfunction
+
 function! FileFlags()
     let output = ""
     if &ro == 1
