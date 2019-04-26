@@ -6,7 +6,7 @@ set $up k
 set $right l
 set $term alacritty
 
-set $ws1 1:  
+set $ws1 1:  
 set $ws2 2:  
 set $ws3 3:  
 set $ws4 4:  

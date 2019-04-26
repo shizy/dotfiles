@@ -98,24 +98,48 @@ function! FugitiveStatus()
         if x==""
             return ""
         endif
+        let x = "    " . x . "  "
         let y = sy#repo#get_stats()
-        return "  +" . y[0] . " ~" . y[1] . " -" . y[2] . "    " . x . " "
+        if y[0] == 0 && y[1] == 0 && y[2] == 0
+            return x
+        endif
+        return "  +" . y[0] . " ~" . y[1] . " -" . y[2] . x
     else
         return ""
     endif
 endfunction
 
-function! ShowMode()
+function! StatusLine()
     let mode=toupper(mode())
+    let output = ''
+    let three = '%#StatusLineThreeN#'
     if mode == 'N'
-        return ' '
+        let three = '%#StatusLineThreeN#'
+        let output .= three . '     '
     endif
     if mode == 'I'
-        return ' '
+        let three = '%#StatusLineThreeI#'
+        let output .= three . '     '
     endif
     if mode == 'V'
-        return ' '
+        let three = '%#StatusLineThreeV#'
+        let output .= three . '     '
     endif
+    if mode == 'C'
+        let three = '%#StatusLineThreeC#'
+        let output .= three . '     '
+    endif
+    let output .= '%#StatusLineTwo#'
+    let output .= '  %{&filetype}  '
+    let output .= '%{FileFlags()}'
+    let output .= '%#StatusLine#'
+    let output .= ' %F'
+    let output .= '%='
+    let output .= '%#StatusLineTwo#'
+    let output .= '%{FugitiveStatus()}'
+    let output .= three
+    let output .= '  %p   %{ContextTrack()}'
+    return output
 endfunction
 
 function! FileFlags()
@@ -128,7 +152,7 @@ function! FileFlags()
     endif
     let ws = search('\s\+$', 'nw')
     if ws != 0
-        let output .= "   " . ws . " "
+        let output .= "   " . ws . " "
     endif
     return output
 endfunction

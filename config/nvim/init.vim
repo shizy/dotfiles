@@ -171,7 +171,7 @@ let g:neomake_warning_sign = {
             \ 'texthl': 'WarningMsg',
             \ }
 let g:neomake_informational_sign = {
-            \ 'text': '',
+            \ 'text': '',
             \ 'texthl': 'Question',
             \ }
 let g:neomake_javascript_enabled_makers = ['jshint']

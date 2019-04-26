@@ -27,17 +27,20 @@ exec "hi TabLineSel               ctermfg=232 ctermbg=239  cterm=none         gu
 exec "hi TabLine                  ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=none"
 exec "hi EndOfBuffer              ctermfg=234 ctermbg=none                    guifg=". d ."   guibg=none"
 exec "hi Folded                   ctermfg=239 ctermbg=none cterm=bold         guifg=". m ."   guibg=none      gui=bold"
-"
+
 exec "hi Pmenu                    ctermfg=201 ctermbg=232  cterm=none         guifg=". l ."   guibg=". d ."   gui=none"
 exec "hi PmenuSel                 ctermfg=232 ctermbg=200  cterm=bold         guifg=". d ."   guibg=". a ."   gui=bold"
-"
+
 exec "hi ContextLine                          ctermbg=233  cterm=none                         guibg=#686868   gui=none"
-"
-exec "hi StatusLineThree          ctermfg=234 ctermbg=201  cterm=bold         guifg=". d ."   guibg=". l ."   gui=bold"
-exec "hi StatusLineTwo            ctermfg=232 ctermbg=239  cterm=none         guifg=". d ."   guibg=". m ."   gui=none"
+
+exec "hi StatusLineThreeN         ctermfg=234 ctermbg=201  cterm=bold         guifg=". d ."   guibg=". l ."   gui=bold"
+exec "hi StatusLineThreeV         ctermfg=234 ctermbg=201  cterm=bold         guifg=". l ."   guibg=". d ."   gui=bold"
+exec "hi StatusLineThreeC         ctermfg=234 ctermbg=200  cterm=bold         guifg=". a ."   guibg=". d ."   gui=bold"
+exec "hi StatusLineThreeI         ctermfg=234 ctermbg=200  cterm=bold         guifg=". d ."   guibg=". a ."   gui=bold"
+exec "hi StatusLineTwo            ctermfg=232 ctermbg=239  cterm=none         guifg=". d ."   guibg=". m ."   gui=bold"
 exec "hi StatusLine               ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=none"
 exec "hi StatusLineNC             ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=italic"
-"
+
 exec "hi SignifySignAdd           ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
 exec "hi SignifySignChange        ctermfg=220 ctermbg=none cterm=bold         guifg=#8ec07c   guibg=none      gui=none"
 exec "hi SignifySignDelete        ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
@@ -46,28 +49,6 @@ exec "hi SignifySignChangeDelete  ctermfg=200 ctermbg=none cterm=bold         gu
 hi link Visual Search
 hi link Visual IncSearch
 
-au InsertEnter *
-            \ exec "hi StatusLineThree ctermfg=234 ctermbg=200 guifg=" . d . " guibg=" . a |
-            \ exec "hi CursorLineNr    ctermfg=200 ctermbg=none cterm=bold guifg=" . a . " guibg=none gui=bold" |
-au InsertLeave *
-            \ exec "hi StatusLineThree ctermfg=234 ctermbg=201 guifg=" . d . " guibg=" . l |
-            \ exec "hi CursorLineNr    ctermfg=201 ctermbg=none cterm=bold guifg=" . l . " guibg=none gui=none" |
-
-    "\ set statusline=%#StatusLineThree# |
-    "\ set statusline+=\ \ %{toupper(mode())}\ \ |
-    "\ set statusline+=%#StatusLineTwo# |
-au VimEnter,WinEnter,BufWinEnter *
-    \ set statusline=%#StatusLineThree# |
-    \ set statusline+=\ \ %{ShowMode()}\ \ |
-    \ set statusline+=%#StatusLineTwo# |
-    \ set statusline+=%{FugitiveStatus()} |
-    \ set statusline+=%{FileFlags()} |
-    \ set statusline+=%#StatusLine# |
-    \ set statusline+=\ %F |
-    \ set statusline+=%= |
-    \ set statusline+=%#StatusLineTwo# |
-    \ set statusline+=\ %{&filetype}\ |
-    \ set statusline+=%#StatusLineThree# |
-    \ set statusline+=\ \ %p\ \ \ %{ContextTrack()} |
+au VimEnter,WinEnter,BufWinEnter * setlocal statusline=%!StatusLine()
 au WinLeave * setlocal statusline=\ %f
 
