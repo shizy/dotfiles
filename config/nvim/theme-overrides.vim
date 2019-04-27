@@ -28,8 +28,8 @@ exec "hi TabLine                  ctermfg=239 ctermbg=232  cterm=none         gu
 exec "hi EndOfBuffer              ctermfg=234 ctermbg=none                    guifg=". d ."   guibg=none"
 exec "hi Folded                   ctermfg=239 ctermbg=none cterm=bold         guifg=". m ."   guibg=none      gui=bold"
 
-exec "hi Pmenu                    ctermfg=201 ctermbg=232  cterm=none         guifg=". l ."   guibg=". d ."   gui=none"
-exec "hi PmenuSel                 ctermfg=232 ctermbg=200  cterm=bold         guifg=". d ."   guibg=". a ."   gui=bold"
+exec "hi Pmenu                    ctermfg=201 ctermbg=232  cterm=none         guifg=". d ."   guibg=". m ."   gui=bold"
+exec "hi PmenuSel                 ctermfg=232 ctermbg=200  cterm=bold         guifg=". d ."   guibg=". l ."   gui=bold"
 
 exec "hi ContextLine                          ctermbg=233  cterm=none                         guibg=#686868   gui=none"
 
@@ -49,6 +49,7 @@ exec "hi SignifySignChangeDelete  ctermfg=200 ctermbg=none cterm=bold         gu
 hi link Visual Search
 hi link Visual IncSearch
 
+au InsertEnter * exec "hi CursorLineNr ctermfg=200 guifg=" . a
+au InsertLeave * exec "hi CursorLineNr ctermfg=201 guifg=" . l
 au VimEnter,WinEnter,BufWinEnter * setlocal statusline=%!StatusLine()
 au WinLeave * setlocal statusline=\ %f
-

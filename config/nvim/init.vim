@@ -25,7 +25,7 @@ set foldmethod=marker
 set linebreak
 set nobackup
 set nowritebackup
-set relativenumber
+"set relativenumber
 set scrolloff=12
 set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 "set shada=!,%,'100,<50,s10,h
@@ -33,6 +33,7 @@ set wildcharm=<Tab>
 set wildchar=<Tab>
 set wildmenu
 set wildmode=full,list
+"TODO: wait for 4.x: set wildoptions=pum
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%m
 set completeopt-=preview
@@ -277,8 +278,10 @@ smap    <expr>      <Tab>           neosnippet#expandable_or_jumpable() ? "\<Plu
 imap    <expr>      <Tab>           neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 xmap                <Tab>           <Plug>(neosnippet_expand_target)
 
-cmap                <A-l>           <C-n>
-cmap                <A-h>           <C-p>
+cmap                <A-l>           <Right>
+cmap                <A-h>           <Left>
+cmap                <A-j>           <C-n>
+cmap                <A-k>           <C-p>
 cnoremap            <A-x>           <C-E><C-U>
 cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
