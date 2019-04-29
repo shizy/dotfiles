@@ -287,6 +287,7 @@ cmap                jj              <C-c><Esc>
 cmap                <A-Space>       <C-c><Esc>
 cmap                jk              <CR>
 
+tmap                jj              <Esc>
 tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
 tmap                <A-z>           <C-\><C-n>:qa<CR>
 tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>
