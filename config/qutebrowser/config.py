@@ -71,7 +71,7 @@ config.bind("<Alt-Tab>", "tab-focus last");
 config.bind("<Alt-Space>", "set-cmd-text -s :buffer ");
 
 c.colors.completion.fg = os.environ["COLOR_MEDIUM"]
-c.colors.completion.match.fg = os.environ["COLOR_LIGHT"]
+c.colors.completion.match.fg = os.environ["COLOR_ACCENT"]
 c.colors.completion.category.bg = os.environ["COLOR_DARK"]
 c.colors.completion.category.fg = os.environ["COLOR_LIGHT"]
 c.colors.completion.even.bg = os.environ["COLOR_DARK"]
