@@ -17,6 +17,7 @@ set expandtab
 set number
 set noswapfile
 set cursorline
+set guicursor=n-v-c-sm:block,i-ci-ve:hor100,r-cr-o:hor20
 set lazyredraw
 set encoding=utf-8
 set clipboard=unnamedplus
@@ -334,7 +335,7 @@ au TermOpen,WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
 au FileType neosnippet,help,man setlocal nobuflisted
 
-au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
+"au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -361,7 +362,8 @@ au FileType go
     \ nmap <buffer> <Leader>t :GoTest<CR> |
     \ map <buffer> <Leader>c :GoCoverageToggle<CR> |
 au FileType c,cpp
-    \ syn match cTodo "\<\w\+_ptr\>" |
+    \ syn match cTodo "\<\w\+_s\>" |
+    \ syn match cTodo "\<\w\+_u\>" |
     \ syn match cTodo "\<\w\+_cb\>" |
     \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
     \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |

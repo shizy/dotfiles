@@ -70,6 +70,13 @@ function fish_prompt
             set mode " "
             set clr $color_light
     end
+    set_color -o $clr
+    echo -n " " (prompt_pwd)
+    set_color -o $color_medium
+    echo -n "  $mode  "
+    set_color normal
+end
+function fish_right_prompt
     set git (__fish_git_prompt)
     if test ! -z "$git"
         set git (echo $git | sed -e 's/(/\ \ /;s/[()…]//g')
@@ -77,10 +84,6 @@ function fish_prompt
     end
     set_color -o $color_medium
     echo -n "$git"
-    set_color -o $clr
-    echo -n " " (prompt_pwd)
-    set_color -o $color_medium
-    echo -n "  $mode  "
     set_color normal
 end
 #}}}
