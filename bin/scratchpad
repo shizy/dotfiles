@@ -28,7 +28,7 @@ if [ $running == 0 ] || [ $1 == "search" ]; then
     esac
 
     cmd="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -s $1"
-    positioning="i3-msg floating enable, resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px $scratchpad"
+    positioning="i3-msg [class=\"Alacritty\" title=\"$1\"] floating enable, resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px $scratchpad"
 
     if [ $2 ]; then
        cmd="${@:2}"
