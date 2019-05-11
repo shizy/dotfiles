@@ -362,6 +362,7 @@ au FileType go
     \ nmap <buffer> <Leader>t :GoTest<CR> |
     \ map <buffer> <Leader>c :GoCoverageToggle<CR> |
 au FileType c,cpp
+    \ syn match cTodo "\<\w\+_e\>" |
     \ syn match cTodo "\<\w\+_s\>" |
     \ syn match cTodo "\<\w\+_u\>" |
     \ syn match cTodo "\<\w\+_cb\>" |

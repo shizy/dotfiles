@@ -70,6 +70,7 @@ function fish_prompt
             set mode " "
             set clr $color_light
     end
+    printf "\n"
     set_color -o $clr
     echo -n " " (prompt_pwd)
     set_color -o $color_medium
