@@ -16,11 +16,11 @@ draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: Iosevka SS08
+    family: Iosevka Custom
   bold:
-    family: Iosevka SS08
+    family: Iosevka Custom
   italic:
-    family: Iosevka SS08
+    family: Iosevka Custom
   size: 7
   offset:
     x: 0

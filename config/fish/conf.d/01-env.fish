@@ -7,7 +7,7 @@ set -x COLOR_LIGHT  "#fbf1c7"
 if test -z "$COLOR_ACCENT"
     set -x COLOR_ACCENT (random choice "#fb4934" "#b8bb26" "#fabd2f" "#458588" "#b16286" "#8ec07c" "#fe8019")
 end
-set -x FONT_MONO "Iosevka SS08"
+set -x FONT_MONO "Iosevka Custom"
 set -x FONT_SIZE 11
 set -x FONT_ICON "Icons"
 set -x ICON_SIZE 14

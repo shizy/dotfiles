@@ -30,6 +30,11 @@
 !/config/x11
 !/config/zathura
 
+# Fonts
+!/data
+/data/*
+!/data/fonts
+
 # GPG
 !/config/gnupg
 /config/gnupg/*
