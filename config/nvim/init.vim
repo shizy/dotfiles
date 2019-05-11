@@ -23,6 +23,8 @@ set encoding=utf-8
 set clipboard=unnamedplus
 set breakindent
 set foldmethod=marker
+"set foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g') /*}}}*/
+set foldtext=getline(v:foldstart)
 set linebreak
 set nobackup
 set nowritebackup
@@ -104,6 +106,9 @@ call plug#end()
 "}}}
 
 " ========== SETTINGS =========={{{
+
+" C
+let c_syntax_for_h = 1
 
 " Colorscheme
 set background=dark
@@ -335,8 +340,6 @@ au TermOpen,WinEnter,BufWinEnter term://* startinsert
 au WinLeave,BufWinLeave term://* stopinsert
 au FileType neosnippet,help,man setlocal nobuflisted
 
-"au BufWritePost *.c,*.h silent call system("cd " . expand("%:p:h:h") . "; ctags -R")
-
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
     \|  autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -370,7 +373,8 @@ au FileType c,cpp
     \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |
     \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
     \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
-    "\ call deoplete#custom#buffer_option('auto_complete', v:false)
+    \ setlocal foldmethod=syntax |
+    \ setlocal foldnestmax=1 |
 au FileType go,c,cpp
     \ let b:surround_47 = "/*\r*/" |
 au FileType help,man
