@@ -15,9 +15,11 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set number
+set relativenumber
 set noswapfile
 set cursorline
 set guicursor=n-v-c-sm:block,i-ci-ve:hor100,r-cr-o:hor20
+set inccommand=nosplit
 set lazyredraw
 set encoding=utf-8
 set clipboard=unnamedplus
