@@ -51,7 +51,7 @@ set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
     bindsym d exec /usr/bin/qutebrowser --target window https://discordapp.com/channels/@me; mode "default"
-    bindsym i exec $term --title=irc -e weechat-curses; mode "default"
+    bindsym i exec $term --title=irc -e fish -c "set TERM xterm && weechat-curses"; mode "default"
     bindsym s exec steam; mode "default"
     bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
     bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default"
