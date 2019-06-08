@@ -5,7 +5,7 @@ set color_accent (echo $COLOR_ACCENT | sed -e 's/#//g')
 set color_medium (echo $COLOR_MEDIUM | sed -e 's/#//g')
 
 set -U fish_greeting
-set fish_color_command $color_light
+set fish_color_command $color_light --bold
 set fish_color_redirection $color_accent
 set fish_color_end $color_accent
 set fish_pager_color_prefix $color_accent
@@ -26,6 +26,7 @@ alias userctl="systemctl --user"
 alias prox="proxychains -f $XDG_CONFIG_HOME/proxychains/proxychains.conf -q"
 alias netctl="sudo netctl-auto"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+alias cat="bat"
 #}}}
 
 # Prompt {{{
@@ -103,8 +104,31 @@ function fish_user_key_bindings
     bind -M insert \eL 'popd > /dev/null ^ /dev/null; commandline -f repaint'
     bind -M insert \e/ complete-and-search
     bind -M default \e/ complete-and-search
+    bind -M insert ! bind_bang
+    bind -M insert '$' bind_dollar
+    bind -M insert "&&" 'commandline -i "; and"'
+    bind -M insert "||" 'commandline -i "; or"'
 end
 #}}}
+
+function bind_bang
+  switch (commandline -t)
+  case "!"
+    commandline -t $history[1]; commandline -f repaint
+  case "*"
+    commandline -i !
+  end
+end
+
+function bind_dollar
+  switch (commandline -t)
+  case "!"
+    commandline -t ""
+    commandline -f history-token-search-backward
+  case "*"
+    commandline -i '$'
+  end
+end
 
 function edit
     set file (pwd)/$argv
