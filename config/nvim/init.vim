@@ -127,6 +127,9 @@ let g:neosnippet#enable_optional_arguments = 0
 let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME . '/nvim/snippets'
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
+if has('conceal')
+    set conceallevel=2 concealcursor=niv
+endif
 
 " Fzf
 let g:fzf_colors = {
@@ -311,7 +314,7 @@ tmap                <A-C-l>         <C-\><C-n><C-w>l
 
 vnoremap            <Space><Space>  zf
 vnoremap            p               "_dP
-vmap                <Leader>/       <Esc>:'<,'>s/
+vmap                <Leader>/       <Esc>:'<,'>s/\%V
 vmap                <A-,>           <gv
 vmap                <A-.>           >gv
 
@@ -330,7 +333,7 @@ nmap                <Leader>gp      :Git push<space>
 nmap                <Leader>gd      :Gdiff<space>
 nmap                <Leader>gb      :Gbrowse<CR>
 vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
-nmap                <Leader>gl      :Gpull<CR>
+nmap                <Leader>gg      :Gpull<space>
 nmap                <Leader>gm      :Gmerge<space>
 "}}}
 

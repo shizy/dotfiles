@@ -1,5 +1,5 @@
 env:
-    TERM: alacritty-direct
+  TERM: alacritty-direct
 
 window:
   dimensions:
@@ -29,7 +29,8 @@ font:
     y: 0
   use_thin_strokes: true
 
-render_timer: false
+debug:
+  render_timer: false
 
 # Base16 Grayscale Dark 256 - alacritty color config
 # Alexandre Gavioli (https://github.com/Alexx2/)

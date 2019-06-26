@@ -27,6 +27,7 @@ alias prox="proxychains -f $XDG_CONFIG_HOME/proxychains/proxychains.conf -q"
 alias netctl="sudo netctl-auto"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias cat="bat"
+alias more="bat"
 #}}}
 
 # Prompt {{{

@@ -16,7 +16,7 @@ exec "hi Error                    ctermfg=200                                 gu
 exec "hi MatchParen               ctermfg=201 ctermbg=200  cterm=bold         guifg=". l ."   guibg=". a ."   gui=bold"
 exec "hi TermCursor                                        cterm=reverse                                      gui=reverse"
 exec "hi VertSplit                ctermfg=232 ctermbg=232  cterm=bold         guifg=". d ."   guibg=". d ."   gui=bold"
-exec "hi ModeMsg                  ctermfg=239                                 guifg=". d
+exec "hi ModeMsg                  ctermfg=239                                 guifg=". a
 exec "hi NonText                  ctermfg=239                                 guifg=". d
 exec "hi WarningMsg               ctermfg=201 ctermbg=none cterm=none         guifg=". l ."   guibg=none      gui=none"
 exec "hi SpellBad                 ctermfg=200 ctermbg=none cterm=underline    guifg=". a ."   guibg=none      gui=underline"
