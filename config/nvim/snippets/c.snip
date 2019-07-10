@@ -12,6 +12,12 @@ options word
         ${0}
     }
 
+snippet };
+options word
+    {
+        ${0}
+    };
+
 snippet (
 options word
     (${1:#:_})${0}
@@ -20,9 +26,11 @@ snippet . "->"
 options word
     ->${0}
 
+snippet /
+    /* ${1} */
+
 snippet todo
-    /*! TODO: ${1}
-     */
+    /* TODO: ${1} */
 
 snippet ide "ifndef-define-endif"
 options head

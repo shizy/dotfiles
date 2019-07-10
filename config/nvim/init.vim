@@ -235,8 +235,7 @@ nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
 "nmap                <A-'>           :marks<CR>:norm<Space>`
 
-nnoremap            ''              <C-]>
-nnoremap            <A-'>           <C-T>
+nnoremap            ''              <C-o>:noh<CR>
 nnoremap            <Esc>           :noh<CR><Esc>
 nnoremap            <A-b>           :b#<CR>
 nnoremap            <Tab>           <C-w>w
@@ -253,6 +252,7 @@ nnoremap            <A-.>           :call LocationNext()<CR>
 nnoremap            <A-,>           :call LocationPrevious()<CR>
 nnoremap            <A->>           ]s
 nmap                <A-Space>       :call Filter_Buffers()<CR>
+nmap                <A-;>           :Commands<CR>
 nmap                <A-/>           :Lines<CR>
 nmap                <A-e>           :Files<CR>
 nmap                <A-x>           :bp<CR>:bd!<Space>#<CR>
