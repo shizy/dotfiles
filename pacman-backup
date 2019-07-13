@@ -3,7 +3,6 @@ alacritty-terminfo
 bat
 compton
 clang
-ctags
 imagemagick
 feh
 freerdp
@@ -34,5 +33,6 @@ xsel
 xorg-server
 xorg-xinit
 xorg-xrandr
+yarn
 zathura
 zathura-pdf-mupdf

@@ -1,4 +1,27 @@
-" ========== OPTIONS =========={{{
+" RUNONCE {{{
+if !exists("g:source_once")
+    source $XDG_CONFIG_HOME/nvim/functions.vim
+
+    " Auto install Plug & Spell Files
+    if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
+        echo "Downloading and installing Plug"
+        silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall
+    endif
+
+    if empty(glob('$XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl'))
+        echo "Downloading and installing Spell Files"
+        silent !curl -o $XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl --create-dirs
+        \ http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+    endif
+
+    let g:source_once=1
+endif
+"}}}
+
+" SETTINGS {{{
+
 " If GUI Version
 if has('gui_running')
     set guioptions-=m
@@ -25,12 +48,10 @@ set encoding=utf-8
 set clipboard=unnamedplus
 set breakindent
 set foldmethod=marker
-"set foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g') /*}}}*/
 set foldtext=getline(v:foldstart)
 set linebreak
 set nobackup
 set nowritebackup
-"set relativenumber
 set scrolloff=12
 set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 "set shada=!,%,'100,<50,s10,h
@@ -42,75 +63,50 @@ set wildmode=full,list
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%m
 set completeopt-=preview
+set shortmess+=c
 set tags=./tags;/
 let mapleader = ";"
 let maplocalleader = ";"
 "}}}
 
-" ========== RUNONCE =========={{{
-if !exists("g:source_once")
-    source $XDG_CONFIG_HOME/nvim/functions.vim
-
-    " Auto install Plug & Spell Files
-    if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
-        echo "Downloading and installing Plug"
-        silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall
-    endif
-
-    if empty(glob('$XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl'))
-        echo "Downloading and installing Spell Files"
-        silent !curl -o $XDG_DATA_HOME/nvim/site/spell/en.utf-8.spl --create-dirs
-        \ http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
-    endif
-
-    let g:source_once=1
-endif
-"}}}
-
-" ========== PACKAGES =========={{{
+" PACKAGES {{{
 function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
 
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
-" Color Scheme
 Plug 'morhetz/gruvbox'
 
-" Utility
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
-Plug 'benekastah/neomake'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'lervag/vimtex'
+Plug 'mhinz/vim-signify'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'zchee/deoplete-go', { 'do': 'make' } "go get -u github.com/mdempsky/gocode
-Plug 'zchee/deoplete-clang'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-
-" Syntax & Highlighting
-Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'wavded/vim-stylus'
-Plug 'digitaltoad/vim-jade'
-Plug 'plasticboy/vim-markdown'
-Plug 'mhinz/vim-signify'
-Plug 'justinmk/vim-syntax-extra'
-Plug 'fatih/vim-go'
-Plug 'lervag/vimtex'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 "}}}
 
-" ========== SETTINGS =========={{{
+" OPTIONS {{{
 
 " C
 let c_syntax_for_h = 1
+
+" Coc
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
+let g:coc_extension_root = $XDG_DATA_HOME . '/coc/extension'
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Colorscheme
 set background=dark
@@ -118,18 +114,6 @@ set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_italic = 1
 call Scheme("gruvbox")
-
-" Deoplete / Neosnippet
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 0
-let g:neosnippet#enable_completed_snippet = 1
-let g:neosnippet#enable_optional_arguments = 0
-let g:neosnippet#snippets_directory = $XDG_CONFIG_HOME . '/nvim/snippets'
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
-if has('conceal')
-    set conceallevel=2 concealcursor=niv
-endif
 
 " Fzf
 let g:fzf_colors = {
@@ -173,21 +157,6 @@ command! -bang -nargs=* MyBuffers call fzf#vim#buffers(fzf#wrap({
 " LaTeX
 let g:tex_flavor = 'latex'
 
-" Neomake
-let g:neomake_error_sign = {
-            \ 'text': ' ',
-            \ 'texthl': 'ErrorMsg',
-            \ }
-let g:neomake_warning_sign = {
-            \ 'text': '',
-            \ 'texthl': 'WarningMsg',
-            \ }
-let g:neomake_informational_sign = {
-            \ 'text': '',
-            \ 'texthl': 'Question',
-            \ }
-let g:neomake_javascript_enabled_makers = ['jshint']
-
 " netrw
 let g:netrw_dirhistmax = 0
 let g:netrw_liststyle = 3
@@ -202,25 +171,16 @@ let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 let g:signify_sign_delete_first_line = '^'
 
-" Vim-Go
-let g:go_list_height = 0
-let g:go_list_type = "locationlist"
-let g:go_fmt_fail_silently = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_arguments = 1
-let g:go_term_mode = "split"
+" Surround
+let g:surround_{char2nr("/")} = "/*\r*/"
 
 " vimtex
 let g:vimtex_quickfix_enabled = 0
 let g:vimtex_view_method = 'zathura'
-if !exists('g:deoplete#omni#input_patterns')
-      let g:deoplete#omni#input_patterns = {}
-  endif
-let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 "}}}
 
-" ========== MAPPINGS =========={{{
+" MAPPINGS {{{
 noremap             j               gj
 noremap             k               gk
 noremap             <A-j>           10j
@@ -233,7 +193,6 @@ map                 <A-C-h>         <C-w>h
 map                 <A-C-l>         <C-w>l
 nmap                <A-S-h>         :tabp<CR>
 nmap                <A-S-l>         :tabn<CR>
-"nmap                <A-'>           :marks<CR>:norm<Space>`
 
 nnoremap            ''              <C-o>:noh<CR>
 nnoremap            <Esc>           :noh<CR><Esc>
@@ -247,9 +206,8 @@ nnoremap            <A-Left>        :vertical resize -10<CR>
 nnoremap            <A-Right>       :vertical resize +10<CR>
 nnoremap            <A-Up>          :resize -10<CR>
 nnoremap            <A-Down>        :resize +10<CR>
-"nnoremap            <A-C-/>         :noh<CR>
-nnoremap            <A-.>           :call LocationNext()<CR>
-nnoremap            <A-,>           :call LocationPrevious()<CR>
+nmap       <silent> <A-.>           <Plug>(coc-diagnostic-next)
+nmap       <silent> <A-,>           <Plug>(coc-diagnostic-prev)
 nnoremap            <A->>           ]s
 nmap                <A-Space>       :call Filter_Buffers()<CR>
 nmap                <A-;>           :Commands<CR>
@@ -276,18 +234,16 @@ nmap                <A-n>           <S-n>
 nmap                zz              za
 nmap                zC              zM
 nmap                zO              zR
-"nnoremap            <Space>         :Lexplore<CR>
 nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . '/j ' . expand("%:p:h") . '/*'<CR>
 
+imap                <C-l>           <Plug>(coc-snippets-expand)
 imap                jj              <Esc>
 imap                jk              <Esc>:call Save()<CR>
-inoremap <expr>     <A-j>           pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
-imap                <A-k>           <C-p>
 imap                <A-S-h>         <Esc>:tabp<CR>
 imap                <A-S-l>         <Esc>:tabn<CR>
-smap    <expr>      <Tab>           neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-imap    <expr>      <Tab>           neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-xmap                <Tab>           <Plug>(neosnippet_expand_target)
+inoremap <expr>     <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
+inoremap <expr>     <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
+inoremap <silent><expr> <TAB>       pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<TAB>"
 
 cmap                <A-l>           <Right>
 cmap                <A-h>           <Left>
@@ -323,7 +279,7 @@ nmap                <Leader>sb      :Buffers<CR>
 vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 nmap                <Leader>sh      :silent w !share<CR>
 nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
-nmap                <Leader>vs      :NeoSnippetEdit -split -vertical<CR>
+"nmap                <Leader>vs      :NeoSnippetEdit -split -vertical<CR>
 xmap                <Leader>va      <Plug>(EasyAlign)
 nmap                <Leader>vu      :PlugUpdate<CR>
 nmap                <Leader>vt      :tabe %<CR>
@@ -337,17 +293,13 @@ nmap                <Leader>gg      :Gpull<space>
 nmap                <Leader>gm      :Gmerge<space>
 "}}}
 
-" ========== AUTOCOMMANDS =========={{{
-au FileType javascript           nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
-au FileType sh                   nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
-au BufWritePost *                Neomake
+" AUTOCOMMANDS {{{
 au TermOpen,WinEnter,BufWinEnter term://* startinsert
-au WinLeave,BufWinLeave term://* stopinsert
-au FileType neosnippet,help,man setlocal nobuflisted
+au WinLeave,BufWinLeave          term://* stopinsert
 
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \|  autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" Filetype specific
+au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
+au FileType sh         nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
 au FileType fzf
     \ setlocal nonu nornu |
     \ tmap <buffer> <A-Space> <A-q> |
@@ -355,20 +307,12 @@ au FileType fzf
     \ tmap <buffer> <A-CR> <A-CR> |
     \ tmap <buffer> <A-x> <A-x> |
 " note: synctex-forward breaks on ConTeXt documents!
-au BufNewFile,BufRead,BufWinEnter *.tex
+au Filetype tex,latex,context
     \ setlocal spell |
     \ setlocal spelllang=en_us |
     \ setlocal nocin inde= |
     \ setlocal syntax=tex |
     \ nmap <silent><buffer> <Leader>; :VimtexCompileSS<CR> \| :VimtexView<CR>
-au BufWinEnter *.md
-    \ set syntax=markdown |
-    \ setlocal nofoldenable |
-au FileType go
-    \ nmap <buffer> <Leader>r :GoRun<CR> |
-    \ nmap <buffer> <Leader>i :GoInfo<CR> |
-    \ nmap <buffer> <Leader>t :GoTest<CR> |
-    \ map <buffer> <Leader>c :GoCoverageToggle<CR> |
 au FileType c,cpp
     \ syn match cTodo "\<\w\+_e\>" |
     \ syn match cTodo "\<\w\+_s\>" |
@@ -380,10 +324,8 @@ au FileType c,cpp
     \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
     \ setlocal foldmethod=syntax |
     \ setlocal foldnestmax=1 |
-au FileType go,c,cpp
-    \ let b:surround_47 = "/*\r*/" |
 au FileType help,man
-    \ setlocal ro |
-    \ nnoremap <buffer> u <C-T> |
-    \ nnoremap <buffer> <CR> <C-]> |
+    \ setlocal ro nobuflisted |
+    \ nmap <buffer> u <C-T> |
+    \ nmap <buffer> <CR> <C-]> |
 "}}}

@@ -11,7 +11,7 @@ set fish_color_end $color_accent
 set fish_pager_color_prefix $color_accent
 set fish_pager_color_description $color_medium
 
-# Alias{{{
+# Alias {{{
 alias ..="pushd .."
 alias rm="rm -rf"
 alias ls="ls -AlhF --group-directories-first --color=auto"
@@ -91,14 +91,17 @@ function fish_right_prompt
 end
 #}}}
 
-# Binds{{{
+# Binds {{{
 function fish_user_key_bindings
     fish_vi_key_bindings
-    bind -M default \e\r accept-autosuggestion
-    bind -M insert \e\r accept-autosuggestion
+    bind -M insert \t forward-word
+    #bind -M default \e\r accept-autosuggestion
+    #bind -M insert \e\r accept-autosuggestion
     bind -M insert -m default jj backward-char force-repaint
     bind -M default \eh backward-word
+    bind -M insert \eh backward-word
     bind -M default \el forward-word
+    bind -M insert \el forward-word
     bind -M default \eH 'pushd ..; commandline -f repaint'
     bind -M insert \eH 'pushd ..; commandline -f repaint'
     bind -M default \eL 'popd > /dev/null ^ /dev/null; commandline -f repaint'

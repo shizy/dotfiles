@@ -1,0 +1,47 @@
+snippet [
+[${1}]${0}
+
+snippet {
+{ ${1} }${0}
+
+snippet }
+{
+	${0}
+}
+
+snippet };
+{
+	${0}
+};
+
+snippet (
+(${1})${0}
+
+snippet . "->"
+->${0}
+
+snippet /
+/* ${1} */
+
+snippet fun "function"
+${1:void}
+${2:name} (${3: ${4:params}}) {
+
+	${0}
+}
+
+snippet main "main"
+int
+main (int argc, const char *argv[]) {
+
+	${0}
+	return 0;
+}
+
+snippet log "printf"
+printf("${1:made it}\n"${2});${0}
+
+snippet div
+	<div${1: id="${2:id}"}${3: class="${4:class}"}>
+		$0
+	</div>
