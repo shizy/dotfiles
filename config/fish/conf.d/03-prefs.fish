@@ -95,8 +95,8 @@ end
 function fish_user_key_bindings
     fish_vi_key_bindings
     bind -M insert \t forward-word
-    #bind -M default \e\r accept-autosuggestion
-    #bind -M insert \e\r accept-autosuggestion
+    bind -M default \e\t accept-autosuggestion
+    bind -M insert \e\t accept-autosuggestion
     bind -M insert -m default jj backward-char force-repaint
     bind -M default \eh backward-word
     bind -M insert \eh backward-word

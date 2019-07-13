@@ -77,6 +77,7 @@ endfunction
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'vim-scripts/busybee'
 
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
@@ -113,7 +114,7 @@ set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_italic = 1
-call Scheme("gruvbox")
+call Scheme("BusyBee")
 
 " Fzf
 let g:fzf_colors = {
@@ -234,7 +235,6 @@ nmap                <A-n>           <S-n>
 nmap                zz              za
 nmap                zC              zM
 nmap                zO              zR
-nnoremap            <CR>            :execute 'lvimgrep /' . expand("<cword>") . '/j ' . expand("%:p:h") . '/*'<CR>
 
 imap                <C-l>           <Plug>(coc-snippets-expand)
 imap                jj              <Esc>
@@ -243,7 +243,8 @@ imap                <A-S-h>         <Esc>:tabp<CR>
 imap                <A-S-l>         <Esc>:tabn<CR>
 inoremap <expr>     <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
 inoremap <expr>     <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
-inoremap <silent><expr> <TAB>       pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<TAB>"
+inoremap <silent><expr> <Tab>       pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<Tab>"
+inoremap <silent><expr> <A-Tab>     pumvisible() ? "\<Down><C-y>" : "\<Tab>"
 
 cmap                <A-l>           <Right>
 cmap                <A-h>           <Left>
