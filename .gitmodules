@@ -1,18 +1,9 @@
 [submodule "pkgbuilds/i3lock-fancy-git"]
 	path = pkgbuilds/i3lock-fancy-git
 	url = https://aur.archlinux.org/i3lock-fancy-git.git
-[submodule "pkgbuilds/nodejs-jshint"]
-	path = pkgbuilds/nodejs-jshint
-	url = https://aur.archlinux.org/nodejs-jshint.git
-[submodule "pkgbuilds/ttf-mplus"]
-	path = pkgbuilds/ttf-mplus
-	url = https://aur.archlinux.org/ttf-mplus.git
 [submodule "pkgbuilds/uhk-agent-appimage"]
 	path = pkgbuilds/uhk-agent-appimage
 	url = https://aur.archlinux.org/uhk-agent-appimage.git
-[submodule "pkgbuilds/ttf-iosevka-ss08"]
-	path = pkgbuilds/ttf-iosevka-ss08
-	url = https://aur.archlinux.org/ttf-iosevka-ss08
 [submodule "pkgbuilds/ccls"]
 	path = pkgbuilds/ccls
 	url = https://aur.archlinux.org/ccls
