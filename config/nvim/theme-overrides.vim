@@ -7,7 +7,7 @@ exec "hi Normal                               ctermbg=none                      
 exec "hi LineNr                   ctermfg=236 ctermbg=none                    guifg=#525252   guibg=none"
 exec "hi CursorLine                           ctermbg=234  cterm=none                         guibg=#525252   gui=none"
 exec "hi CursorLineNr             ctermfg=201 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=bold"
-exec "hi Visual                               ctermbg=234                                     guibg=". d
+exec "hi Visual                               ctermbg=234                                     guibg=". d . "  gui=reverse"
 exec "hi SignColumn                           ctermbg=none                                    guibg=none"
 exec "hi Directory                ctermfg=200              cterm=bold         guifg=". a ."                   gui=bold"
 exec "hi MoreMsg                  ctermfg=200                                 guifg=". a
