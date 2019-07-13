@@ -13,3 +13,6 @@
 [submodule "pkgbuilds/ttf-iosevka-ss08"]
 	path = pkgbuilds/ttf-iosevka-ss08
 	url = https://aur.archlinux.org/ttf-iosevka-ss08
+[submodule "pkgbuilds/ccls"]
+	path = pkgbuilds/ccls
+	url = https://aur.archlinux.org/ccls
