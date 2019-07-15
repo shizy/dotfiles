@@ -86,6 +86,7 @@ Plug 'justinmk/vim-syntax-extra'
 Plug 'lervag/vimtex'
 Plug 'mhinz/vim-signify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-fugitive'

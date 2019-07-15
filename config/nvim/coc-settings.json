@@ -1,6 +1,7 @@
 {
     "suggest.snippetIndicator": "\t",
     "suggest.noselect": true,
+    "diagnostic.level": [],
     "diagnostic.errorSign": " ",
     "diagnostic.warningSign": " ",
     "diagnostic.infoSign": " ",
