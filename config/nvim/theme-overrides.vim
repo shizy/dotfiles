@@ -42,9 +42,14 @@ exec "hi StatusLine               ctermfg=239 ctermbg=232  cterm=none         gu
 exec "hi StatusLineNC             ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=italic"
 
 exec "hi SignifySignAdd           ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
-exec "hi SignifySignChange        ctermfg=220 ctermbg=none cterm=bold         guifg=#8ec07c   guibg=none      gui=none"
+exec "hi SignifySignChange        ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
 exec "hi SignifySignDelete        ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
 exec "hi SignifySignChangeDelete  ctermfg=200 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
+
+exec "hi CocHintSign              ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
+exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
+exec "hi CocWarningSign           ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
+exec "hi CocErrorSign             ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
 
 hi link Visual Search
 hi link Visual IncSearch

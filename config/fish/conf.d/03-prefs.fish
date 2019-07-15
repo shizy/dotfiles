@@ -1,5 +1,3 @@
-# vim: ft=sh:
-
 set color_light (echo $COLOR_LIGHT | sed -e 's/#//g')
 set color_accent (echo $COLOR_ACCENT | sed -e 's/#//g')
 set color_medium (echo $COLOR_MEDIUM | sed -e 's/#//g')

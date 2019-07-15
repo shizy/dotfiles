@@ -86,9 +86,7 @@ Plug 'justinmk/vim-syntax-extra'
 Plug 'lervag/vimtex'
 Plug 'mhinz/vim-signify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'plasticboy/vim-markdown'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -102,6 +100,7 @@ call plug#end()
 let c_syntax_for_h = 1
 
 " Coc
+let g:coc_global_extensions = ['coc-highlight', 'coc-snippets']
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 let g:coc_extension_root = $XDG_DATA_HOME . '/coc/extension'
@@ -170,8 +169,13 @@ let g:netrw_scp_cmd = 'scp -F $PRIVATE/ssh/ssh_config'
 " Signify
 let g:signify_realtime = 0
 let g:signify_vcs_list = [ 'git' ]
-let g:signify_sign_change = '~'
+let g:signify_sign_add = '|'
+let g:signify_sign_delete = '|'
 let g:signify_sign_delete_first_line = '^'
+let g:signify_sign_change = '|'
+let g:signify_sign_changedelete = '|'
+let g:signify_sign_show_count = 0
+
 
 " Surround
 let g:surround_{char2nr("/")} = "/*\r*/"

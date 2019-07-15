@@ -1,5 +1,3 @@
-# vim: ft=sh:
-
 # Personal Preferences
 set -x COLOR_DARK   "#101011"
 set -x COLOR_MEDIUM "#928374"
