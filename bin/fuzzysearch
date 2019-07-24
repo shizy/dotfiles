@@ -81,6 +81,7 @@ case $1 in
         #if [[ ! -f $XDG_RUNTIME_DIR/bitwarden || "$($XDG_DATA_HOME/npm/bin/bw list items --session=$(cat $XDG_RUNTIME_DIR/bitwarden))" == "Vault is locked." ]]; then
         if [ ! -f $XDG_RUNTIME_DIR/bitwarden ]; then
             $XDG_DATA_HOME/npm/bin/bw unlock --raw > $XDG_RUNTIME_DIR/bitwarden
+            $XDG_DATA_HOME/npm/bin/bw sync --session=$(cat $XDG_RUNTIME_DIR/bitwarden)
         fi
         session=$(cat $XDG_RUNTIME_DIR/bitwarden)
         sel=$(fzf -1 --prompt="$1 > " <<< $($XDG_DATA_HOME/npm/bin/bw list items --session=$session | jq '.[].name') | sed -e s/\"//g)
