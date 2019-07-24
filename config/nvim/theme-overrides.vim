@@ -20,7 +20,7 @@ exec "hi ModeMsg                  ctermfg=239                                 gu
 exec "hi NonText                  ctermfg=239                                 guifg=". d
 exec "hi WarningMsg               ctermfg=201 ctermbg=none cterm=none         guifg=". l ."   guibg=none      gui=none"
 exec "hi SpellBad                 ctermfg=200 ctermbg=none cterm=underline    guifg=". a ."   guibg=none      gui=underline"
-exec "hi Todo                                 ctermbg=none                                    guibg=none"
+exec "hi Todo                                 ctermbg=none                    guifg=". l ."   guibg=none      gui=italic"
 exec "hi WildMenu                 ctermfg=201 ctermbg=232  cterm=bold         guifg=". l ."   guibg=". d ."   gui=bold"
 exec "hi TabLineFill              ctermfg=239 ctermbg=232  cterm=none         guifg=". d ."   guibg=". d ."   gui=none"
 exec "hi TabLineSel               ctermfg=232 ctermbg=239  cterm=none         guifg=". d ."   guibg=". m ."   gui=none"
@@ -29,7 +29,7 @@ exec "hi EndOfBuffer              ctermfg=234 ctermbg=none                    gu
 exec "hi Folded                   ctermfg=239 ctermbg=none cterm=bold         guifg=". m ."   guibg=none      gui=bold"
 
 exec "hi Pmenu                    ctermfg=201 ctermbg=232  cterm=none         guifg=". d ."   guibg=". m ."   gui=bold"
-exec "hi PmenuSel                 ctermfg=232 ctermbg=200  cterm=bold         guifg=". d ."   guibg=". l ."   gui=bold"
+exec "hi PmenuSel                 ctermfg=232 ctermbg=200  cterm=bold         guifg=". d ."   guibg=". a ."   gui=bold"
 
 exec "hi ContextLine                          ctermbg=233  cterm=none                         guibg=#686868   gui=none"
 
@@ -50,6 +50,9 @@ exec "hi CocHintSign              ctermfg=196 ctermbg=none cterm=bold         gu
 exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
 exec "hi CocWarningSign           ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
 exec "hi CocErrorSign             ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
+
+hi Function gui=bold
+hi Statement gui=bold
 
 hi link Visual Search
 hi link Visual IncSearch

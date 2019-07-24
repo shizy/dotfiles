@@ -320,10 +320,12 @@ au Filetype tex,latex,context
     \ setlocal syntax=tex |
     \ nmap <silent><buffer> <Leader>; :VimtexCompileSS<CR> \| :VimtexView<CR>
 au FileType c,cpp
-    \ syn match cTodo "\<\w\+_e\>" |
-    \ syn match cTodo "\<\w\+_s\>" |
-    \ syn match cTodo "\<\w\+_u\>" |
-    \ syn match cTodo "\<\w\+_cb\>" |
+    \ syn match Todo "\<\w\+_e\>" |
+    \ syn match Todo "\<\w\+_s\>" |
+    \ syn match Todo "\<\w\+_u\>" |
+    \ syn match Todo "\<\w\+_cb\>" |
+    \ syn match Todo "\<\w\+_ptr\>" |
+    \ nmap gd <Plug>(coc-definition) |
     \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
     \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |
     \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
