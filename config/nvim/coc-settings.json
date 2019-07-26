@@ -1,6 +1,12 @@
 {
     "suggest.snippetIndicator": "\t",
     "suggest.noselect": true,
+    "git.realtimeGutters": false,
+    "git.changedSign.text": "|",
+    "git.addedSign.text": "|",
+    "git.removedSign.text": "|",
+    "git.changeRemovedSign.text": "|",
+    "git.topRemovedSign.text": "^",
     "diagnostic.level": [],
     "diagnostic.errorSign": " ",
     "diagnostic.warningSign": " ",

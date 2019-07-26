@@ -14,15 +14,14 @@ function! Set_Buffer_Filter()
 endfunction
 
 function! Filter_Buffers()
-    execute 'MyBuffers'
     let n = tabpagenr()
     let b = ''
     if exists("g:FILTER_" . n)
         execute "let b = g:FILTER_" . n
-    "else
-        "execute "let g:FILTER_" . tabpagenr() . " = ''"
     endif
-    call feedkeys(''.b.' ')
+    call feedkeys(':b **'.b.'**')
+    call feedkeys("\<Tab>")
+    call feedkeys("\<C-p>")
 endfunction
 
 " Zoom
@@ -45,16 +44,6 @@ function! ZoomIn()
     vertical res
     res
     let t:zoomed_window = 1
-endfunction
-
-" Sessions
-function! Save()
-    if empty(glob('$XDG_CACHE_HOME/nvim'))
-        silent ! mkdir $XDG_CACHE_HOME/nvim > /dev/null
-    endif
-    :mks! $XDG_CACHE_HOME/nvim/session.vim
-    :w
-    :filetype detect
 endfunction
 
 " Tabline
@@ -86,6 +75,7 @@ function TabLine()
                 let s .= "'" . bfilt . "'  "
             endif
         endif
+        let s .= '%#TabLineFill# '
     endfor
     let s .= '%#TabLineFill#%T'
     return s
@@ -98,12 +88,13 @@ function! FugitiveStatus()
         if x==""
             return ""
         endif
-        let x = "    " . x . "  "
-        let y = sy#repo#get_stats()
-        if y[0] == 0 && y[1] == 0 && y[2] == 0
-            return x
+        let x = "    " . x
+        let y = get(b:, 'coc_git_status', '')
+        if (y == '')
+            return x . "  "
+        else
+            return x . y . " "
         endif
-        return "  +" . y[0] . " ~" . y[1] . " -" . y[2] . x
     else
         return ""
     endif
@@ -138,7 +129,7 @@ function! StatusLine()
     let output .= '%#StatusLineTwo#'
     let output .= '%{FugitiveStatus()}'
     let output .= three
-    let output .= '  %p   %{ContextTrack()}'
+    let output .= '  %p   '
     return output
 endfunction
 
@@ -155,39 +146,6 @@ function! FileFlags()
         let output .= "   " . ws . " "
     endif
     return output
-endfunction
-
-function! ContextTrack()
-    if exists("b:alt_context")
-        if b:alt_context > line(".")
-            return ""
-        else
-            return ""
-        endif
-    endif
-    return ""
-endfunction
-
-" Locationlist
-
-function! LocationPrevious()
-  try
-    lprev
-  catch /^Vim\%((\a\+)\)\=:E553/
-    llast
-  catch /^Vim\%((\a\+)\)\=:E42/
-  catch /^Vim\%((\a\+)\)\=:E776/
-  endtry
-endfunction
-
-function! LocationNext()
-  try
-    lnext
-  catch /^Vim\%((\a\+)\)\=:E553/
-    lfirst
-  catch /^Vim\%((\a\+)\)\=:E42/
-  catch /^Vim\%((\a\+)\)\=:E776/
-  endtry
 endfunction
 
 function! Scheme(name)
