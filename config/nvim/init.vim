@@ -137,113 +137,115 @@ let g:surround_{char2nr("/")} = "/*\r*/"
 "}}}
 
 " MAPPINGS {{{
-noremap             j               gj
-noremap             k               gk
-noremap             <A-j>           10j
-noremap             <A-k>           10k
-noremap             <A-h>           b
-noremap             <A-l>           e
-map                 <A-C-j>         <C-w>j
-map                 <A-C-k>         <C-w>k
-map                 <A-C-h>         <C-w>h
-map                 <A-C-l>         <C-w>l
-nmap                <A-S-h>         :tabp<CR>
-nmap                <A-S-l>         :tabn<CR>
+noremap                 j               gj
+noremap                 k               gk
+noremap                 <A-j>           10j
+noremap                 <A-k>           10k
+noremap                 <A-h>           b
+noremap                 <A-l>           e
+map                     <A-C-j>         <C-w>j
+map                     <A-C-k>         <C-w>k
+map                     <A-C-h>         <C-w>h
+map                     <A-C-l>         <C-w>l
+nmap                    <A-S-h>         :tabp<CR>
+nmap                    <A-S-l>         :tabn<CR>
 
-nnoremap            ''              <C-o>:noh<CR>
-nnoremap            <Esc>           :noh<CR><Esc>
-nnoremap            <A-b>           :b#<CR>
-nnoremap            <Tab>           <C-w>w
-nnoremap            <A-Tab>         <C-w>W
-nnoremap            <A-z>           :qa<CR>
-nnoremap            <A-u>           <C-r>
-nnoremap            <A-r>           :e#<CR>
-nnoremap            <A-Left>        :vertical resize -10<CR>
-nnoremap            <A-Right>       :vertical resize +10<CR>
-nnoremap            <A-Up>          :resize -10<CR>
-nnoremap            <A-Down>        :resize +10<CR>
-nmap       <silent> <A-.>           <Plug>(coc-diagnostic-next)
-nmap       <silent> <A-,>           <Plug>(coc-diagnostic-prev)
-nnoremap            <A->>           ]s
-nmap                <A-Space>       :call Filter_Buffers()<CR>
-nmap                <A-x>           :bp<CR>:bd!<Space>#<CR>
-nmap                <A-q>           ZZ
-nmap                <A-CR>          :call Zoom()<CR>
-nmap                <A-t>           :sp<CR>:term<CR>
-nmap                <A-S-t>         :tabnew<CR>
-nmap                <A-w>           :w<CR>
-nmap                <A-S-w>         :w !sudo tee % > /dev/null<CR>
-nmap                <Leader>/       <Esc>:%s/
-nmap                <Leader>-       :e %:h<Tab><Tab><C-p>
-nmap                <A-1>           1gt
-nmap                <A-2>           2gt
-nmap                <A-3>           3gt
-nmap                <A-4>           4gt
-nmap                <A-5>           5gt
-nmap                ga              <Plug>(EasyAlign)
-nmap                <A-=>           <C-a>
-nmap                <A-->           <C-x>
-nmap                <A-n>           <S-n>
-nmap                zz              za
-nmap                zC              zM
-nmap                zO              zR
+nnoremap                ''              <C-o>:noh<CR>
+nnoremap                <Esc>           :noh<CR><Esc>
+nnoremap                <A-b>           :b#<CR>
+nnoremap                <Tab>           <C-w>w
+nnoremap                <A-Tab>         <C-w>W
+nnoremap                <A-z>           :qa<CR>
+nnoremap                <A-u>           <C-r>
+nnoremap                <A-r>           :e#<CR>
+nnoremap                <A-Left>        :vertical resize -10<CR>
+nnoremap                <A-Right>       :vertical resize +10<CR>
+nnoremap                <A-Up>          :resize -10<CR>
+nnoremap                <A-Down>        :resize +10<CR>
+nnoremap                <A->>           ]s
+nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next)
+nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev)
+nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "FILTER_" . tabpagenr(), '')."**\<Tab>\<C-p>")
+nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "FILTER_" . tabpagenr(), '')."**\<Tab>\<C-p>")
+nmap                    <A-q>           ZZ
+nmap                    <A-CR>          :call Zoom()<CR>
+nmap                    <A-t>           :sp<CR>:term<CR>
+nmap                    <A-S-t>         :tabnew<CR>
+nmap                    <A-w>           :w<CR>
+nmap                    <A-S-w>         :w !sudo tee % > /dev/null<CR>
+nmap                    <Leader>/       <Esc>:%s/
+nmap                    <Leader>-       :e %:h<Tab><Tab><C-p>
+nmap                    <A-1>           1gt
+nmap                    <A-2>           2gt
+nmap                    <A-3>           3gt
+nmap                    <A-4>           4gt
+nmap                    <A-5>           5gt
+nmap                    ga              <Plug>(EasyAlign)
+nmap                    <A-=>           <C-a>
+nmap                    <A-->           <C-x>
+nmap                    <A-n>           <S-n>
+nmap                    zz              za
+nmap                    zC              zM
+nmap                    zO              zR
 
-imap                <C-l>           <Plug>(coc-snippets-expand)
-imap                jj              <Esc>
-imap                jk              <Esc>:w<CR>
-imap                <A-S-h>         <Esc>:tabp<CR>
-imap                <A-S-l>         <Esc>:tabn<CR>
-inoremap <expr>     <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
-inoremap <expr>     <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
-inoremap <silent><expr> <Tab>       pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<Tab>"
-inoremap <silent><expr> <A-Tab>     pumvisible() ? "\<Down><C-y>" : "\<Tab>"
+imap                    <C-l>           <Plug>(coc-snippets-expand)
+imap                    jj              <Esc>
+imap                    jk              <Esc>:w<CR>
+imap                    <A-S-h>         <Esc>:tabp<CR>
+imap                    <A-S-l>         <Esc>:tabn<CR>
+inoremap         <expr> <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
+inoremap         <expr> <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
+inoremap <silent><expr> <A-Tab>         pumvisible() ? "\<Down><C-y>" : "\<Tab>"
+inoremap <silent><expr> <Tab>           pumvisible() ? "\<C-y>" :
+                                            \ coc#expandableOrJumpable() ?
+                                            \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+                                            \ "\<Tab>"
 
-cnoremap <expr>     <A-s>           pumvisible() ? " \| split  #\<CR>" : "\<nop>"
-cnoremap <expr>     <A-v>           pumvisible() ? " \| vsplit #\<CR>" : "\<nop>"
-cmap                <A-l>           <Right>
-cmap                <A-h>           <Left>
-cmap                <A-j>           <C-n>
-cmap                <A-k>           <C-p>
-cmap                jj              <C-c><Esc>
-cmap                <A-Space>       <C-c><Esc>
-cmap                jk              <CR>
+cnoremap         <expr> <A-s>           pumvisible() ? " \| split  #\<CR>" : "\<nop>"
+cnoremap         <expr> <A-v>           pumvisible() ? " \| vsplit #\<CR>" : "\<nop>"
+cmap                    <A-l>           <C-Right>
+cmap                    <A-h>           <C-Left>
+cmap                    <A-j>           <C-n>
+cmap                    <A-k>           <C-p>
+cmap                    jj              <C-c><Esc>
+cmap                    <A-Space>       <C-c><Esc>
+cmap                    jk              <CR>
 
-tmap                jj              <Esc>
-tmap                <A-CR>          <C-\><C-n>:call Zoom()<CR>
-tmap                <A-z>           <C-\><C-n>:qa<CR>
-tmap                <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>
-tmap                <Esc>           <C-\><C-n>
-tmap                <A-x>           <C-\><C-n>:bd!<CR>
-tmap                <A-q>           <C-\><C-n>ZZ
-tmap                <A-b>           <C-\><C-n>:b#<CR>
-tmap                <A-Tab>         <C-\><C-n><C-w>p
-tmap                <A-C-j>         <C-\><C-n><C-w>j
-tmap                <A-C-k>         <C-\><C-n><C-w>k
-tmap                <A-C-h>         <C-\><C-n><C-w>h
-tmap                <A-C-l>         <C-\><C-n><C-w>l
+tmap                    jj              <Esc>
+tmap                    <A-CR>          <C-\><C-n>:call Zoom()<CR>
+tmap                    <A-z>           <C-\><C-n>:qa<CR>
+tmap                    <A-Space>       <C-\><C-n>:call Filter_Buffers()<CR>
+tmap                    <Esc>           <C-\><C-n>
+tmap                    <A-x>           <C-\><C-n>:bd!<CR>
+tmap                    <A-q>           <C-\><C-n>ZZ
+tmap                    <A-b>           <C-\><C-n>:b#<CR>
+tmap                    <A-Tab>         <C-\><C-n><C-w>p
+tmap                    <A-C-j>         <C-\><C-n><C-w>j
+tmap                    <A-C-k>         <C-\><C-n><C-w>k
+tmap                    <A-C-h>         <C-\><C-n><C-w>h
+tmap                    <A-C-l>         <C-\><C-n><C-w>l
 
-vnoremap            <Space><Space>  zf
-vnoremap            p               "_dP
-vmap                <Leader>/       <Esc>:'<,'>s/\%V
-vmap                <A-,>           <gv
-vmap                <A-.>           >gv
+vnoremap                <Space><Space>  zf
+vnoremap                p               "_dP
+vmap                    <Leader>/       <Esc>:'<,'>s/\%V
+vmap                    <A-,>           <gv
+vmap                    <A-.>           >gv
 
 " CHORDS
-vmap                <Leader>sh      <Esc>:silent '<,'>w !share<CR>
-nmap                <Leader>sh      :silent w !share<CR>
-nmap                <Leader>vf      :call Set_Buffer_Filter()<CR>
-"nmap                <Leader>vs      :NeoSnippetEdit -split -vertical<CR>
-xmap                <Leader>va      <Plug>(EasyAlign)
-nmap                <Leader>vu      :PlugUpdate<CR>
-nmap                <Leader>vt      :tabe %<CR>
-nmap                <Leader>gc      :Git checkout<space>
-nmap                <Leader>gs      :Gstatus<CR><C-n>
-nmap                <Leader>gp      :Git push<space>
-nmap                <Leader>gd      :Gdiff<space>
-nmap                <Leader>gb      :Gbrowse<CR>
-vmap                <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
-nmap                <Leader>gg      :Gpull<space>
-nmap                <Leader>gm      :Gmerge<space>
+vmap                    <Leader>sh      <Esc>:silent '<,'>w !share<CR>
+nmap                    <Leader>sh      :silent w !share<CR>
+nmap                    <Leader>vf      :call Set_Buffer_Filter()<CR>
+xmap                    <Leader>va      <Plug>(EasyAlign)
+nmap                    <Leader>vu      :PlugUpdate<CR>
+nmap                    <Leader>vt      :tabe %<CR>
+nmap                    <Leader>gc      :Git checkout<space>
+nmap                    <Leader>gs      :Gstatus<CR><C-n>
+nmap                    <Leader>gp      :Git push<space>
+nmap                    <Leader>gd      :Gdiff<space>
+nmap                    <Leader>gb      :Gbrowse<CR>
+vmap                    <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
+nmap                    <Leader>gg      :Gpull<space>
+nmap                    <Leader>gm      :Gmerge<space>
 "}}}
 
 " AUTOCOMMANDS {{{
@@ -251,17 +253,12 @@ au User                          CocJumpPlaceholder call CocActionAsync('showSig
 au VimLeavePre                   *                  mks! $XDG_CACHE_HOME/nvim/session.vim
 au TermOpen,WinEnter,BufWinEnter term://*           startinsert
 au WinLeave,BufWinLeave          term://*           stopinsert
+au VimEnter                      *                  call serverstart($XDG_RUNTIME_DIR . '/nvim.sock')
+au VimLeave                      *                  call serverstop($XDG_RUNTIME_DIR . '/nvim.sock')
 
 " Filetype specific
 au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
 au FileType sh         nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
-au FileType fzf
-    \ setlocal nonu nornu |
-    \ tmap <buffer> <A-Space> <A-q> |
-    \ tmap <buffer> <Esc> <A-q> |
-    \ tmap <buffer> <A-CR> <A-CR> |
-    \ tmap <buffer> <A-x> <A-x> |
-" note: synctex-forward breaks on ConTeXt documents!
 au Filetype tex,latex,context
     \ setlocal spell |
     \ setlocal spelllang=en_us |

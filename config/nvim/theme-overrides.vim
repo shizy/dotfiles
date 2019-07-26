@@ -4,7 +4,7 @@ let l = expand("$COLOR_LIGHT")
 let a = expand("$COLOR_ACCENT")
 
 exec "hi Normal                               ctermbg=none                                    guibg=#1B1B1B"
-exec "hi NormalNC                                                                             guibg=#151515"
+exec "hi NormalNC                                                                             guibg=#141414"
 exec "hi LineNr                   ctermfg=236 ctermbg=none                    guifg=#525252   guibg=none"
 exec "hi CursorLine                           ctermbg=234  cterm=none                         guibg=#525252   gui=none"
 exec "hi CursorLineNr             ctermfg=201 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=bold"
@@ -52,6 +52,11 @@ exec "hi CocHintSign              ctermfg=196 ctermbg=none cterm=bold         gu
 exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
 exec "hi CocWarningSign           ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
 exec "hi CocErrorSign             ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
+exec "hi CocFloating                                                          guifg=". l ."   guibg=". d
+exec "hi CocHintFloat                                                         guifg=". l ."   guibg=". d
+exec "hi CocInfoFloat                                                         guifg=#b8bb26   guibg=". d
+exec "hi CocWarningFloat                                                      guifg=#ff9800   guibg=". d
+exec "hi CocErrorFloat                                                        guifg=#fb4934   guibg=". d
 
 hi Function gui=bold
 hi Statement gui=bold

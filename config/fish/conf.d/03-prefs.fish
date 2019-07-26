@@ -134,7 +134,7 @@ end
 
 function edit
     set file (pwd)/$argv
-    python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('bad $file');"
+    python -c "from neovim import attach;attach('socket', path='$XDG_RUNTIME_DIR/nvim.sock').command('bad $file');"
 end
 
 function backup

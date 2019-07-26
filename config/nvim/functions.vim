@@ -13,17 +13,6 @@ function! Set_Buffer_Filter()
     set tabline=%!TabLine()
 endfunction
 
-function! Filter_Buffers()
-    let n = tabpagenr()
-    let b = ''
-    if exists("g:FILTER_" . n)
-        execute "let b = g:FILTER_" . n
-    endif
-    call feedkeys(':b **'.b.'**')
-    call feedkeys("\<Tab>")
-    call feedkeys("\<C-p>")
-endfunction
-
 " Zoom
 function! Zoom()
     if exists('t:zoomed_window')
