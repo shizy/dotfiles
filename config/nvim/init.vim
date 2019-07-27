@@ -43,7 +43,6 @@ set expandtab
 set number
 set relativenumber
 set noswapfile
-set cursorline
 set guicursor=n-v-c-sm:block,i-ci-ve:hor100,r-cr-o:hor20
 set inccommand=nosplit
 set lazyredraw
@@ -116,8 +115,6 @@ endfunction
 " Colorscheme
 set background=dark
 set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_italic = 1
 call Scheme("BusyBee")
 
 " LaTeX
@@ -163,8 +160,8 @@ nnoremap                <A-Right>       :vertical resize +10<CR>
 nnoremap                <A-Up>          :resize -10<CR>
 nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
-nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next)
-nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev)
+nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next) \| <Plug>(coc-git-nextchunk)
+nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev) \| <Plug>(coc-git-prevchunk)
 nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "FILTER_" . tabpagenr(), '')."**\<Tab>\<C-p>")
 nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "FILTER_" . tabpagenr(), '')."**\<Tab>\<C-p>")
 nmap                    <A-q>           ZZ
@@ -238,12 +235,14 @@ nmap                    <Leader>vf      :call Set_Buffer_Filter()<CR>
 xmap                    <Leader>va      <Plug>(EasyAlign)
 nmap                    <Leader>vu      :PlugUpdate<CR>
 nmap                    <Leader>vt      :tabe %<CR>
+
+nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
+nmap                    <Leader>cs      :CocCommand git.chunkStage<CR>
+nmap                    <Leader>ci      :CocCommand git.chunkInfo<CR>
 nmap                    <Leader>gc      :Git checkout<space>
 nmap                    <Leader>gs      :Gstatus<CR><C-n>
 nmap                    <Leader>gp      :Git push<space>
-nmap                    <Leader>gd      :Gdiff<space>
-nmap                    <Leader>gb      :Gbrowse<CR>
-vmap                    <Leader>gb      <Esc>:'<,'>:Gbrowse<CR>
+nmap                    <Leader>gb      :Gblame<CR>
 nmap                    <Leader>gg      :Gpull<space>
 nmap                    <Leader>gm      :Gmerge<space>
 "}}}
@@ -255,6 +254,8 @@ au TermOpen,WinEnter,BufWinEnter term://*           startinsert
 au WinLeave,BufWinLeave          term://*           stopinsert
 au VimEnter                      *                  call serverstart($XDG_RUNTIME_DIR . '/nvim.sock')
 au VimLeave                      *                  call serverstop($XDG_RUNTIME_DIR . '/nvim.sock')
+au WinEnter                      *                  setlocal cursorline
+au WinLeave                      *                  setlocal nocursorline
 
 " Filetype specific
 au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>

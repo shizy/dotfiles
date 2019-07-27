@@ -12,6 +12,7 @@ exec "hi Visual                               ctermbg=234                       
 exec "hi SignColumn                           ctermbg=none                                    guibg=none"
 exec "hi Directory                ctermfg=200              cterm=bold         guifg=". a ."                   gui=bold"
 exec "hi MoreMsg                  ctermfg=200                                 guifg=". a
+exec "hi Question                 ctermfg=200                                 guifg=". a
 exec "hi ErrorMsg                 ctermfg=200 ctermbg=none cterm=none         guifg=". a ."   guibg=none      gui=none"
 exec "hi Error                    ctermfg=200                                 guifg=". a
 exec "hi MatchParen               ctermfg=201 ctermbg=200  cterm=bold         guifg=". l ."   guibg=". a ."   gui=bold"
@@ -57,6 +58,11 @@ exec "hi CocHintFloat                                                         gu
 exec "hi CocInfoFloat                                                         guifg=#b8bb26   guibg=". d
 exec "hi CocWarningFloat                                                      guifg=#ff9800   guibg=". d
 exec "hi CocErrorFloat                                                        guifg=#fb4934   guibg=". d
+
+exec "hi DiffAdd                                                              guifg=". d ."   guibg=#b8bb26"
+exec "hi DiffChange                                                           guifg=". d ."   guibg=#ff9800"
+exec "hi DiffDelete                                                           guifg=". d ."   guibg=#fb4934"
+exec "hi DiffText                                                             guifg=". d ."   guibg=". l . "  gui=bold"
 
 hi Function gui=bold
 hi Statement gui=bold
