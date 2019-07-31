@@ -87,6 +87,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'vhdirk/vim-cmake'
 
 let g:coc_global_extensions = [
 \ 'coc-highlight',
@@ -234,6 +235,8 @@ nmap                    <Leader>sh      :silent w !share<CR>
 nmap                    <Leader>vf      :call Set_Buffer_Filter()<CR>
 xmap                    <Leader>va      <Plug>(EasyAlign)
 nmap                    <Leader>vu      :PlugUpdate<CR>
+nmap                    <Leader>vc      :PlugClean<CR>
+nmap                    <Leader>vs      :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 nmap                    <Leader>vt      :tabe %<CR>
 
 nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
@@ -248,38 +251,47 @@ nmap                    <Leader>gm      :Gmerge<space>
 "}}}
 
 " AUTOCOMMANDS {{{
-au User                          CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-au VimLeavePre                   *                  mks! $XDG_CACHE_HOME/nvim/session.vim
-au TermOpen,WinEnter,BufWinEnter term://*           startinsert
-au WinLeave,BufWinLeave          term://*           stopinsert
-au VimEnter                      *                  call serverstart($XDG_RUNTIME_DIR . '/nvim.sock')
-au VimLeave                      *                  call serverstop($XDG_RUNTIME_DIR . '/nvim.sock')
-au WinEnter                      *                  setlocal cursorline
-au WinLeave                      *                  setlocal nocursorline
+augroup globalaus
+    au!
+    au User                          CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    au TermOpen,WinEnter,BufWinEnter term://*           startinsert
+    au WinLeave,BufWinLeave          term://*           stopinsert
+    au WinEnter                      *                  setlocal cursorline
+    au WinLeave                      *                  setlocal nocursorline
+    if get(g:, 'serv', 0) == 1
+        au VimEnter                  *                  call serverstart($XDG_RUNTIME_DIR . '/nvim.sock')
+        au VimLeave                  *                  call serverstop($XDG_RUNTIME_DIR . '/nvim.sock')
+        au VimLeavePre               *                  mks! $XDG_CACHE_HOME/nvim/session.vim
+    endif
+augroup END
 
 " Filetype specific
-au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
-au FileType sh         nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
-au Filetype tex,latex,context
-    \ setlocal spell |
-    \ setlocal spelllang=en_us |
-    \ setlocal nocin inde= |
-    \ setlocal syntax=tex |
-au FileType c,cpp
-    \ syn match Todo "\<\w\+_e\>" |
-    \ syn match Todo "\<\w\+_s\>" |
-    \ syn match Todo "\<\w\+_u\>" |
-    \ syn match Todo "\<\w\+_cb\>" |
-    \ syn match Todo "\<\w\+_ptr\>" |
-    \ nmap gd <Plug>(coc-definition) |
-    \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h; make<CR> |
-    \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h; make run<CR> |
-    \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
-    \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
-    "\ setlocal foldmethod=syntax |
-    "\ setlocal foldnestmax=1 |
-au FileType help,man
-    \ setlocal ro nobuflisted |
-    \ nmap <buffer> u <C-T> |
-    \ nmap <buffer> <CR> <C-]> |
+augroup filetypes
+    au!
+    au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
+    au FileType sh         nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
+    au Filetype tex,latex,context
+        \ setlocal spell |
+        \ setlocal spelllang=en_us |
+        \ setlocal nocin inde= |
+        \ setlocal syntax=tex |
+    au FileType c,cpp
+        \ syn match Todo "\<\w\+_e\>" |
+        \ syn match Todo "\<\w\+_s\>" |
+        \ syn match Todo "\<\w\+_u\>" |
+        \ syn match Todo "\<\w\+_cb\>" |
+        \ syn match Todo "\<\w\+_ptr\>" |
+        \ nmap gd <Plug>(coc-definition) |
+        \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h/build; make<CR> |
+        \ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake ..<CR> |
+        \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h/build/bin; ./*<CR> |
+        \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
+        \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
+        "\ setlocal foldmethod=syntax |
+        "\ setlocal foldnestmax=1 |
+    au FileType help,man
+        \ setlocal ro nobuflisted |
+        \ nmap <buffer> u <C-T> |
+        \ nmap <buffer> <CR> <C-]> |
+augroup END
 "}}}

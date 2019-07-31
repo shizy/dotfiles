@@ -56,7 +56,7 @@ mode "$mode_launch" {
     bindsym i exec $term --title=irc -e fish -c "set TERM xterm-256color && weechat-curses"; mode "default"
     bindsym s exec steam; mode "default"
     bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
-    bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default"
+    bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"
     bindsym u exec uhk-agent; mode "default"
     bindsym z exec zathura; mode "default"
 
