@@ -97,11 +97,11 @@ function! StatusLine()
         let three = '%#StatusLineThreeN#'
         let output .= three . '     '
     endif
-    if mode == 'I'
+    if mode == 'I' || mode == 'T'
         let three = '%#StatusLineThreeI#'
         let output .= three . '     '
     endif
-    if mode == 'V'
+    if mode == 'V' || mode == "\<C-V>"
         let three = '%#StatusLineThreeV#'
         let output .= three . '     '
     endif

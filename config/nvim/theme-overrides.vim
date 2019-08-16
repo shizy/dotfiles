@@ -15,7 +15,7 @@ exec "hi MoreMsg                  ctermfg=200                                 gu
 exec "hi Question                 ctermfg=200                                 guifg=". a
 exec "hi ErrorMsg                 ctermfg=200 ctermbg=none cterm=none         guifg=". a ."   guibg=none      gui=none"
 exec "hi Error                    ctermfg=200                                 guifg=". a
-exec "hi MatchParen               ctermfg=201 ctermbg=200  cterm=bold         guifg=". l ."   guibg=". a ."   gui=bold"
+exec "hi MatchParen               ctermfg=201 ctermbg=200  cterm=bold         guifg=". l ."   guibg=none      gui=bold"
 exec "hi TermCursor                                        cterm=reverse                                      gui=reverse"
 exec "hi VertSplit                ctermfg=232 ctermbg=232  cterm=bold         guifg=". d ."   guibg=". d ."   gui=bold"
 exec "hi ModeMsg                  ctermfg=239                                 guifg=". a
@@ -63,6 +63,9 @@ exec "hi DiffAdd                                                              gu
 exec "hi DiffChange                                                           guifg=". d ."   guibg=#ff9800"
 exec "hi DiffDelete                                                           guifg=". d ."   guibg=#fb4934"
 exec "hi DiffText                                                             guifg=". d ."   guibg=". l . "  gui=bold"
+
+exec "hi debugPC                                                              guifg=". d ."   guibg=#fb4934"
+exec "hi debugBreakpoint                                                      guifg=". d ."   guibg=#fb4934   gui=bold"
 
 hi Function gui=bold
 hi Statement gui=bold

@@ -1,7 +1,7 @@
 " RUNONCE {{{
 if !exists("g:source_once")
 
-    silent ! mkdir $XDG_CACHE_HOME/nvim > /dev/null
+    silent ! mkdir $XDG_CACHE_HOME/nvim
 
     source $XDG_CONFIG_HOME/nvim/functions.vim
 
@@ -76,6 +76,15 @@ function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
 
+packadd termdebug
+
+let g:coc_global_extensions = [
+\ 'coc-highlight',
+\ 'coc-git',
+\ 'coc-snippets',
+\ 'coc-vimlsp',
+\]
+
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 Plug 'vim-scripts/busybee'
@@ -87,14 +96,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vhdirk/vim-cmake'
-
-let g:coc_global_extensions = [
-\ 'coc-highlight',
-\ 'coc-git',
-\ 'coc-snippets',
-\ 'coc-vimlsp',
-\]
 
 call plug#end()
 "}}}
@@ -170,7 +171,7 @@ nmap                    <A-CR>          :call Zoom()<CR>
 nmap                    <A-t>           :sp<CR>:term<CR>
 nmap                    <A-S-t>         :tabnew<CR>
 nmap                    <A-w>           :w<CR>
-nmap                    <A-S-w>         :w !sudo tee % > /dev/null<CR>
+nmap                    <A-S-w>         :w !sudo tee %<CR>
 nmap                    <Leader>/       <Esc>:%s/
 nmap                    <Leader>-       :e %:h<Tab><Tab><C-p>
 nmap                    <A-1>           1gt
@@ -239,6 +240,7 @@ nmap                    <Leader>vc      :PlugClean<CR>
 nmap                    <Leader>vs      :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 nmap                    <Leader>vt      :tabe %<CR>
 
+nmap                    <Leader>i       :call CocAction('doHover')<CR>
 nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
 nmap                    <Leader>cs      :CocCommand git.chunkStage<CR>
 nmap                    <Leader>ci      :CocCommand git.chunkInfo<CR>
@@ -254,8 +256,8 @@ nmap                    <Leader>gm      :Gmerge<space>
 augroup globalaus
     au!
     au User                          CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    au TermOpen,WinEnter,BufWinEnter term://*           startinsert
-    au WinLeave,BufWinLeave          term://*           stopinsert
+    "au TermOpen,WinEnter,BufWinEnter term://*           startinsert
+    "au WinLeave,BufWinLeave          term://*           stopinsert
     au WinEnter                      *                  setlocal cursorline
     au WinLeave                      *                  setlocal nocursorline
     if get(g:, 'serv', 0) == 1
@@ -268,6 +270,7 @@ augroup END
 " Filetype specific
 augroup filetypes
     au!
+    au FileType fugitive   nmap <buffer> <A-v> -
     au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
     au FileType sh         nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>
     au Filetype tex,latex,context
@@ -283,7 +286,7 @@ augroup filetypes
         \ syn match Todo "\<\w\+_ptr\>" |
         \ nmap gd <Plug>(coc-definition) |
         \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h/build; make<CR> |
-        \ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake ..<CR> |
+        \ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake -DCMAKE_BUILD_TYPE=Debug ..<CR> |
         \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h/build/bin; ./*<CR> |
         \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
         \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
