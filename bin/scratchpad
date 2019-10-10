@@ -1,6 +1,7 @@
 #!/bin/bash
 
-running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
+#running=$(i3-msg -t get_tree | grep -c "\"name\":\"$1\"")
+running=$(swaymsg -t get_tree | grep -c "\"app_id\": \"$1\"")
 scratchpad=", move scratchpad, scratchpad show"
 conf="--config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml"
 window_height_percentage=46
@@ -11,7 +12,7 @@ direction="up"
 # if not running, spawn scratchpad based on direction and workspace size
 if [ $running == 0 ] || [ $1 == "search" ]; then
     # primary?
-    workspace_height=$(i3-msg -t get_outputs | jq '. | map(select(.active == true) | .rect) | .[].height' | head -n 1)
+    workspace_height=$(swaymsg -t get_outputs | jq '. | map(select(.active == true) | .rect) | .[].height' | head -n 1)
     workspace_half_height=$((workspace_height / 2 + 14))
     window_half_height=$(($workspace_height * $window_height_percentage / 100 / 2))
     yadjust=$((workspace_half_height - window_half_height))
@@ -28,13 +29,13 @@ if [ $running == 0 ] || [ $1 == "search" ]; then
     esac
 
     cmd="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -s $1"
-    positioning="i3-msg [class=\"Alacritty\" title=\"$1\"] floating enable, resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px $scratchpad"
+    positioning="swaymsg [app_id=\"$1\"] floating enable, resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px $scratchpad"
 
     if [ $2 ]; then
        cmd="${@:2}"
     fi
 
-    alacritty $conf --title=$1 -e fish -c "$positioning" -c "$cmd"
+    alacritty $conf --class="$1" -e fish -c "$positioning" -c "$cmd"
 else
-    i3-msg "[class=\"Alacritty\" title=\"$1\"] scratchpad show"
+    swaymsg "[app_id=\"$1\"] scratchpad show"
 fi

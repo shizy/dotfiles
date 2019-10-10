@@ -8,20 +8,16 @@ set $up k
 set $right l
 set $term alacritty
 
-set $ws1 1:  
-set $ws2 2:  
-set $ws3 3:  
-set $ws4 4:  
-set $ws5 5:  
-set $ws6 6:  
-set $ws10 10:  
+set $ws1 1: 
+set $ws2 2: 
+set $ws3 3: 
+set $ws4 4: 
+set $ws5 5: 
+set $ws6 6: 
+set $ws10 10: 
 
 ### Exec
-exec xset r rate 200 50 &
-exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim; mode "default" &
-exec compton &
-exec sh "$XDG_CACHE_HOME/fehbg" &
-exec unclutter -grab &
+exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1" &
 
 ### Settings
 floating_modifier $mod
@@ -34,29 +30,34 @@ hide_edge_borders smart
 font pango:Iosevka Custom, Font Awesome 5 Free 11
 
 ### Window handling
-for_window [class="ascii3d"] floating enable
 for_window [class="xfreerdp"] floating disable
-for_window [class="Alacritty" title="^scratch"] floating enable
+for_window [app_id="^scratch"] floating enable
 
 ## Window Assignment
-assign [class="Alacritty" title="dispatch"] $ws1
+set $mod Mod4
 assign [class="qutebrowser"] $ws2
-assign [class="Alacritty" title="^vim$"] $ws3
-assign [class="Alacritty" title="^irc$"] $ws4
+assign [app_id="vim"] $ws3
+assign [app_id="irc"] $ws4
 #assign [class="qutebrowser" title="^discord$"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
+
+### Input
+input "*" {
+    repeat_delay 200
+    repeat_rate 50
+}
 
 ### Modes
 set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]athura
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
     bindsym d exec /usr/bin/qutebrowser --target window https://discordapp.com/channels/@me; mode "default"
-    bindsym i exec $term --title=irc -e fish -c "set TERM xterm-256color && weechat-curses"; mode "default"
+    bindsym i exec $term --class=irc -e fish -c "set TERM xterm-256color && weechat-curses"; mode "default"
     bindsym s exec steam; mode "default"
-    bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --title=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
-    bindsym v exec $term --title=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"
+    bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --class=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
+    bindsym v exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"
     bindsym u exec uhk-agent; mode "default"
     bindsym z exec zathura; mode "default"
 
@@ -159,9 +160,9 @@ bindsym $mod+l workspace next
 bindsym $mod+period [urgent=latest] focus
 
 ### Colors
-client.focused      #FFFFFF #000000 #000000 #000000 #FFFFFF
-client.unfocused    #888888 #000000 #000000 #000000 #888888
-client.urgent       #FF0000 #000000 #000000 #000000 #FF0000
+client.focused      #FFFFFF #000000 #000000 #FFFFFF #FFFFFF
+client.unfocused    #888888 #000000 #000000 #888888 #888888
+client.urgent       #FF0000 #000000 #000000 #FF0000 #FF0000
 
 ### Status Bar(s)
 bar {
