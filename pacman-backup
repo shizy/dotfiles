@@ -28,5 +28,6 @@ ttf-liberation
 wlroots
 weechat
 wget
+xorg-server-xwayland
 zathura
 zathura-pdf-mupdf
