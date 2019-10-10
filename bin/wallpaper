@@ -12,5 +12,5 @@ else
 fi
 
 touch "$XDG_DATA_HOME/wallpaper/$x"
-feh --bg-fill --no-fehbg "$XDG_DATA_HOME/wallpaper/$x"
-echo -n "feh --bg-fill --no-fehbg '$XDG_DATA_HOME/wallpaper/$x'" > $XDG_CACHE_HOME/fehbg
+swaymsg output "*" background $XDG_DATA_HOME/wallpaper/$x fill
+echo -n "$XDG_DATA_HOME/wallpaper/$x" > $XDG_CACHE_HOME/wallpaper

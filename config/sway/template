@@ -17,7 +17,7 @@ set $ws6 6:
 set $ws10 10: 
 
 ### Exec
-exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1" &
+exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"
 
 ### Settings
 floating_modifier $mod
@@ -48,6 +48,9 @@ input "*" {
     repeat_delay 200
     repeat_rate 50
 }
+
+seat * hide_cursor 5000
+output "*" background $(cat $XDG_CACHE_HOME/wallpaper) fill
 
 ### Modes
 set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]athura
@@ -107,11 +110,8 @@ bindsym $mod+slash mode "$mode_search"
 bindsym $mod+Shift+c restart
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
-bindsym $mod+Escape exec i3lock-fancy -pf M+-1m-reular
-
-### Custom workarounds
-#bindsym --release Mod1+y exec --no-startup-id xdotool key --clearmodifiers ctrl+shift+space
-bindsym --release Mod1+p exec --no-startup-id xdotool key --clearmodifiers shift+Insert
+bindsym $mod+Escape exec swaylock -c 000000
+#bindsym $mod+Shift+z exec grim -g \"$(slurp)\" /tmp/screenshot.png
 
 ### Device control
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-

@@ -6,6 +6,7 @@ imagemagick
 freerdp
 fzf
 gnupg
+grim
 jq
 neovim
 nmap
@@ -20,11 +21,13 @@ python-neovim
 qutebrowser
 rclone
 ripgrep
+slurp
 sway
 texlive-core
 tmux
 ttf-dejavu
 ttf-liberation
+wl-clipboard
 wlroots
 weechat
 wget

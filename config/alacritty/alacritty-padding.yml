@@ -149,6 +149,7 @@ live_config_reload: true
 # (e.g. "\x1b[5~") is? Open another terminal (like xterm) without tmux,
 # then run `showkey -a` to get the sequence associated to a key combination.
 key_bindings:
+  - { key: P,        mods: Alt,              action: Paste               }
   - { key: K,        mods: Alt,              action: ScrollPageUp        }
   - { key: J,        mods: Alt,              action: ScrollPageDown      }
   - { key: V,        mods: Control|Shift,    action: Paste               }
