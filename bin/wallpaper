@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ $1 == "restore" ]; then
+    swaymsg output "*" background $(cat $XDG_CACHE_HOME/wallpaper) fill
+    exit
+fi
+
 if [ ! -d "$XDG_DATA_HOME/wallpaper" ]; then
     mkdir $XDG_DATA_HOME/wallpaper 2>/dev/null
 fi

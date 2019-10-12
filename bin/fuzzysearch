@@ -13,12 +13,6 @@ case $1 in
             i3-msg exec $file
         done
         ;;
-    "diff")
-        sel=$(fzf --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
-        if [[ -n $sel ]]; then
-            i3-msg exec "alacritty --title=dispatch -e /usr/bin/nvim -dR $(echo ${sel[@]})"
-        fi
-        ;;
     "file")
         sel=$(fzf --preview-window="$pw:$ps%" --preview="bat --color=always {}" --prompt="$1 > " <<< $(rg --ignore-file $XDG_CONFIG_HOME/ag/agignore --hidden --no-messages --files /etc $HOME $PRIVATE))
         for file in ${sel[@]}
@@ -46,7 +40,6 @@ case $1 in
         done
         ;;
     "man")
-        sleep 0.5
         sel=$(fzf --prompt="$1 > " <<< $(/usr/bin/man -k "" | awk '{print $1,$2}'))
         for man in ${sel[@]}
         do
@@ -71,29 +64,11 @@ case $1 in
             i3-msg exec "alacritty --title=dispatch -e $LOCALDIR/bin/ssh $loc"
         done
         ;;
-    "pwd")
-        if [ ! -f $XDG_DATA_HOME/npm/bin/bw ]; then
-            npm install -g @bitwarden/cli
-        fi
-        if [ "$($XDG_DATA_HOME/npm/bin/bw login --check)" == "You are not logged in." ]; then
-            $XDG_DATA_HOME/npm/bin/bw login --raw > $XDG_RUNTIME_DIR/bitwarden
-        fi
-        #if [[ ! -f $XDG_RUNTIME_DIR/bitwarden || "$($XDG_DATA_HOME/npm/bin/bw list items --session=$(cat $XDG_RUNTIME_DIR/bitwarden))" == "Vault is locked." ]]; then
-        if [ ! -f $XDG_RUNTIME_DIR/bitwarden ]; then
-            $XDG_DATA_HOME/npm/bin/bw unlock --raw > $XDG_RUNTIME_DIR/bitwarden
-            $XDG_DATA_HOME/npm/bin/bw sync --session=$(cat $XDG_RUNTIME_DIR/bitwarden)
-        fi
-        session=$(cat $XDG_RUNTIME_DIR/bitwarden)
-        sel=$(fzf -1 --prompt="$1 > " <<< $($XDG_DATA_HOME/npm/bin/bw list items --session=$session | jq '.[].name') | sed -e s/\"//g)
-        p=$($XDG_DATA_HOME/npm/bin/bw get password $sel --session=$session)
-        if [ ! -z "${QUTE_FIFO+x}" ]; then
-            # called by qutebrowser
-            u=$($XDG_DATA_HOME/npm/bin/bw get username $sel --session=$session)
-            echo "insert-text $u ;; later 50 fake-key <Tab> ;; later 50 insert-text $p ;; enter-mode insert" >> "$QUTE_FIFO"
-            exit
-        else
-            # copy pass to clipboard
-            echo $p | xsel -b -i -z
-        fi
+    "wallpaper")
+        sel=$(fzf --preview="swaymsg output \"*\" background {} fill" --prompt="$1 > " <<< $(rg --files $XDG_DATA_HOME/wallpaper))
+        for loc in ${sel[@]}
+        do
+            echo -n "$loc" > $XDG_CACHE_HOME/wallpaper
+        done
         ;;
 esac

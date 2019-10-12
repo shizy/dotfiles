@@ -1,6 +1,6 @@
 # vim: ft=i3config:
 
-### Variables
+# Variables {{{
 set $mod Mod4
 set $left h
 set $down j
@@ -15,11 +15,14 @@ set $ws4 4:
 set $ws5 5: 
 set $ws6 6: 
 set $ws10 10: 
+# }}}
 
-### Exec
+# Exec {{{
 exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"
+exec wallpaper restore
+# }}}
 
-### Settings
+# Settings {{{
 floating_modifier $mod
 default_orientation auto
 workspace_auto_back_and_forth yes
@@ -28,12 +31,12 @@ default_border pixel 1
 default_floating_border pixel 1
 hide_edge_borders smart
 font pango:Iosevka Custom, Font Awesome 5 Free 11
+# }}}
 
-### Window handling
+# Windows {{{
 for_window [class="xfreerdp"] floating disable
 for_window [app_id="^scratch"] floating enable
 
-## Window Assignment
 set $mod Mod4
 assign [class="qutebrowser"] $ws2
 assign [app_id="vim"] $ws3
@@ -42,17 +45,18 @@ assign [app_id="irc"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
+# }}}
 
-### Input
+# Input {{{
 input "*" {
     repeat_delay 200
     repeat_rate 50
 }
 
 seat * hide_cursor 5000
-output "*" background $(cat $XDG_CACHE_HOME/wallpaper) fill
+# }}}
 
-### Modes
+# Modes {{{
 set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]athura
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
@@ -78,7 +82,7 @@ mode "$mode_layout" {
     bindsym Return mode "default"
 }
 
-set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [p]ass, [s]sh
+set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [p]ass, [s]sh, [w]allpaper
 mode "$mode_search" {
     bindsym b exec scratchpad scratchsearch fuzzysearch bin; mode "default"
     bindsym d exec scratchpad scratchsearch fuzzysearch diff; mode "default"
@@ -87,6 +91,7 @@ mode "$mode_search" {
     bindsym m exec scratchpad scratchsearch fuzzysearch man; mode "default"
     bindsym p exec scratchpad scratchsearch fuzzysearch pwd; mode "default"
     bindsym s exec scratchpad scratchsearch fuzzysearch ssh; mode "default"
+    bindsym w exec scratchpad scratchsearch fuzzysearch wallpaper; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -101,8 +106,9 @@ mode "mode_resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+# }}}
 
-### Binds
+# Binds {{{
 bindsym $mod+semicolon mode "$mode_launch"
 bindsym $mod+m mode "$mode_layout"
 bindsym $mod+r mode "mode_resize"
@@ -113,26 +119,22 @@ bindsym $mod+x kill
 bindsym $mod+Escape exec swaylock -c 000000
 #bindsym $mod+Shift+z exec grim -g \"$(slurp)\" /tmp/screenshot.png
 
-### Device control
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
-# Scratchpads
 bindsym $mod+k exec scratchpad scratchtop
 bindsym $mod+j exec scratchpad scratchbottom
-#bindsym $mod+slash exec scratchpad scratchsearch fuzzysearch
 
-# Window control
 bindsym $mod+Control+$left focus left
 bindsym $mod+Control+$right focus right
 bindsym $mod+Control+$up focus up
 bindsym $mod+Control+$down focus down
 bindsym $mod+Return fullscreen
+bindsym $mod+Shift+Return fullscreen toggle global
 bindsym $mod+space floating toggle
 bindsym $mod+Tab exec $HOME/local/bin/flexible_focus.sh
 
-# Workspace control
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -158,13 +160,15 @@ bindsym $mod+Shift+l workspace next
 bindsym $mod+h workspace prev
 bindsym $mod+l workspace next
 bindsym $mod+period [urgent=latest] focus
+# }}}
 
-### Colors
+# Colors {{{
 client.focused      #FFFFFF #000000 #000000 #FFFFFF #FFFFFF
 client.unfocused    #888888 #000000 #000000 #888888 #888888
 client.urgent       #FF0000 #000000 #000000 #FF0000 #FF0000
+# }}}
 
-### Status Bar(s)
+# Status Bar {{{
 bar {
     id bar-1
     font pango:Iosevka Custom, Font Awesome 5 Free 11
@@ -185,3 +189,4 @@ bar {
         urgent_workspace   #000000 #000000 #FF0000
     }
 }
+# }}}

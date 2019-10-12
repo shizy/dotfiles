@@ -18,8 +18,10 @@ pdfjs
 pinentry
 proxychains-ng
 python-neovim
+python-tldextract
 qutebrowser
 rclone
+rofi
 ripgrep
 slurp
 sway
