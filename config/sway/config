@@ -115,7 +115,7 @@ bindsym $mod+Shift+c restart
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
 bindsym $mod+Escape exec swaylock -c 000000
-#bindsym $mod+Shift+z exec grim -g \"$(slurp)\" /tmp/screenshot.png
+bindsym $mod+s exec grim -g \"$(slurp)\" /tmp/screenshot.png
 
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
@@ -161,9 +161,9 @@ bindsym $mod+period [urgent=latest] focus
 # }}}
 
 # Colors {{{
-client.focused      #FFFFFF #000000 #000000 #FFFFFF #FFFFFF
-client.unfocused    #888888 #000000 #000000 #888888 #888888
-client.urgent       #FF0000 #000000 #000000 #FF0000 #FF0000
+exec swaymsg client.focused   "${COLOR_LIGHT}  #000000 #000000 ${COLOR_LIGHT}  ${COLOR_LIGHT}"
+exec swaymsg client.unfocused "${COLOR_MEDIUM} #000000 #000000 ${COLOR_MEDIUM} ${COLOR_MEDIUM}"
+exec swaymsg client.urgent    "${COLOR_ACCENT} #000000 #000000 ${COLOR_ACCENT} ${COLOR_ACCENT}"
 # }}}
 
 # Status Bar {{{
@@ -184,7 +184,7 @@ bar {
         focused_workspace  #888888 #888888 #000000
         active_workspace   #000000 #000000 #FFFFFF99
         inactive_workspace #000000 #000000 #888888
-        urgent_workspace   #000000 #000000 #FF0000
+        urgent_workspace   #000000 #000000 #FFFFFF
     }
 }
 # }}}
