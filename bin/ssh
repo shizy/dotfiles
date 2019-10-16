@@ -5,4 +5,13 @@ if [[ -z "$(pgrep ssh-agent)" ]]; then
     ssh-agent -a $SSH_AUTH_SOCK -t 1800 > /dev/null
 fi
 
+# unlock private files to access ssh_config and keys
+if [ ! -d "$PRIVATE" ]; then
+    $LOCALDIR/bin/bw private
+    chmod 700 $PRIVATE/keys
+    chmod 600 $PRIVATE/keys/*
+    chmod 644 $PRIVATE/keys/*.pub
+fi
+
+cd $PRIVATE/ssh
 TERM=xterm-color /usr/bin/ssh -q -F $PRIVATE/ssh/ssh_config "$@"

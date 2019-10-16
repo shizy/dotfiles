@@ -1,0 +1,88 @@
+#!/bin/bash
+
+dispatch="alacritty --class=\"dispatch-small\" -e fish -c "
+timeout=900
+private=0
+resync=0
+
+# install bitwarden if it does not exist
+if [ ! -f $XDG_DATA_HOME/npm/bin/bw ]; then
+    alacritty --class="dispatch-small" -e bash -c \
+        'npm install -g @bitwarden/cli && sudo pacman -S python-tldextract --noconfirm'
+fi
+
+# prompt to login if not logged in
+$XDG_DATA_HOME/npm/bin/bw login --check > /dev/null
+if [ $? -ne 0 ]; then
+    alacritty --class="dispatch-small" -e bash -c \
+        'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw login --raw) @u'
+fi
+
+# prompt to unlock if session is invalid
+key=$(keyctl request user bw_session &> /dev/null)
+if [ $? -ne 0 ]; then
+    alacritty --class="dispatch-small" -e bash -c \
+        'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw unlock --raw) @u'
+    resync=1
+fi
+
+# get the session key
+key=$(keyctl request user bw_session)
+session=$(keyctl pipe $key)
+keyctl timeout $key $timeout
+
+# resync the vault
+if [ $resync -eq 1 ] || [ "$1" == "private" ]; then
+    $XDG_DATA_HOME/npm/bin/bw sync --session=$session > /dev/null
+fi
+
+# unpack private files
+if [ "$1" == "private" ]; then
+
+    [ -d "$PRIVATE" ] || mkdir -p $PRIVATE
+    id=$($XDG_DATA_HOME/npm/bin/bw list items --search private-files --session=$session | jq -r .[0].id)
+    $XDG_DATA_HOME/npm/bin/bw --session=$session get attachment private.tar --itemid $id --output $PRIVATE/private.tar > /dev/null
+    tar -xf $PRIVATE/private.tar -C $PRIVATE > /dev/null
+    rm $PRIVATE/private.tar > /dev/null
+    exit
+fi
+
+# launched from qutebrowser
+if [ "$1" == "qute" ]; then
+
+    echo -e "\n\tRetrieving credentials..."
+
+    # parse tld
+    tld=$(tldextract ${QUTE_URL} | sed -e 's/^\s//g' -e 's/\s$//g' -e 's/\s/\./g')
+
+    # filter entries by tld and store as json
+    json=$($XDG_DATA_HOME/npm/bin/bw list items --url $tld --session=$session)
+
+    # select from multiple entries
+    if [[ $(echo $json | jq '. | length') > 1 ]]; then
+        entries=$(echo $json | jq '.[] | (.name + " | " + .login.username)' | sed -e 's/"//g')
+        selection=$(echo -e "$entries" | fzf | grep -Eo '^[^ |]+')
+        json=$(echo $json | jq '.[] | select(.name == "'$selection'")')
+    else
+        json=$(echo $json | jq '.[0]')
+    fi
+
+    # parse username / pass from selection
+    user=$(echo $json | jq '.login.username' | sed -e 's/"//g')
+    pass=$(echo $json | jq '.login.password' | sed -e 's/"//g')
+    json=""
+
+    # pass the username / pass back to qute
+    echo "fake-key \"${user}\"" > $QUTE_FIFO
+    echo "fake-key <Tab>"       > $QUTE_FIFO
+    echo "fake-key \"${pass}\"" > $QUTE_FIFO
+    echo "enter-mode insert"    > $QUTE_FIFO
+
+    exit
+fi
+if [ ! -z ${QUTE_FIFO+x} ]; then
+    alacritty --class="dispatch-small" -e bash -c "$LOCALDIR/bin/bw qute"
+fi
+
+# execute command
+$XDG_DATA_HOME/npm/bin/bw --session=$session $@

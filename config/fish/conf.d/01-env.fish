@@ -12,7 +12,10 @@ set -x ICON_SIZE 14
 set -x PAGER less
 set -x EDITOR nvim
 set -x BROWSER qutebrowser
-set -x PRIVATE $LOCALDIR/private
+set -x PRIVATE $XDG_RUNTIME_DIR/private
+
+# bash
+set -x HISTFILE $XDG_CACHE_HOME/bash_history
 
 # bzr
 set -x BZR_LOG /dev/null

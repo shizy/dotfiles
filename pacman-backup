@@ -2,7 +2,6 @@ alacritty
 alacritty-terminfo
 bat
 clang
-imagemagick
 freerdp
 fzf
 gnupg
@@ -15,16 +14,14 @@ npm
 openssh
 otf-font-awesome
 pdfjs
-pinentry
 proxychains-ng
 python-neovim
-python-tldextract
 qutebrowser
 rclone
-rofi
 ripgrep
 slurp
 sway
+swaylock
 texlive-core
 tmux
 ttf-dejavu

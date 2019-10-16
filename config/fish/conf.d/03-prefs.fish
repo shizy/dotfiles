@@ -142,10 +142,6 @@ function backup
     switch $argv
         case '*pri*'
             tar -cvf $HOME/private.tar -C $PRIVATE/ .
-            gpg -r shizukesa --trust-model always --encrypt -o $HOME/private.tar.gpg $HOME/private.tar
-            rclone copy $HOME/private.tar.gpg gdrive:Backup
-            rm $HOME/private.tar
-            rm $HOME/private.tar.gpg
         case '*doc*'
             tar -cvf $HOME/docs.tar -C $HOME/docs/ .
             gpg -r shizukesa --trust-model always --encrypt -o $HOME/docs.tar.gpg $HOME/docs.tar

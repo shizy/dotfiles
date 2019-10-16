@@ -36,8 +36,9 @@ font pango:Iosevka Custom, Font Awesome 5 Free 11
 # Windows {{{
 for_window [class="xfreerdp"] floating disable
 for_window [app_id="^scratch"] floating enable
+for_window [app_id="dispatch-small"] floating enable, resize set width 50ppt height 25ppt, move position center
+for_window [app_id="dispatch-large"] floating enable, resize set width 70ppt height 46ppt, move position center
 
-set $mod Mod4
 assign [class="qutebrowser"] $ws2
 assign [app_id="vim"] $ws3
 assign [app_id="irc"] $ws4
@@ -84,14 +85,11 @@ mode "$mode_layout" {
 
 set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [p]ass, [s]sh, [w]allpaper
 mode "$mode_search" {
-    bindsym b exec scratchpad scratchsearch fuzzysearch bin; mode "default"
-    bindsym d exec scratchpad scratchsearch fuzzysearch diff; mode "default"
-    bindsym f exec scratchpad scratchsearch fuzzysearch file; mode "default"
-    bindsym k exec scratchpad scratchsearch fuzzysearch kill; mode "default"
-    bindsym m exec scratchpad scratchsearch fuzzysearch man; mode "default"
-    bindsym p exec scratchpad scratchsearch fuzzysearch pwd; mode "default"
-    bindsym s exec scratchpad scratchsearch fuzzysearch ssh; mode "default"
-    bindsym w exec scratchpad scratchsearch fuzzysearch wallpaper; mode "default"
+    bindsym b exec $term --class="dispatch-small" -e fuzzysearch bin; mode "default"
+    bindsym f exec $term --class="dispatch-large" -e fuzzysearch file; mode "default"
+    bindsym k exec $term --class="dispatch-small" -e fuzzysearch kill; mode "default"
+    bindsym s exec $term --class="dispatch-small" -e fuzzysearch ssh; mode "default"
+    bindsym w exec $term --class="dispatch-small" -e fuzzysearch wallpaper; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

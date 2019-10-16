@@ -1,6 +1,3 @@
-[submodule "pkgbuilds/i3lock-fancy-git"]
-	path = pkgbuilds/i3lock-fancy-git
-	url = https://aur.archlinux.org/i3lock-fancy-git.git
 [submodule "pkgbuilds/uhk-agent-appimage"]
 	path = pkgbuilds/uhk-agent-appimage
 	url = https://aur.archlinux.org/uhk-agent-appimage.git

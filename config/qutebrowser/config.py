@@ -40,8 +40,8 @@ c.fonts.tabs = os.environ["FONT_SIZE"] + "pt monospace"
 
 config.unbind("d", mode='normal')
 
-config.bind("jj", "enter-mode normal", mode="insert")
-config.bind("<Alt-/>", "spawn --userscript qute-bitwarden")
+config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw")
+config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw")
 config.bind("<Alt-/>", "enter-mode normal ;; spawn --userscript qute-bitwarden", mode="insert")
 config.bind("<Alt-p>", "insert-text {primary}")
 config.bind("<Alt-p>", "insert-text {primary}", mode="insert")

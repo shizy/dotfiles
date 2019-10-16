@@ -61,11 +61,14 @@ case $1 in
         for loc in ${sel[@]}
         do
             #tmux new-window -n "ssh-$loc" -t "scratchbottom" "$LOCALDIR/bin/ssh $loc"
-            i3-msg exec "alacritty --title=dispatch -e $LOCALDIR/bin/ssh $loc"
+            i3-msg exec "alacritty -e $LOCALDIR/bin/ssh $loc"
         done
         ;;
+    "password")
+        ;;
     "wallpaper")
-        sel=$(fzf --preview="swaymsg output \"*\" background {} fill" --prompt="$1 > " <<< $(rg --files $XDG_DATA_HOME/wallpaper))
+        ps=0
+        sel=$(fzf --preview-window="$pw:$ps%" --preview="swaymsg output \"*\" background {} fill" --prompt="$1 > " <<< $(rg --files $XDG_DATA_HOME/wallpaper))
         for loc in ${sel[@]}
         do
             echo -n "$loc" > $XDG_CACHE_HOME/wallpaper
