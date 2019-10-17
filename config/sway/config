@@ -167,8 +167,8 @@ exec swaymsg client.urgent    "${COLOR_ACCENT} #000000 #000000 ${COLOR_ACCENT} $
 # }}}
 
 # Status Bar {{{
-bar {
-    id bar-1
+bar bar-1 {
+    #id bar-1
     font pango:Iosevka Custom, Font Awesome 5 Free 11
     status_command i3status --config ~/local/config/i3/status.conf
     strip_workspace_numbers yes
