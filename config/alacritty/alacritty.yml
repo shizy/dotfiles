@@ -8,6 +8,8 @@ window:
   padding:
     x: 0
     y: 0
+    #paddingx: 20
+    #paddingy: 20
   decorations: full
   dynamic_padding: false
 
@@ -248,3 +250,5 @@ key_bindings:
   - { key: F10,      mods: Super,   chars: "\x1b[21;3~"                  }
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                  }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                  }
+  #scroll- { key: K,        mods: Alt,              action: ScrollPageUp        }
+  #scroll- { key: J,        mods: Alt,              action: ScrollPageDown      }

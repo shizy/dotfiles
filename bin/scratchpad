@@ -1,7 +1,6 @@
 #!/bin/bash
 
 running=$(swaymsg -t get_tree | grep -c "\"app_id\": \"$1\"")
-conf="--config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml"
 window_height_percentage=46
 window_width_percentage=80
 yadjust=0
@@ -35,7 +34,7 @@ if [ $running == 0 ]; then
        cmd="${@:2}"
     fi
 
-    alacritty $conf --class="$1" -e fish -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show" -c "$cmd"
+    /usr/bin/alacritty --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#scroll//g') --class="$1" -e fish -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show" -c "$cmd"
 else
     swaymsg "[app_id=\"$1\"] scratchpad show, $positioning"
 fi

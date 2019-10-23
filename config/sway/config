@@ -64,7 +64,7 @@ mode "$mode_launch" {
     bindsym d exec /usr/bin/qutebrowser --target window https://discordapp.com/channels/@me; mode "default"
     bindsym i exec $term --class=irc -e fish -c "set TERM xterm-256color && weechat-curses"; mode "default"
     bindsym s exec steam; mode "default"
-    bindsym t exec $term --config-file $XDG_CONFIG_HOME/alacritty/alacritty-padding.yml --class=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session; mode "default"
+    bindsym t exec bash -c "$term --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#scroll//g') --class=term -e tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session"; mode "default"
     bindsym v exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"
     bindsym u exec uhk-agent; mode "default"
     bindsym z exec zathura; mode "default"
@@ -85,11 +85,11 @@ mode "$mode_layout" {
 
 set $mode_search [b]in, [d]iff, [f]ile, [k]ill, [m]an, [p]ass, [s]sh, [w]allpaper
 mode "$mode_search" {
-    bindsym b exec $term --class="dispatch-small" -e fuzzysearch bin; mode "default"
-    bindsym f exec $term --class="dispatch-large" -e fuzzysearch file; mode "default"
-    bindsym k exec $term --class="dispatch-small" -e fuzzysearch kill; mode "default"
-    bindsym s exec $term --class="dispatch-small" -e fuzzysearch ssh; mode "default"
-    bindsym w exec $term --class="dispatch-small" -e fuzzysearch wallpaper; mode "default"
+    bindsym b exec bash -c "$term --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g') --class=dispatch-small -e fuzzysearch bin"; mode "default"
+    bindsym f exec bash -c "$term --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g') --class=dispatch-large -e fuzzysearch file"; mode "default"
+    bindsym k exec bash -c "$term --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g') --class=dispatch-small -e fuzzysearch kill"; mode "default"
+    bindsym s exec bash -c "$term --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g') --class=dispatch-small -e fuzzysearch ssh"; mode "default"
+    bindsym w exec bash -c "$term --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g') --class=dispatch-small -e fuzzysearch wallpaper"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -111,7 +111,7 @@ bindsym $mod+semicolon mode "$mode_launch"
 bindsym $mod+m mode "$mode_layout"
 bindsym $mod+r mode "mode_resize"
 bindsym $mod+slash mode "$mode_search"
-bindsym $mod+Shift+c restart
+bindsym $mod+Shift+c reload
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
 bindsym $mod+Escape exec swaylock -c 000000
