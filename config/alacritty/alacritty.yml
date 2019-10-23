@@ -41,6 +41,8 @@ colors:
   primary:
     background: '0x101010'
     foreground: '0xb9b9b9'
+    #lightbackground: '0xb9b9b9'
+    #lightforeground: '0x101010'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
@@ -57,6 +59,14 @@ colors:
     magenta: '0x747474'
     cyan:    '0x868686'
     white:   '0xb9b9b9'
+    #lightblack:   '0xf7f7f7'
+    #lightred:     '0xe3e3e3'
+    #lightgreen:   '0xb9b9b9'
+    #lightyellow:  '0xababab'
+    #lightblue:    '0x525252'
+    #lightmagenta: '0x464646'
+    #lightcyan:    '0x252525'
+    #lightwhite:   '0x101010'
 
   # Bright colors
   bright:
@@ -68,6 +78,14 @@ colors:
     magenta: '0x747474'
     cyan:    '0x868686'
     white:   '0xb9b9b9'
+    #lightblack:   '0x7c7c7c'
+    #lightred:     '0x999999'
+    #lightgreen:   '0xa0a0a0'
+    #lightyellow:  '0x8e8e8e'
+    #lightblue:    '0x868686'
+    #lightmagenta: '0x686868'
+    #lightcyan:    '0x747474'
+    #lightwhite:   '0x5e5e5e'
 
   indexed_colors:
     - { index: 16, color: '0x999999' }

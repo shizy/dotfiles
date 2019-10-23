@@ -39,13 +39,6 @@ case $1 in
             esac
         done
         ;;
-    "man")
-        sel=$(fzf --prompt="$1 > " <<< $(/usr/bin/man -k "" | awk '{print $1,$2}'))
-        for man in ${sel[@]}
-        do
-            python -c "from neovim import attach; nvim=attach('socket', path='$XDG_RUNTIME_DIR/nvim'); nvim.command('Man $man');"
-        done
-        ;;
     "kill")
         sel=$(fzf --prompt="$1 > " <<< $(ps -eo "%p : %U %c %a" | tail -n +2))
         for proc in ${sel[@]}
@@ -57,14 +50,13 @@ case $1 in
         done
         ;;
     "ssh")
+        [ -d "$PRIVATE" ] || $LOCALDIR/bin/bw private
         sel=$(fzf --prompt="$1 > " <<< $(cat $PRIVATE/ssh/ssh_config | grep -oP '(?<=Host\ ).*?$'))
         for loc in ${sel[@]}
         do
             #tmux new-window -n "ssh-$loc" -t "scratchbottom" "$LOCALDIR/bin/ssh $loc"
-            i3-msg exec "alacritty -e $LOCALDIR/bin/ssh $loc"
+            swaymsg exec "alacritty -e $LOCALDIR/bin/ssh $loc"
         done
-        ;;
-    "password")
         ;;
     "wallpaper")
         ps=0
