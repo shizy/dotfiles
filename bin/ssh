@@ -6,7 +6,7 @@ if [[ -z "$(pgrep ssh-agent)" ]]; then
 fi
 
 # unlock private files to access ssh_config and keys
-if [ -d "$PRIVATE" ]; then
+if [ ! -d "$PRIVATE" ]; then
     $LOCALDIR/bin/bw private
     chmod 700 $PRIVATE/keys
     chmod 600 $PRIVATE/keys/*
