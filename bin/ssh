@@ -5,13 +5,43 @@ if [[ -z "$(pgrep ssh-agent)" ]]; then
     ssh-agent -a $SSH_AUTH_SOCK -t 1800 > /dev/null
 fi
 
-# unlock private files to access ssh_config and keys
-if [ ! -d "$PRIVATE" ]; then
-    $LOCALDIR/bin/bw private
-    chmod 700 $PRIVATE/keys
-    chmod 600 $PRIVATE/keys/*
-    chmod 644 $PRIVATE/keys/*.pub
+
+mkdir -p $XDG_CACHE_HOME/ssh > /dev/null
+ssh_config=$(cat $XDG_CACHE_HOME/ssh/ssh_config)
+
+# remove all documented ssh parameter switches (and their arguments) from the string, leaving the host
+host=$(echo $@ | sed -E 's/(\s?-[BbcDEeFIiJLlmOopQRSWw]+\s*\S*)|(\s+-[46AaCfGgKkMNnqsTtVvXxYy]+)//g' | awk '{print $1;}' | sed -e 's/\S*@//g')
+
+# if from git!
+if [ "$(ps -o comm= $PPID)" == "git" ]; then
+    host=$(echo $@ | awk '{print $1;}' | sed -e 's/\S*@//g')
 fi
 
-cd $PRIVATE/ssh
-TERM=xterm-color /usr/bin/ssh -q -F $PRIVATE/ssh/ssh_config "$@"
+# parse ssh_config and find if there is a matching host
+hosts=($(echo "$ssh_config" | grep -oP '(?<=^Host\s).*?$' | sed -e 's/\n/\ /g'))
+match=''
+ident=''
+for cfg in ${hosts[@]:1}
+do
+    if [[ "$host" =~ "$cfg" ]]; then
+        match=$cfg
+    fi
+done
+
+# get IdentityFile from matched host in ssh_config
+if [ ! -z ${match} ]; then
+    ident=$(echo "$ssh_config" | sed -n -e "/Host $host/,/^$/ p" | grep -oP '(?<=IdentityFile\s).*?(?=$)')
+fi
+
+# get the IdentityFile record with the matching name from bw
+if [ ! -z ${ident} ]; then
+    echo "Using IdentityFile: $ident"
+    [ -d "$PRIVATE" ] || $LOCALDIR/bin/bw private
+    pkfolderid=$(bw list folders --search PrivateKey | jq -r '.[].id')
+    itemid=$(bw list items --folderid $pkfolderid --search $ident | jq -r '.[].id')
+    bw get item $itemid | jq -r '.notes' | ssh-add -q /dev/stdin
+    /usr/bin/ssh -F $XDG_CACHE_HOME/ssh/ssh_config $@
+    ssh-add -D
+else
+    /usr/bin/ssh -F $XDG_CACHE_HOME/ssh/ssh_config $@
+fi
