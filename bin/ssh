@@ -5,7 +5,6 @@ if [[ -z "$(pgrep ssh-agent)" ]]; then
     ssh-agent -a $SSH_AUTH_SOCK -t 1800 > /dev/null
 fi
 
-
 mkdir -p $XDG_CACHE_HOME/ssh > /dev/null
 ssh_config=$(cat $XDG_CACHE_HOME/ssh/ssh_config)
 
@@ -35,8 +34,6 @@ fi
 
 # get the IdentityFile record with the matching name from bw
 if [ ! -z ${ident} ]; then
-    echo "Using IdentityFile: $ident"
-    [ -d "$PRIVATE" ] || $LOCALDIR/bin/bw private
     pkfolderid=$(bw list folders --search PrivateKey | jq -r '.[].id')
     itemid=$(bw list items --folderid $pkfolderid --search $ident | jq -r '.[].id')
     bw get item $itemid | jq -r '.notes' | ssh-add -q /dev/stdin
