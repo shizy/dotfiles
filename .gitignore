@@ -13,10 +13,7 @@
 !/config/fish
 /config/fish/fishd.*
 !/config/fish/conf.d
-!/config/fontconfig
-!/config/i3
 !/config/git
-!/config/gtk-3.0
 !/config/nvim
 !/config/proxychains
 !/config/qutebrowser
@@ -27,7 +24,6 @@
 /config/systemd/user/**
 !/config/tmux
 !/config/user-dirs.dir
-!/config/x11
 !/config/zathura
 
 # Fonts
@@ -64,4 +60,3 @@
 !/README.md
 !/pacman-backup
 !/.gitignore
-!/.gitmodules
