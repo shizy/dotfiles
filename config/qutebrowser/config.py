@@ -42,7 +42,6 @@ config.unbind("d", mode='normal')
 
 config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw")
 config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw")
-config.bind("<Alt-/>", "enter-mode normal ;; spawn --userscript qute-bitwarden", mode="insert")
 config.bind("<Alt-p>", "insert-text {primary}")
 config.bind("<Alt-p>", "insert-text {primary}", mode="insert")
 config.bind("<Alt-f>", "hint all tab-bg")
