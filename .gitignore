@@ -13,6 +13,7 @@
 !/config/fish
 /config/fish/fishd.*
 !/config/fish/conf.d
+!/config/fontconfig
 !/config/git
 !/config/nvim
 !/config/proxychains
