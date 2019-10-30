@@ -3,7 +3,7 @@ set -x COLOR_DARK   "#101011"
 set -x COLOR_MEDIUM "#928374"
 set -x COLOR_LIGHT  "#fbf1c7"
 if test -z "$COLOR_ACCENT"
-    set -x COLOR_ACCENT (random choice "#e7f695") # "#a5f69d" "#90e1f9" )
+    set -x COLOR_ACCENT (random choice "#e7f695" "#a5f69d" "#90e1f9" )
 end
 set -x FONT_MONO "Iosevka Custom"
 set -x FONT_SIZE 11
