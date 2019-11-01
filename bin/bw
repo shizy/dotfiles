@@ -31,7 +31,7 @@ keyctl timeout $key $timeout
 
 # resync the vault
 if [ $resync -eq 1 ] || [ "$1" == "private" ] || [ "$1" == "sync" ]; then
-    $XDG_DATA_HOME/npm/bin/bw sync --session=$session > /dev/null
+    $XDG_DATA_HOME/npm/bin/bw sync --quiet --session=$session > /dev/null
 
     # file drop any record with the custom field called "path"
     paths=($(bw list items | jq -r '.[] | select(.fields[]?.name == "path") | .id'))
@@ -52,11 +52,6 @@ if [ "$1" == "private" ]; then
     $XDG_DATA_HOME/npm/bin/bw --session=$session get attachment private.tar --itemid $id --output $PRIVATE/private.tar > /dev/null
     tar -xf $PRIVATE/private.tar -C $PRIVATE > /dev/null
     rm $PRIVATE/private.tar > /dev/null
-
-    # drop ssh_config in $XDG_CACHE_HOME
-    mkdir -p $XDG_CACHE_HOME/ssh > /dev/null
-    $XDG_DATA_HOME/npm/bin/bw list items --search ssh_config --session=$session | jq -r '.[].notes' > $XDG_CACHE_HOME/ssh/ssh_config
-    exit
 fi
 
 # launched from qutebrowser

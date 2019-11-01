@@ -5,7 +5,7 @@ if [[ -z "$(pgrep ssh-agent)" ]]; then
     ssh-agent -a $SSH_AUTH_SOCK -t 1800 > /dev/null
 fi
 
-[ -d "$XDG_CACHE_HOME/ssh/ssh_config" ] || bw private
+[ -d "$XDG_CACHE_HOME/ssh/ssh_config" ] || bw sync --quiet
 ssh_config=$(cat $XDG_CACHE_HOME/ssh/ssh_config)
 
 # remove all documented ssh parameter switches (and their arguments) from the string, leaving the host
