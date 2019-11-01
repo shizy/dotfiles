@@ -1,7 +1,6 @@
 #!/bin/bash
 
 timeout=900
-private=0
 resync=0
 
 # install bitwarden if it does not exist
@@ -31,8 +30,18 @@ session=$(keyctl pipe $key)
 keyctl timeout $key $timeout
 
 # resync the vault
-if [ $resync -eq 1 ] || [ "$1" == "private" ]; then
+if [ $resync -eq 1 ] || [ "$1" == "private" ] || [ "$1" == "sync" ]; then
     $XDG_DATA_HOME/npm/bin/bw sync --session=$session > /dev/null
+
+    # file drop any record with the custom field called "path"
+    paths=($(bw list items | jq -r '.[] | select(.fields[]?.name == "path") | .id'))
+    for pathid in ${paths[@]}
+    do
+        item=$(bw get item $pathid)
+        path=$(echo $item | jq -r '.fields[] | select(.name == "path") | .value')
+        mkdir -p $path > /dev/null
+        echo "$(echo $item | jq -r '.notes')" > "$path/$(echo $item | jq -r '.name')"
+    done
 fi
 
 # unpack private files
