@@ -44,16 +44,6 @@ if [ $resync -eq 1 ] || [ "$1" == "private" ] || [ "$1" == "sync" ]; then
     done
 fi
 
-# unpack private files
-if [ "$1" == "private" ]; then
-
-    [ -d "$PRIVATE" ] || mkdir -p $PRIVATE
-    id=$($XDG_DATA_HOME/npm/bin/bw list items --search private-files --session=$session | jq -r .[0].id)
-    $XDG_DATA_HOME/npm/bin/bw --session=$session get attachment private.tar --itemid $id --output $PRIVATE/private.tar > /dev/null
-    tar -xf $PRIVATE/private.tar -C $PRIVATE > /dev/null
-    rm $PRIVATE/private.tar > /dev/null
-fi
-
 # launched from qutebrowser
 if [ "$1" == "qute" ]; then
 

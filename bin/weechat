@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# unlock private files to access ssh_config and keys
-[ -d "$PRIVATE" ] || $LOCALDIR/bin/bw private
-
-/usr/bin/weechat "$@"

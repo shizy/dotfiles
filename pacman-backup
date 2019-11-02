@@ -6,6 +6,7 @@ freerdp
 fzf
 gnupg
 grim
+irssi
 jq
 neovim
 nmap
@@ -28,7 +29,6 @@ ttf-dejavu
 ttf-liberation
 wl-clipboard
 wlroots
-weechat
 wget
 xorg-server-xwayland
 zathura
