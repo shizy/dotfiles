@@ -34,10 +34,10 @@ if [ $resync -eq 1 ] || [ "$1" == "private" ] || [ "$1" == "sync" ]; then
     $XDG_DATA_HOME/npm/bin/bw sync --quiet --session=$session > /dev/null
 
     # file drop any record with the custom field called "path"
-    paths=($($XDG_DATA_HOME/npm/bin/bw list items | jq -r '.[] | select(.fields[]?.name == "path") | .id'))
+    paths=($($XDG_DATA_HOME/npm/bin/bw list items --session=$session | jq -r '.[] | select(.fields[]?.name == "path") | .id'))
     for pathid in ${paths[@]}
     do
-        item=$($XDG_DATA_HOME/npm/bin/bw get item $pathid)
+        item=$($XDG_DATA_HOME/npm/bin/bw get item $pathid --session=$session)
         path=$(echo $item | jq -r '.fields[] | select(.name == "path") | .value')
         mkdir -p $path > /dev/null
         echo "$(echo $item | jq -r '.notes')" > "$path/$(echo $item | jq -r '.name')"
