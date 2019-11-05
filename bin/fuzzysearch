@@ -53,15 +53,12 @@ case $1 in
         folder=$(bw list folders --search RDP | jq -r '.[].id')
         items=$(bw list items --folderid $folder)
         sel=$(fzf --prompt="$1 > " <<< $(echo $items | jq -r '.[].name'))
-        for rdp in ${sel[@]}
-        do
-            conn=$(bw list items --folderid $folder --search $rdp)
-            swaymsg exec "wlfreerdp /cert-ignore /dynamic-resolution +auto-reconnect -floatbar \
-                /v:$(echo $conn | jq -r '.[].login.uris[0].uri') \
-                /u:$(echo $conn | jq -r '.[].login.username') \
-                /p:$(echo $conn | jq -r '.[].login.password') \
-                $(echo $conn | jq -r '.[] | select(.notes != null) | .notes')"
-        done
+        conn=$(echo $items | jq --arg name "${sel[0]}" '.[] | select(.name == $name)')
+        swaymsg exec "wlfreerdp /cert-ignore /dynamic-resolution +auto-reconnect -floatbar \
+            /v:$(echo $conn | jq -r '.login.uris[0].uri') \
+            /u:$(echo $conn | jq -r '.login.username') \
+            /p:$(echo $conn | jq -r '.login.password') \
+            $(echo $conn | jq -r '.notes')"
         ;;
     "wallpaper")
         ps=0
