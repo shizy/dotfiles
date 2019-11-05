@@ -34,10 +34,10 @@ if [ $resync -eq 1 ] || [ "$1" == "private" ] || [ "$1" == "sync" ]; then
     $XDG_DATA_HOME/npm/bin/bw sync --quiet --session=$session > /dev/null
 
     # file drop any record with the custom field called "path"
-    paths=($(bw list items | jq -r '.[] | select(.fields[]?.name == "path") | .id'))
+    paths=($($XDG_DATA_HOME/npm/bin/bw list items | jq -r '.[] | select(.fields[]?.name == "path") | .id'))
     for pathid in ${paths[@]}
     do
-        item=$(bw get item $pathid)
+        item=$($XDG_DATA_HOME/npm/bin/bw get item $pathid)
         path=$(echo $item | jq -r '.fields[] | select(.name == "path") | .value')
         mkdir -p $path > /dev/null
         echo "$(echo $item | jq -r '.notes')" > "$path/$(echo $item | jq -r '.name')"
@@ -70,15 +70,23 @@ if [ "$1" == "qute" ]; then
     json=""
 
     # pass the username / pass back to qute
-    echo "fake-key \"${user}\"" > $QUTE_FIFO
-    echo "fake-key <Tab>"       > $QUTE_FIFO
-    echo "fake-key \"${pass}\"" > $QUTE_FIFO
+    upb=$(echo -e "user & pass\npass\nuser" | fzf)
+    [[ ! "$upb" =~ "user" ]] ||
+        echo "fake-key \"${user}\"" > $QUTE_FIFO
+
+    [[ ! "$upb" == "user & pass" ]] ||
+        echo "fake-key <Tab>"       > $QUTE_FIFO
+
+    [[ ! "$upb" =~ "pass" ]] ||
+        echo "fake-key \"${pass}\"" > $QUTE_FIFO
+
     echo "enter-mode insert"    > $QUTE_FIFO
 
     exit
 fi
 if [ ! -z ${QUTE_FIFO+x} ]; then
     alacritty --no-live-config-reload -q --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#light//g') --class="dispatch-small" -e bash -c "$LOCALDIR/bin/bw qute"
+    exit
 fi
 
 # execute command

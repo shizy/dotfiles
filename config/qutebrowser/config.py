@@ -41,7 +41,7 @@ c.fonts.tabs = os.environ["FONT_SIZE"] + "pt monospace"
 config.unbind("d", mode='normal')
 
 config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw")
-config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw")
+config.bind("<Alt-/>", "spawn --userscript " + os.environ["LOCALDIR"] + "/bin/bw", mode="insert")
 config.bind("<Alt-p>", "insert-text {primary}")
 config.bind("<Alt-p>", "insert-text {primary}", mode="insert")
 config.bind("<Alt-f>", "hint all tab-bg")
