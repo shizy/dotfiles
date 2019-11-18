@@ -164,6 +164,7 @@ live_config_reload: true
 # then run `showkey -a` to get the sequence associated to a key combination.
 key_bindings:
   - { key: V,        mods: Control|Shift,    action: Paste               }
+  - { key: P,        mods: Alt,              action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
   - { key: Paste,                   action: Paste                        }
   - { key: Copy,                    action: Copy                         }

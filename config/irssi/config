@@ -25,7 +25,8 @@ channels = (
   { name = "#ipfs"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#css-tricks"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#qutebrowser"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { name = "#sway"; chatnet = "Freenode"; autojoin = "Yes"; }
+  { name = "#sway"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#sr.ht"; chatnet = "Freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -117,7 +118,7 @@ statusbar = {
 
       disabled = "no";
       type = "window";
-      placement = "bottom";
+      placement = "top";
       position = "1";
       visible = "active";
 
@@ -137,7 +138,7 @@ statusbar = {
     window_inact = {
 
       type = "window";
-      placement = "bottom";
+      placement = "top";
       position = "1";
       visible = "inactive";
 
@@ -163,24 +164,18 @@ statusbar = {
         input = { priority = "10"; };
       };
     };
-
-    topic = {
-
-      type = "root";
-      placement = "top";
-      position = "1";
-      visible = "always";
-
-      items = {
-        topicbarstart = { priority = "100"; };
-        topic = { };
-        topic_empty = { };
-        topicbarend = { priority = "100"; alignment = "right"; };
-      };
-    };
   };
 };
 settings = {
   core = { real_name = "Unknown"; user_name = "shizy"; nick = "shizy"; };
   "fe-text" = { actlist_sort = "refnum"; };
 };
+keyboard = (
+  { key = "meta-l"; id = "forward_character"; data = ""; },
+  { key = "meta-h"; id = "backward_character"; data = ""; },
+  { key = "meta-H"; id = "previous_window"; data = ""; },
+  { key = "meta-L"; id = "next_window"; data = ""; },
+  { key = "meta-j"; id = "scroll_forward"; data = ""; },
+  { key = "meta-k"; id = "scroll_backward"; data = ""; },
+  { key = "meta-x"; id = "stop_irc"; data = ""; }
+);

@@ -54,7 +54,7 @@ case $1 in
         items=$(bw list items --folderid $folder)
         sel=$(fzf --prompt="$1 > " <<< $(echo $items | jq -r '.[].name'))
         conn=$(echo $items | jq --arg name "${sel[0]}" '.[] | select(.name == $name)')
-        swaymsg exec "wlfreerdp /cert-ignore /dynamic-resolution +auto-reconnect -floatbar \
+        swaymsg exec "wlfreerdp /cert-ignore /dynamic-resolution +auto-reconnect -floatbar /gfx-h264 -grab-keyboard \
             /v:$(echo $conn | jq -r '.login.uris[0].uri') \
             /u:$(echo $conn | jq -r '.login.username') \
             /p:$(echo $conn | jq -r '.login.password') \

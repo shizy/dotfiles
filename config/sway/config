@@ -104,6 +104,16 @@ mode "mode_resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+set $mode_shot [c]lipboard, [f]eh, [s]ave to home
+mode "$mode_shot" {
+    bindsym c exec wl-copy -f -o < $XDG_RUNTIME_DIR/shot.png; mode "default"
+    bindsym f exec feh $XDG_RUNTIME_DIR/shot.png; mode "default"
+    bindsym h exec cp $XDG_RUNTIME_DIR/shot.png $HOME/shot.png; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 # }}}
 
 # Binds {{{
@@ -115,7 +125,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
 bindsym $mod+Escape exec swaylock -c 000000
-bindsym $mod+s exec grim -g \"$(slurp)\" /tmp/screenshot.png
+bindsym $mod+s exec grim -g \"$(slurp)\" $XDG_RUNTIME_DIR/shot.png; mode "$mode_shot"
 
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
