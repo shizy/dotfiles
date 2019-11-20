@@ -4,7 +4,8 @@
 
 ## arg 1:  the new package version
 pre_install() {
-    mv /lib/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174_old
+    #mv /lib/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174_old
+    mv /etc/mkinitcpio.conf /etc/mkinitcpio.conf_original
 }
 
 ## arg 1:  the new package version
@@ -14,8 +15,11 @@ post_install() {
     systemctl enable --now tlp-sleep.service
     systemctl mask --now systemd-rfkill.service
     systemctl mask --now systemd-rfkill.socket
-    mv /tmp/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174
-    mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin* /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
+
+    mv /etc/mkinitcpio.conf_new /etc/mkinitcpio.conf
+    mkinitcpio -p linux
+    #mv /tmp/firmware/ath10k/QCA6174 /lib/firmware/ath10k/QCA6174
+    #mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin* /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
     #systemctl enable --now tlp.service
 }
 
@@ -39,6 +43,9 @@ post_install() {
 ## arg 1:  the old package version
 post_remove() {
     systemctl disable --now netctl-auto@wlp58s0
-    mv /lib/firmware/ath10k/QCA6174_old /lib/firmware/ath10k/QCA6174
-    #systemctl disable --now tlp.service
+    #mv /lib/firmware/ath10k/QCA6174_old /lib/firmware/ath10k/QCA6174
+    systemctl disable --now tlp.service
+    rm -rf /etc/mkinitcpio.conf
+    mv /etc/mkinitcpio.conf_original /etc/mkinitcpio.conf
+    mkinitcpio -p linux
 }

@@ -13,7 +13,6 @@ depends=(
     'intel-ucode'
     'iw'
     'tlp'
-    'wpa_actiond'
     'wpa_supplicant'
 )
 md5sums=('SKIP' 'SKIP')
@@ -21,18 +20,20 @@ install=hooks.install
 
 source=(
     i915.conf
-    https://codeload.github.com/kvalo/ath10k-firmware/zip/master
+    mkinitcpio.conf
+    #https://codeload.github.com/kvalo/ath10k-firmware/zip/master
 )
 
-prepare() {
-    unzip -o master
-}
+#prepare() {
+#    unzip -o master
+#}
 
 package() {
     install -Dm 644 $srcdir/i915.conf $pkgdir/etc/modprobe.d/i915.conf
+    install -Dm 644 $srcdir/mkinitcpio.conf $pkgdir/etc/mkinitcpio.conf_new
 
-    mkdir -p $pkgdir/tmp/firmware/ath10k/QCA6174/
-    cp -rf $srcdir/ath10k-firmware-master/QCA6174/ $pkgdir/tmp/firmware/ath10k/
-    chmod 1777 $pkgdir/tmp
-    chmod -R 755 $pkgdir/tmp/firmware
+    #mkdir -p $pkgdir/tmp/firmware/ath10k/QCA6174/
+    #cp -rf $srcdir/ath10k-firmware-master/QCA6174/ $pkgdir/tmp/firmware/ath10k/
+    #chmod 1777 $pkgdir/tmp
+    #chmod -R 755 $pkgdir/tmp/firmware
 }
