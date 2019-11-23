@@ -1,0 +1,67 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Iosevka Custom", "Font Awesome 5 Free";
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #000000;
+    color: #888888;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#mode {
+    color: {COLOR_ACCENT};
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    color: #888888;
+}
+
+#workspaces button.visible {
+    border-bottom: 2px solid #333333;
+}
+
+#workspaces button.focused {
+    color: #ffffff;
+    /*background-color: #333333;*/
+    border-bottom: 2px solid #888888;
+}
+
+
+#workspaces button.urgent {
+    color: {COLOR_ACCENT};
+}
+
+#clock,
+#battery,
+#network,
+#tray,
+#pusleaudio,
+#idle_inhibitor {
+    background-color: transparent;
+    color: #888888;
+}
+
+#clock,
+#tray {
+  border-bottom: transparent;
+}
+
+#battery.critical:not(.charging) {
+    color: {COLOR_ACCENT};
+}
+
+label:focus {
+    background-color: #000000;
+}

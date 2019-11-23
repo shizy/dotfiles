@@ -6,7 +6,6 @@ freerdp
 fzf
 gnupg
 grim
-i3status
 irssi
 jq
 neovim
@@ -15,8 +14,10 @@ nodejs
 npm
 openssh
 otf-font-awesome
+pacman-contrib
 pdfjs
 proxychains-ng
+pulseaudio
 python-neovim
 qutebrowser
 rclone
@@ -28,6 +29,7 @@ texlive-core
 tmux
 ttf-dejavu
 ttf-liberation
+waybar
 wl-clipboard
 wlroots
 wget

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+style=$(cat $XDG_CONFIG_HOME/sway/waybar.css | sed "s/{COLOR_ACCENT}/$COLOR_ACCENT/g")
+
+/usr/bin/waybar -c $XDG_CONFIG_HOME/sway/waybar -s <(echo -e "$style")

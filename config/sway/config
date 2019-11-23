@@ -124,11 +124,11 @@ bindsym $mod+slash mode "$mode_search"
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
-bindsym $mod+Escape exec swaylock -c 000000
+bindsym $mod+Escape exec "keyctl purge user bw_session; swaylock -c 000000"
 bindsym $mod+s exec grim -g \"$(slurp)\" $XDG_RUNTIME_DIR/shot.png; mode "$mode_shot"
 
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5-
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5+
+bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false; pactl set-sink-volume 0 -5%"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false; pactl set-sink-volume 0 +5%"
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 bindsym $mod+k exec scratchpad scratchtop
@@ -177,23 +177,7 @@ exec_always swaymsg client.urgent    "${COLOR_ACCENT} #000000 #000000 ${COLOR_AC
 # }}}
 
 # Status Bar {{{
-bar bar-1 {
-    font pango:Iosevka Custom, Font Awesome 5 Free 11
-    status_command i3status --config ~/local/config/sway/status.conf
-    strip_workspace_numbers yes
-    mode dock
-    separator_symbol "   "
-    hidden_state hide
-    modifier Mod4
-    position top
-    colors {
-        statusline #888888
-        background #000000
-
-        focused_workspace  #888888 #888888 #000000
-        active_workspace   #000000 #000000 #FFFFFF99
-        inactive_workspace #000000 #000000 #888888
-        urgent_workspace   #000000 #000000 #FFFFFF
-    }
+bar {
+    swaybar_command waybar
 }
 # }}}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-timeout=900
+timeout=1800
 resync=0
 
 # install bitwarden if it does not exist
