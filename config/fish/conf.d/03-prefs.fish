@@ -8,6 +8,9 @@ set fish_color_redirection $color_accent
 set fish_color_end $color_accent
 set fish_pager_color_prefix $color_accent
 set fish_pager_color_description $color_medium
+set fish_color_end $color_accent
+set -e fish_color_operator
+set -e fish_color_error
 
 # Alias {{{
 alias ..="pushd .."
