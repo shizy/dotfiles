@@ -47,6 +47,12 @@
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpuser = shizukesa4@gmail.com
+    smtpencryption = tls
+    smtpserverport = 587
+
 [alias]
     d = difftool
     hist = log --graph --all
@@ -66,6 +72,7 @@
     ca = commit --amend
     remote = remote -v
     pick = add -p
+    send = "!git send-email --smtp-pass=$(bw list items --search gmail | jq '.[] | select(.name == \"gmail git-send-email\") | .login.password' | sed -e 's/\"//g') $@"
 
 [url "ssh://git@github.com/"]
     pushInsteadOf = https://github.com/
