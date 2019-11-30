@@ -119,7 +119,7 @@ selection:
 dynamic_title: true
 
 cursor:
-  style: Block
+  style: Underline
 
 live_config_reload: true
 
