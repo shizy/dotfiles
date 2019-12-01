@@ -5,22 +5,19 @@ resync=0
 
 # install bitwarden if it does not exist
 if [ ! -f $XDG_DATA_HOME/npm/bin/bw ]; then
-    alacritty --no-live-config-reload -q --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#light//g') --class="dispatch-small" -e bash -c \
-        'npm install -g @bitwarden/cli && sudo pacman -S python-tldextract --noconfirm'
+    kitty --class="dispatch-small" bash -c 'npm install -g @bitwarden/cli && sudo pacman -S python-tldextract --noconfirm'
 fi
 
 # prompt to login if not logged in
 $XDG_DATA_HOME/npm/bin/bw login --check > /dev/null
 if [ $? -ne 0 ]; then
-    alacritty --no-live-config-reload -q --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#light//g') --class="dispatch-small" -e bash -c \
-        'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw login --raw) @u'
+    kitty --class="dispatch-small" bash -c 'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw login --raw) @u'
 fi
 
 # prompt to unlock if session is invalid
 key=$(keyctl request user bw_session &> /dev/null)
 if [ $? -ne 0 ]; then
-    alacritty --no-live-config-reload -q --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#light//g') --class="dispatch-small" -e bash -c \
-        'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw unlock --raw) @u'
+    kitty --class="dispatch-small" bash -c 'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw unlock --raw) @u'
     resync=1
 fi
 
@@ -85,7 +82,7 @@ if [ "$1" == "qute" ]; then
     exit
 fi
 if [ ! -z ${QUTE_FIFO+x} ]; then
-    alacritty --no-live-config-reload -q --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#light//g') --class="dispatch-small" -e bash -c "$LOCALDIR/bin/bw qute"
+    kitty --class="dispatch-small" bash -c "$LOCALDIR/bin/bw qute"
     exit
 fi
 

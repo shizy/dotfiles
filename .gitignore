@@ -9,7 +9,6 @@
 /config/*
 
 !/config/ag
-!/config/alacritty
 !/config/fish
 /config/fish/fish_variables
 /config/fish/fishd.*
@@ -17,6 +16,7 @@
 !/config/fontconfig
 !/config/git
 !/config/irssi
+!/config/kitty
 !/config/nvim
 !/config/proxychains
 !/config/qutebrowser
@@ -25,7 +25,6 @@
 !/config/sway
 !/config/systemd
 /config/systemd/user/**
-!/config/tmux
 !/config/user-dirs.dir
 !/config/zathura
 

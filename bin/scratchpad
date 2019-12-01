@@ -28,13 +28,14 @@ positioning="resize set width ${window_width_percentage}ppt height ${window_heig
 # if not running, spawn scratchpad based on direction and workspace size
 if [ $running == 0 ]; then
 
-    cmd="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -s $1"
+    #cmd="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -s $1"
 
-    if [ $2 ]; then
-       cmd="${@:2}"
-    fi
+    #if [ $2 ]; then
+       #cmd="${@:2}"
+    #fi
 
-    /usr/bin/alacritty --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#scroll//g') --class="$1" -e fish -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show" -c "$cmd"
+    #/usr/bin/alacritty --config-file=<(cat $XDG_CONFIG_HOME/alacritty/alacritty.yml | sed -e 's/#padding//g' -e 's/#scroll//g') --class="$1" -e fish -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show" -c "$cmd"
+    kitty --config=$XDG_CONFIG_HOME/kitty/scratch.conf --class="$1" fish -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show" -c "fish ${@:2}"
 else
     swaymsg "[app_id=\"$1\"] scratchpad show, $positioning"
 fi

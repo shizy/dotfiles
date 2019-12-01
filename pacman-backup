@@ -1,5 +1,3 @@
-alacritty
-alacritty-terminfo
 bat
 clang
 freerdp
@@ -8,6 +6,7 @@ gnupg
 grim
 irssi
 jq
+kitty
 neovim
 nmap
 nodejs
@@ -16,6 +15,9 @@ openssh
 otf-font-awesome
 pacman-contrib
 pdfjs
+perl-authen-sasl
+perl-net-smtp-ssl
+perl-mime-tools
 proxychains-ng
 pulseaudio
 python-neovim
