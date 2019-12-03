@@ -2,6 +2,9 @@ let d = expand("$COLOR_DARK")
 let m = expand("$COLOR_MEDIUM")
 let l = expand("$COLOR_LIGHT")
 let a = expand("$COLOR_ACCENT")
+let A = expand("$COLOR_ADD")
+let C = expand("$COLOR_CHANGE")
+let R = expand("$COLOR_REMOVE")
 
 exec "hi Normal                               ctermbg=none                                    guibg=#1B1B1B"
 exec "hi NormalNC                                                                             guibg=#141414"
@@ -43,29 +46,29 @@ exec "hi StatusLineTwo            ctermfg=232 ctermbg=239  cterm=none         gu
 exec "hi StatusLine               ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=none"
 exec "hi StatusLineNC             ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=italic"
 
-exec "hi CocGitAddedSign          ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
-exec "hi CocGitChangedSign        ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
-exec "hi CocGitChangeRemovedSign  ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
-exec "hi CocGitTopRemovedSign     ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
-exec "hi CocGitRemovedSign        ctermfg=200 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
+exec "hi CocGitAddedSign          ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
+exec "hi CocGitChangedSign        ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
+exec "hi CocGitChangeRemovedSign  ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
+exec "hi CocGitTopRemovedSign     ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
+exec "hi CocGitRemovedSign        ctermfg=200 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
 
 exec "hi CocHintSign              ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
-exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=#b8bb26   guibg=none      gui=none"
-exec "hi CocWarningSign           ctermfg=220 ctermbg=none cterm=bold         guifg=#ff9800   guibg=none      gui=none"
-exec "hi CocErrorSign             ctermfg=196 ctermbg=none cterm=bold         guifg=#fb4934   guibg=none      gui=none"
+exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
+exec "hi CocWarningSign           ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
+exec "hi CocErrorSign             ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
 exec "hi CocFloating                                                          guifg=". l ."   guibg=". d
 exec "hi CocHintFloat                                                         guifg=". l ."   guibg=". d
-exec "hi CocInfoFloat                                                         guifg=#b8bb26   guibg=". d
-exec "hi CocWarningFloat                                                      guifg=#ff9800   guibg=". d
-exec "hi CocErrorFloat                                                        guifg=#fb4934   guibg=". d
+exec "hi CocInfoFloat                                                         guifg=". A ."   guibg=". d
+exec "hi CocWarningFloat                                                      guifg=". C ."   guibg=". d
+exec "hi CocErrorFloat                                                        guifg=". R ."   guibg=". d
 
-exec "hi DiffAdd                                                              guifg=". d ."   guibg=#b8bb26"
-exec "hi DiffChange                                                           guifg=". d ."   guibg=#ff9800"
-exec "hi DiffDelete                                                           guifg=". d ."   guibg=#fb4934"
+exec "hi DiffAdd                                                              guifg=". d ."   guibg=". A
+exec "hi DiffChange                                                           guifg=". d ."   guibg=". C
+exec "hi DiffDelete                                                           guifg=". d ."   guibg=". R
 exec "hi DiffText                                                             guifg=". d ."   guibg=". l . "  gui=bold"
 
-exec "hi debugPC                                                              guifg=". d ."   guibg=#fb4934"
-exec "hi debugBreakpoint                                                      guifg=". d ."   guibg=#fb4934   gui=bold"
+exec "hi debugPC                                                              guifg=". d ."   guibg=". R
+exec "hi debugBreakpoint                                                      guifg=". d ."   guibg=". R ."   gui=bold"
 
 hi Function gui=bold
 hi Statement gui=bold
