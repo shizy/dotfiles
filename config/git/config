@@ -23,16 +23,19 @@
     interactive = auto
 
 [color "status"]
-    added = 202
-    changed = 201
+    added = 201
+    changed = 202
 
 [color "branch"]
     current = 200
-    local = 202
+    local = 201
+    remote = 203
 
 [color "diff"]
-    old = 205
-    new = 202
+    old = 203
+    new = 201
+    meta = 200
+    frag = 202
 
 [status]
     submodulesummary = 0
@@ -46,6 +49,9 @@
 
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+    conflictStyle = diff3
 
 [sendemail]
     smtpserver = smtp.gmail.com

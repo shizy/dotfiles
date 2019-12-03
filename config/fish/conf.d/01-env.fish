@@ -1,10 +1,31 @@
 # Personal Preferences
-set -x COLOR_DARK   "#101011"
+set -x COLOR_000    "#101010"
+set -x COLOR_001    "#7c7c7c"
+set -x COLOR_002    "#8e8e8e"
+set -x COLOR_003    "#a0a0a0"
+set -x COLOR_004    "#686868"
+set -x COLOR_005    "#747474"
+set -x COLOR_006    "#868686"
+set -x COLOR_007    "#b9b9b9"
+set -x COLOR_008    "#525252"
+set -x COLOR_009    "#7c7c7c"
+set -x COLOR_010    "#8e8e8e"
+set -x COLOR_011    "#a0a0a0"
+set -x COLOR_012    "#686868"
+set -x COLOR_013    "#747474"
+set -x COLOR_014    "#868686"
+set -x COLOR_015    "#b9b9b9"
+
+set -x COLOR_DARK   "$COLOR_000"
 set -x COLOR_MEDIUM "#928374"
 set -x COLOR_LIGHT  "#fbf1c7"
+set -x COLOR_ADD    "#b8bb26"
+set -x COLOR_CHANGE "#ff9800"
+set -x COLOR_REMOVE "#fb4934"
 if test -z "$COLOR_ACCENT"
     set -x COLOR_ACCENT (random choice "#e7f695" "#a5f69d" "#90e1f9" )
 end
+
 set -x FONT_MONO "Iosevka Custom"
 set -x FONT_SIZE 11
 set -x FONT_ICON "Icons"

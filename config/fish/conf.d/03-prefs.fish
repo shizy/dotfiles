@@ -103,10 +103,10 @@ function fish_user_key_bindings
     bind -M insert \eh backward-word
     bind -M default \el forward-word
     bind -M insert \el forward-word
-    bind -M default \eH 'pushd ..; commandline -f repaint'
-    bind -M insert \eH 'pushd ..; commandline -f repaint'
-    bind -M default \eL 'popd > /dev/null ^ /dev/null; commandline -f repaint'
-    bind -M insert \eL 'popd > /dev/null ^ /dev/null; commandline -f repaint'
+    bind -M default \eh 'pushd ..; commandline -f repaint'
+    bind -M insert \eh 'pushd ..; commandline -f repaint'
+    bind -M default \el 'popd > /dev/null ^ /dev/null; commandline -f repaint'
+    bind -M insert \el 'popd > /dev/null ^ /dev/null; commandline -f repaint'
     bind -M insert \e/ complete-and-search
     bind -M default \e/ complete-and-search
     bind -M insert ! bind_bang

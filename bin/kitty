@@ -1,0 +1,35 @@
+#!/bin/bash
+
+/usr/bin/kitty \
+    -o font_family="${FONT_MONO}" \
+    -o bold_font="${FONT_MONO} Bold" \
+    -o italic_font="${FONT_MONO} Italic" \
+    -o bold_italic_font="${FONT_MONO} Bold Italic" \
+    -o font_size=${FONT_SIZE} \
+    -o cursor=${COLOR_LIGHT} \
+    -o background=${COLOR_000} \
+    -o foreground=${COLOR_015} \
+    -o url_color=${COLOR_ACCENT} \
+    -o color0=${COLOR_000} \
+    -o color1=${COLOR_001} \
+    -o color2=${COLOR_002} \
+    -o color3=${COLOR_003} \
+    -o color4=${COLOR_004} \
+    -o color5=${COLOR_005} \
+    -o color6=${COLOR_006} \
+    -o color7=${COLOR_007} \
+    -o color8=${COLOR_008} \
+    -o color9=${COLOR_009} \
+    -o color10=${COLOR_010} \
+    -o color11=${COLOR_011} \
+    -o color12=${COLOR_012} \
+    -o color13=${COLOR_013} \
+    -o color14=${COLOR_014} \
+    -o color15=${COLOR_015} \
+    -o color200=${COLOR_ACCENT} \
+    -o color201=${COLOR_ADD} \
+    -o color202=${COLOR_CHANGE} \
+    -o color203=${COLOR_REMOVE} \
+    -o active_tab_foreground=${COLOR_MEDIUM} \
+    -o active_tab_background=${COLOR_DARK} \
+    "$@"
