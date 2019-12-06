@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cmd="ssh"
+
 # consider switching to gnupg-agent
 if [[ -z "$(pgrep ssh-agent)" ]]; then
     ssh-agent -a $SSH_AUTH_SOCK -t 1800 > /dev/null
@@ -14,6 +16,12 @@ host=$(echo $@ | sed -E 's/(\s?-[BbcDEeFIiJLlmOopQRSWw]+\s*\S*)|(\s+-[46AaCfGgKk
 # if from git!
 if [ "$(ps -o comm= $PPID)" == "git" ]; then
     host=$(echo $@ | awk '{print $1;}' | sed -e 's/\S*@//g')
+fi
+
+# if from scp!
+if [ "$(basename $0)" == "scp" ]; then
+    host=$(echo $@ | grep -oP '\S*(?=:[.\/])')
+    cmd="scp"
 fi
 
 # parse ssh_config and find if there is a matching host
@@ -37,8 +45,8 @@ if [ ! -z ${ident} ]; then
     pkfolderid=$(bw list folders --search PrivateKey | jq -r '.[].id')
     itemid=$(bw list items --folderid $pkfolderid --search $ident | jq -r '.[].id')
     bw get item $itemid | jq -r '.notes' | ssh-add -q /dev/stdin
-    /usr/bin/ssh -F $XDG_CACHE_HOME/ssh/ssh_config -o UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts -o AddKeysToAgent=yes $@
-    ssh-add -D
+    /usr/bin/$cmd -F $XDG_CACHE_HOME/ssh/ssh_config -o UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts -o AddKeysToAgent=yes $@
+    ssh-add -q -D
 else
-    /usr/bin/ssh -F $XDG_CACHE_HOME/ssh/ssh_config -o UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts -o AddKeysToAgent=yes $@
+    /usr/bin/$cmd -F $XDG_CACHE_HOME/ssh/ssh_config -o UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts -o AddKeysToAgent=yes $@
 fi

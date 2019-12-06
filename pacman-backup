@@ -1,5 +1,6 @@
 bat
 clang
+cmake
 freerdp
 fzf
 gnupg
