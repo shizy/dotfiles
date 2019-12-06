@@ -49,6 +49,7 @@ set __fish_git_prompt_color_suffix $color_medium
 set __fish_git_prompt_color_flags $color_medium
 set __fish_git_prompt_color_upstream_ahead $color_medium
 set __fish_git_prompt_color_upstream_behind $color_medium
+set __fish_git_prompt_color_upstream $color_medium
 set __fish_git_prompt_char_untrackedfiles ''
 set __fish_git_prompt_char_dirtystate '  '
 set __fish_git_prompt_char_stagedstate '  '

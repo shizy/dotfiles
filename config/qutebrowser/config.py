@@ -87,9 +87,21 @@ c.colors.hints.bg = os.environ["COLOR_DARK"]
 c.colors.hints.fg = os.environ["COLOR_ACCENT"]
 c.colors.hints.match.fg = os.environ["COLOR_LIGHT"]
 
-c.colors.prompts.bg = os.environ["COLOR_ACCENT"]
-c.colors.prompts.fg = os.environ["COLOR_DARK"]
-c.colors.prompts.border = os.environ["COLOR_DARK"]
+c.colors.prompts.bg = os.environ["COLOR_DARK"]
+c.colors.prompts.fg = os.environ["COLOR_ACCENT"]
+c.colors.prompts.border = os.environ["COLOR_ACCENT"]
+
+c.colors.messages.error.bg = os.environ["COLOR_REMOVE"]
+c.colors.messages.error.fg = os.environ["COLOR_DARK"]
+c.colors.messages.error.border = os.environ["COLOR_DARK"]
+
+c.colors.messages.warning.bg = os.environ["COLOR_CHANGE"]
+c.colors.messages.warning.fg = os.environ["COLOR_DARK"]
+c.colors.messages.warning.border = os.environ["COLOR_DARK"]
+
+c.colors.messages.info.bg = os.environ["COLOR_ADD"]
+c.colors.messages.info.fg = os.environ["COLOR_DARK"]
+c.colors.messages.info.border = os.environ["COLOR_DARK"]
 
 c.colors.statusbar.command.bg = os.environ["COLOR_DARK"]
 c.colors.statusbar.caret.bg = os.environ["COLOR_LIGHT"]
