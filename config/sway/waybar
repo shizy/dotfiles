@@ -4,7 +4,6 @@
     "modules-left": ["sway/mode"],
     "modules-center": ["sway/workspaces"],
     "modules-right": [
-        "custom/pacman",
         "custom/bw",
         "network",
         "battery",
@@ -20,12 +19,6 @@
         "format": "{}    ",
         "exec" : "echo  ",
         "exec-if": "keyctl request user bw_session"
-    },
-    "custom/pacman": {
-        "format": "{}    ",
-        "interval": 3600,
-        "exec": "echo  ",
-        "exec-if": "checkupdates"
     },
     "network": {
         "format": "{icon}   ",

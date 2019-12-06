@@ -42,7 +42,7 @@ for_window [app_id="dispatch-large"] floating enable, resize set width 70ppt hei
 assign [class="qutebrowser"] $ws2
 assign [app_id="vim"] $ws3
 assign [app_id="irc"] $ws4
-#assign [class="qutebrowser" title="^discord$"] $ws4
+# assign [class="qutebrowser" title="^discord$"] $ws4
 assign [class="Steam"] $ws5
 assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
@@ -54,7 +54,9 @@ input "*" {
     repeat_rate 50
 }
 
-seat * hide_cursor 5000
+seat "*" {
+    hide_cursor 5000
+}
 # }}}
 
 # Modes {{{
@@ -167,7 +169,8 @@ bindsym $mod+Shift+h workspace prev
 bindsym $mod+Shift+l workspace next
 bindsym $mod+h workspace prev
 bindsym $mod+l workspace next
-bindsym $mod+period [urgent=latest] focus
+bindsym $mod+n [urgent=latest] focus
+bindsym $mod+period focus mode_toggle
 # }}}
 
 # Colors {{{
