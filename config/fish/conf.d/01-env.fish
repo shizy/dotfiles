@@ -30,6 +30,7 @@ set -x FONT_MONO "Iosevka Custom"
 set -x FONT_SIZE 11
 set -x FONT_ICON "Icons"
 set -x ICON_SIZE 14
+set -x MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 set -x PAGER less
 set -x EDITOR nvim
 set -x BROWSER qutebrowser
