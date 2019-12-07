@@ -17,6 +17,7 @@ set -x COLOR_014    "#868686"
 set -x COLOR_015    "#b9b9b9"
 
 set -x COLOR_DARK   "$COLOR_000"
+set -x COLOR_DARK2  "$COLOR_008"
 set -x COLOR_MEDIUM "#928374"
 set -x COLOR_LIGHT  "#fbf1c7"
 set -x COLOR_ADD    "#b8bb26"

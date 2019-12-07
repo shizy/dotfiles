@@ -1,16 +1,13 @@
 set color_light (echo $COLOR_LIGHT | sed -e 's/#//g')
 set color_accent (echo $COLOR_ACCENT | sed -e 's/#//g')
 set color_medium (echo $COLOR_MEDIUM | sed -e 's/#//g')
+set color_dark (echo $COLOR_DARK | sed -e 's/#//g')
+set color_add (echo $COLOR_ADD | sed -e 's/#//g')
+set color_change (echo $COLOR_CHANGE | sed -e 's/#//g')
+set color_remove (echo $COLOR_REMOVE | sed -e 's/#//g')
+set color_dark2 (echo $COLOR_DARK2 | sed -e 's/#//g')
 
 set -U fish_greeting
-set fish_color_command $color_light --bold
-set fish_color_redirection $color_accent
-set fish_color_end $color_accent
-set fish_pager_color_prefix $color_accent
-set fish_pager_color_description $color_medium
-set fish_color_end $color_accent
-set -e fish_color_operator
-set -e fish_color_error
 
 # Alias {{{
 alias ..="pushd .."
@@ -31,6 +28,32 @@ alias more="bat"
 #}}}
 
 # Prompt {{{
+set fish_color_autosuggestion $color_dark2
+set fish_color_cancel normal
+set fish_color_command $color_light --bold
+set fish_color_comment normal
+set fish_color_cwd normal
+set fish_color_cwd_root normal
+set fish_color_end $color_accent
+set fish_color_error normal
+set fish_color_escape $color_change
+set fish_color_history_current normal
+set fish_color_host normal
+set fish_color_match normal
+set fish_color_normal normal
+set fish_color_operator normal
+set fish_color_param normal
+set fish_color_quote $color_dark2
+set fish_color_redirection $color_accent
+set fish_color_search_match normal
+set fish_color_selection normal
+set fish_color_user normal
+set fish_color_valid_path normal
+
+set fish_pager_color_description $color_medium
+set fish_pager_color_prefix $color_accent
+set fish_pager_color_progress $color_light
+
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'
 set __fish_git_prompt_showuntrackedfiles 'no'
