@@ -7,7 +7,7 @@ yadjust=0
 direction=""
 
 workspace_height=$(swaymsg -t get_outputs | jq '. | map(select(.active == true) | .rect) | .[].height' | head -n 1)
-workspace_half_height=$((workspace_height / 2 + 14))
+workspace_half_height=$((workspace_height / 2))
 window_half_height=$(($workspace_height * $window_height_percentage / 100 / 2))
 yadjust=$((workspace_half_height - window_half_height))
 
@@ -23,7 +23,7 @@ case $1 in
         ;;
 esac
 
-positioning="resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px, move ${direction} 5px"
+positioning="resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px"
 
 # if not running, spawn scratchpad based on direction and workspace size
 if [ $running == 0 ]; then
