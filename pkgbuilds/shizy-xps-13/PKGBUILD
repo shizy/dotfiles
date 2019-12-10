@@ -15,12 +15,13 @@ depends=(
     'tlp'
     'wpa_supplicant'
 )
-md5sums=('SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP')
 install=hooks.install
 
 source=(
     i915.conf
     mkinitcpio.conf
+    logind.conf
     #https://codeload.github.com/kvalo/ath10k-firmware/zip/master
 )
 
@@ -31,6 +32,7 @@ source=(
 package() {
     install -Dm 644 $srcdir/i915.conf $pkgdir/etc/modprobe.d/i915.conf
     install -Dm 644 $srcdir/mkinitcpio.conf $pkgdir/etc/mkinitcpio.conf_new
+    install -Dm 644 $srcdir/logind.conf $pkgdir/etc/systemd/logind.conf_new
 
     #mkdir -p $pkgdir/tmp/firmware/ath10k/QCA6174/
     #cp -rf $srcdir/ath10k-firmware-master/QCA6174/ $pkgdir/tmp/firmware/ath10k/
