@@ -57,14 +57,15 @@ set nowritebackup
 set scrolloff=12
 set sessionoptions=blank,buffers,curdir,folds,globals,help,tabpages,winsize
 "set shada=!,%,'100,<50,s10,h
-set wildcharm=<Tab>
+set wildcharm=<C-Z>
 set wildchar=<Tab>
 set wildmenu
 set wildmode=full,list
 set wildoptions=pum
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%m
-set completeopt-=preview
+"set completeopt-=preview
+set completeopt=menuone
 set shortmess+=c
 set tags=./tags;/
 let mapleader = ";"
@@ -164,8 +165,10 @@ nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
 nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next) \| <Plug>(coc-git-nextchunk)
 nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev) \| <Plug>(coc-git-prevchunk)
-nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "FILTER_" . tabpagenr(), '')."**\<Tab>\<C-p>")
-nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "FILTER_" . tabpagenr(), '')."**\<Tab>\<C-p>")
+nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-v>           feedkeys(":vert sb **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap                    <A-q>           ZZ
 nmap                    <A-CR>          :call Zoom()<CR>
 nmap                    <A-t>           :sp<CR>:term<CR>
@@ -200,12 +203,12 @@ inoremap <silent><expr> <Tab>           pumvisible() ? "\<C-y>" :
                                             \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
                                             \ "\<Tab>"
 
-cnoremap         <expr> <A-s>           pumvisible() ? " \| split  #\<CR>" : "\<nop>"
-cnoremap         <expr> <A-v>           pumvisible() ? " \| vsplit #\<CR>" : "\<nop>"
 cmap                    <A-l>           <C-Right>
 cmap                    <A-h>           <C-Left>
 cmap                    <A-j>           <C-n>
 cmap                    <A-k>           <C-p>
+cmap             <expr> <Tab>           pumvisible() ? "\<Space>**\<C-Z>\<C-p>" : "\<C-Z>"
+cmap                    <A-x>           <C-w>
 cmap                    jj              <C-c><Esc>
 cmap                    <A-Space>       <C-c><Esc>
 cmap                    jk              <CR>

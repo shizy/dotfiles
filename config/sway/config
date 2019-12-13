@@ -87,11 +87,11 @@ mode "$mode_layout" {
 
 set $mode_search [b]in, [f]ile, [k]ill, [r]dp, [w]allpaper
 mode "$mode_search" {
-    bindsym b exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fuzzysearch bin; mode "default"
-    bindsym f exec $term --class=dispatch-large --config=$XDG_CONFIG_HOME/kitty/scratch.conf fuzzysearch file; mode "default"
-    bindsym k exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fuzzysearch kill; mode "default"
-    bindsym r exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fuzzysearch rdp; mode "default"
-    bindsym w exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fuzzysearch wallpaper; mode "default"
+    bindsym b exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch bin"; mode "default"
+    bindsym f exec $term --class=dispatch-large --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch file"; mode "default"
+    bindsym k exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch kill"; mode "default"
+    bindsym r exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch rdp"; mode "default"
+    bindsym w exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch wallpaper"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
