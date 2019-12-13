@@ -164,7 +164,7 @@ nnoremap                <A-Up>          :resize -10<CR>
 nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
 nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next) \| <Plug>(coc-git-nextchunk)
-nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev) \| <Plug>(coc-git-prevchunk)
+nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev) \| <Up><Plug>(coc-git-prevchunk)
 nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")

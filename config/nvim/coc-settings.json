@@ -1,6 +1,6 @@
 {
     "suggest.snippetIndicator": "\t",
-    "suggest.noselect": true,
+    "suggest.noselect": false,
     "git.realtimeGutters": false,
     "git.changedSign.text": "|",
     "git.addedSign.text": "|",
