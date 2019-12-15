@@ -209,6 +209,7 @@ cmap                    <A-j>           <C-n>
 cmap                    <A-k>           <C-p>
 cmap             <expr> <Tab>           pumvisible() ? "\<Space>**\<C-Z>\<C-p>" : "\<C-Z>"
 cmap                    <A-x>           <C-w>
+cmap                    <A-a>           <C-a>
 cmap                    jj              <C-c><Esc>
 cmap                    <A-Space>       <C-c><Esc>
 cmap                    jk              <CR>
