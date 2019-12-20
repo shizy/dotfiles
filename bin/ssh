@@ -28,7 +28,7 @@ fi
 hosts=($(echo "$ssh_config" | grep -oP '(?<=^Host\s).*?$' | sed -e 's/\n/\ /g'))
 match=''
 ident=''
-for cfg in ${hosts[@]:1}
+for cfg in ${hosts[@]}
 do
     if [[ "$host" =~ "$cfg" ]]; then
         match=$cfg
