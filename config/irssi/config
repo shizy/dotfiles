@@ -92,20 +92,14 @@ statusbar = {
     barstart = "{sbstart}";
     barend = "{sbend}";
 
-    topicbarstart = "{topicsbstart}";
-    topicbarend = "{topicsbend}";
-
     time = "{sb $Z}";
     user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
 
     window = "{sb $winref:$tag/$itemname{sbmode $M}}";
     window_empty = "{sb $winref{sbservertag $tag}}";
 
-    prompt = "{prompt $[.15]itemname}";
-    prompt_empty = "{prompt $winname}";
-
-    topic = " $topic";
-    topic_empty = " Irssi v$J - https://irssi.org";
+    prompt = " ($usermode) $nick > ";
+    prompt_empty = " > ";
 
     lag = "{sb Lag: $0-}";
     act = "{sb Act: $0-}";
@@ -114,9 +108,10 @@ statusbar = {
 
   default = {
 
+
     window = {
 
-      disabled = "no";
+      disabled = "yes";
       type = "window";
       placement = "top";
       position = "1";
@@ -135,18 +130,16 @@ statusbar = {
       };
     };
 
-    window_inact = {
+    topic = { disabled = "yes"; };
 
+    empty = {
       type = "window";
-      placement = "top";
-      position = "1";
-      visible = "inactive";
+      placement = "bottom";
+      position = "99";
+      visible = "always";
 
       items = {
         barstart = { priority = "100"; };
-        window = { };
-        window_empty = { };
-        more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
@@ -164,18 +157,36 @@ statusbar = {
         input = { priority = "10"; };
       };
     };
+    awl_0 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
   core = { real_name = "Unknown"; user_name = "shizy"; nick = "shizy"; };
   "fe-text" = { actlist_sort = "refnum"; };
+  "perl/core/scripts" = {
+    awl_viewer = "OFF";
+    awl_shared_sbar = "OFF";
+    awl_placement = "top";
+    nicklist_automode = "screen";
+  };
+  "fe-common/core" = {
+    show_names_on_join = "no";
+    hilight_nick_matches_everywhere = "yes";
+  };
 };
 keyboard = (
   { key = "meta-l"; id = "forward_character"; data = ""; },
   { key = "meta-h"; id = "backward_character"; data = ""; },
   { key = "meta-H"; id = "previous_window"; data = ""; },
   { key = "meta-L"; id = "next_window"; data = ""; },
-  { key = "meta-j"; id = "scroll_forward"; data = ""; },
-  { key = "meta-k"; id = "scroll_backward"; data = ""; },
+  { key = "meta-J"; id = "scroll_forward"; data = ""; },
+  { key = "meta-K"; id = "scroll_backward"; data = ""; },
   { key = "meta-x"; id = "stop_irc"; data = ""; }
 );

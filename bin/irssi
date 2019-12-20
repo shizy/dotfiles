@@ -1,4 +1,4 @@
 #!/bin/bash
 
 [ -d "$XDG_RUNTIME_DIR/freenode.pem" ] || bw sync
-/usr/bin/irssi $@ --home=$XDG_DATA_HOME/irssi --config=$XDG_CONFIG_HOME/irssi/config
+screen /usr/bin/irssi $@ --home=$XDG_CONFIG_HOME/irssi --config=$XDG_CONFIG_HOME/irssi/config
