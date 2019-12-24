@@ -8,6 +8,7 @@ url=https://github.com/shizy/dotfiles
 license=('ISC')
 makedepends=('unzip')
 depends=(
+    'acpid'
     'alsa-utils'
     'dialog'
     'intel-ucode'
