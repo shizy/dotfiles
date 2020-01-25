@@ -92,6 +92,9 @@ statusbar = {
     barstart = "{sbstart}";
     barend = "{sbend}";
 
+    emptystart = "{sbstart}";
+    emptyend = "{sbend}";
+
     time = "{sb $Z}";
     user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
 
@@ -139,8 +142,8 @@ statusbar = {
       visible = "always";
 
       items = {
-        barstart = { priority = "100"; };
-        barend = { priority = "100"; alignment = "right"; };
+        emptystart = { priority = "100"; };
+        emptyend = { priority = "100"; alignment = "right"; };
       };
     };
 
