@@ -30,6 +30,8 @@ workspace_layout default
 default_border pixel 1
 default_floating_border pixel 1
 hide_edge_borders smart
+smart_gaps on
+gaps inner 12
 font pango:Iosevka Custom, Font Awesome 5 Free 11
 # }}}
 
@@ -110,7 +112,7 @@ mode "mode_resize" {
 set $mode_shot [c]lipboard, [f]eh, [s]ave to home
 mode "$mode_shot" {
     bindsym c exec wl-copy -f -o < $XDG_RUNTIME_DIR/shot.png; mode "default"
-    bindsym f exec feh $XDG_RUNTIME_DIR/shot.png; mode "default"
+    bindsym f exec feh -B "#000000" $XDG_RUNTIME_DIR/shot.png; mode "default"
     bindsym h exec cp $XDG_RUNTIME_DIR/shot.png $HOME/shot.png; mode "default"
 
     bindsym Return mode "default"
@@ -174,9 +176,10 @@ bindsym $mod+period focus mode_toggle
 # }}}
 
 # Colors {{{
-exec_always swaymsg client.focused   "${COLOR_LIGHT}  #000000 #000000 ${COLOR_LIGHT}  ${COLOR_LIGHT}"
-exec_always swaymsg client.unfocused "${COLOR_MEDIUM} #000000 #000000 ${COLOR_MEDIUM} ${COLOR_MEDIUM}"
-exec_always swaymsg client.urgent    "${COLOR_ACCENT} #000000 #000000 ${COLOR_ACCENT} ${COLOR_ACCENT}"
+exec_always swaymsg client.focused          "${COLOR_LIGHT}  #000000 #000000 ${COLOR_LIGHT}  ${COLOR_LIGHT}"
+exec_always swaymsg client.focused_inactive "${COLOR_MEDIUM} #000000 #000000 ${COLOR_MEDIUM} ${COLOR_MEDIUM}"
+exec_always swaymsg client.unfocused        "${COLOR_DARK}   #000000 #000000 ${COLOR_DARK}   ${COLOR_DARK}"
+exec_always swaymsg client.urgent           "${COLOR_ACCENT} #000000 #000000 ${COLOR_ACCENT} ${COLOR_ACCENT}"
 # }}}
 
 # Status Bar {{{
