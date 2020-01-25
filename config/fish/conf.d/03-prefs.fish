@@ -26,6 +26,7 @@ alias netctl="sudo netctl-auto"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias cat="bat"
 alias more="bat"
+alias updatemirrorlist="sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist"
 #}}}
 
 # Prompt {{{
@@ -137,6 +138,12 @@ function fish_user_key_bindings
     bind -M insert '$' bind_dollar
     bind -M insert "&&" 'commandline -i "; and"'
     bind -M insert "||" 'commandline -i "; or"'
+    bind -M default \eo 'pushd (tree -dfi -L 3 -- $HOME / | fzf --prompt="cd > "); commandline -f repaint'
+    bind -M insert \eo 'pushd (tree -dfi -L 3 -- $HOME / | fzf --prompt="cd > "); commandline -f repaint'
+    bind -M default \eO 'commandline -t (tree -dfi -L 3 -- $HOME / | fzf --prompt="insert > "); commandline -f repaint'
+    bind -M insert \eO 'commandline -t (tree -dfi -L 3 -- $HOME / | fzf --prompt="insert > "); commandline -f repaint'
+    bind -M default \eb 'pushd; commandline -f repaint'
+    bind -M insert \eb 'pushd; commandline -f repaint'
 end
 #}}}
 
