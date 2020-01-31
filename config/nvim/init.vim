@@ -297,8 +297,8 @@ augroup filetypes
         \ syn match Todo "\<\w\+_cb\>" |
         \ syn match Todo "\<\w\+_ptr\>" |
         \ nmap gd <Plug>(coc-definition) |
-        \ setlocal foldmethod=syntax |
-        \ setlocal foldnestmax=1 |
+        "\ setlocal foldmethod=syntax |
+        "\ setlocal foldnestmax=1 |
         "\ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h/build; make<CR> |
         "\ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake -DCMAKE_BUILD_TYPE=Debug ..<CR> |
         "\ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h/build/bin; ./debug<CR> |

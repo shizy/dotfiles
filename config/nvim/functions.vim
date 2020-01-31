@@ -2,7 +2,7 @@
 function! Set_Tab_Var(prefix)
     let n = tabpagenr()
     call inputsave()
-    let value = input(a:prefix . ': ')
+    let value = input(a:prefix . ': ', '', 'file')
     call inputrestore()
     if value == ""
         if exists("g:" . a:prefix . n)
