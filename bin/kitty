@@ -10,7 +10,7 @@
     -o background=${COLOR_000} \
     -o foreground=${COLOR_015} \
     -o url_color=${COLOR_ACCENT} \
-    -o color0=${COLOR_000} \
+    -o color0=#101011 \
     -o color1=${COLOR_001} \
     -o color2=${COLOR_002} \
     -o color3=${COLOR_003} \

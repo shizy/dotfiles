@@ -291,19 +291,13 @@ augroup filetypes
         \ setlocal nocin inde= |
         \ setlocal syntax=tex |
     au FileType c,cpp,cmake
+        \ setlocal commentstring=//%s|
         \ syn match Todo "\<\w\+_e\>" |
         \ syn match Todo "\<\w\+_s\>" |
         \ syn match Todo "\<\w\+_u\>" |
         \ syn match Todo "\<\w\+_cb\>" |
         \ syn match Todo "\<\w\+_ptr\>" |
         \ nmap gd <Plug>(coc-definition) |
-        \ setlocal foldmethod=syntax |
-        \ setlocal foldnestmax=1 |
-        "\ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h/build; make<CR> |
-        "\ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake -DCMAKE_BUILD_TYPE=Debug ..<CR> |
-        "\ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h/build/bin; ./debug<CR> |
-        "\ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h/build/bin; ./tests<CR> |
-        "\ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
     au FileType help,man
         \ setlocal ro nobuflisted |
         \ nmap <buffer> u <C-T> |
