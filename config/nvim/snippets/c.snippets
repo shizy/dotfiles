@@ -40,3 +40,9 @@ main (int argc, const char *argv[]) {
 
 snippet log "printf"
 printf("${1:made it}\n"${2});${0}
+
+snippet test
+static void
+test_${1} (void **state) {//{{{
+	${0}
+}//}}}
