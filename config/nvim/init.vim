@@ -165,10 +165,10 @@ nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
 nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next) \| <Plug>(coc-git-nextchunk)
 nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev) \| <Up><Plug>(coc-git-prevchunk)
-nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
-nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
-nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
-nmap             <expr> <A-v>           feedkeys(":vert sb **".get(g:, "FILTER_" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
+nmap             <expr> <A-v>           feedkeys(":vert sb **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap                    <A-q>           ZZ
 nmap                    <A-CR>          :call Zoom()<CR>
 nmap                    <A-t>           :sp<CR>:term<CR>
@@ -237,12 +237,20 @@ vmap                    <A-.>           >gv
 " CHORDS
 vmap                    <Leader>sh      <Esc>:silent '<,'>w !share<CR>
 nmap                    <Leader>sh      :silent w !share<CR>
-nmap                    <Leader>vf      :call Set_Buffer_Filter()<CR>
+nmap                    <Leader>vf      :call Set_Tab_Var('Filter')<CR>:set tabline=%!TabLine()<CR>
 xmap                    <Leader>va      <Plug>(EasyAlign)
 nmap                    <Leader>vu      :PlugUpdate<CR>
 nmap                    <Leader>vc      :PlugClean<CR>
 nmap                    <Leader>vs      :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 nmap                    <Leader>vt      :tabe %<CR>
+nmap                    <Leader>v;      :call Set_Tab_Var('Cmd0')<CR>
+nmap                    <Leader>v1      :call Set_Tab_Var('Cmd1')<CR>
+nmap                    <Leader>v2      :call Set_Tab_Var('Cmd2')<CR>
+nmap                    <Leader>v3      :call Set_Tab_Var('Cmd3')<CR>
+nmap                    <Leader>;       :call Tab_QuickCmd('Cmd0')<CR>
+nmap                    <Leader>1       :call Tab_QuickCmd('Cmd1')<CR>
+nmap                    <Leader>2       :call Tab_QuickCmd('Cmd2')<CR>
+nmap                    <Leader>3       :call Tab_QuickCmd('Cmd3')<CR>
 
 nmap                    <Leader>i       :call CocAction('doHover')<CR>
 nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
@@ -282,20 +290,20 @@ augroup filetypes
         \ setlocal spelllang=en_us |
         \ setlocal nocin inde= |
         \ setlocal syntax=tex |
-    au FileType c,cpp
+    au FileType c,cpp,cmake
         \ syn match Todo "\<\w\+_e\>" |
         \ syn match Todo "\<\w\+_s\>" |
         \ syn match Todo "\<\w\+_u\>" |
         \ syn match Todo "\<\w\+_cb\>" |
         \ syn match Todo "\<\w\+_ptr\>" |
         \ nmap gd <Plug>(coc-definition) |
-        \ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h/build; make<CR> |
-        \ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake -DCMAKE_BUILD_TYPE=Debug ..<CR> |
-        \ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h/build/bin; ./*<CR> |
-        \ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h; make test<CR> |
-        \ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
-        "\ setlocal foldmethod=syntax |
-        "\ setlocal foldnestmax=1 |
+        \ setlocal foldmethod=syntax |
+        \ setlocal foldnestmax=1 |
+        "\ nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h:h/build; make<CR> |
+        "\ nmap <buffer> <Leader>c :sp<CR>:te! cd %:p:h:h; mkdir -p build; cd build; cmake -DCMAKE_BUILD_TYPE=Debug ..<CR> |
+        "\ nmap <buffer> <Leader>r :sp<CR>:te! cd %:p:h:h/build/bin; ./debug<CR> |
+        "\ nmap <buffer> <Leader>t :sp<CR>:te! cd %:p:h:h/build/bin; ./tests<CR> |
+        "\ nmap <buffer> <A-S-b>   :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR> |
     au FileType help,man
         \ setlocal ro nobuflisted |
         \ nmap <buffer> u <C-T> |

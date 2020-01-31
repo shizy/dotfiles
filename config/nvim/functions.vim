@@ -1,16 +1,23 @@
-function! Set_Buffer_Filter()
+" capitalized prefixes will persist between sessions!
+function! Set_Tab_Var(prefix)
     let n = tabpagenr()
     call inputsave()
-    let bfilt = input('buffer filter: ')
+    let value = input(a:prefix . ': ')
     call inputrestore()
-    if bfilt == ""
-        if exists("g:FILTER_" . n)
-            execute "let g:FILTER_" . n . " = ''"
+    if value == ""
+        if exists("g:" . a:prefix . n)
+            unlet {"g:" . a:prefix . n}
         endif
     else
-        execute "let g:FILTER_" . n . " = '" . bfilt . "'"
+        let {"g:" . a:prefix . n} = value
     endif
-    set tabline=%!TabLine()
+endfunction
+
+function! Tab_QuickCmd(prefix)
+    if exists("g:" . a:prefix . tabpagenr())
+        sp
+        execute "te! " . {"g:" . a:prefix . tabpagenr()}
+    endif
 endfunction
 
 " Zoom
@@ -55,8 +62,8 @@ function TabLine()
             let s .= "[new]" . "  "
         else
             let bfilt = ""
-            if exists("g:FILTER_" . (i + 1))
-                execute "let bfilt = g:FILTER_" . (i + 1)
+            if exists("g:Filter" . (i + 1))
+                execute "let bfilt = g:Filter" . (i + 1)
             endif
             if bfilt == ""
                 let s .= fnamemodify(file, ":p:t") . "  "
