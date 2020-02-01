@@ -7,10 +7,10 @@
     -o bold_italic_font="${FONT_MONO} Bold Italic" \
     -o font_size=${FONT_SIZE} \
     -o cursor=${COLOR_LIGHT} \
-    -o background=${COLOR_000} \
+    -o background=#101011 \
     -o foreground=${COLOR_015} \
     -o url_color=${COLOR_ACCENT} \
-    -o color0=#101011 \
+    -o color0=${COLOR_000} \
     -o color1=${COLOR_001} \
     -o color2=${COLOR_002} \
     -o color3=${COLOR_003} \
