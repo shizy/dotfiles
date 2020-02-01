@@ -91,12 +91,12 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 Plug 'vim-scripts/busybee'
 
 Plug 'junegunn/vim-easy-align'
-Plug 'justinmk/vim-syntax-extra'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-syntax-extra'
 
 call plug#end()
 "}}}
@@ -291,7 +291,8 @@ augroup filetypes
         \ setlocal nocin inde= |
         \ setlocal syntax=tex |
     au FileType c,cpp,cmake
-        \ setlocal commentstring=//%s|
+        \ setlocal foldmethod=syntax |
+        \ setlocal foldnestmax=1 |
         \ syn match Todo "\<\w\+_e\>" |
         \ syn match Todo "\<\w\+_s\>" |
         \ syn match Todo "\<\w\+_u\>" |
