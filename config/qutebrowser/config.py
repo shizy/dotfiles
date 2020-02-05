@@ -1,5 +1,6 @@
 import os
 
+c.colors.webpage.prefers_color_scheme_dark = True
 c.content.pdfjs = True
 c.completion.height = "33%"
 c.completion.scrollbar.width = 0
@@ -24,19 +25,8 @@ c.tabs.new_position.unrelated = "last"
 c.window.hide_decoration = True
 c.input.insert_mode.auto_load = False
 
-c.fonts.monospace = os.environ["FONT_MONO"]
-c.fonts.completion.category = "bold " + os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.completion.entry = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.debug_console = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.downloads = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.hints = "bold " + os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.keyhint = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.messages.error = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.messages.info = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.messages.warning = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.prompts = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.statusbar = os.environ["FONT_SIZE"] + "pt monospace"
-c.fonts.tabs = os.environ["FONT_SIZE"] + "pt monospace"
+c.fonts.default_family.append(os.environ["FONT_MONO"])
+c.fonts.default_size = os.environ["FONT_SIZE"] + "pt"
 
 config.unbind("d", mode='normal')
 
@@ -48,6 +38,8 @@ config.bind("<Alt-f>", "hint all tab-bg")
 config.bind("<Alt-n>", "search-prev")
 config.bind("<Alt-Shift-h>", "tab-prev")
 config.bind("<Alt-Shift-l>", "tab-next")
+config.bind("<Alt-Shift-h>", "tab-prev", mode="insert")
+config.bind("<Alt-Shift-l>", "tab-next", mode="insert")
 config.bind("<Alt-.>", "tab-focus -1")
 config.bind("<Alt-x>", "tab-close")
 config.bind("<Alt-o>", "set-cmd-text -s :open -t")
