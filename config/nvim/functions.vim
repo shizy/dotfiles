@@ -79,7 +79,7 @@ endfunction
 
 " Statusline
 function! FugitiveStatus()
-    if exists("*fugitive#head")
+    if !empty(FugitiveHead())
         let x = fugitive#head()
         if x==""
             return ""
@@ -138,7 +138,7 @@ function! FileFlags()
         let output .= "   "
     endif
     let ws = search('\s\+$', 'nw')
-    if ws != 0
+    if ws != 0 && &ro != 1
         let output .= "   " . ws . " "
     endif
     return output
