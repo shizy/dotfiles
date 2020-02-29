@@ -109,7 +109,7 @@ let c_syntax_for_h = 1
 " Coc
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
-let g:coc_extension_root = $XDG_DATA_HOME . '/coc/extension'
+let g:coc_data_root = $XDG_DATA_HOME . '/coc/extension'
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
