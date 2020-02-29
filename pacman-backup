@@ -4,6 +4,7 @@ cmake
 feh
 freerdp
 fzf
+gdb
 gnupg
 grim
 irssi

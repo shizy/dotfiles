@@ -243,6 +243,7 @@ nmap                    <Leader>vu      :PlugUpdate<CR>
 nmap                    <Leader>vc      :PlugClean<CR>
 nmap                    <Leader>vs      :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 nmap                    <Leader>vt      :tabe %<CR>
+nmap                    <Leader>v'      :call Set_Tab_Var('Dbg')<CR>
 nmap                    <Leader>v;      :call Set_Tab_Var('Cmd0')<CR>
 nmap                    <Leader>v1      :call Set_Tab_Var('Cmd1')<CR>
 nmap                    <Leader>v2      :call Set_Tab_Var('Cmd2')<CR>
@@ -251,6 +252,17 @@ nmap                    <Leader>;       :call Tab_QuickCmd('Cmd0')<CR>
 nmap                    <Leader>1       :call Tab_QuickCmd('Cmd1')<CR>
 nmap                    <Leader>2       :call Tab_QuickCmd('Cmd2')<CR>
 nmap                    <Leader>3       :call Tab_QuickCmd('Cmd3')<CR>
+nmap                    <Leader>d       :Termdebug<CR>:call TermDebugSendCommand("file ".get(g:, "Dbg" . tabpagenr(), ''))<CR><C-w>p
+nmap                    <Leader>D       :call TermDebugSendCommand('quit')<CR>:bw! **term**gdb<CR>
+
+nmap                    ''              :Run<CR>
+nmap                    'b              :Break<CR>
+nmap                    'B              :Clear<CR>
+nmap                    's              :Step<CR>
+nmap                    'n              :Over<CR>
+nmap                    'f              :Finish<CR>
+nmap                    'c              :Continue<CR>
+nmap                    'i              :Evaluate<CR>
 
 nmap                    <Leader>i       :call CocAction('doHover')<CR>
 nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
@@ -298,6 +310,7 @@ augroup filetypes
         \ syn match Todo "\<\w\+_u\>" |
         \ syn match Todo "\<\w\+_cb\>" |
         \ syn match Todo "\<\w\+_ptr\>" |
+        \ syn match Todo "\<\w\+_fptr\>" |
         \ nmap gd <Plug>(coc-definition) |
     au FileType help,man
         \ setlocal ro nobuflisted |
