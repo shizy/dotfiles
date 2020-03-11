@@ -55,7 +55,7 @@
     },
     "clock": {
         "tooltip": false,
-        "format": "   {:%b %d, %I:%M%P}"
+        "format": "   {:%b %d, %I:%M%p} "
     },
     "tray": {
         "tooltip": false,
