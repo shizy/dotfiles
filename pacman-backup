@@ -7,7 +7,6 @@ fzf
 gdb
 gnupg
 grim
-irssi
 jq
 kitty
 neovim
@@ -28,10 +27,10 @@ qutebrowser
 rclone
 reflector
 ripgrep
-screen
 slurp
 sway
 swaylock
+texlab
 texlive-core
 tmux
 ttf-dejavu

@@ -66,7 +66,7 @@ set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
     bindsym d exec /usr/bin/qutebrowser --target window https://discordapp.com/channels/@me; mode "default"
-    bindsym i exec $term --class=irc irssi; mode "default"
+    bindsym i exec $term --class=irc weechat; mode "default"
     bindsym s exec steam; mode "default"
     bindsym t exec $term --class=term --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish; mode "default"
     bindsym v exec $term --class=vim /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"

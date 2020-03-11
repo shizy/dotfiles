@@ -30,6 +30,8 @@
     -o color201=${COLOR_ADD} \
     -o color202=${COLOR_CHANGE} \
     -o color203=${COLOR_REMOVE} \
+    -o color204=${COLOR_LIGHT} \
+    -o color205=${COLOR_MEDIUM} \
     -o active_tab_foreground=${COLOR_MEDIUM} \
     -o active_tab_background=${COLOR_DARK} \
     -o inactive_tab_foreground=${COLOR_MEDIUM} \

@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [ $(pacman -Qs weechat | wc -l) -eq 0 ]; then
+    sudo pacman -S --noconfirm weechat git
+    git clone https://aur.archlinux.org/libolm $XDG_RUNTIME_DIR/libolm
+    cd $XDG_RUNTIME_DIR/libolm
+    makepkg -srci --noconfirm
+fi
+
+if [ ! -d $XDG_DATA_HOME/weechat-matrix ]; then
+    git clone https://github.com/poljar/weechat-matrix $XDG_DATA_HOME/weechat-matrix
+    sudo pip install -r $XDG_DATA_HOME/weechat-matrix/requirements.txt
+fi
+
+mkdir -p $WEECHAT_HOME/python/autoload > /dev/null
+ln -sf $XDG_DATA_HOME/weechat-matrix/main.py $WEECHAT_HOME/python/matrix.python
+ln -sf $XDG_DATA_HOME/weechat-matrix/matrix $WEECHAT_HOME/python/matrix
+ln -sf $XDG_DATA_HOME/weechat-matrix/main.py $WEECHAT_HOME/python/autoload/matrix.python
+
+user=$(bw get username matrix)
+pass=$(bw get password matrix)
+
+/usr/bin/weechat \
+    -r "/set matrix.server.matrix_org.username $user" \
+    -r "/set matrix.server.matrix_org.password $pass" \
+    -r "/buffer clear" \
+    -r "/set weechat.bar.buflist.position top" \
+    -r "/set weechat.bar.buflist.separator off" \
+    -r "/set weechat.bar.title.hidden yes" \
+    -r "/set weechat.look.prefix_align_max 12" \
+    -r "/set weechat.look.read_marker none" \
+    -r "/set weechat.look.buffer_time_format \"%H:%M\"" \
+    -r "/set weechat.look.nick_suffix \"\"" \
+    -r "/set weechat.look.prefix_suffix \" \"" \
+    -r "/set weechat.look.prefix_join \"\"" \
+    -r "/set weechat.look.prefix_quit \"\"" \
+    -r "/set weechat.look.prefix_network \"\"" \
+    -r "/key bind meta-K /window page_up" \
+    -r "/key bind meta-J /window page_down" \
+    -r "/key bind meta-L /buffer +1" \
+    -r "/key bind meta-H /buffer -1" \
+    -r "/key bind ctrl-meta-L /buffer move +1" \
+    -r "/key bind ctrl-meta-H /buffer move -1" \
+    -r "/key bind meta-l /input move_next_char" \
+    -r "/key bind meta-h /input move_previous_char" \
+    -r '/set buflist.format.buffer \${color:205,0}  \${format_name}\${indent}' \
+    -r '/set buflist.format.buffer_current \${color:*205,234}  \${format_name}\${indent}' \
+    -r "/set buflist.look.add_newline off" \
+    -r "/set weechat.bar.buflist.color_bg 0" \
+    -r "/set weechat.bar.status.color_bg 0" \
+    -r "/set weechat.bar.status.items \"\"" \
+    -r "/set weechat.color.chat_time 8" \
+    -r "/set weechat.color.chat_time_delimiters 8" \
+    -r "/set weechat.color.chat_day_change 8" \
+    -r "/set weechat.color.chat_nick_self 200" \
+    -r "/set weechat.color.separator !0" \
+    -r "/matrix connect matrix_org"
