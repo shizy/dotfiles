@@ -83,6 +83,7 @@ let g:coc_global_extensions = [
 \ 'coc-highlight',
 \ 'coc-git',
 \ 'coc-snippets',
+\ 'coc-texlab',
 \ 'coc-vimlsp',
 \]
 
@@ -163,8 +164,8 @@ nnoremap                <A-Right>       :vertical resize +10<CR>
 nnoremap                <A-Up>          :resize -10<CR>
 nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
-nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next) \| <Plug>(coc-git-nextchunk)
-nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev) \| <Up><Plug>(coc-git-prevchunk)
+nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next)
+nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev)
 nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
@@ -302,6 +303,8 @@ augroup filetypes
         \ setlocal spelllang=en_us |
         \ setlocal nocin inde= |
         \ setlocal syntax=tex |
+        \ nmap <buffer> <Leader>;   :CocCommand latex.Build<CR>|
+        \ nmap <buffer> ''          :CocCommand latex.ForwardSearch<CR>|
     au FileType c,cpp,cmake
         \ setlocal foldmethod=syntax |
         \ setlocal foldnestmax=1 |

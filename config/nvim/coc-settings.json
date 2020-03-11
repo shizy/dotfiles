@@ -12,16 +12,6 @@
     "diagnostic.warningSign": " ",
     "diagnostic.infoSign": " ",
     "diagnostic.hintSign": " ",
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        }
-    }
+    "latex.forwardSearch.executable": "zathura",
+    "latex.forwardSearch.args": ["--syntex-forward", "%l:1:%f", "%p"]
 }
