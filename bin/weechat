@@ -26,8 +26,8 @@ pass=$(bw get password matrix)
     -r "/buffer clear" \
     -r "/set weechat.bar.buflist.position top" \
     -r "/set weechat.bar.buflist.separator off" \
+    -r "/set weechat.bar.nicklist.size_max 14" \
     -r "/set weechat.bar.title.hidden yes" \
-    -r "/set weechat.look.prefix_align_max 12" \
     -r "/set weechat.look.read_marker none" \
     -r "/set weechat.look.buffer_time_format \"%H:%M\"" \
     -r "/set weechat.look.nick_suffix \"\"" \
