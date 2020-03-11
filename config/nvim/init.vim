@@ -80,6 +80,7 @@ endfunction
 packadd termdebug
 
 let g:coc_global_extensions = [
+\ 'coc-clangd',
 \ 'coc-highlight',
 \ 'coc-git',
 \ 'coc-snippets',

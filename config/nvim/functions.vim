@@ -17,6 +17,7 @@ function! Tab_QuickCmd(prefix)
     if exists("g:" . a:prefix . tabpagenr())
         sp
         execute "te! " . {"g:" . a:prefix . tabpagenr()}
+        startinsert
     endif
 endfunction
 
