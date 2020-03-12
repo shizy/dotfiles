@@ -112,9 +112,9 @@ mode "mode_resize" {
 set $mode_shot [c]lipboard, [f]eh, save to [h]ome
 mode "$mode_shot" {
     set $shot $(cd $XDG_RUNTIME_DIR; ls -t *.png | head -n1 | grep -oP "\S+\$")
-    bindsym c exec wl-copy -f -o < $XDG_RUNTIME_DIR/$$shot.png; mode "default"
-    bindsym f exec feh -B "#000000" $XDG_RUNTIME_DIR/$$shot.png; mode "default"
-    bindsym h exec cp $XDG_RUNTIME_DIR/shot.png $HOME/$$shot.png; mode "default"
+    bindsym c exec wl-copy -f -o < "$XDG_RUNTIME_DIR/$shot"; mode "default"
+    bindsym f exec feh -B "#000000" "$XDG_RUNTIME_DIR/$shot"; mode "default"
+    bindsym h exec cp "$XDG_RUNTIME_DIR/$shot" "$HOME/$shot"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
