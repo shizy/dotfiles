@@ -36,17 +36,17 @@ font pango:Iosevka Custom, Font Awesome 5 Free 11
 # }}}
 
 # Windows {{{
-for_window [class="xfreerdp"] floating disable
+for_window [title="FreeRDP"] floating disable
 for_window [app_id="^scratch"] floating enable
 for_window [app_id="dispatch-small"] floating enable, resize set width 50ppt height 25ppt, move position center
 for_window [app_id="dispatch-large"] floating enable, resize set width 70ppt height 46ppt, move position center
 
+assign [title="FreeRDP"] $ws1
 assign [class="qutebrowser"] $ws2
 assign [app_id="vim"] $ws3
 assign [app_id="irc"] $ws4
 # assign [class="qutebrowser" title="^discord$"] $ws4
 assign [class="Steam"] $ws5
-assign [class="xfreerdp"] $ws6
 assign [class="uhk-agent"] $ws10
 # }}}
 

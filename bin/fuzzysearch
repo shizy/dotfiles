@@ -50,14 +50,17 @@ case $1 in
         done
         ;;
     "rdp")
+        w=$(swaymsg -t get_tree | jq '..|select(.type? == "workspace").rect.width' | tail -n 1)
+        h=$(swaymsg -t get_tree | jq '..|select(.type? == "workspace").rect.height' | tail -n 1)
         folder=$(bw list folders --search RDP | jq -r '.[].id')
         items=$(bw list items --folderid $folder)
         sel=$(fzf --prompt="$1 > " <<< $(echo $items | jq -r '.[].name'))
         conn=$(echo $items | jq --arg name "${sel[0]}" '.[] | select(.name == $name)')
-        swaymsg exec "wlfreerdp /cert-ignore /dynamic-resolution +auto-reconnect -floatbar /gfx-h264 -grab-keyboard \
+        swaymsg exec "wlfreerdp /cert-ignore /dynamic-resolution +auto-reconnect -floatbar /gfx:rfx -grab-keyboard \
             /v:$(echo $conn | jq -r '.login.uris[0].uri') \
             /u:$(echo $conn | jq -r '.login.username') \
             /p:$(echo $conn | jq -r '.login.password') \
+            /w:$w /h:$h /size:${w}x${h} \
             $(echo $conn | jq -r '.notes')"
         ;;
     "wallpaper")
