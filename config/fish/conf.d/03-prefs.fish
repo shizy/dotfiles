@@ -27,6 +27,7 @@ alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias cat="bat"
 alias more="bat"
 alias updatemirrorlist="sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist"
+alias meson="meson .build"
 #}}}
 
 # Prompt {{{

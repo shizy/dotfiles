@@ -1,6 +1,5 @@
 bat
 clang
-cmake
 feh
 freerdp
 fzf
@@ -9,7 +8,9 @@ gnupg
 grim
 jq
 kitty
+meson
 neovim
+ninja
 nmap
 nodejs
 npm

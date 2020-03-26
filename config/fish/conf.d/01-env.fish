@@ -46,6 +46,9 @@ set -x BZR_LOG /dev/null
 # cargo
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
 
+# cc
+set -x CC clang
+
 # elinks
 set -x ELINKS_CONFDIR $XDG_CONFIG_HOME/elinks
 
