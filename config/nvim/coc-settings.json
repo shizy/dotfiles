@@ -1,6 +1,7 @@
 {
     "suggest.snippetIndicator": "\t",
     "suggest.noselect": false,
+    "clangd.arguments": ["--header-insertion", "never"],
     "git.realtimeGutters": false,
     "git.changedSign.text": "|",
     "git.addedSign.text": "|",
