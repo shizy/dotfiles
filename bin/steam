@@ -8,4 +8,4 @@ if [ $(pacman -Qs steam | wc -l) -eq 0 ]; then
 fi
 
 HOME=$XDG_DATA_HOME/steam_junk
-exec /usr/bin/steam
+exec /usr/bin/steam-runtime

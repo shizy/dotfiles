@@ -93,6 +93,10 @@ set -x NMBGIT $XDG_DATA_HOME/notmuch/nmbug
 set -x NPM_CONFIG_CACHE $XDG_CACHE_HOME/npm
 set -x NPM_CONFIG_PREFIX $XDG_DATA_HOME/npm
 
+# qt
+set -x QT_QPA_PLATFORM wayland
+set -x QT_WAYLAND_DISABLE_WINDOWDECORATION 1
+
 # ruby
 #set -x GEM_PATH $XDG_DATA_HOME/ruby/bin
 set -x GEM_HOME $XDG_DATA_HOME/ruby

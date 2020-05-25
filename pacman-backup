@@ -25,6 +25,7 @@ proxychains-ng
 pulseaudio
 python-neovim
 qutebrowser
+qt5-wayland
 rclone
 reflector
 ripgrep
