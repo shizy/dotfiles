@@ -14,9 +14,9 @@ ssh_config=$(cat $XDG_CACHE_HOME/ssh/ssh_config)
 host=$(echo $@ | sed -E 's/(\s?-[BbcDEeFIiJLlmOopQRSWw]+\s*\S*)|(\s+-[46AaCfGgKkMNnqsTtVvXxYy]+)//g' | awk '{print $1;}' | sed -e 's/\S*@//g')
 
 # if from git!
-if [ "$(ps -o comm= $PPID)" == "git" ]; then
-    host=$(echo $@ | awk '{print $1;}' | sed -e 's/\S*@//g')
-fi
+#if [ "$(ps -o comm= $PPID)" == "git" ]; then
+#    #host=$(echo $@ | awk '{print $1;}' | sed -e 's/\S*@//g')
+#fi
 
 # if from scp!
 if [ "$(basename $0)" == "scp" ]; then
