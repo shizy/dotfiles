@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# TODO: indexed colors!
+
+/usr/bin/alacritty \
+    --option "font.normal.family='$FONT_MONO'" \
+    --option "font.size=$FONT_SIZE" \
+    --option "colors.primary.background='#101011'" \
+    --option "colors.primary.foreground='$COLOR_015'" \
+    --option "colors.cursor.text='$COLOR_LIGHT'" \
+    --option "colors.normal.black='$COLOR_000'" \
+    --option "colors.normal.red='$COLOR_001'" \
+    --option "colors.normal.green='$COLOR_002'" \
+    --option "colors.normal.yellow='$COLOR_003'" \
+    --option "colors.normal.blue='$COLOR_004'" \
+    --option "colors.normal.magenta='$COLOR_005'" \
+    --option "colors.normal.cyan='$COLOR_006'" \
+    --option "colors.normal.white='$COLOR_007'" \
+    --option "colors.bright.black='$COLOR_008'" \
+    --option "colors.bright.red='$COLOR_009'" \
+    --option "colors.bright.green='$COLOR_010'" \
+    --option "colors.bright.yellow='$COLOR_011'" \
+    --option "colors.bright.blue='$COLOR_012'" \
+    --option "colors.bright.magenta='$COLOR_013'" \
+    --option "colors.bright.cyan='$COLOR_014'" \
+    --option "colors.bright.white='$COLOR_015'" \
+    "$@"

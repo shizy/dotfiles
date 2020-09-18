@@ -5,19 +5,19 @@ resync=0
 
 # install bitwarden if it does not exist
 if [ ! -f $XDG_DATA_HOME/npm/bin/bw ]; then
-    kitty -1 --class="dispatch-small" bash -c 'npm install -g @bitwarden/cli && sudo pacman -S python-tldextract --noconfirm'
+    alacritty --class="dispatch-small" --command bash -c 'npm install -g @bitwarden/cli && sudo pacman -S python-tldextract --noconfirm'
 fi
 
 # prompt to login if not logged in
 $XDG_DATA_HOME/npm/bin/bw login --check > /dev/null
 if [ $? -ne 0 ]; then
-    kitty -1 --class="dispatch-small" --config=$XDG_CONFIG_HOME/kitty/scratch.conf bash -c 'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw login --raw) @u'
+    alacritty --class="dispatch-small" --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command bash -c 'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw login --raw) @u'
 fi
 
 # prompt to unlock if session is invalid
 key=$(keyctl request user bw_session &> /dev/null)
 if [ $? -ne 0 ]; then
-    kitty -1 --class="dispatch-small" --config=$XDG_CONFIG_HOME/kitty/scratch.conf bash -c 'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw unlock --raw) @u'
+    alacritty --class="dispatch-small" --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command bash -c 'keyctl add user bw_session $($XDG_DATA_HOME/npm/bin/bw unlock --raw) @u'
     resync=1
 fi
 
@@ -82,7 +82,7 @@ if [ "$1" == "qute" ]; then
     exit
 fi
 if [ ! -z ${QUTE_FIFO+x} ]; then
-    kitty -1 --class="dispatch-small" --config=$XDG_CONFIG_HOME/kitty/scratch.conf bash -c "$LOCALDIR/bin/bw qute"
+    alacritty --class="dispatch-small" --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command bash -c "$LOCALDIR/bin/bw qute"
     exit
 fi
 

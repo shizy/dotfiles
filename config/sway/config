@@ -6,7 +6,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term kitty
+set $term alacritty
 
 set $ws1 1:
 set $ws2 2:
@@ -18,7 +18,7 @@ set $ws10 10:
 # }}}
 
 # Exec {{{
-exec $term --class=vim -e /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"
+exec $term --class=vim --command /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"
 exec wallpaper restore
 # }}}
 
@@ -66,10 +66,10 @@ set $mode_launch [b]rowser, [d]iscord, [i]rc, [s]team, [t]erm, [v]im, [u]hk, [z]
 mode "$mode_launch" {
     bindsym b exec "$BROWSER"; mode "default"
     bindsym d exec /usr/bin/qutebrowser --target window https://discordapp.com/channels/@me; mode "default"
-    bindsym i exec $term --class=irc weechat; mode "default"
+    bindsym i exec $term --class=irc --command weechat; mode "default"
     bindsym s exec steam; mode "default"
-    bindsym t exec $term --class=term --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish; mode "default"
-    bindsym v exec $term --class=vim /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"
+    bindsym t exec $term --class=term --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command fish; mode "default"
+    bindsym v exec $term --class=vim --command /usr/bin/nvim -S $XDG_CACHE_HOME/nvim/session.vim --cmd "let g:serv = 1"; mode "default"
     bindsym u exec uhk-agent; mode "default"
     bindsym z exec zathura; mode "default"
 
@@ -89,11 +89,11 @@ mode "$mode_layout" {
 
 set $mode_search [b]in, [f]ile, [k]ill, [r]dp, [w]allpaper
 mode "$mode_search" {
-    bindsym b exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch bin"; mode "default"
-    bindsym f exec $term --class=dispatch-large --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch file"; mode "default"
-    bindsym k exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch kill"; mode "default"
-    bindsym r exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch rdp"; mode "default"
-    bindsym w exec $term --class=dispatch-small --config=$XDG_CONFIG_HOME/kitty/scratch.conf fish -c "fuzzysearch wallpaper"; mode "default"
+    bindsym b exec $term --class=dispatch-small --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command fish -c "fuzzysearch bin"; mode "default"
+    bindsym f exec $term --class=dispatch-large --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command fish -c "fuzzysearch file"; mode "default"
+    bindsym k exec $term --class=dispatch-small --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command fish -c "fuzzysearch kill"; mode "default"
+    bindsym r exec $term --class=dispatch-small --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command fish -c "fuzzysearch rdp"; mode "default"
+    bindsym w exec $term --class=dispatch-small --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --command fish -c "fuzzysearch wallpaper"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

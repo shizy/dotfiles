@@ -189,22 +189,14 @@ nmap                    zz              za
 nmap                    zC              zM
 nmap                    zO              zR
 
-"imap                    <C-l>           <Plug>(coc-snippets-expand)
 imap                    jj              <Esc>
 imap                    jk              <Esc>:w<CR>
 imap                    <A-S-h>         <Esc>:tabp<CR>
 imap                    <A-S-l>         <Esc>:tabn<CR>
 imap                    <A-j>           <Down>
 imap                    <A-k>           <Up>
-imap             <expr> ll              pumvisible() ? "\<C-e>" : "\<C-x>\<C-o>"
+imap             <expr> kk              pumvisible() ? "\<C-e>" : "\<C-x>\<C-o>"
 imap             <expr> <Tab>           pumvisible() ? "\<C-y>" : "\<Tab>"
-"inoremap         <expr> <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
-"inoremap         <expr> <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
-"inoremap <silent><expr> <A-Tab>         pumvisible() ? "\<Down><C-y>" : "\<Tab>"
-"inoremap <silent><expr> <Tab>           pumvisible() ? "\<C-y>" :
-"                                            \ coc#expandableOrJumpable() ?
-"                                            \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"                                            \ "\<Tab>"
 
 cmap                    <A-l>           <C-Right>
 cmap                    <A-h>           <C-Left>
