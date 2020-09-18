@@ -8,6 +8,7 @@
 !/config
 /config/*
 
+!/config/alacritty
 !/config/ag
 !/config/fish
 /config/fish/fish_variables
@@ -15,7 +16,6 @@
 !/config/fish/conf.d
 !/config/fontconfig
 !/config/git
-!/config/kitty
 !/config/nvim
 !/config/proxychains
 !/config/qutebrowser

@@ -1,0 +1,18 @@
+import:
+  - /home/shizy/local/config/alacritty/alacritty.yml
+
+window:
+  padding:
+    x: 16
+    y: 16
+
+background_opacity: 0.90
+
+key_bindings:
+  - { key: V,      mods: Alt,                 action: ToggleViMode            }
+  - { key: K,      mods: Alt,       mode: Vi, action: ScrollHalfPageUp        }
+  - { key: J,      mods: Alt,       mode: Vi, action: ScrollHalfPageDown      }
+  - { key: K,      mods: Alt|Shift,           action: ScrollHalfPageUp        }
+  - { key: J,      mods: Alt|Shift,           action: ScrollHalfPageDown      }
+  - { key: Slash,  mods: Alt,       mode: Vi, action: SearchBackward          }
+  - { key: N,      mods: Alt,       mode: Vi, action: SearchPrevious          }
