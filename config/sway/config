@@ -42,7 +42,7 @@ for_window [app_id="dispatch-small"] floating enable, resize set width 50ppt hei
 for_window [app_id="dispatch-large"] floating enable, resize set width 70ppt height 46ppt, move position center
 
 assign [title="FreeRDP"] $ws1
-assign [class="qutebrowser"] $ws2
+assign [app_id="qutebrowser"] $ws2
 assign [app_id="vim"] $ws3
 assign [app_id="irc"] $ws4
 # assign [class="qutebrowser" title="^discord$"] $ws4
