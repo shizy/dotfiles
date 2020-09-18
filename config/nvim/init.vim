@@ -79,21 +79,13 @@ endfunction
 
 packadd termdebug
 
-let g:coc_global_extensions = [
-\ 'coc-clangd',
-\ 'coc-highlight',
-\ 'coc-git',
-\ 'coc-snippets',
-\ 'coc-texlab',
-\ 'coc-vimlsp',
-\]
-
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 Plug 'vim-scripts/busybee'
 
 Plug 'junegunn/vim-easy-align'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
+Plug 'neovim/nvim-lsp'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -103,19 +95,24 @@ Plug 'justinmk/vim-syntax-extra'
 call plug#end()
 "}}}
 
+" LSP {{{
+lua <<EOF
+require'nvim_lsp'.rust_analyzer.setup{
+  settings = {
+    rust_analyzer = {
+      inlayHints = {
+        enable = false;
+      }
+    }
+  }
+}
+EOF
+"}}}
+
 " OPTIONS {{{
 
 " C
 let c_syntax_for_h = 1
-
-" Coc
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
-let g:coc_data_root = $XDG_DATA_HOME . '/coc/extension'
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " Colorscheme
 set background=dark
@@ -192,18 +189,22 @@ nmap                    zz              za
 nmap                    zC              zM
 nmap                    zO              zR
 
-imap                    <C-l>           <Plug>(coc-snippets-expand)
+"imap                    <C-l>           <Plug>(coc-snippets-expand)
 imap                    jj              <Esc>
 imap                    jk              <Esc>:w<CR>
 imap                    <A-S-h>         <Esc>:tabp<CR>
 imap                    <A-S-l>         <Esc>:tabn<CR>
-inoremap         <expr> <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
-inoremap         <expr> <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
-inoremap <silent><expr> <A-Tab>         pumvisible() ? "\<Down><C-y>" : "\<Tab>"
-inoremap <silent><expr> <Tab>           pumvisible() ? "\<C-y>" :
-                                            \ coc#expandableOrJumpable() ?
-                                            \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-                                            \ "\<Tab>"
+imap                    <A-j>           <Down>
+imap                    <A-k>           <Up>
+imap             <expr> ll              pumvisible() ? "\<C-e>" : "\<C-x>\<C-o>"
+imap             <expr> <Tab>           pumvisible() ? "\<C-y>" : "\<Tab>"
+"inoremap         <expr> <A-j>           pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
+"inoremap         <expr> <A-k>           pumvisible() ? "\<Up>" : "\<C-s>\<C-o>"
+"inoremap <silent><expr> <A-Tab>         pumvisible() ? "\<Down><C-y>" : "\<Tab>"
+"inoremap <silent><expr> <Tab>           pumvisible() ? "\<C-y>" :
+"                                            \ coc#expandableOrJumpable() ?
+"                                            \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"                                            \ "\<Tab>"
 
 cmap                    <A-l>           <C-Right>
 cmap                    <A-h>           <C-Left>
@@ -266,7 +267,8 @@ nmap                    'f              :Finish<CR>
 nmap                    'c              :Continue<CR>
 nmap                    'i              :Evaluate<CR>
 
-nmap                    <Leader>i       :call CocAction('doHover')<CR>
+nmap                    <Leader>i       :<cmd>lua vim.lsp.buf.hover()<CR>
+nmap                    <Leader>d       :<cmd>lua vim.lsp.buf.definition()<CR>
 nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
 nmap                    <Leader>cs      :CocCommand git.chunkStage<CR>
 nmap                    <Leader>ci      :CocCommand git.chunkInfo<CR>
@@ -290,12 +292,14 @@ augroup globalaus
         au VimEnter                  *                  call serverstart($XDG_RUNTIME_DIR . '/nvim.sock')
         au VimLeave                  *                  call serverstop($XDG_RUNTIME_DIR . '/nvim.sock')
         au VimLeavePre               *                  mks! $XDG_CACHE_HOME/nvim/session.vim
+        au VimSuspend                *                  mks! $XDG_CACHE_HOME/nvim/session.vim
     endif
 augroup END
 
 " Filetype specific
 augroup filetypes
     au!
+    au FileType rust       setlocal omnifunc=v:lua.vim.lsp.omnifunc
     au FileType fugitive   nmap <buffer> <A-v> -
     au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
     au FileType sh         nmap <buffer> <Leader>; :sp<CR>:te! %:p<CR>

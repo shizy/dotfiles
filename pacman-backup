@@ -29,6 +29,7 @@ qt5-wayland
 rclone
 reflector
 ripgrep
+rust-analyzer
 slurp
 sway
 swaylock

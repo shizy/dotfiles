@@ -103,6 +103,10 @@ set -x GEM_HOME $XDG_DATA_HOME/ruby
 set -x GEM_SPEC_CACHE $XDG_CACHE_HOME/ruby
 set -x GEMRC $XDG_CONFIG_HOME/ruby/gemrc
 
+# rust
+set -x RUSTUP_HOME $XDG_DATA_HOME/rust/rustup
+set -x CARGO_HOME $XDG_CACHE_HOME/cargo
+
 # ssh
 set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
@@ -120,5 +124,5 @@ set -x XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -x XINITRC $XDG_CONFIG_HOME/x11/xinitrc
 
 # Path
-set -x PATH $LOCALDIR/bin $PRIVATE/bin /usr/bin/core_perl $GEM_PATH $XDG_DATA_HOME/go/bin $PATH
+set -x PATH $LOCALDIR/bin $PRIVATE/bin /usr/bin/core_perl $GEM_PATH $XDG_DATA_HOME/go/bin $PATH $RUSTUP_HOME
 

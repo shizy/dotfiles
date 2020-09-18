@@ -46,11 +46,17 @@ exec "hi StatusLineTwo            ctermfg=232 ctermbg=239  cterm=none         gu
 exec "hi StatusLine               ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=none"
 exec "hi StatusLineNC             ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=italic"
 
-exec "hi CocGitAddedSign          ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
-exec "hi CocGitChangedSign        ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
-exec "hi CocGitChangeRemovedSign  ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
-exec "hi CocGitTopRemovedSign     ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
-exec "hi CocGitRemovedSign        ctermfg=200 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
+exec "hi LspDiagnosticsHint       ctermfg=196 ctermbg=none cterm=bold         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsHintSign   ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
+exec "hi LspDiagnosticsInformation ctermfg=40  ctermbg=none cterm=none         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsInformationSign ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
+exec "hi LspDiagnosticsWarning    ctermfg=220 ctermbg=none cterm=bold         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsWarningSign ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
+exec "hi LspDiagnosticsError      ctermfg=196 ctermbg=none cterm=bold         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsErrorSign  ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
+exec "hi LspReferenceText                                                     guifg=". A ."   guibg=". d
+exec "hi LspReferenceRead                                                     guifg=". C ."   guibg=". d
+exec "hi LspReferenceWrite                                                    guifg=". R ."   guibg=". d
 
 exec "hi CocHintSign              ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
 exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
