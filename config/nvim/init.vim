@@ -86,6 +86,7 @@ Plug 'vim-scripts/busybee'
 Plug 'junegunn/vim-easy-align'
 Plug 'rust-lang/rust.vim'
 Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/diagnostic-nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -98,6 +99,7 @@ call plug#end()
 " LSP {{{
 lua <<EOF
 require'nvim_lsp'.rust_analyzer.setup{
+  on_attach=require'diagnostic'.on_attach;
   settings = {
     rust_analyzer = {
       inlayHints = {
@@ -162,8 +164,8 @@ nnoremap                <A-Right>       :vertical resize +10<CR>
 nnoremap                <A-Up>          :resize -10<CR>
 nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
-nmap     <silent>       <A-.>           <Plug>(coc-diagnostic-next)
-nmap     <silent>       <A-,>           <Plug>(coc-diagnostic-prev)
+nmap     <silent>       <A-.>           :NextDiagnosticCycle<CR>
+nmap     <silent>       <A-,>           :PrevDiagnosticCycle<CR>
 nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
@@ -259,8 +261,8 @@ nmap                    'f              :Finish<CR>
 nmap                    'c              :Continue<CR>
 nmap                    'i              :Evaluate<CR>
 
-nmap                    <Leader>i       :<cmd>lua vim.lsp.buf.hover()<CR>
-nmap                    <Leader>d       :<cmd>lua vim.lsp.buf.definition()<CR>
+nmap                    <Leader>i       :<cmd>lua vim.lsp.buf.hover()<CR><CR>
+nmap                    <Leader>d       :<cmd>lua vim.lsp.buf.definition()<CR><CR>
 nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
 nmap                    <Leader>cs      :CocCommand git.chunkStage<CR>
 nmap                    <Leader>ci      :CocCommand git.chunkInfo<CR>

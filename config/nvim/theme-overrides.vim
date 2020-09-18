@@ -46,27 +46,17 @@ exec "hi StatusLineTwo            ctermfg=232 ctermbg=239  cterm=none         gu
 exec "hi StatusLine               ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=none"
 exec "hi StatusLineNC             ctermfg=239 ctermbg=232  cterm=none         guifg=". m ."   guibg=". d ."   gui=italic"
 
-exec "hi LspDiagnosticsHint       ctermfg=196 ctermbg=none cterm=bold         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsHint       ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
 exec "hi LspDiagnosticsHintSign   ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
-exec "hi LspDiagnosticsInformation ctermfg=40  ctermbg=none cterm=none         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsInformation ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
 exec "hi LspDiagnosticsInformationSign ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
-exec "hi LspDiagnosticsWarning    ctermfg=220 ctermbg=none cterm=bold         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsWarning    ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
 exec "hi LspDiagnosticsWarningSign ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
-exec "hi LspDiagnosticsError      ctermfg=196 ctermbg=none cterm=bold         guifg=#1B1B1B   guibg=none      gui=none"
+exec "hi LspDiagnosticsError      ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
 exec "hi LspDiagnosticsErrorSign  ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
 exec "hi LspReferenceText                                                     guifg=". A ."   guibg=". d
 exec "hi LspReferenceRead                                                     guifg=". C ."   guibg=". d
 exec "hi LspReferenceWrite                                                    guifg=". R ."   guibg=". d
-
-exec "hi CocHintSign              ctermfg=196 ctermbg=none cterm=bold         guifg=". l ."   guibg=none      gui=none"
-exec "hi CocInfoSign              ctermfg=40  ctermbg=none cterm=none         guifg=". A ."   guibg=none      gui=none"
-exec "hi CocWarningSign           ctermfg=220 ctermbg=none cterm=bold         guifg=". C ."   guibg=none      gui=none"
-exec "hi CocErrorSign             ctermfg=196 ctermbg=none cterm=bold         guifg=". R ."   guibg=none      gui=none"
-exec "hi CocFloating                                                          guifg=". l ."   guibg=". d
-exec "hi CocHintFloat                                                         guifg=". l ."   guibg=". d
-exec "hi CocInfoFloat                                                         guifg=". A ."   guibg=". d
-exec "hi CocWarningFloat                                                      guifg=". C ."   guibg=". d
-exec "hi CocErrorFloat                                                        guifg=". R ."   guibg=". d
 
 exec "hi DiffAdd                                                              guifg=". d ."   guibg=". A
 exec "hi DiffChange                                                           guifg=". d ."   guibg=". C
@@ -81,6 +71,11 @@ hi Statement gui=bold
 
 hi link Visual Search
 hi link Visual IncSearch
+
+sign define LspDiagnosticsErrorSign text=  texthl=LspDiagnosticsErrorSign linehl= numhl=
+sign define LspDiagnosticsWarningSign text=  texthl=LspDiagnosticsWarningSign linehl= numhl=
+sign define LspDiagnosticsInformationSign text=  texthl=LspDiagnosticsInformationSign linehl= numhl=
+sign define LspDiagnosticsHintSign text=  texthl=LspDiagnosticsHintSign linehl= numhl=
 
 au InsertEnter * exec "hi CursorLineNr ctermfg=200 guifg=" . a
 au InsertLeave * exec "hi CursorLineNr ctermfg=201 guifg=" . l

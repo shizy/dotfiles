@@ -3,8 +3,8 @@ import:
 
 window:
   padding:
-    x: 16
-    y: 16
+    x: 20
+    y: 20
 
 background_opacity: 0.90
 
