@@ -85,7 +85,7 @@ Plug 'vim-scripts/busybee'
 
 Plug 'junegunn/vim-easy-align'
 Plug 'rust-lang/rust.vim'
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
@@ -263,9 +263,7 @@ nmap                    'i              :Evaluate<CR>
 
 nmap                    <Leader>i       :<cmd>lua vim.lsp.buf.hover()<CR><CR>
 nmap                    <Leader>d       :<cmd>lua vim.lsp.buf.definition()<CR><CR>
-nmap                    <Leader>cu      :CocCommand git.chunkUndo<CR>
-nmap                    <Leader>cs      :CocCommand git.chunkStage<CR>
-nmap                    <Leader>ci      :CocCommand git.chunkInfo<CR>
+nmap                    <Leader>a       :<cmd>lua vim.lsp.buf.code_action()<CR><CR>
 nmap                    <Leader>gc      :Git checkout<space>
 nmap                    <Leader>gs      :Gstatus<CR><C-n>
 nmap                    <Leader>gp      :Git push<space>
@@ -277,11 +275,11 @@ nmap                    <Leader>gm      :Gmerge<space>
 " AUTOCOMMANDS {{{
 augroup globalaus
     au!
-    au User                          CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     "au TermOpen,WinEnter,BufWinEnter term://*           startinsert
     "au WinLeave,BufWinLeave          term://*           stopinsert
     au WinEnter                      *                  setlocal cursorline
     au WinLeave                      *                  setlocal nocursorline
+    au VimLeave,VimSuspend           *                  set guicursor=a:hor100
     if get(g:, 'serv', 0) == 1
         au VimEnter                  *                  call serverstart($XDG_RUNTIME_DIR . '/nvim.sock')
         au VimLeave                  *                  call serverstop($XDG_RUNTIME_DIR . '/nvim.sock')
@@ -302,8 +300,6 @@ augroup filetypes
         \ setlocal spelllang=en_us |
         \ setlocal nocin inde= |
         \ setlocal syntax=tex |
-        \ nmap <buffer> <Leader>;   :CocCommand latex.Build<CR>|
-        \ nmap <buffer> ''          :CocCommand latex.ForwardSearch<CR>|
     au FileType c,cpp,cmake
         \ setlocal foldmethod=syntax |
         \ setlocal foldnestmax=1 |
