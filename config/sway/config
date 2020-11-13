@@ -40,6 +40,7 @@ for_window [title="FreeRDP"] floating disable
 for_window [app_id="^scratch"] floating enable
 for_window [app_id="dispatch-small"] floating enable, resize set width 50ppt height 25ppt, move position center
 for_window [app_id="dispatch-large"] floating enable, resize set width 70ppt height 46ppt, move position center
+no_focus [app_id="zathura"]
 
 assign [title="FreeRDP"] $ws1
 assign [app_id="qutebrowser"] $ws2

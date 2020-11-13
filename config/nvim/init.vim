@@ -98,7 +98,9 @@ call plug#end()
 
 " LSP {{{
 lua <<EOF
-require'nvim_lsp'.rust_analyzer.setup{
+local nvim_lsp = require'nvim_lsp'
+
+nvim_lsp.rust_analyzer.setup{
   settings = {
     rust_analyzer = {
       inlayHints = {
@@ -107,6 +109,8 @@ require'nvim_lsp'.rust_analyzer.setup{
     }
   }
 }
+
+nvim_lsp.texlab.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -316,6 +320,9 @@ augroup filetypes
         \ setlocal spelllang=en_us |
         \ setlocal nocin inde= |
         \ setlocal syntax=tex |
+        \ setlocal omnifunc=v:lua.vim.lsp.omnifunc |
+        \ nmap <buffer> <A-w> :w<CR>:TexlabBuild<CR> |
+        \ nmap <buffer> <Leader>; :execute "silent !zathura --synctex-forward ".line('.').":".col('.').":%:p %:p:r.pdf &"<CR> |
     au FileType c,cpp,cmake
         \ setlocal foldmethod=syntax |
         \ setlocal foldnestmax=1 |
