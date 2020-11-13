@@ -86,12 +86,12 @@ Plug 'vim-scripts/busybee'
 Plug 'junegunn/vim-easy-align'
 Plug 'rust-lang/rust.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-syntax-extra'
+Plug 'ziglang/zig.vim'
 
 call plug#end()
 "}}}
@@ -99,7 +99,6 @@ call plug#end()
 " LSP {{{
 lua <<EOF
 require'nvim_lsp'.rust_analyzer.setup{
-  on_attach=require'diagnostic'.on_attach;
   settings = {
     rust_analyzer = {
       inlayHints = {
@@ -108,6 +107,15 @@ require'nvim_lsp'.rust_analyzer.setup{
     }
   }
 }
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  }
+)
 EOF
 "}}}
 
@@ -134,6 +142,9 @@ let g:netrw_scp_cmd = 'scp -F $PRIVATE/ssh/ssh_config'
 
 " Surround
 let g:surround_{char2nr("/")} = "/*\r*/"
+
+" Zig
+let g:zig_fmt_autosave = 0
 
 "}}}
 
@@ -164,8 +175,8 @@ nnoremap                <A-Right>       :vertical resize +10<CR>
 nnoremap                <A-Up>          :resize -10<CR>
 nnoremap                <A-Down>        :resize +10<CR>
 nnoremap                <A->>           ]s
-nmap     <silent>       <A-.>           :NextDiagnosticCycle<CR>
-nmap     <silent>       <A-,>           :PrevDiagnosticCycle<CR>
+nmap     <silent>       <A-.>           <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nmap     <silent>       <A-,>           <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nmap             <expr> <A-Space>       feedkeys(":b **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-x>           feedkeys(":bw! **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
 nmap             <expr> <A-s>           feedkeys(":sb **".get(g:, "Filter" . tabpagenr(), '')."**\<C-Z>\<C-p>")
@@ -277,6 +288,7 @@ augroup globalaus
     au!
     "au TermOpen,WinEnter,BufWinEnter term://*           startinsert
     "au WinLeave,BufWinLeave          term://*           stopinsert
+    au BufRead,BufNewFile            *mutt-*            setfiletype mail
     au WinEnter                      *                  setlocal cursorline
     au WinLeave                      *                  setlocal nocursorline
     au VimLeave,VimSuspend           *                  set guicursor=a:hor100
@@ -287,10 +299,14 @@ augroup globalaus
         au VimSuspend                *                  mks! $XDG_CACHE_HOME/nvim/session.vim
     endif
 augroup END
+augroup filetypedetect
+  " Mail
+augroup END
 
 " Filetype specific
 augroup filetypes
     au!
+    au FileType zig        setlocal omnifunc=v:lua.vim.lsp.omnifunc
     au FileType rust       setlocal omnifunc=v:lua.vim.lsp.omnifunc
     au FileType fugitive   nmap <buffer> <A-v> -
     au FileType javascript nmap <buffer> <Leader>; :sp<CR>:te! cd %:p:h; npm start<CR>
