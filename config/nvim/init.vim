@@ -98,7 +98,7 @@ call plug#end()
 
 " LSP {{{
 lua <<EOF
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 
 nvim_lsp.rust_analyzer.setup{
   settings = {
