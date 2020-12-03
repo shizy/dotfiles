@@ -137,13 +137,17 @@ bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false; pactl set-sink-v
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false; pactl set-sink-volume 0 +5%"
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
-bindsym $mod+k exec scratchpad scratchtop
-bindsym $mod+j exec scratchpad scratchbottom
+bindsym $mod+Shift+k exec scratchpad scratchtop
+bindsym $mod+Shift+j exec scratchpad scratchbottom
 
-bindsym $mod+Control+$left focus left
-bindsym $mod+Control+$right focus right
-bindsym $mod+Control+$up focus up
-bindsym $mod+Control+$down focus down
+bindsym $mod+$left focus left
+bindsym $mod+$right focus right
+bindsym $mod+$up focus up
+bindsym $mod+$down focus down
+bindsym $mod+Control+$left move left
+bindsym $mod+Control+$right move right
+bindsym $mod+Control+$up move up
+bindsym $mod+Control+$down move down
 bindsym $mod+Return fullscreen
 bindsym $mod+Shift+Return fullscreen toggle global
 bindsym $mod+space floating toggle
@@ -171,10 +175,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Control+Shift+h move workspace output left
 bindsym $mod+Control+Shift+l move workspace output right
-bindsym $mod+Shift+h focus output left
-bindsym $mod+Shift+l focus output right
-bindsym $mod+h workspace prev_on_output
-bindsym $mod+l workspace next_on_output
+bindsym $mod+Shift+h workspace prev_on_output
+bindsym $mod+Shift+l workspace next_on_output
 bindsym $mod+n [urgent=latest] focus
 bindsym $mod+period focus mode_toggle
 # }}}
