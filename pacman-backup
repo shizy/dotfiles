@@ -23,6 +23,7 @@ perl-net-smtp-ssl
 perl-mime-tools
 proxychains-ng
 pulseaudio
+python-adblock
 python-neovim
 qutebrowser
 qt5-wayland

@@ -1,6 +1,10 @@
 import os
 
-c.colors.webpage.prefers_color_scheme_dark = True
+config.load_autoconfig(False)
+c.colors.webpage.preferred_color_scheme = 'dark'
+c.content.autoplay = False
+c.content.blocking.method = 'adblock'
+c.content.cookies.accept = "no-3rdparty"
 c.content.pdfjs = True
 c.completion.height = "33%"
 c.completion.scrollbar.width = 0
