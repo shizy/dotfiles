@@ -130,7 +130,7 @@ bindsym $mod+slash mode "$mode_search"
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+q exit
 bindsym $mod+x kill
-bindsym $mod+Escape exec "keyctl purge user bw_session; swaylock -c 000000"
+bindsym $mod+Escape exec "keyctl purge user bw_session; ssh-add -D; swaylock -c 000000"
 bindsym $mod+s exec grim -g \"$(slurp)\" $XDG_RUNTIME_DIR/$(date +%s).png; mode "$mode_shot"
 
 bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false; pactl set-sink-volume 0 -5%"

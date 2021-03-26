@@ -56,7 +56,6 @@ set -x ELINKS_CONFDIR $XDG_CONFIG_HOME/elinks
 set -x FZF_DEFAULT_OPTS "--color dark,hl:$COLOR_ACCENT,pointer:$COLOR_ACCENT,marker:$COLOR_ACCENT,prompt:$COLOR_ACCENT -m --select-1 --exit-0 --bind 'esc:abort,alt-j:down,alt-k:up,alt-h:backward-char,alt-l:forward-char,alt-x:unix-line-discard'"
 
 # git
-set -x GIT_SSH $LOCALDIR/bin/ssh
 set -x GIT_PS1_SHOWDIRTYSTATE 1
 set -x GIT_PS1_SHOWSTASHSTATE 1
 set -x GIT_PS1_SHOWUPSTREAM "auto"

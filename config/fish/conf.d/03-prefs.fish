@@ -15,7 +15,6 @@ alias rm="rm -rf"
 alias ls="ls -AlhF --group-directories-first --color=auto"
 alias grep="grep --color=auto"
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
-alias ssh="$LOCALDIR/bin/ssh"
 alias rclone="rclone --config $PRIVATE/rclone/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias du="du --time -had 1 | sort -t '/' -k 2,2"
@@ -170,6 +169,14 @@ end
 function edit
     set file (pwd)/$argv
     python -c "from neovim import attach;attach('socket', path='$XDG_RUNTIME_DIR/nvim.sock').command('bad $file');"
+end
+
+function ssh
+    if test -f $XDG_RUNTIME_DIR/ssh/ssh_config
+        /usr/bin/ssh -F $XDG_RUNTIME_DIR/ssh/ssh_config -o "UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts" $argv
+    else
+        /usr/bin/ssh -o "UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts" $argv
+    end
 end
 
 function backup
