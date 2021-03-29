@@ -10,10 +10,6 @@
 
 !/config/alacritty
 !/config/ag
-!/config/fish
-/config/fish/fish_variables
-/config/fish/fishd.*
-!/config/fish/conf.d
 !/config/fontconfig
 !/config/git
 !/config/nvim
