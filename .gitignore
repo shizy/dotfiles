@@ -26,6 +26,7 @@
 /config/systemd/user/**
 !/config/user-dirs.dir
 !/config/zathura
+!/config/zsh
 
 # Fonts
 !/data
