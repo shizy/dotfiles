@@ -24,11 +24,15 @@ case $1 in
 esac
 
 positioning="resize set width ${window_width_percentage}ppt height ${window_height_percentage}ppt, move position center, move ${direction} ${yadjust}px"
+initial="swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show;"
 
 # if not running, spawn scratchpad based on direction and workspace size
 if [ $running == 0 ]; then
 
-    alacritty --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --class="$1" --command fish -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show" -c "fish ${@:2}"
+    #alacritty --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --class="$1" --command zsh -c "swaymsg [app_id=\"$1\"] floating enable, $positioning, move scratchpad, scratchpad show; ${@:2}"
+    alacritty --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml --class="$1" --command zsh "${@:2}" & disown
+    sleep 0.25
+    swaymsg [app_id="$1"] floating enable, $positioning, move scratchpad, scratchpad show
 else
     swaymsg "[app_id=\"$1\"] scratchpad show, $positioning"
 fi

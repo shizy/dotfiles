@@ -9,7 +9,7 @@ license=('ISC')
 depends=(
     'alsa-utils'
     'ntp'
-    'fish'
+    'zsh'
 )
 source=(
     pam_env.conf

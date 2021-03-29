@@ -24,8 +24,9 @@ export COLOR_LIGHT="#fbf1c7"
 export COLOR_ADD="#b8bb26"
 export COLOR_CHANGE="#ff9800"
 export COLOR_REMOVE="#fb4934"
-export COLOR_ACCENT_CHOICES=("#e7f695" "#a5f69d" "#90e1f9")
-export COLOR_ACCENT=$COLOR_ACCENT_CHOICES[$(($RANDOM % ${#COLOR_ACCENT_CHOICES[@]}))]
+
+#accent_choices=("#e7f695" "#a5f69d" "#90e1f9")
+export COLOR_ACCENT="#e7f695"
 
 
 export FONT_MONO="Iosevka Custom"
@@ -60,6 +61,7 @@ export FZF_DEFAULT_OPTS="--color dark,hl:$COLOR_ACCENT,pointer:$COLOR_ACCENT,mar
 
 
 # git
+export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=$XDG_CACHE_HOME/ssh/known_hosts"
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUPSTREAM="auto"
