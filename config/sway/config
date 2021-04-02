@@ -37,7 +37,7 @@ font pango:Iosevka Custom, Font Awesome 5 Free 11
 
 # Windows {{{
 for_window [title="FreeRDP"] floating disable
-for_window [app_id="^scratch"] floating enable
+for_window [app_id="^scratch"] floating enable, resize set 80ppt 46ppt, move scratchpad
 for_window [app_id="dispatch-small"] floating enable, resize set width 50ppt height 25ppt, move position center
 for_window [app_id="dispatch-large"] floating enable, resize set width 70ppt height 46ppt, move position center
 no_focus [app_id="zathura"]
@@ -122,6 +122,12 @@ mode "$mode_shot" {
 }
 # }}}
 
+# scratchpads
+set $getoffset "swaymsg -t get_outputs --raw | jq -r '.[]\|select\(.focused==true\)\|\(.rect.height-\(.rect.height*0.46\)\)/2\|floor'"
+bindsym $mod+Shift+k set $o $($getoffset); exec "swaymsg [app_id=scratchup] nop; [[ $? -gt 0 ]] && alacritty --class=scratchup --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml || swaymsg [app_id=scratchup] resize set 80ppt 46ppt, move position center, move up $o, scratchpad show"
+bindsym $mod+Shift+j set $o $($getoffset); exec "swaymsg [app_id=scratchdn] nop; [[ $? -gt 0 ]] && alacritty --class=scratchdn --config-file=$XDG_CONFIG_HOME/alacritty/scratch.yml || swaymsg [app_id=scratchdn] resize set 80ppt 46ppt, move position center, move down $o, scratchpad show"
+
+
 # Binds {{{
 bindsym $mod+semicolon mode "$mode_launch"
 bindsym $mod+m mode "$mode_layout"
@@ -137,9 +143,6 @@ bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false; pactl set-sink-v
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false; pactl set-sink-volume 0 +5%"
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
-bindsym $mod+Shift+k exec scratchpad scratchtop
-bindsym $mod+Shift+j exec scratchpad scratchbottom
-
 bindsym $mod+$left focus left
 bindsym $mod+$right focus right
 bindsym $mod+$up focus up
@@ -151,7 +154,7 @@ bindsym $mod+Control+$down move down
 bindsym $mod+Return fullscreen
 bindsym $mod+Shift+Return fullscreen toggle global
 bindsym $mod+space floating toggle
-bindsym $mod+Tab exec $HOME/local/bin/flexible_focus.sh
+bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2

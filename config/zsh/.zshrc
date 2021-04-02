@@ -28,12 +28,14 @@ CMD_PROMPT="  %B%F{$COLOR_ACCENT}%~ %F{$COLOR_MEDIUM}"
 NORMAL="$CMD_PROMPT    "
 INSERT="$CMD_PROMPT >  "
 
+precmd() { print "" }
 
 function zle-line-init zle-keymap-select {
     PROMPT="${${KEYMAP/vicmd/$NORMAL}/(main|viins)/$INSERT}%b%f"
     GITPROMPT=${${${${${${$(__git_ps1 "  %s ")//\*/  }//\+/  }//\<\>/   }/\</  }//\>/  }/\=/}
     RPROMPT="%B%F{$COLOR_MEDIUM}$GITPROMPT"
     zle reset-prompt
+    echo -ne "${${KEYMAP/vicmd/\e[2 q}/(main|viins)/\e[4 q}"
 }
 
 
